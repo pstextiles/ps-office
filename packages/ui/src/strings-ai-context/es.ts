@@ -8,5 +8,5 @@ export const es = {
   toolsUnsupported:
     'Este modelo no admite llamadas a herramientas. Solo sugerirá texto y no editará el documento.',
   errContextLimit:
-    'No se envió nada: la solicitud se acerca al límite de contexto del modelo. Divídela en solicitudes más pequeñas e inténtalo de nuevo.',
+    'No se envió nada: la solicitud se acerca al límite de contexto del modelo. Divídala en solicitudes más pequeñas e inténtelo de nuevo.',
 } satisfies Record<keyof typeof zh, string>

@@ -42,7 +42,7 @@ export const es = {
   refusedDamaged: 'El archivo está dañado o es demasiado grande',
   refusedNotEpub: 'No es un archivo EPUB o está dañado',
   refusedDrm:
-    'No se pueden abrir libros electrónicos con protección anticopia (DRM). Ábrelo en la aplicación de la tienda donde lo compraste',
+    'No se pueden abrir libros electrónicos con protección anticopia (DRM). Ábralo en la aplicación de la tienda donde lo compró',
   refusedUnreadable: 'No se pudo leer el archivo',
   chapterFailed: 'No se pudo cargar este capítulo',
   linkNotOpened: 'Esta dirección no se abre: {url}',

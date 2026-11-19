@@ -33,7 +33,7 @@ export const es = {
 
   redactMenuLabel: 'Ocultar la selección a la IA',
   redactDialogDesc:
-    'Las palabras siguen en el documento y en el archivo; el modelo solo ve el marcador. Ponle un nombre para que sepa qué representa.',
+    'Las palabras siguen en el documento y en el archivo; el modelo solo ve el marcador. Póngale un nombre para que sepa qué representa.',
   redactDialogScope:
     'Ocultar solo se aplica a la IA de esta aplicación. La CLI, las herramientas MCP y la exportación headless leen el archivo directamente y siguen viendo estas palabras.',
   redactDialogPlaceholder: 'Nombre del marcador, p. ej.: teléfono del cliente',
@@ -48,7 +48,7 @@ export const es = {
   exportFailed: 'Error al exportar',
   printFailed: 'Error al imprimir: {error}',
   printRangeEmpty:
-    'Este documento tiene {count} páginas. Escribe números de página dentro de ese intervalo.',
+    'Este documento tiene {count} páginas. Escriba números de página dentro de ese intervalo.',
   printPagesFailed: 'No se pudieron contar las páginas que se van a imprimir: {error}',
   printLayoutSaved: 'Se guardó el resultado organizado como PDF.',
   printLayoutSaveFailed: 'No se pudo guardar el PDF: {error}',
@@ -87,9 +87,9 @@ export const es = {
   previewNeedsSave:
     'Las imágenes y estilos relativos se mostrarán en la vista previa al guardar el archivo',
   inspectHint:
-    'Haz clic en un elemento de la vista previa para seleccionarlo; doble clic para editar el texto; Mayús+clic o {alt}+arrastrar para seleccionar varios',
+    'Haga clic en un elemento de la vista previa para seleccionarlo; doble clic para editar el texto; Mayús+clic o {alt}+arrastrar para seleccionar varios',
   nodeDynamic:
-    'Este elemento fue creado por el script de la página y no existe en el código; edítalo desde el código o con IA',
+    'Este elemento fue creado por el script de la página y no existe en el código; edítelo desde el código o con IA',
   nodeDynamicShort: 'generado por script',
   nodeDirty:
     'El script de la página modificó este elemento; los cambios escritos en el código pueden ser sobrescritos',
@@ -156,7 +156,7 @@ export const es = {
   imageFitCover: 'Cubrir',
   imageFitNone: 'Tamaño original',
   imageNatural: 'Tamaño natural',
-  imageNeedsSave: 'Guarda el archivo antes de reemplazar o editar imágenes',
+  imageNeedsSave: 'Guarde el archivo antes de reemplazar o editar imágenes',
   insertMenu: 'Insertar',
   insertHeading: 'Título',
   insertParagraph: 'Párrafo',
@@ -166,7 +166,7 @@ export const es = {
   insertSection: 'Sección',
   insertDivider: 'Separador',
   insertPlaceholderHeading: 'Nuevo título',
-  insertPlaceholderParagraph: 'Escribe tu texto aquí.',
+  insertPlaceholderParagraph: 'Escriba su texto aquí.',
   insertPlaceholderListItem: 'Elemento de lista',
   insertPlaceholderButton: 'Botón',
   insertNoBody: 'La página no tiene <body> donde insertar',

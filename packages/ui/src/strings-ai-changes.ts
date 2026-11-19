@@ -124,9 +124,9 @@ export const AI_CHANGES_LABELS: Record<Lang, AiChangesLabels> = {
     revertLaterTitle: 'Deshacer este turno y todos los turnos de la IA posteriores',
     showChange: 'Mostrar este lugar en el documento',
     refused:
-      'No se pudieron deshacer estos cambios de una vez. Si el documento se editó después, usa Deshacer del editor (Ctrl+Z).',
-    expired: 'Este turno ya no se puede deshacer de una vez. Usa Deshacer del editor (Ctrl+Z).',
-    partial: 'Algunos cambios no se pudieron deshacer. Revisa el documento.',
+      'No se pudieron deshacer estos cambios de una vez. Si el documento se editó después, use Deshacer del editor (Ctrl+Z).',
+    expired: 'Este turno ya no se puede deshacer de una vez. Use Deshacer del editor (Ctrl+Z).',
+    partial: 'Algunos cambios no se pudieron deshacer. Revise el documento.',
   },
   th: {
     changedCount: (n) => `แก้ไขเอกสาร ${n} แห่ง`,

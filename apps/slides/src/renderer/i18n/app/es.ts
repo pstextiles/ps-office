@@ -5,7 +5,7 @@ export const es = {
     'El archivo .ppt se abrió como una copia .pptx convertida. El original no cambia; al guardar se escribe un nuevo archivo .pptx. Las notas del orador y las animaciones no se conservan.',
   redactMenuLabel: 'Ocultar la selección a la IA',
   redactDialogDesc:
-    'Lo seleccionado sigue en el documento y en el archivo; el modelo solo ve el marcador. Ponle un nombre para que sepa qué representa.',
+    'Lo seleccionado sigue en el documento y en el archivo; el modelo solo ve el marcador. Póngale un nombre para que sepa qué representa.',
   redactDialogScope:
     'Ocultar solo se aplica a la IA de esta aplicación. La CLI, las herramientas MCP y la exportación headless leen el archivo directamente y siguen viendo estas palabras.',
   redactDialogPlaceholder: 'Nombre del marcador, p. ej.: teléfono del cliente',
@@ -106,7 +106,7 @@ export const es = {
   appStatusKeepOneSlide: 'No se puede eliminar; debe quedar al menos una diapositiva',
   appStatusSlideCopied: 'Diapositiva copiada: péguela en otra presentación',
   appStatusSlideCopyFailed: 'No se pudo copiar la diapositiva',
-  appStatusSlideCut: 'Diapositiva cortada: pégala en cualquier archivo abierto',
+  appStatusSlideCut: 'Diapositiva cortada: péguela en cualquier archivo abierto',
   appStatusSlidePasteFailed: 'No se pudo pegar la diapositiva',
   appSectionUntitled: 'Sección sin título',
   appSectionDefault: 'Sección predeterminada',
@@ -187,7 +187,7 @@ export const es = {
   appPrintPageCount: '{n} páginas',
   appPrintNoPages: 'No hay diapositivas para imprimir',
   appPrintRendering: 'Generando la vista previa…',
-  appGuideDragTip: 'Arrastra para mover; doble clic o arrastra fuera del lienzo para eliminar',
+  appGuideDragTip: 'Arrastre para mover; doble clic o arrastre fuera del lienzo para eliminar',
   appPrintFailed: 'Error al imprimir: {error}',
   appCtxBringToFront: 'Traer al frente',
   appCtxSendToBack: 'Enviar al fondo',
@@ -269,7 +269,7 @@ export const es = {
   appSettingsSave: 'Guardar',
   appCropHint: 'Entrar para confirmar · Esc para cancelar · Haga clic fuera para confirmar',
   appStatusZoomsInserted:
-    '{count} zooms insertados: haz clic durante la presentación para saltar a sus diapositivas',
+    '{count} zooms insertados: haga clic durante la presentación para saltar a sus diapositivas',
   appStatusSummaryZoomInserted: 'Diapositiva de zoom de resumen insertada con {count} mosaicos',
   appSectionSummary: 'Sección de resumen',
   appSectionN: 'Sección {n}',

@@ -666,7 +666,7 @@ export const es = {
   ribbonEditorBtn: 'Editor',
   ribbonEditorTip: 'La IA revisa ortografía, gramática y puntuación',
   ribbonEditorPrompt:
-    'Revisa todo el documento: corrige erratas, puntuación y errores gramaticales manteniendo el significado original y la estructura de los párrafos.',
+    'Revise todo el documento: corrija erratas, puntuación y errores gramaticales manteniendo el significado original y la estructura de los párrafos.',
   ribbonGroupProofing: 'Revisión',
   ribbonSpellcheckBtn: 'Ortografía',
   ribbonSpellcheckTip:
@@ -674,11 +674,11 @@ export const es = {
   ribbonTranslate: 'Traducir',
   ribbonTranslateTip: 'La IA traduce el documento',
   ribbonTranslatePrompt:
-    'Traduce todo el documento al {lang}, manteniendo la estructura de párrafos y los niveles de títulos.',
+    'Traduzca todo el documento al {lang}, manteniendo la estructura de párrafos y los niveles de títulos.',
   ribbonTranslateSelectionPrompt:
-    'Traduce el contenido seleccionado al {lang}, manteniendo la estructura de párrafos.',
+    'Traduzca el contenido seleccionado al {lang}, manteniendo la estructura de párrafos.',
   ribbonEditorSelectionPrompt:
-    'Revisa el contenido seleccionado: corrige erratas, puntuación y errores gramaticales manteniendo el significado original y la estructura de los párrafos.',
+    'Revise el contenido seleccionado: corrija erratas, puntuación y errores gramaticales manteniendo el significado original y la estructura de los párrafos.',
   ribbonTranslateTo: 'Traducir al {lang}',
   ribbonLangEnglish: 'inglés',
   ribbonLangSimplifiedChinese: 'chino simplificado',
@@ -720,11 +720,11 @@ export const es = {
   ribbonAiRevisionsTip:
     'La IA lee las {count} revisiones pendientes, resume los cambios por sección y señala riesgos',
   ribbonAiRevisionsPrompt:
-    'Resume todas las revisiones pendientes del documento: primero estadísticas generales (número de inserciones/eliminaciones, autores, rango de fechas), luego describe los cambios sección por sección (cita los índices de bloque) y termina con los puntos de atención (obligaciones o matices eliminados, números/fechas/importes modificados). Solo resume: no modifiques el documento ni aceptes/rechaces ninguna revisión.',
+    'Resuma todas las revisiones pendientes del documento: primero estadísticas generales (número de inserciones/eliminaciones, autores, rango de fechas), luego describa los cambios sección por sección (cite los índices de bloque) y termine con los puntos de atención (obligaciones o matices eliminados, números/fechas/importes modificados). Solo resuma: no modifique el documento ni acepte/rechace ninguna revisión.',
   ribbonAiCommentsTip:
     'La IA procesa los {count} comentarios sin resolver: modifica, responde y resuelve',
   ribbonAiCommentsPrompt:
-    'Atiende todos los comentarios sin resolver del documento: para cada uno, aplica el cambio solicitado, responde describiendo el cambio y márcalo como resuelto; si un comentario es una pregunta o es ambiguo, responde sin modificar el documento.',
+    'Atienda todos los comentarios sin resolver del documento: para cada uno, aplique el cambio solicitado, responda describiendo el cambio y márquelo como resuelto; si un comentario es una pregunta o es ambiguo, responda sin modificar el documento.',
   ribbonShowCommentsTip: 'Mostrar comentarios ({count})',
   ribbonTrackChanges: 'Control de cambios',
   ribbonTrackChangesTip:
@@ -931,7 +931,7 @@ export const es = {
   ribbonCellWrapText: 'Ajustar texto',
   ribbonAltTitle: 'Título',
   ribbonAltDescription: 'Descripción',
-  ribbonAltTextHint: 'Describe la tabla para los lectores que no pueden verla',
+  ribbonAltTextHint: 'Describa la tabla para los lectores que no pueden verla',
   ribbonNotInTable: 'Coloque primero el cursor en una tabla',
   ribbonSelectCell: 'Seleccionar celda',
   ribbonRowHeightIs: 'El alto es',

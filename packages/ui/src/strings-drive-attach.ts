@@ -92,11 +92,11 @@ export const DRIVE_ATTACH_STRINGS: Record<Lang, DriveAttachStrings> = {
     failed: 'No se pudieron obtener {n} archivos de Drive',
     disconnected: 'Google Drive está desconectado',
     training:
-      'Primero confirma el entrenamiento de modelos en Configuración → Integraciones → Google Drive',
+      'Primero confirme el entrenamiento de modelos en Configuración → Integraciones → Google Drive',
     freeAi:
-      'Los archivos de Drive no se envían a una conexión de IA gratuita, que puede entrenar con ellos. Elige otra IA primero',
-    pickFailed: 'No se pudo abrir la ventana de Google. Inténtalo de nuevo',
-    busy: 'La ventana de Google ya está abierta en tu navegador',
+      'Los archivos de Drive no se envían a una conexión de IA gratuita, que puede entrenar con ellos. Elija otra IA primero',
+    pickFailed: 'No se pudo abrir la ventana de Google. Inténtelo de nuevo',
+    busy: 'La ventana de Google ya está abierta en su navegador',
   },
   th: {
     label: 'แนบจาก Google ไดรฟ์',

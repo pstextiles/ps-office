@@ -24,5 +24,5 @@ export const es = {
   entranceDetail: 'Esta función necesita que el {item} esté activado.',
   genAiOffConvert: 'La IA está desactivada: solo están disponibles las conversiones sin IA.',
   genAiOffNoConversion:
-    'La IA está desactivada. Añade un solo mapa mental o archivo Markdown para convertirlo sin IA.',
+    'La IA está desactivada. Añada un solo mapa mental o archivo Markdown para convertirlo sin IA.',
 } satisfies Record<keyof typeof zh, string>

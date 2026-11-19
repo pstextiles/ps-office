@@ -47,9 +47,9 @@ export const FREE_AI_PAGE_STRINGS = defineStrings({
   } satisfies Keys,
   es: {
     pageDoneTitle: 'Conectado a GenOffice',
-    pageDoneBody: 'Puedes cerrar esta pestaña y volver a la aplicación.',
+    pageDoneBody: 'Puede cerrar esta pestaña y volver a la aplicación.',
     pageFailedTitle: 'No se pudo completar la conexión',
-    pageFailedBody: 'Vuelve a la aplicación e inténtalo de nuevo.',
+    pageFailedBody: 'Vuelva a la aplicación e inténtelo de nuevo.',
   } satisfies Keys,
   th: {
     pageDoneTitle: 'เชื่อมต่อกับ GenOffice แล้ว',

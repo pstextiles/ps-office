@@ -3,7 +3,7 @@ import type { zh } from './zh'
 export const es = {
   appMergeWorkbooks: 'Combinar libros',
   appMergeWorkbooksTip: 'Añadir las hojas de otros archivos de Excel a este libro',
-  appMergeWorkbooksPicking: 'Elige los archivos para combinar…',
+  appMergeWorkbooksPicking: 'Elija los archivos para combinar…',
   appMergeWorkbooksReading: 'Importando {sheet} de {file}…',
   appMergeWorkbooksDone:
     'Se combinaron {sheets} hojas de {files} archivos (las fórmulas se importaron como valores).',
@@ -316,7 +316,7 @@ export const es = {
   appAiStopped: '(detenido)',
   appAiNoSummary: 'La IA terminó sin generar un resumen.',
   appAiNoAction:
-    'La IA no realizó ninguna acción ni dio respuesta. Inténtalo de nuevo o reformula.',
+    'La IA no realizó ninguna acción ni dio respuesta. Inténtelo de nuevo o reformule su petición.',
   appNewConversation: 'Se inició una conversación nueva.',
   appPivotCellNoEdit: 'Esta celda forma parte de una tabla dinámica — su edición aún no se admite.',
   appAreaStreaming:
@@ -330,7 +330,7 @@ export const es = {
   appDeleteSpanFormulas:
     'Una fórmula solo hace referencia a las filas/columnas eliminadas: actualícela o elimínela primero.',
   appIconSetUnsupported:
-    'Esta combinación de iconos no se puede guardar en xlsx — elige otro conjunto de iconos.',
+    'Esta combinación de iconos no se puede guardar en xlsx — elija otro conjunto de iconos.',
   appFullLoadFilterTitle: 'Esta acción requiere el libro completo',
   appFullLoadFilterBody:
     'Este libro es grande y solo se ha cargado parcialmente en streaming. Ordenar, filtrar y mover rangos necesitan los datos completos. ¿Cargar todo el libro ahora?',
@@ -630,7 +630,7 @@ export const es = {
   appSaveErrChangedOnDisk:
     'Otro programa modificó el archivo en el disco — guardado cancelado; vuelva a abrir el archivo e inténtelo de nuevo.',
   appSaveErrTargetLocked:
-    'No se pudo reemplazar el archivo: parece bloqueado por otro programa (abierto en Excel o en análisis/sincronización). Ciérralo allí y vuelve a guardar.',
+    'No se pudo reemplazar el archivo: parece bloqueado por otro programa (abierto en Excel o en análisis/sincronización). Ciérrelo allí y vuelva a guardar.',
   appSaveErrStylesheetLimited:
     'La hoja de estilos de este libro carece de estructura básica; los cambios de estilo no se pueden guardar.',
   appSaveErrPackageGuard:
@@ -1319,7 +1319,7 @@ export const es = {
   appGroupLanguage: 'Idioma',
   appTranslateTitle: 'Traducir la selección con IA',
   appTranslatePrompt:
-    'Traduce el texto del rango seleccionado a {language} y escribe las traducciones en las mismas celdas.',
+    'Traduzca el texto del rango seleccionado a {language} y escriba las traducciones en las mismas celdas.',
   appNewCommentDetail: 'Agregar o editar',
   appDeleteLabel: 'Eliminar',
   appNoteAtSelection: 'Nota en la selección',
@@ -1525,7 +1525,7 @@ export const es = {
   appNotePicturesToggle: 'Imágenes de notas',
   appNoteInsertPicture: 'Insertar imagen',
   appNotePictureInserted:
-    'Imagen añadida a la nota de {cell}. Guarda para escribirla en el archivo.',
+    'Imagen añadida a la nota de {cell}. Guarde para escribirla en el archivo.',
   appNotePictureRemoved: 'Imagen quitada de la nota de {cell}.',
   appNotePictureRemove: 'Quitar imagen',
   appCommentsPaneTitle: 'Comentarios',
@@ -1573,9 +1573,9 @@ export const es = {
   appVisualSizeProperties: 'Tamaño y propiedades…',
   appVisualHyperlink: 'Hipervínculo…',
   appVisualDelete: 'Eliminar',
-  appVisualArranged: 'Objeto actualizado — guarda con ⌘S.',
+  appVisualArranged: 'Objeto actualizado — guarde con ⌘S.',
   appVisualCopied: 'Objeto copiado.',
-  appVisualPasted: 'Objeto pegado — guarda con ⌘S.',
+  appVisualPasted: 'Objeto pegado — guarde con ⌘S.',
   appVisualNoCopy: 'Este objeto no se puede copiar.',
   appVisualSelectTwo: 'Mayús+clic para seleccionar al menos dos objetos que alinear.',
   appVisualSelectThree: 'Mayús+clic para seleccionar al menos tres objetos que distribuir.',
@@ -1604,10 +1604,10 @@ export const es = {
   appSpellToggleTip:
     'Activa la comprobación ortográfica (F7 y el botón de Revisar); desactivada, los cuadros de comentarios dejan de mostrar subrayados',
   appSpellOn: 'Comprobación ortográfica activada.',
-  appSpellOff: 'La comprobación ortográfica está desactivada. Actívala en Revisar ▸ Corrección.',
+  appSpellOff: 'La comprobación ortográfica está desactivada. Actívela en Revisar ▸ Corrección.',
   appSpellRecheck: 'Volver a comprobar',
   appSpellNone: 'No se encontraron errores ortográficos sospechosos.',
-  appSpellFindings: '{count} errores sospechosos. Haz clic en una fila para localizarlo.',
+  appSpellFindings: '{count} errores sospechosos. Haga clic en una fila para localizarlo.',
   appSpellTruncated: 'Demasiadas celdas de texto; solo se comprobaron las primeras.',
   appSpellColWord: 'Sospechoso',
   appSpellIgnore: 'Omitir',

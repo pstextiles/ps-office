@@ -30,7 +30,7 @@ Menú Archivo, todo local y todo pregunta dónde poner el resultado:
 
 - **Exportar como Word…** y **Exportar como PDF…** escriben un .docx o .pdf de verdad.
 - **Exportar como ODT…** escribe un .odt (texto OpenDocument) con la misma conversión que la exportación a Word; si algo cambia o se pierde por el camino, verá la lista y confirmará antes.
-- **Exportar como HTML de archivo único…** escribe un único .html con las imágenes incrustadas. No sobrescribirá el archivo que tengas abierto ahora y te dice cuántas imágenes no pudo incrustar.
+- **Exportar como HTML de archivo único…** escribe un único .html con las imágenes incrustadas. No sobrescribirá el archivo que tenga abierto ahora y le dice cuántas imágenes no pudo incrustar.
 
 ## Insertar esqueleto
 

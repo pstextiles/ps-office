@@ -901,7 +901,7 @@ export const tMain = createI18n({
     legacyPptOk: 'Aceptar',
     encryptedPptxTitle: 'No se puede abrir el archivo protegido con contraseña',
     encryptedPptxBody:
-      'Este archivo usa un método de cifrado que esta aplicación no puede desbloquear. Ábrelo en PowerPoint, quita la contraseña, guárdalo y vuelve a intentarlo.',
+      'Este archivo usa un método de cifrado que esta aplicación no puede desbloquear. Ábralo en PowerPoint, quite la contraseña, guárdelo y vuelva a intentarlo.',
     chartSimplifyTitle: 'Editar simplificará este gráfico',
     chartSimplifyBody:
       'Este gráfico proviene de un archivo externo. Al editarlo se reconstruye con el modelo de esta aplicación; se perderán formatos numéricos, líneas de tendencia, barras de error y estilos por punto.',
@@ -926,12 +926,12 @@ export const tMain = createI18n({
     errFileTooLarge: 'El archivo supera el límite de tamaño',
     errParseFailed: 'No se pudo analizar el archivo',
     errImageNoText:
-      'Las imágenes adjuntas no proporcionan texto; la imagen se envió junto con el mensaje del usuario, consúltala directamente',
+      'Las imágenes adjuntas no proporcionan texto; la imagen se envió junto con el mensaje del usuario, consúltela directamente',
     errNotImage: 'no es un tipo de imagen compatible',
     errNoApiKey: 'No hay clave de API configurada para {provider}',
     errNoModel: 'No hay nombre de modelo configurado',
     errNoDeckAppend:
-      'No hay ninguna presentación a la que anexar (no existe la sesión). Genera primero la primera página con mode:"replace" o añade páginas con las herramientas nativas.',
+      'No hay ninguna presentación a la que anexar (no existe la sesión). Genere primero la primera página con mode:"replace" o añada páginas con las herramientas nativas.',
     errAppendFailed: 'Error al anexar: {reason}',
     errPartialAppend: 'No se pudieron anexar algunas páginas: {reason}',
     errMergeFailed:

@@ -62,7 +62,7 @@ Una solicitud que llega del comando `psoffice` o de un cliente MCP no la ha escr
 - **Describir una imagen** usa un proveedor con clave cuando hay uno configurado. Su suscripción de Claude o Codex **no se usa a menos que usted lo permita**.
 - **El vídeo y el audio** necesitan un proveedor con clave que admita vídeo.
 
-Para permitir el uso de la suscripción, abra Configuración ▸ IA ▸ **Avanzado** y active **Permitir que las solicitudes automáticas usen una suscripción**. Antes aparece una advertencia —«No hay límite por hora: un programa puede enviar tantas solicitudes como quiera, y estas pueden incluir todo el texto de un documento e imágenes de sus páginas. Ninguna de las dos empresas recomienda que un programa use tu suscripción automáticamente, y tu cuenta podría quedar restringida.»— y el interruptor solo se activa después de pulsar **Activar de todos modos**.
+Para permitir el uso de la suscripción, abra Configuración ▸ IA ▸ **Avanzado** y active **Permitir que las solicitudes automáticas usen una suscripción**. Antes aparece una advertencia —«No hay límite por hora: un programa puede enviar tantas solicitudes como quiera, y estas pueden incluir todo el texto de un documento e imágenes de sus páginas. Ninguna de las dos empresas recomienda que un programa use su suscripción automáticamente, y su cuenta podría quedar restringida.»— y el interruptor solo se activa después de pulsar **Activar de todos modos**.
 
 Incluso con el interruptor activado:
 

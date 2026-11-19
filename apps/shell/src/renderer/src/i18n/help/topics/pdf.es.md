@@ -28,7 +28,7 @@ Referencia:
 - Al arrastrar sobre texto aparece una barra emergente: **resaltar / subrayar / tachar / copiar / Preguntar a la IA**.
 - Los colores salen de la paleta; **aplicar el mismo marcado a un intervalo ya marcado lo quita** (conmutador al estilo de Word).
 - Los marcados ya guardados en el archivo se pueden seleccionar y borrar (menú ⋯ o Supr).
-- **Nota**: mientras hay una herramienta de dibujo activada, la capa de texto no se puede seleccionar; la herramienta se desactiva sola tras cada colocación, así que vuelve al modo selección para la siguiente acción.
+- **Nota**: mientras hay una herramienta de dibujo activada, la capa de texto no se puede seleccionar; la herramienta se desactiva sola tras cada colocación, así que vuelva al modo selección para la siguiente acción.
 
 ## Herramientas de dibujo (Anotar)
 
@@ -65,7 +65,7 @@ Seis herramientas: **Dibujar, Rectángulo, Elipse, Flecha, Nota**, más **Censur
 - **Firma de imagen**: coloque una imagen como firma.
 - Las firmas guardadas se pueden reutilizar.
 - **Firma con certificado** (pestaña Anotar): firma con un certificado del almacén del sistema o un archivo .p12/.pfx; muestra opcionalmente la firma en la página y certifica opcionalmente el documento contra cambios posteriores.
-- Firmar escribe siempre un **archivo nuevo** (actualización incremental — las firmas anteriores siguen válidas) y abre la copia firmada en su lugar. Guarda antes: una firma cubre el archivo tal cual está en disco.
+- Firmar escribe siempre un **archivo nuevo** (actualización incremental — las firmas anteriores siguen válidas) y abre la copia firmada en su lugar. Guarde antes: una firma cubre el archivo tal cual está en disco.
 - Un banner sobre el documento lista las firmas existentes; **Ver firmas** muestra la validez, cobertura y cadena de certificados de cada una. La revocación (CRL/OCSP) no se comprueba.
 
 ## Operaciones de página (Páginas)
@@ -156,4 +156,4 @@ Pulse **E** o **T**, o las fichas de explicar y traducir del cuadro **Preguntar 
 - La primera vez que pulse **Abrir nota** (pestaña Vista o panel **Anotaciones**) se abre un cuadro de guardado, por defecto en la carpeta del PDF con el nombre «nombre del PDF nota.md». Después, la nota se abre directamente en una pestaña de Markdown.
 - Si elige un archivo que ya existe, Windows puede preguntar si quiere reemplazarlo, pero el archivo no se sobrescribe: queda vinculado como nota tal como está.
 - **Añadir a la nota** (en tarjetas, elementos del panel y el resumen del documento) coloca una cita y un enlace de página al final de la pestaña de la nota y lo deja sin guardar; usted guarda en la pestaña de la nota. El enlace abre el PDF en esa página en otros programas, como un navegador.
-- Un PDF que nunca se guardó muestra «Guarda primero el PDF». Las notas solo funcionan con PDF abiertos dentro de GenOffice.
+- Un PDF que nunca se guardó muestra «Guarde primero el PDF». Las notas solo funcionan con PDF abiertos dentro de GenOffice.

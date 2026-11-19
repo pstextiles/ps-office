@@ -53,7 +53,7 @@ export const es = {
 
   dlgAdvFilterTitle: 'Filtro avanzado',
   dlgAdvFilterNoColumns:
-    'No hay columnas disponibles en el rango del filtro: selecciona los datos y activa el autofiltro antes de abrir el filtro avanzado.',
+    'No hay columnas disponibles en el rango del filtro: seleccione los datos y active el autofiltro antes de abrir el filtro avanzado.',
   dlgAdvFilterColumn: 'Columna',
   dlgAdvFilterCondition1: 'Condición 1',
   dlgAdvFilterCondition2: 'Condición 2 (opcional)',
@@ -61,8 +61,8 @@ export const es = {
   dlgAdvFilterAnd: 'Y',
   dlgAdvFilterOr: 'O',
   dlgAdvFilterNote:
-    'Aplica criterios personalizados a la columna seleccionada; solo las filas coincidentes permanecen visibles. Deja la segunda condición vacía para usar solo la primera.',
-  dlgAdvFilterNeedValue1: 'Introduce un valor para la condición 1.',
+    'Aplica criterios personalizados a la columna seleccionada; solo las filas coincidentes permanecen visibles. Deje la segunda condición vacía para usar solo la primera.',
+  dlgAdvFilterNeedValue1: 'Introduzca un valor para la condición 1.',
   dlgAdvFilterOpEqual: 'es igual a',
   dlgAdvFilterOpNotEqual: 'no es igual a',
   dlgAdvFilterOpGreaterThan: 'es mayor que',
@@ -73,9 +73,9 @@ export const es = {
   dlgGoToTitle: 'Ir a',
   dlgGoToRef: 'Referencia',
   dlgGoToRefPlaceholder: 'p. ej. A1, B2:D5 o un nombre definido',
-  dlgGoToNameHint: 'Haz doble clic para ir a {ref}',
+  dlgGoToNameHint: 'Haga doble clic para ir a {ref}',
   dlgGoToNote:
-    'Escribe una referencia de celda o elige un rango con nombre; Ir salta al destino y lo selecciona. Haz clic en un nombre para rellenarlo, doble clic para ir directamente.',
+    'Escriba una referencia de celda o elija un rango con nombre; Ir salta al destino y lo selecciona. Haga clic en un nombre para rellenarlo, doble clic para ir directamente.',
   dlgGoToGo: 'Ir a',
   dlgQueriesTitle: 'Consultas y conexiones',
   dlgQueriesEmpty: 'Este libro no tiene consultas ni conexiones de datos.',
@@ -139,12 +139,12 @@ export const es = {
   dlgHfSheetName: 'Nombre de hoja',
   dlgHfInsertCode: 'Insertar {code}',
   dlgHfNote:
-    'Se muestra en la parte superior e inferior de cada página impresa/PDF. Códigos de campo: &P número de página, &N total de páginas, &D fecha, &T hora, &F nombre de archivo, &A nombre de hoja; escribe && para un & literal. Deja las seis secciones vacías para borrar el encabezado y el pie de página.',
+    'Se muestra en la parte superior e inferior de cada página impresa/PDF. Códigos de campo: &P número de página, &N total de páginas, &D fecha, &T hora, &F nombre de archivo, &A nombre de hoja; escriba && para un & literal. Deje las seis secciones vacías para borrar el encabezado y el pie de página.',
 
   dlgPivotCreateTitle: 'Crear tabla dinámica',
   dlgPivotEditTitle: 'Editar tabla dinámica',
   dlgPivotNoFields:
-    'Selecciona primero el rango de datos de origen (con fila de encabezado, al menos 2 filas) antes de abrir la tabla dinámica.',
+    'Seleccione primero el rango de datos de origen (con fila de encabezado, al menos 2 filas) antes de abrir la tabla dinámica.',
   dlgPivotSourceRange: 'Rango de origen',
   dlgPivotRowFields: 'Filas (nivel externo primero, reordenables)',
   dlgPivotColFields: 'Columnas (opcionales, nivel externo primero, reordenables)',
@@ -264,13 +264,13 @@ export const es = {
 
   dlgSlicerInsertTitle: 'Insertar segmentación de datos',
   dlgSlicerPickNote:
-    'Elige el campo para la segmentación; al hacer clic en sus elementos se filtra la tabla dinámica.',
+    'Elija el campo para la segmentación; al hacer clic en sus elementos se filtra la tabla dinámica.',
   dlgSlicerAria: 'Segmentación de datos {name}',
   dlgSlicerClear: 'Borrar filtro (seleccionar todo)',
   dlgSlicerRemove: 'Quitar segmentación (restaurar todos los elementos)',
   dlgTimelineInsertTitle: 'Insertar escala de tiempo',
   dlgTimelinePickNote:
-    'Elige un campo de fecha; al hacer clic en los meses (Mayús+clic para ampliar el intervalo) se filtra la tabla dinámica por intervalo de fechas.',
+    'Elija un campo de fecha; al hacer clic en los meses (Mayús+clic para ampliar el intervalo) se filtra la tabla dinámica por intervalo de fechas.',
   dlgTimelineAria: 'Escala de tiempo {name}',
   dlgTimelineClear: 'Borrar filtro (mostrar todo)',
   dlgTimelineRemove: 'Quitar escala de tiempo (restaurar todos los elementos)',
@@ -293,7 +293,7 @@ export const es = {
   dlgIconsCatNature: 'Naturaleza',
   dlgIconsCatTravel: 'Viajes',
   dlgRecoTitle: 'Gráficos recomendados',
-  dlgRecoNote: 'Ordenados según la forma de los datos seleccionados; haz clic para insertar.',
+  dlgRecoNote: 'Ordenados según la forma de los datos seleccionados; haga clic para insertar.',
   dlgRecoReasonTime: 'Las series temporales se leen mejor como tendencias',
   dlgRecoReasonProportion: 'Pocas categorías se leen bien como partes de un todo',
   dlgRecoReasonCorrelation: 'Dos columnas numéricas se leen bien como correlación',
@@ -307,9 +307,9 @@ export const es = {
   dlgScreenshotLoading: 'Buscando ventanas capturables…',
   dlgScreenshotEmpty: 'No hay ventanas para capturar.',
   dlgScreenshotDenied:
-    'Se requiere el permiso de grabación de pantalla. Permite esta app en Ajustes del Sistema → Privacidad y seguridad → Grabación de pantalla y luego haz clic en Actualizar.',
+    'Se requiere el permiso de grabación de pantalla. Permita esta app en Ajustes del Sistema → Privacidad y seguridad → Grabación de pantalla y luego haga clic en Actualizar.',
   dlgScreenshotRefresh: 'Actualizar',
-  dlgScreenshotFailed: 'Error al capturar. Inténtalo de nuevo.',
+  dlgScreenshotFailed: 'Error al capturar. Inténtelo de nuevo.',
   dlgSymbolTitle: 'Símbolo',
   dlgSymbolCatCurrency: 'Moneda y comunes',
   dlgSymbolCatMath: 'Matemáticas',
@@ -318,7 +318,7 @@ export const es = {
   dlgSymbolCatMisc: 'Formas y varios',
   dlgSymbolInsertHint: 'Insertar {symbol}',
   dlgSymbolNote:
-    'Haz clic en un símbolo para añadirlo a la celda activa: inserta varios seguidos y luego cierra.',
+    'Haga clic en un símbolo para añadirlo a la celda activa: inserte varios seguidos y luego cierre.',
 
   dlgFcTitle: 'Formato de celdas',
   dlgFcTabNumber: 'Número',
@@ -426,17 +426,17 @@ export const es = {
     'Las filas se emparejan por la primera columna de cada área; los resultados comienzan en {target} como fórmulas dinámicas que hacen referencia a los orígenes.',
   dlgConsNotePosition:
     'Las áreas se combinan posición por posición; los resultados comienzan en {target} como fórmulas dinámicas que hacen referencia a los orígenes.',
-  dlgConsBadRef: 'Referencia no válida: {ref}; usa el formato A1:C5 o Sheet2!A1:C5.',
-  dlgConsNeedOneRef: 'Agrega al menos una referencia de origen.',
+  dlgConsBadRef: 'Referencia no válida: {ref}; use el formato A1:C5 o Sheet2!A1:C5.',
+  dlgConsNeedOneRef: 'Agregue al menos una referencia de origen.',
 
   dlgSubtotalTitle: 'Subtotales',
   dlgSubtotalNoFields:
-    'Selecciona primero los datos de origen (un rango con fila de encabezado y al menos una fila de datos, ordenado por la columna de agrupación) y vuelve a abrir Subtotales.',
+    'Seleccione primero los datos de origen (un rango con fila de encabezado y al menos una fila de datos, ordenado por la columna de agrupación) y vuelva a abrir Subtotales.',
   dlgSubtotalGroupBy: 'Para cada cambio en',
   dlgSubtotalFunction: 'Usar función',
   dlgSubtotalAddTo: 'Agregar subtotal a',
   dlgSubtotalNote:
-    'Inserta una fila SUBTOTAL después de cada serie de valores iguales (ordena primero los datos por la columna de agrupación) y un total general al final.',
+    'Inserta una fila SUBTOTAL después de cada serie de valores iguales (ordene primero los datos por la columna de agrupación) y un total general al final.',
 
   dlgNmTitle: 'Administrador de nombres',
   dlgNmName: 'Nombre',
@@ -687,7 +687,7 @@ export const es = {
   dlgPrintRendering: 'Preparando la vista previa…',
   dlgPrintNoPages: 'Nada que imprimir.',
   dlgAltTextTitle: 'Texto alternativo',
-  dlgAltTextHint: 'Describe este objeto y su contexto para alguien que no pueda verlo.',
+  dlgAltTextHint: 'Describa este objeto y su contexto para alguien que no pueda verlo.',
   dlgHyperlinkTitle: 'Hipervínculo',
   dlgHyperlinkAddress: 'Dirección',
   dlgHyperlinkRemove: 'Quitar vínculo',
@@ -701,5 +701,5 @@ export const es = {
   dlgSizeMoveAndSize: 'Mover y cambiar tamaño con las celdas',
   dlgSizeMoveOnly: 'Mover, pero no cambiar tamaño con las celdas',
   dlgSizeFixed: 'No mover ni cambiar tamaño con las celdas',
-  dlgSizeInvalid: 'Introduce un tamaño y un giro válidos.',
+  dlgSizeInvalid: 'Introduzca un tamaño y un giro válidos.',
 } satisfies Record<keyof typeof zh, string>

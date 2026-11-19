@@ -32,7 +32,7 @@ Una habilidad es un conjunto de instrucciones de trabajo para la IA. Anote una s
 3. Revise en la vista previa las habilidades encontradas. Muestra el número y el tamaño de los archivos, si hay scripts, las direcciones web que aparecen en el texto, el archivo de licencia y las líneas que conviene leer antes de instalar. **Ver contenido**, debajo de una habilidad, abre el texto de su `SKILL.md` y sus archivos de texto para leerlos antes de instalar.
 4. Marque solo las habilidades que quiera instalar y haga clic en **Instalar**. Las habilidades instaladas quedan activadas desde el principio.
 
-Debajo de la vista previa siempre se lee: «Instala habilidades solo de fuentes de confianza. Una habilidad da instrucciones a la IA y, en la ventana del agente, puede ejecutar scripts.» Lea una habilidad de origen desconocido antes de instalarla.
+Debajo de la vista previa siempre se lee: «Instale habilidades solo de fuentes de confianza. Una habilidad da instrucciones a la IA y, en la ventana del agente, puede ejecutar scripts.» Lea una habilidad de origen desconocido antes de instalarla.
 
 - Si mis habilidades ya tiene una con el mismo nombre, elija **Reemplazar** u **Omitir** en esa fila. **Reemplazar** conserva los ajustes de la habilidad: activada o no, Decide la IA / Solo cuando se llama y dónde se usa.
 - También puede soltar el archivo zip de una habilidad o un archivo `SKILL.md` en cualquier ventana de GenOffice. Se abre **Configuración ▸ Habilidades** con la misma vista previa. Un zip cuenta como habilidad cuando `SKILL.md` está en su nivel superior o cada carpeta del nivel superior contiene uno; con cualquier otro zip soltado solo, **Configuración ▸ Habilidades** muestra «No se encontraron habilidades». Un archivo `SKILL.md` llega solo: ponga en un zip una habilidad que tenga más archivos.
@@ -45,17 +45,17 @@ Debajo de la vista previa siempre se lee: «Instala habilidades solo de fuentes 
 
 - En una habilidad instalada desde GitHub, **Buscar actualizaciones** en el menú de más opciones comprueba si hay contenido nuevo. Solo se contacta con GitHub cuando usted hace clic.
 - Si no ha cambiado nada, aparece «Está al día». Si algo cambió, revise los archivos cambiados y la vista previa, y haga clic en **Actualizar**.
-- Si usted editó la habilidad después de instalarla, también aparece «Se perderán tus propios cambios».
+- Si usted editó la habilidad después de instalarla, también aparece «Se perderán sus propios cambios».
 - Al actualizar se conservan el estado activado o desactivado de la habilidad, la elección entre Decide la IA y Solo cuando se llama y dónde se usa.
 
 ## Volver a una versión anterior
 
-Cuando editas una de tus habilidades, instalas otra con el mismo nombre en su lugar o la actualizas, la versión anterior se conserva. No va a la papelera.
+Cuando edita una de sus habilidades, instala otra con el mismo nombre en su lugar o la actualiza, la versión anterior se conserva. No va a la papelera.
 
 - **Versiones anteriores**, al final de **Ver contenido** o de **Editar**, enumera las versiones guardadas, de la más reciente a la más antigua, con cuándo y por qué se guardó cada una y su tamaño.
 - **Ver diferencias** muestra qué líneas de `SKILL.md` volverían, cuáles desaparecerían y qué otros archivos cambiarían.
-- **Volver a esta versión** vuelve a poner los archivos de esa versión tal como estaban. La versión actual también se guarda, así que puedes volver a ella. Si la habilidad está activada y cuándo se usa quedan como los dejaste.
-- Las versiones guardadas permanecen hasta que las eliminas. **Eliminar** elimina una definitivamente.
+- **Volver a esta versión** vuelve a poner los archivos de esa versión tal como estaban. La versión actual también se guarda, así que puede volver a ella. Si la habilidad está activada y cuándo se usa quedan como los dejó.
+- Las versiones guardadas permanecen hasta que las elimina. **Eliminar** elimina una definitivamente.
 - Las versiones están en la carpeta `~/.psoffice/skill-history`. **Mover a la papelera** en una habilidad envía también sus versiones guardadas a la papelera.
 
 ## Llamar a una habilidad en el panel de IA
@@ -79,22 +79,22 @@ Cuando editas una de tus habilidades, instalas otra con el mismo nombre en su lu
 
 ## Crear una habilidad pidiéndola
 
-1. En el panel de IA, diga algo como «Guarda lo que acabamos de hacer como habilidad» o «Crea una habilidad que redacte los informes con nuestro estilo de la casa».
+1. En el panel de IA, diga algo como «Guarde lo que acabamos de hacer como habilidad» o «Cree una habilidad que redacte los informes con nuestro estilo de la casa».
 2. La IA extrae los pasos y las reglas que vale la pena repetir y muestra una tarjeta **Nueva habilidad**. Los valores usados solo esta vez, como nombres y fechas, quedan fuera de las instrucciones.
 3. Revise y edite el nombre, la descripción y las instrucciones en la tarjeta. El nombre es lo que muestra la lista de habilidades y lo que se escribe después de `/`: letras minúsculas del alfabeto inglés, dígitos y guiones. El campo **Título**, encima del nombre, recibe el título que muestra la lista, en cualquier idioma.
 4. Haga clic en **Guardar**. La nueva habilidad se añade a mis habilidades, queda activada y aparece enseguida en la lista de `/`.
 
 - No se escribe ningún archivo hasta que hace clic en **Guardar**. Si hace clic en **Cancelar**, el chat la conserva solo como «Propuesta de habilidad sin guardar».
-- También puede pedir que se cambie una habilidad existente, por ejemplo «Cambia la habilidad de actas a nuestra manera de hacerlas». La tarjeta se titula entonces **Cambiar habilidad**. Una de mis habilidades se sobrescribe con **Reemplazar**; una habilidad integrada o de otro programa se guarda como copia en mis habilidades y la original se desactiva.
+- También puede pedir que se cambie una habilidad existente, por ejemplo «Cambie la habilidad de actas a nuestra manera de hacerlas». La tarjeta se titula entonces **Cambiar habilidad**. Una de mis habilidades se sobrescribe con **Reemplazar**; una habilidad integrada o de otro programa se guarda como copia en mis habilidades y la original se desactiva.
 
 ## Elegir dónde se usa una habilidad
 
 Una habilidad que solo sirve para un tipo de documento, como dar estilo a diapositivas u ordenar una hoja de cálculo, puede mostrarse solo en el panel de IA de ese editor. En los demás editores, la lista `/` y la lista de habilidades que la IA usa por su cuenta se acortan, y la IA elige mejor la habilidad adecuada.
 
-- Para una de mis habilidades, abre **Editar** y elige **Todos los editores** o **Solo estos editores** en **Dónde se usa**. Los editores elegidos se escriben en el archivo de la habilidad, así que la acompañan al exportarla o al llevarla a otro programa. **Solo estos editores** empieza sin ningún editor marcado; **Marcar todos** y **Desmarcar todos** los cambian todos de una vez.
-- Para una habilidad integrada o de otro programa, cámbialo en **Dónde se usa** dentro de **Ver contenido**. Se guarda solo en la configuración de este PC; el archivo de la habilidad no cambia.
+- Para una de mis habilidades, abra **Editar** y elija **Todos los editores** o **Solo estos editores** en **Dónde se usa**. Los editores elegidos se escriben en el archivo de la habilidad, así que la acompañan al exportarla o al llevarla a otro programa. **Solo estos editores** empieza sin ningún editor marcado; **Marcar todos** y **Desmarcar todos** los cambian todos de una vez.
+- Para una habilidad integrada o de otro programa, cámbielo en **Dónde se usa** dentro de **Ver contenido**. Se guarda solo en la configuración de este PC; el archivo de la habilidad no cambia.
 - Una habilidad que no se usa en todos los editores lo indica en su fila, por ejemplo «Se usa en: Presentación».
-- Cuando la IA crea una habilidad que solo sirve para un formato, propone también dónde usarla; si no, la deja en todos los editores. Puedes cambiarlo en **Dónde se usa** en la tarjeta antes de guardar.
+- Cuando la IA crea una habilidad que solo sirve para un formato, propone también dónde usarla; si no, la deja en todos los editores. Puede cambiarlo en **Dónde se usa** en la tarjeta antes de guardar.
 - Preguntar a la IA en Inicio y la ventana del agente usan todas las habilidades activadas, sin importar dónde se usen.
 
 ## Añadir un documento como plantilla
@@ -110,7 +110,7 @@ Cuando crea una habilidad en el panel de IA de un editor, el documento actual pu
 - Una habilidad con plantilla muestra **Incluye plantilla** en la lista.
 - Llámela como ficha y envíe: se abre una copia de la plantilla como documento nuevo sin título, y la IA de esa pestaña continúa con su solicitud. El panel original conserva «Se trabaja con la plantilla en una pestaña nueva» e **Ir a la pestaña**.
 - Cuando la IA elige por su cuenta una habilidad con plantilla, no se abre ninguna pestaña de inmediato. En su lugar, el chat muestra un botón **Abrir un documento nuevo con esta plantilla**.
-- Si la llamas en un documento que ya tiene contenido, pregunta dónde trabajar en lugar de abrir una pestaña enseguida. **Hacerlo en este documento** modifica el documento actual según la habilidad, sin pestaña nueva (no se abre el archivo de plantilla). **Documento nuevo desde la plantilla (adjuntar este)** abre la copia de la plantilla en una pestaña nueva y envía el documento actual al panel de IA de esa pestaña como adjunto. Para adjuntarlo, el documento actual debe estar guardado. Si nunca se guardó o tiene cambios sin guardar, el panel lo indica, y **Abrir sin adjuntar** abre la copia sin él. El botón que aparece cuando la IA usa por sí misma una habilidad con plantilla también adjunta un documento con contenido. Los editores de Markdown y PDF no admiten adjuntos, así que una plantilla que se abre allí no recibe nada.
+- Si la llama en un documento que ya tiene contenido, pregunta dónde trabajar en lugar de abrir una pestaña enseguida. **Hacerlo en este documento** modifica el documento actual según la habilidad, sin pestaña nueva (no se abre el archivo de plantilla). **Documento nuevo desde la plantilla (adjuntar este)** abre la copia de la plantilla en una pestaña nueva y envía el documento actual al panel de IA de esa pestaña como adjunto. Para adjuntarlo, el documento actual debe estar guardado. Si nunca se guardó o tiene cambios sin guardar, el panel lo indica, y **Abrir sin adjuntar** abre la copia sin él. El botón que aparece cuando la IA usa por sí misma una habilidad con plantilla también adjunta un documento con contenido. Los editores de Markdown y PDF no admiten adjuntos, así que una plantilla que se abre allí no recibe nada.
 - Normalmente usted elige dónde va el documento nuevo la primera vez que lo guarda. Los editores de Markdown y HTML guardan en la carpeta predeterminada como siempre. El archivo de plantilla en sí se queda como estaba.
 
 ## Habilidades con scripts

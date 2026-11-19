@@ -1025,7 +1025,7 @@ const tMain = createI18n({
     errNotImage: 'no es un tipo de imagen compatible',
     errNoApiKey: 'No hay clave de API configurada para {provider}',
     errAiBusy:
-      'El servicio de IA está saturado en este momento; inténtalo de nuevo en unos instantes',
+      'El servicio de IA está saturado en este momento; inténtelo de nuevo en unos instantes',
     errNoModel: 'No hay nombre de modelo configurado',
     errImgAbsPath: 'La ruta de la imagen debe ser absoluta.',
     errImgNotFound: 'No se encontró el archivo de imagen: {path}',
@@ -1033,10 +1033,10 @@ const tMain = createI18n({
     errImgBadType: 'El archivo no es una imagen PNG/JPEG/GIF.',
     errEncryptedOpenTitle: 'No se puede abrir el libro protegido con contraseña',
     errEncryptedUnsupported:
-      'Este archivo usa un método de cifrado que esta aplicación no puede desbloquear. Quita la contraseña en Excel y vuelve a abrirlo.',
-    errDiskChanged: 'El libro cambió en el disco después de abrirse; usa Guardar como en su lugar.',
+      'Este archivo usa un método de cifrado que esta aplicación no puede desbloquear. Quite la contraseña en Excel y vuelva a abrirlo.',
+    errDiskChanged: 'El libro cambió en el disco después de abrirse; use Guardar como en su lugar.',
     errSaveUnreadable:
-      'No se pudo volver a abrir el resultado guardado, así que no se sobrescribió el archivo original. El original no cambió y tus ediciones siguen en pantalla.',
+      'No se pudo volver a abrir el resultado guardado, así que no se sobrescribió el archivo original. El original no cambió y sus ediciones siguen en pantalla.',
     errSaveUnreadableReason:
       'Motivo: {reason}\n\nElija «Copiar motivo» y péguelo en Enviar comentarios para ayudarnos a encontrar la causa.',
     btnCopyReason: 'Copiar motivo',
@@ -1053,11 +1053,11 @@ const tMain = createI18n({
     menuUndo: 'Deshacer',
     menuRedo: 'Rehacer',
     closeUnsavedMsg: '{count} cambio(s) sin guardar',
-    closeUnsavedDetail: 'Los cambios se perderán si cierras sin guardar.',
+    closeUnsavedDetail: 'Los cambios se perderán si cierra sin guardar.',
     btnDontSave: 'No guardar',
     btnCancel: 'Cancelar',
     csvSaveAsNotice:
-      'El formato CSV no conserva el formato: guarda como .xlsx para conservar todos tus cambios.',
+      'El formato CSV no conserva el formato: guarde como .xlsx para conservar todos sus cambios.',
     menuExportCsv: 'Exportar a CSV…',
     menuExportOds: 'Exportar como ODS…',
     filterOds: 'Hoja de cálculo OpenDocument (.ods)',

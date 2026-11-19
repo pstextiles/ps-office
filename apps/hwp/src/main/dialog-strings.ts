@@ -247,11 +247,11 @@ const tDlg = createI18n({
     filterHwpx: 'Documentos HWP (HWPX)',
     filterPdf: 'Documentos PDF',
     closeUnsavedMsg: 'Este documento tiene cambios sin guardar.',
-    closeUnsavedDetail: '¿Quieres guardarlos antes de cerrar?',
+    closeUnsavedDetail: '¿Desea guardarlos antes de cerrar?',
     btnSave: 'Guardar',
     btnDontSave: 'No guardar',
     btnCancel: 'Cancelar',
-    closeMemoMsg: 'Hay un comentario que estás escribiendo todavía abierto.',
+    closeMemoMsg: 'Hay un comentario que está escribiendo todavía abierto.',
     closeMemoDetail:
       'Su texto aún no está en el documento. ¿Descartarlo, junto con los cambios sin guardar, y cerrar?',
     btnDiscardClose: 'Descartar y cerrar',
@@ -266,7 +266,7 @@ const tDlg = createI18n({
     errFileTooLarge: 'El archivo supera el tamaño máximo',
     errParseFailed: 'No se pudo analizar el archivo',
     errImageNoText:
-      'Las imágenes adjuntas no proporcionan texto; la imagen se envía junto con el mensaje del usuario, puedes verla directamente',
+      'Las imágenes adjuntas no proporcionan texto; la imagen se envía junto con el mensaje del usuario, puede verla directamente',
     errNotImage: 'no es un tipo de imagen compatible',
   },
   th: {

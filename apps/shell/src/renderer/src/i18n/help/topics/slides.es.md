@@ -32,7 +32,7 @@ Pruébelo: seleccione el cuadro de texto del título ▸ pestaña Animaciones �
 - **Presentación con diapositivas**: presentar desde el principio o desde la diapositiva actual, más los ajustes de presentación.
 - **Revisar**: **nuevo comentario** en la diapositiva actual (se escribe en el pptx y es visible en PowerPoint).
 - **Vista**: **Normal** (miniaturas y lienzo), **Vista Esquema** (recorrer y saltar por el texto), **Clasificador de diapositivas** (vista general en cuadrícula, doble clic para editar), **Vista de lectura** (pantalla completa, diapositiva a diapositiva; Esc para salir); además **Patrón de diapositivas**, **Vista Moderador**, **Presentación personalizada** y **Ocultar diapositiva**, y conmutadores para **Regla**, **Líneas de cuadrícula**, **Guías**, **Notas** y el **Panel de miniaturas**. Acercar/alejar/100 % y **Ajustar a la ventana** también están aquí.
-  - Esos conmutadores son por sesión — vuelven a su valor predeterminado al reabrir la aplicación. Las excepciones son las que no querrías perder: las posiciones de las **guías** se guardan con la presentación, y el panel de miniaturas recuerda su ancho.
+  - Esos conmutadores son por sesión — vuelven a su valor predeterminado al reabrir la aplicación. Las excepciones son las que no querría perder: las posiciones de las **guías** se guardan con la presentación, y el panel de miniaturas recuerda su ancho.
   - **Presentación personalizada** elige qué diapositivas reproduce una ejecución en modo quiosco, y se guarda con la presentación.
 
 ## Menús contextuales
@@ -53,7 +53,7 @@ El menú depende de dónde haga clic derecho:
 
 - La tarjeta AI Slides de la pantalla de inicio: dé un tema o un esquema y la IA construye la presentación.
 - Si no hay forma de crear imágenes (ni su plan de ChatGPT a través del programa Codex ni la clave de un proveedor de imágenes), la IA no puede generar imágenes, y la presentación usa en su lugar imágenes encontradas mediante la búsqueda de imágenes; vea [Modelos de IA y ajustes](help://ai-models).
-- Sigua ajustando después con el panel de IA.
+- Siga ajustando después con el panel de IA.
 - Clic derecho sobre una selección de texto o un elemento imagen/vídeo/audio ▸ **Ocultar la selección a la IA** lo saca de la vista del modelo (detalles en el capítulo del panel de IA); una diapositiva con contenido oculto se salta la revisión automática por captura.
 
 ## Presentar y exportar
@@ -64,4 +64,4 @@ El menú depende de dónde haga clic derecho:
 
 ## Guardar
 
-Ida y vuelta completa en.pptx: las páginas sin modificar quedan idénticas byte a byte; las notas, los patrones y las anotaciones se conservan.
+Ida y vuelta completa en .pptx: las páginas sin modificar quedan idénticas byte a byte; las notas, los patrones y las anotaciones se conservan.

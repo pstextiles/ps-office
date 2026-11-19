@@ -2569,7 +2569,7 @@ const tMain = createI18n({
     dlgAddFolderRoot: 'Añadir carpeta al inicio',
     watchdogTitle: 'El documento consume demasiados recursos',
     watchdogBody:
-      '«{title}» lleva varios minutos usando mucha memoria o CPU ({memory} MB, {cpu} % de CPU). Puedes seguir esperando o cerrar el documento (antes se te pedirá guardar los cambios sin guardar). Se ha registrado el diagnóstico.',
+      '«{title}» lleva varios minutos usando mucha memoria o CPU ({memory} MB, {cpu} % de CPU). Puede seguir esperando o cerrar el documento (antes se le pedirá guardar los cambios sin guardar). Se ha registrado el diagnóstico.',
     watchdogWait: 'Seguir esperando',
     watchdogClose: 'Cerrar documento',
     watchdogIgnore: 'No recordar de nuevo',
@@ -2673,7 +2673,7 @@ const tMain = createI18n({
     menuExportHwp: 'Exportar como documento HWP…',
     btnCancel: 'Cancelar',
     pdfDocxFailedMsg: 'Error al exportar como Word',
-    pdfDocxBusyMsg: 'Ya hay una exportación a Word en curso. Espera a que termine.',
+    pdfDocxBusyMsg: 'Ya hay una exportación a Word en curso. Espere a que termine.',
     menuExportPptx: 'Exportar como PowerPoint…',
     pdfPptxFailedMsg: 'Error al exportar como PowerPoint',
     pdfPptxBusyMsg: 'Ya hay una exportación en curso. Espere a que termine.',
@@ -2705,7 +2705,7 @@ const tMain = createI18n({
     pdfPwdTitle: 'Introducir contraseña',
     pdfPwdPrompt: 'Este PDF está cifrado. Introduzca la contraseña para abrirlo:',
     docPwdPrompt:
-      'Este archivo está protegido con contraseña. Introduce la contraseña para abrirlo:',
+      'Este archivo está protegido con contraseña. Introduzca la contraseña para abrirlo:',
     pdfPwdRetryPrompt: 'Contraseña incorrecta. Inténtelo de nuevo.',
     pdfPwdOk: 'Aceptar',
     pdfPwdVerifying: 'Verificando la contraseña…',

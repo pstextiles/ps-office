@@ -19,7 +19,7 @@ Pestañas: **Inicio / Insertar / Dibujar / Disposición / Diseño / Referencias 
 - **Revisar**: **Editor** revisa la ortografía, la gramática y la puntuación de todo el documento; **Traducir**; corrección ortográfica; comentarios (**Comentarios con IA** trabaja los que están abiertos); control de cambios con las vistas Todas las revisiones / Revisiones simples, aceptar/rechazar y **Resumen IA de revisiones**; contar palabras; **Comparar** con otro archivo; **Proteger documento**.
 - **Vista**: cinco maneras de mirar el archivo — **Diseño de impresión**, **Diseño web**, **Esquema**, **Modo de lectura** y **Vista previa de páginas**; alejar/acercar/100 %/ancho de página/una página; **Panel de IA**; **Modo oscuro**; regla, líneas de la cuadrícula y el panel de navegación; **Nueva pestaña**, **Dividir** y **Cambiar de pestaña**; el cuadro de diálogo de **atajos de teclado** en el que se puede buscar.
   - **Modo oscuro** oscurece la página y el lienzo que la rodea, nunca la cinta — la división de Word entre una superficie de edición oscura y una ventana oscura. La elección se recuerda y gana sobre el tema de la aplicación en cualquier caso.
-  - **Dividir** abre un segundo panel debajo que se desplaza de forma independiente y refleja el primero; ciérralo con la × de su borde.
+  - **Dividir** abre un segundo panel debajo que se desplaza de forma independiente y refleja el primero; ciérrelo con la × de su borde.
 
 ## El panel de navegación
 

@@ -3,7 +3,7 @@ import type { zh } from './zh'
 export const es = {
   arButton: 'Lectura de páginas con IA',
   arButtonTip:
-    'Haz que la IA lea a partir de su imagen las páginas escaneadas o ilegibles y guarda el resultado',
+    'Haga que la IA lea a partir de su imagen las páginas escaneadas o ilegibles y guarde el resultado',
   arMenuRead: 'Leer páginas con IA…',
   arMenuDelete: 'Eliminar los resultados de IA guardados de este documento…',
   arTitle: 'Leer páginas con IA',
@@ -13,12 +13,12 @@ export const es = {
   arAnalyzingProgress: 'Revisando el documento… página {done} de {total}',
   arAnalyzeFailed: 'No se pudo analizar el documento.',
   arPreselectNote:
-    'Ya están elegidas las páginas escaneadas, las páginas cuyo texto no se puede leer bien y las páginas cuyas notas no se pudieron enlazar. Añade tú las páginas con tablas o fórmulas.',
-  arNoPreselect: 'No hubo páginas que preseleccionar. Añade tú las páginas que quieres leer.',
+    'Ya están elegidas las páginas escaneadas, las páginas cuyo texto no se puede leer bien y las páginas cuyas notas no se pudieron enlazar. Añada usted las páginas con tablas o fórmulas.',
+  arNoPreselect: 'No hubo páginas que preseleccionar. Añada usted las páginas que quiere leer.',
   arReasonScanned: 'escaneada',
   arReasonDegraded: 'texto ilegible',
   arReasonFootnote: 'notas sin enlazar',
-  arReasonAdded: 'añadida por ti',
+  arReasonAdded: 'añadida por usted',
   arAlreadyRead: 'ya leída · se omite',
   arPageLabel: 'Página {page}',
   arAddLabel: 'Añadir páginas',
@@ -29,7 +29,7 @@ export const es = {
   arBack: 'Atrás',
   arCancel: 'Cancelar',
   arStart: 'Empezar',
-  arConfirmTitle: 'Comprueba antes de empezar',
+  arConfirmTitle: 'Compruebe antes de empezar',
   arConfirmCalls: 'Llamadas a la IA: {calls} (una por página)',
   arConfirmSkipped: 'Páginas ya leídas, no se envían: {count}',
   arConfirmProvider: 'IA que se usará: {provider}',
@@ -40,11 +40,11 @@ export const es = {
   arProviderLabel: 'Proveedor',
   arProviderNotConnected: '{provider} (sin conectar)',
   arVisionProvider:
-    '{provider} no puede leer imágenes, así que la lectura de páginas con IA no puede empezar. Elige en Configuración una IA que lea imágenes.',
+    '{provider} no puede leer imágenes, así que la lectura de páginas con IA no puede empezar. Elija en Configuración una IA que lea imágenes.',
   arVisionModel:
-    'El modelo elegido ({model}) no puede leer imágenes, así que la lectura de páginas con IA no puede empezar. Elige en Configuración un modelo que lea imágenes.',
+    'El modelo elegido ({model}) no puede leer imágenes, así que la lectura de páginas con IA no puede empezar. Elija en Configuración un modelo que lea imágenes.',
   arVisionUnknown: 'No se pudo determinar qué IA usar, así que no se puede empezar.',
-  arRouteChanged: 'La conexión con la IA cambió. Vuelve a comprobar los datos y luego empieza.',
+  arRouteChanged: 'La conexión con la IA cambió. Vuelva a comprobar los datos y luego empiece.',
   arRunning: 'La IA está leyendo páginas… {done} de {total}',
   arRunningPage: 'leyendo la página {page}',
   arStop: 'Detener',
@@ -52,7 +52,7 @@ export const es = {
   arDone: 'La lectura con IA terminó. Páginas leídas: {count}.',
   arFailedPages: 'Páginas no leídas: {pages}',
   arStoppedCancelled:
-    'Lectura con IA detenida. Las páginas leídas se guardaron y puedes continuar más tarde.',
+    'Lectura con IA detenida. Las páginas leídas se guardaron y puede continuar más tarde.',
   arStoppedFailures:
     'La lectura con IA se detuvo porque fallaron varias llamadas seguidas. Las páginas leídas se guardaron.',
   arStoppedStore:
@@ -62,7 +62,7 @@ export const es = {
   arStartFailed: 'No se pudo empezar la lectura con IA: {reason}',
   arClose: 'Cerrar',
   arBusy:
-    'Ya hay una tarea de IA en curso en este documento ({done}/{total}). Vuelve a intentarlo cuando termine o se detenga.',
+    'Ya hay una tarea de IA en curso en este documento ({done}/{total}). Vuelva a intentarlo cuando termine o se detenga.',
   arUnavailable: 'La lectura de páginas con IA no está disponible en esta ventana.',
   arDeleteConfirm:
     '¿Eliminar todos los resultados de IA guardados de este documento (lecturas con IA, traducciones, tarjetas de pasaje, sugerencias de resaltado y el resumen)? No se puede deshacer.',

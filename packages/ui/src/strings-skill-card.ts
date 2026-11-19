@@ -305,10 +305,10 @@ export const SKILL_CARD_STRINGS = defineStrings({
     saved: 'Guardado',
     openSettings: 'Ver en Configuración',
     unsaved: 'Propuesta de habilidad sin guardar',
-    blockDescription: 'Escribe una descripción',
-    blockBody: 'Escribe las instrucciones',
+    blockDescription: 'Escriba una descripción',
+    blockBody: 'Escriba las instrucciones',
     nameChecking: 'Comprobando el nombre…',
-    nameEmpty: 'Escribe un nombre',
+    nameEmpty: 'Escriba un nombre',
     nameTooLong: 'El nombre puede tener hasta 64 caracteres',
     nameCharacters:
       'El nombre solo puede llevar letras inglesas minúsculas, números y guiones (-). Escriba un título en su idioma en el campo Título de arriba',

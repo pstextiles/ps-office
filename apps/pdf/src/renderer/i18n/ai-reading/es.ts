@@ -2,7 +2,7 @@ import type { zh } from './zh'
 
 export const es = {
   airSuggested: 'Preguntas sugeridas',
-  airQuestion1: 'Resume los puntos clave',
+  airQuestion1: 'Resuma los puntos clave',
   airQuestion2: '¿Cuáles son las conclusiones y sus pruebas?',
   airQuestion3: '¿Qué falta o es débil?',
   airQuoteNotFound: 'Ubicación no encontrada',
@@ -29,7 +29,7 @@ export const es = {
   airOverviewNoText: 'No se encontró texto para enviar en este documento.',
   airOverviewFailed: 'No se pudo crear el resumen general. {reason}',
   airOverviewMalformed: 'La respuesta de la IA no tenía el formato del resumen.',
-  airOverviewNeedsConnection: 'Conecta una IA para crear el resumen general.',
+  airOverviewNeedsConnection: 'Conecte una IA para crear el resumen general.',
   airOverviewBusy: 'Hay otra tarea en curso en este documento ({done}/{total}).',
   airOverviewConfirmTitle: 'Documento largo: se resume por partes y luego se combina.',
   airOverviewConfirmCalls: '{calls} llamadas a la IA',
@@ -37,7 +37,7 @@ export const es = {
   airOverviewConfirmProvider: 'Se envía a: {provider}',
   airOverviewConfirmSends: 'Se envía el texto de todo el documento.',
   airOverviewConfirmPaid: '{provider} cobrará por esto.',
-  airOverviewRouteChanged: 'La conexión de IA cambió. Compruébala de nuevo y luego empieza.',
+  airOverviewRouteChanged: 'La conexión de IA cambió. Compruébela de nuevo y luego empiece.',
   airOverviewStart: 'Empezar',
   airOverviewRunning: 'Creando el resumen general ({done}/{total})',
   airOverviewStopped: 'Detenido. Al pulsar de nuevo se empieza desde el principio.',

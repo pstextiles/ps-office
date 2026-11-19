@@ -83,14 +83,14 @@ export const kbAskProjectStrings = defineStrings({
   },
   es: {
     askProjectMissing:
-      'No se encontró la carpeta del proyecto elegido, así que no se envió nada. Vuelve a elegir el proyecto abajo.',
+      'No se encontró la carpeta del proyecto elegido, así que no se envió nada. Vuelva a elegir el proyecto abajo.',
     askProjectTitle: 'Preguntar al proyecto «{name}»',
-    askProjectPlaceholder: 'Pregunta sobre los archivos del proyecto «{name}»…',
+    askProjectPlaceholder: 'Pregunte sobre los archivos del proyecto «{name}»…',
     askProjectStarsPlaceholder:
-      'Pregunta sobre los archivos del proyecto «{name}» y tus archivos favoritos…',
+      'Pregunte sobre los archivos del proyecto «{name}» y sus archivos favoritos…',
     askProjectIntro:
       'Responde buscando y leyendo los archivos de la carpeta del proyecto «{name}».',
-    askHeroProjectHint: 'O elige un proyecto abajo.',
+    askHeroProjectHint: 'O elija un proyecto abajo.',
     askSavedToProject: 'Guardado en la carpeta del proyecto: {name}',
     askOpenCreated: 'Abrir',
   },

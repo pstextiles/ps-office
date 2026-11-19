@@ -13,7 +13,7 @@ export const es = {
     'No se pudo leer la estructura del documento, así que no se puede mostrar la columna de traducción.',
   blUnavailable:
     'La columna de traducción no está disponible: el archivo no está guardado o esta ventana no puede leer la estructura del documento.',
-  blUnsavedPages: 'Guarda para alinear la columna de traducción con las páginas',
+  blUnsavedPages: 'Guarde para alinear la columna de traducción con las páginas',
   blContinued: 'Continúa de la página anterior',
   blCollapseAsk: '¿Contraer la columna de traducción?',
   blCollapse: 'Contraer',
@@ -50,7 +50,7 @@ export const es = {
   blRetranslateTip: 'Envía de nuevo solo este párrafo a la IA.',
   blRetranslating: 'Volviendo a traducir…',
   blRetranslateFailed: 'No se pudo volver a traducir: {reason}',
-  blDiscardEditAsk: '¿Descartar tu edición y volver a traducir?',
+  blDiscardEditAsk: '¿Descartar su edición y volver a traducir?',
   blEditDropsFormat: 'Se perderá el formato',
   blEditLabel: 'Editar traducción',
   blEditSave: 'Guardar',
@@ -69,7 +69,7 @@ export const es = {
   blEasyPageRunning: 'Explicando… {done}/{total}',
   blEasyRetranslate: 'Volver a explicar',
   blEasyRetranslating: 'Volviendo a explicar…',
-  blEasyDiscardEditAsk: '¿Descartar tu cambio y volver a explicar?',
+  blEasyDiscardEditAsk: '¿Descartar su cambio y volver a explicar?',
   blEasyEditLabel: 'Editar la explicación',
   blEasyTranslateAll: 'Explicar todas las páginas de forma sencilla…',
 } satisfies Record<keyof typeof zh, string>

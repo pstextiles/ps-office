@@ -291,7 +291,7 @@ const tDlg = createI18n({
     filterImages: 'Imágenes',
     untitledFile: 'Sin título',
     closeUnsavedMsg: 'Este documento tiene cambios sin guardar.',
-    closeUnsavedDetail: '¿Quieres guardarlos antes de cerrar?',
+    closeUnsavedDetail: '¿Quiere guardarlos antes de cerrar?',
     btnSave: 'Guardar',
     btnDontSave: 'No guardar',
     btnCancel: 'Cancelar',

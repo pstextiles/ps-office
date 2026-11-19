@@ -3,10 +3,10 @@ import type { zh } from './zh'
 export const es = {
   hlButton: 'Resaltado con IA',
   hlButtonTip:
-    'La IA elige las frases clave y propone resaltados; solo los que aceptes se convierten en resaltados',
+    'La IA elige las frases clave y propone resaltados; solo los que acepte se convierten en resaltados',
   hlTitle: 'Resaltado con IA',
   hlIntro:
-    'Elige categorías y la IA buscará en las páginas elegidas las frases que encajan y las propondrá. Las propuestas solo se ven en vista previa; solo las que aceptes se convierten en resaltados.',
+    'Elija categorías y la IA buscará en las páginas elegidas las frases que encajan y las propondrá. Las propuestas solo se ven en vista previa; solo las que acepte se convierten en resaltados.',
   hlReadOnly:
     'El resaltado con IA no puede empezar en un documento que no se puede editar (documento cifrado).',
   hlPreset: 'Conjunto de categorías',
@@ -32,9 +32,9 @@ export const es = {
   hlLabelPlaceholder: 'Nombre de la categoría',
   hlAddLabel: 'Añadir categoría',
   hlRemoveLabel: 'Quitar la categoría {n}',
-  hlLabelEmpty: 'Pon nombre a todas las categorías.',
+  hlLabelEmpty: 'Ponga nombre a todas las categorías.',
   hlLabelDuplicate: 'Hay dos categorías con el mismo nombre.',
-  hlLabelCount: 'Usa de 1 a {max} categorías.',
+  hlLabelCount: 'Use de 1 a {max} categorías.',
   hlColorYellow: 'Amarillo',
   hlColorGreen: 'Verde',
   hlColorBlue: 'Azul',
@@ -45,7 +45,7 @@ export const es = {
   hlUnsavedEdits: 'Los cambios sin guardar no se incluyen.',
   hlBlocksCount: '{count} bloques de texto por revisar',
   hlNoBlocks:
-    'Las páginas elegidas no tienen texto que revisar. Para páginas escaneadas, haz primero la lectura de páginas con IA.',
+    'Las páginas elegidas no tienen texto que revisar. Para páginas escaneadas, haga primero la lectura de páginas con IA.',
   hlConfirmLabels: 'Categorías: {labels}',
   hlConfirmCalls: 'Unas {calls} llamadas a la IA ({blocks} bloques de texto)',
   hlConfirmDone:
@@ -83,8 +83,8 @@ export const es = {
   hlSuggestionCount: '{count} propuestas de resaltado con IA',
   hlNotFoundTip: 'Esta frase no se encontró en el texto de la página, así que no se puede aceptar',
   hlWaitingSave: 'Pendiente de guardar',
-  hlWaitingSaveTip: 'Guarda el PDF para que el resaltado quede en el archivo',
-  hlAcceptedNotice: 'Se añadieron {count} resaltados. Guarda el PDF para que queden en el archivo.',
+  hlWaitingSaveTip: 'Guarde el PDF para que el resaltado quede en el archivo',
+  hlAcceptedNotice: 'Se añadieron {count} resaltados. Guarde el PDF para que queden en el archivo.',
   hlAcceptedSaved: 'Se guardaron {count} resaltados.',
   hlDismissFailed: 'No se pudieron descartar las propuestas.',
 } satisfies Record<keyof typeof zh, string>

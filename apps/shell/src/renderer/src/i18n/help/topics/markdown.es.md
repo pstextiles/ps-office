@@ -23,7 +23,7 @@ Una fila de botones encima del editor (pase el cursor para ver las descripciones
 - **Propiedades**: inserta el bloque YAML front matter al principio del archivo o salta hasta él.
 - **Esquema**: saltar por la jerarquía de títulos.
 - **Ortografía**: activa o desactiva la corrección ortográfica de este documento.
-- **Ajustes de alojamiento de imágenes**: las imágenes pegadas o soltadas van primero a tu propio almacenamiento — compatible S3 (R2/OSS/COS/MinIO), SM.MS o GitHub — con la copia local en assets como respaldo.
+- **Ajustes de alojamiento de imágenes**: las imágenes pegadas o soltadas van primero a su propio almacenamiento — compatible S3 (R2/OSS/COS/MinIO), SM.MS o GitHub — con la copia local en assets como respaldo.
 
 Tres ejemplos rápidos:
 
@@ -43,9 +43,9 @@ Menú Archivo, todo local y todo pregunta dónde poner el resultado:
 
 ## Vista de código fuente
 
-La cinta de opciones lleva un conmutador **Código fuente** (localizado junto con la aplicación). Al activarlo, el editor se sustituye por el Markdown en crudo: exactamente el texto que escribe un guardado, nada embellecido, nada normalizado por debajo de usted.
+La cinta de opciones lleva un conmutador **Código fuente** (localizado junto con la aplicación). Al activarlo, el editor se sustituye por el Markdown en crudo: exactamente el texto que escribe un guardado, nada embellecido, nada normalizado a sus espaldas.
 
-- **Teclado**: Ctrl+E (⌘E en Mac) alterna entre la vista de código fuente y el lienzo de edición renderizado. Pulsa F5 para leerlo a pantalla completa.
+- **Teclado**: Ctrl+E (⌘E en Mac) alterna entre la vista de código fuente y el lienzo de edición renderizado. Pulse F5 para leerlo a pantalla completa.
 - **La edición es fiel byte a byte.** Un guardado desde la vista de código fuente produce los mismos bytes que un guardado desde el editor: el BOM, los CRLF y la presencia de un salto de línea final se conservan.
 - **Es el mismo documento.** Alterne entre el editor y la fuente tantas veces como quiera; la fuente es el propio texto del editor, no una copia que haya que combinar.
 - **La barra de herramientas de formato no está disponible** mientras esta vista está abierta, porque la mayoría de esos botones insertan construcciones del editor que solo tienen sentido en la parte renderizada. Vuelve a aparecer cuando cierra la vista.

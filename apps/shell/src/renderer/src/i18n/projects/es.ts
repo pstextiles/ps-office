@@ -3,8 +3,8 @@ import type { zh } from './zh'
 export const es = {
   navProjects: 'Proyectos',
   intro:
-    'Convierte una carpeta en proyecto y sus documentos, instrucciones, memoria y chats pasan a ser el contexto del panel de IA. Todo se guarda dentro de esa carpeta.',
-  emptyHint: 'Aún no hay proyectos. Crea uno o usa una carpeta existente como proyecto.',
+    'Convierta una carpeta en proyecto y sus documentos, instrucciones, memoria y chats pasan a ser el contexto del panel de IA. Todo se guarda dentro de esa carpeta.',
+  emptyHint: 'Aún no hay proyectos. Cree uno o use una carpeta existente como proyecto.',
   newNameLabel: 'Nombre del nuevo proyecto',
   create: 'Crear',
   cancel: 'Cancelar',
@@ -21,7 +21,7 @@ export const es = {
   trustUnconfirmed: 'carpeta aún sin confirmar',
   retry: 'Reintentar',
   relocate: 'Elegir la carpeta de nuevo',
-  missingNote: 'No se encuentra la carpeta. Si la moviste, elige su nueva ubicación.',
+  missingNote: 'No se encuentra la carpeta. Si la movió, elija su nueva ubicación.',
   tabsLabel: 'Contenido del proyecto',
   tabInstructions: 'Instrucciones',
   tabMemory: 'Memoria',
@@ -38,7 +38,7 @@ export const es = {
   readAgentsFiles: 'Leer también AGENTS.md y CLAUDE.md de la raíz de la carpeta como instrucciones',
   withoutNotSent:
     'Este proyecto se usa sin instrucciones, así que por ahora esto no se envía a la IA.',
-  memoryDesc: 'Notas que la IA tomó mientras chateaba. Borra lo que esté mal o ya no haga falta.',
+  memoryDesc: 'Notas que la IA tomó mientras chateaba. Borre lo que esté mal o ya no haga falta.',
   memoryEnabled: 'Guardar memoria',
   memoryEnabledDesc:
     'Si se desactiva, la IA no escribe nada nuevo. La memoria existente se sigue leyendo.',
@@ -50,13 +50,13 @@ export const es = {
   consolidating: 'Ordenando…',
   stop: 'Detener',
   consolidateConnect:
-    'No hay ninguna IA conectada que pueda usarse. Conecta una y vuelve a pulsar.',
+    'No hay ninguna IA conectada que pueda usarse. Conecte una y vuelva a pulsar.',
   openAiSettings: 'Abrir ajustes de IA',
-  consolidateChecking: 'Comprobando la conexión de IA. Vuelve a pulsar en un momento.',
-  consolidateNotice: 'Lee primero el aviso de conexión de IA y vuelve a pulsar.',
+  consolidateChecking: 'Comprobando la conexión de IA. Vuelva a pulsar en un momento.',
+  consolidateNotice: 'Lea primero el aviso de conexión de IA y vuelva a pulsar.',
   consolidateNothing: 'No hay memoria que ordenar.',
   consolidateWithout:
-    'Este proyecto se usa sin instrucciones, así que su memoria no se puede enviar a la IA. Pulsa [Usar también las instrucciones] arriba para ordenarla.',
+    'Este proyecto se usa sin instrucciones, así que su memoria no se puede enviar a la IA. Pulse [Usar también las instrucciones] arriba para ordenarla.',
   consolidateFailed: 'No se pudo ordenar. La memoria no ha cambiado.',
   consolidateStopped: 'Detenido. La memoria no ha cambiado.',
   consolidateUndone: 'Se volvió a como estaba antes de ordenar.',
@@ -71,23 +71,23 @@ export const es = {
   noExt: 'Sin tipo',
   notOnPc: 'No está en este PC',
   notOnPcTitle:
-    'Este archivo solo está en la nube. Si la IA quiere leerlo, se te pregunta antes de descargarlo.',
+    'Este archivo solo está en la nube. Si la IA quiere leerlo, se le pregunta antes de descargarlo.',
   hideFromAi: 'Ocultar a la IA',
   hideFromAiAria: 'Ocultar a la IA: {name}',
   ignoredTitle: 'Archivos ocultos a la IA',
   ignoredDesc:
-    'Esta lista solo se muestra en esta pantalla. Deshaz para que la IA vuelva a ver un archivo.',
+    'Esta lista solo se muestra en esta pantalla. Deshaga para que la IA vuelva a ver un archivo.',
   ignoredEmpty: 'Ninguno.',
   restoreAria: 'Deshacer: {name}',
   chatsDesc:
-    'Chats de este proyecto. Haz clic en uno para seguirlo en el panel de IA del último documento que lo usó.',
-  actionFailed: 'No funcionó. Inténtalo de nuevo.',
+    'Chats de este proyecto. Haga clic en uno para seguirlo en el panel de IA del último documento que lo usó.',
+  actionFailed: 'No funcionó. Inténtelo de nuevo.',
   loadFailed: 'No se pudo leer el proyecto.',
   addExistingFolder: 'Usar una carpeta existente',
   trustStatus: 'Estado: {state}',
   trustUseButton: 'Usar también las instrucciones',
   changedOutside:
-    'Este archivo cambió en otro lugar mientras lo editabas. [Volver a cargar] lee la versión nueva; [Guardar de todos modos] la sobrescribe con lo que tienes aquí.',
+    'Este archivo cambió en otro lugar mientras lo editaba. [Volver a cargar] lee la versión nueva; [Guardar de todos modos] la sobrescribe con lo que tiene aquí.',
   reloadFile: 'Volver a cargar',
   saveAnyway: 'Guardar de todos modos',
   openFileAria: 'Abrir en la aplicación: {name}',

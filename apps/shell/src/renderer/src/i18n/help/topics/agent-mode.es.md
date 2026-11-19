@@ -12,7 +12,7 @@ El agente toma como proyecto una carpeta que usted elige y ejecuta en ella el Cl
 1. En la barra lateral izquierda de Inicio, haga clic en **Agente**. La ventana del agente se abre aparte.
 2. Haga clic en **Elegir una carpeta…** para seleccionar la carpeta del proyecto. Las carpetas que usó hace poco aparecen en **Carpetas recientes**.
 3. En **Programa**, elija Claude Code o Codex. No se puede elegir un programa que no esté conectado.
-4. En **Cuándo preguntarte**, elija cómo le pide permiso el agente (tabla de abajo).
+4. En **Cuándo preguntarle**, elija cómo le pide permiso el agente (tabla de abajo).
 5. La primera vez, lea **Antes de empezar** y haga clic en **Entendido**.
 6. Haga clic en **Iniciar**, escriba lo que quiere que se haga y haga clic en **Enviar**.
 
@@ -85,5 +85,5 @@ Un documento que alguien le envió puede llevar instrucciones ocultas que le pid
 | **No conectado**                                         | Inicie sesión en ese programa en **Configuración ▸ IA**.      |
 | **No se puede usar esta carpeta**                        | Elija una carpeta que solo contenga su material de trabajo.   |
 | **Codex no puede abrir en este PC el entorno aislado**   | Actualice Windows o elija Claude Code.                        |
-| **Has agotado el límite de tu suscripción**              | Vuelva a enviar cuando se restablezca el límite.              |
+| **Ha agotado el límite de su suscripción**               | Vuelva a enviar cuando se restablezca el límite.              |
 | **El programa es demasiado antiguo para el modo agente** | Actualice ese programa y luego haga clic en **Nueva sesión**. |

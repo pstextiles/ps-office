@@ -2,9 +2,9 @@ import type { zh } from './zh'
 
 export const es = {
   windowTitle: 'Agente',
-  homeCardSub: 'Trabaja en una carpeta con Claude Code o Codex',
+  homeCardSub: 'Trabaje en una carpeta con Claude Code o Codex',
   intro:
-    'El agente ejecuta tu Claude Code o Codex en la carpeta que elijas. Puede leer los archivos que hay en ella, crear otros nuevos, usar tus habilidades, ejecutar scripts y modificar los documentos abiertos en GenOffice.',
+    'El agente ejecuta su Claude Code o Codex en la carpeta que elija. Puede leer los archivos que hay en ella, crear otros nuevos, usar sus habilidades, ejecutar scripts y modificar los documentos abiertos en GenOffice.',
   folderLabel: 'Carpeta del proyecto',
   folderPick: 'Elegir una carpeta…',
   folderNone: 'No se ha elegido ninguna carpeta',
@@ -13,31 +13,31 @@ export const es = {
   providerClaude: 'Claude Code',
   providerCodex: 'Codex',
   providerClaudeNote:
-    'En Windows, los comandos que permites se ejecutan sin aislamiento y pueden acceder a todo tu PC y a internet.',
+    'En Windows, los comandos que permite se ejecutan sin aislamiento y pueden acceder a todo su PC y a internet.',
   providerCodexNote:
     'Los comandos se ejecutan en el espacio aislado de Codex: solo se puede escribir en la carpeta del proyecto y no hay acceso a internet.',
   providerBlocked:
     'Aún no disponible: todavía no se puede impedir que Codex lea su propio archivo de inicio de sesión.',
   connChecking: 'Comprobando la conexión…',
-  connUnavailable: 'No conectado. Inicia sesión en Configuración → IA.',
-  connMetered: 'Conectado con un inicio de sesión de pago por uso que aceptaste.',
-  modeLabel: 'Cuándo preguntarte',
+  connUnavailable: 'No conectado. Inicie sesión en Configuración → IA.',
+  connMetered: 'Conectado con un inicio de sesión de pago por uso que aceptó.',
+  modeLabel: 'Cuándo preguntarle',
   modeAskCommands: 'Preguntar antes de cada comando',
   modeAskCommandsDesc:
-    'Leer y escribir archivos en la carpeta del proyecto se hace sin preguntar. Antes de ejecutar un comando o un script, se te pregunta.',
+    'Leer y escribir archivos en la carpeta del proyecto se hace sin preguntar. Antes de ejecutar un comando o un script, se le pregunta.',
   modeAskWrites: 'Preguntar antes de escribir y de ejecutar comandos',
   modeAskWritesDesc:
-    'Solo la lectura se hace sin preguntar. Antes de escribir un archivo o de ejecutar un comando, se te pregunta.',
+    'Solo la lectura se hace sin preguntar. Antes de escribir un archivo o de ejecutar un comando, se le pregunta.',
   modeTrust: 'Confiar en este proyecto',
   modeTrustDesc:
-    'No se pregunta nada. Codex sigue dentro de su espacio aislado; en Claude Code, su propio revisor comprueba cada acción en tu lugar.',
+    'No se pregunta nada. Codex sigue dentro de su espacio aislado; en Claude Code, su propio revisor comprueba cada acción en su lugar.',
   warningTitle: 'Antes de empezar',
   warningCommands:
-    'Los comandos que ejecuta el agente pueden cambiar archivos y usar internet. Un documento que alguien te haya enviado puede contener instrucciones ocultas.',
+    'Los comandos que ejecuta el agente pueden cambiar archivos y usar internet. Un documento que alguien le haya enviado puede contener instrucciones ocultas.',
   warningRedaction:
-    'Las partes que ocultaste a la AI solo quedan ocultas en los documentos abiertos en GenOffice. Los archivos que el agente lee de la carpeta se envían tal cual.',
+    'Las partes que ocultó a la AI solo quedan ocultas en los documentos abiertos en GenOffice. Los archivos que el agente lee de la carpeta se envían tal cual.',
   warningUsage:
-    'Un agente trabaja en muchos pasos y gasta más de tu suscripción que el panel de AI.',
+    'Un agente trabaja en muchos pasos y gasta más de su suscripción que el panel de AI.',
   warningAccept: 'Entendido',
   start: 'Iniciar',
   starting: 'Iniciando…',
@@ -45,7 +45,7 @@ export const es = {
   newSession: 'Nueva sesión',
   send: 'Enviar',
   inputPlaceholder: '¿Qué debe hacer el agente?',
-  you: 'Tú',
+  you: 'Usted',
   agent: 'Agente',
   startedLine: '{program} se inició en {folder}',
   skillsLine: '{n} habilidades disponibles',
@@ -72,36 +72,36 @@ export const es = {
   turnFailed: 'El agente no pudo terminar esta solicitud.',
   ended: 'La sesión ha terminado.',
   errBadFolder:
-    'No se puede usar esta carpeta. Elige una carpeta con tu propio trabajo: no una unidad entera, ni tu carpeta personal, ni una carpeta de datos de inicio de sesión o de aplicaciones.',
+    'No se puede usar esta carpeta. Elija una carpeta con su propio trabajo: no una unidad entera, ni su carpeta personal, ni una carpeta de datos de inicio de sesión o de aplicaciones.',
   errNotConnected:
-    'Este programa no está conectado. Inicia sesión en Configuración → IA y vuelve a intentarlo.',
-  errNotAccepted: 'Primero lee las notas de arriba y confírmalas.',
+    'Este programa no está conectado. Inicie sesión en Configuración → IA y vuelva a intentarlo.',
+  errNotAccepted: 'Primero lea las notas de arriba y confírmelas.',
   errUnsafeTools:
     'El programa se inició con herramientas que la aplicación no le dio, así que se detuvo.',
-  errRateLimit: 'Has agotado el límite de tu suscripción. Vuelve a intentarlo más tarde.',
-  errSignedOut: 'El programa no tiene la sesión iniciada. Inicia sesión en Configuración → IA.',
-  errMetered: 'El programa tiene iniciada una sesión de pago por uso que no aceptaste.',
+  errRateLimit: 'Ha agotado el límite de su suscripción. Vuelva a intentarlo más tarde.',
+  errSignedOut: 'El programa no tiene la sesión iniciada. Inicie sesión en Configuración → IA.',
+  errMetered: 'El programa tiene iniciada una sesión de pago por uso que no aceptó.',
   errSandboxUnavailable:
-    'Codex no puede abrir en este PC el entorno aislado que contiene sus comandos, así que no se inició. Actualiza Windows o elige Claude Code.',
+    'Codex no puede abrir en este PC el entorno aislado que contiene sus comandos, así que no se inició. Actualice Windows o elija Claude Code.',
   errNeedsUpdate:
-    'El programa es demasiado antiguo para el modo agente. Actualízalo y vuelve a intentarlo.',
+    'El programa es demasiado antiguo para el modo agente. Actualícelo y vuelva a intentarlo.',
   errNotInstalled: 'El programa no está instalado.',
-  errGeneric: 'Algo salió mal. Vuelve a intentarlo.',
+  errGeneric: 'Algo salió mal. Vuelva a intentarlo.',
   errUnsupportedPath:
-    'Codex no puede usar una carpeta o un archivo cuyo nombre contenga [ ] * o ?. Cambia el nombre de la carpeta del proyecto o cierra los documentos con ese tipo de nombre y vuelve a empezar.',
+    'Codex no puede usar una carpeta o un archivo cuyo nombre contenga [ ] * o ?. Cambie el nombre de la carpeta del proyecto o cierre los documentos con ese tipo de nombre y vuelva a empezar.',
   errProgramExited:
-    'El programa se cerró mientras se iniciaba la sesión. Actualízalo, comprueba que se abre en una terminal y vuelve a intentarlo.',
+    'El programa se cerró mientras se iniciaba la sesión. Actualícelo, compruebe que se abre en una terminal y vuelva a intentarlo.',
   errProgramNoAnswer:
-    'El programa no respondió a tiempo mientras se iniciaba la sesión. Vuelve a intentarlo.',
+    'El programa no respondió a tiempo mientras se iniciaba la sesión. Vuelva a intentarlo.',
   errProgramRefused:
-    'El programa no aceptó la configuración de la sesión. Actualízalo y vuelve a intentarlo.',
+    'El programa no aceptó la configuración de la sesión. Actualícelo y vuelva a intentarlo.',
   errNoModel:
-    'El programa no ofreció ningún modelo. Elige un modelo en Configuración → IA y vuelve a intentarlo.',
-  errPrepareFailed: 'La aplicación no pudo preparar la sesión. Vuelve a intentarlo.',
-  errCode: 'Si sigue ocurriendo, incluye este código al enviar tus comentarios: {code}',
+    'El programa no ofreció ningún modelo. Elija un modelo en Configuración → IA y vuelva a intentarlo.',
+  errPrepareFailed: 'La aplicación no pudo preparar la sesión. Vuelva a intentarlo.',
+  errCode: 'Si sigue ocurriendo, incluya este código al enviar sus comentarios: {code}',
   documentsUnprotected:
-    'Los documentos abiertos después de iniciar la sesión ({n}) quedan fuera de la protección de escritura del programa. Detén e inicia la sesión de nuevo para protegerlos.',
-  connOff: 'Desactivado en esta aplicación. Puedes volver a usarlo en Configuración → IA.',
+    'Los documentos abiertos después de iniciar la sesión ({n}) quedan fuera de la protección de escritura del programa. Detenga e inicie la sesión de nuevo para protegerlos.',
+  connOff: 'Desactivado en esta aplicación. Puede volver a usarlo en Configuración → IA.',
   errOffInApp:
-    'Este programa está desactivado en esta aplicación, así que no se envió nada más. Puedes volver a usarlo en Configuración → IA.',
+    'Este programa está desactivado en esta aplicación, así que no se envió nada más. Puede volver a usarlo en Configuración → IA.',
 } satisfies Record<keyof typeof zh, string>

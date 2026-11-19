@@ -1,12 +1,12 @@
 import type { zh } from './zh'
 
 export const es = {
-  pickTitle: 'Elige tus editores',
+  pickTitle: 'Elija sus editores',
   pickBody:
-    'Desactiva los editores y la IA que no uses y desaparecerán de la pantalla. Puedes cambiarlo cuando quieras en Configuración → Editores e IA.',
-  pickOneTimeTitle: 'Elige tus editores y la IA',
+    'Desactive los editores y la IA que no use y desaparecerán de la pantalla. Puede cambiarlo cuando quiera en Configuración → Editores e IA.',
+  pickOneTimeTitle: 'Elija sus editores y la IA',
   pickOneTimeBody:
-    'Ahora puedes desactivar los editores y la IA que no uses. Lo que desactives desaparece de la pantalla; los documentos abiertos siguen abiertos. Puedes cambiarlo más tarde en Configuración → Editores e IA.',
+    'Ahora puede desactivar los editores y la IA que no use. Lo que desactive desaparece de la pantalla; los documentos abiertos siguen abiertos. Puede cambiarlo más tarde en Configuración → Editores e IA.',
   pickSave: 'Guardar',
   pickClose: 'Cerrar',
   pickEditorsLabel: 'Editores',
@@ -15,7 +15,7 @@ export const es = {
   pickLastEditor: 'Al menos un editor debe seguir activado.',
   pickOpenDocs: 'Documentos abiertos',
   pickDoneAiOff:
-    'La IA está desactivada. Puedes volver a activarla cuando quieras en Configuración → Editores e IA.',
+    'La IA está desactivada. Puede volver a activarla cuando quiera en Configuración → Editores e IA.',
   settingsTabName: 'Editores e IA',
   itemDocs: 'Word',
   itemSheets: 'Excel',

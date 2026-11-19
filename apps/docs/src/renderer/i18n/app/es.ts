@@ -356,18 +356,18 @@ export const es = {
   appSpellLanguage: 'Idioma',
   appSynonyms: 'Sinónimos',
   appSynonymsPrompt:
-    '¿Qué sinónimos o expresiones similares mejores hay para «{text}»? Enumera de 3 a 5 con una breve explicación de las diferencias, sin modificar el documento.',
+    '¿Qué sinónimos o expresiones similares mejores hay para «{text}»? Enumere de 3 a 5 con una breve explicación de las diferencias, sin modificar el documento.',
   appTranslateSelectionPrompt:
-    'Traduce el texto actualmente seleccionado al {lang}, sustituye el original por la traducción y mantén el formato: «{text}»',
+    'Traduzca el texto actualmente seleccionado al {lang}, sustituya el original por la traducción y mantenga el formato: «{text}»',
   appAiBadgeTip: 'Usa IA',
   appTranslate: 'Traducir',
   appTranslateTo: 'Traducir al {lang}',
   appEasyWords: 'Explicar con palabras sencillas',
   appEasyWordsPrompt:
-    'Explica el texto seleccionado en español para que lo entienda también quien necesita un texto fácil (niños, personas mayores o quienes están aprendiendo español). Usa palabras cotidianas y frases cortas, y conserva todos los datos, cifras y condiciones. No modifiques el documento: «{text}»',
+    'Explique el texto seleccionado en español para que lo entienda también quien necesita un texto fácil (niños, personas mayores o quienes están aprendiendo español). Use palabras cotidianas y frases cortas, y conserve todos los datos, cifras y condiciones. No modifique el documento: «{text}»',
   redactMenuLabel: 'Ocultar la selección a la IA',
   redactDialogDesc:
-    'Las palabras siguen en el documento y en el archivo; el modelo solo ve el marcador. Ponle un nombre para que sepa qué representa.',
+    'Las palabras siguen en el documento y en el archivo; el modelo solo ve el marcador. Póngale un nombre para que sepa qué representa.',
   redactDialogScope:
     'Ocultar solo se aplica a la IA de esta aplicación. La CLI, las herramientas MCP y la exportación headless leen el archivo directamente y siguen viendo estas palabras.',
   redactDialogPlaceholder: 'Nombre del marcador, p. ej.: teléfono del cliente',

@@ -23,7 +23,7 @@ Sheets es el editor de hojas de cálculo; el cálculo se ejecuta en un proceso s
   - La protección se escribe en el .xlsx y lo que aplica esta aplicación no lleva contraseña, así que el mismo botón pasa a ser **Desproteger…** y la deshace. La protección procedente de otro programa que _sí_ lleva contraseña no se puede quitar desde aquí.
   - Los dos botones de proteger se aplican de inmediato: no hay ningún cuadro de diálogo que cancelar, solo una nota en la barra de estado indicando que se escribirá al guardar.
   - **Permitir editar rangos** marca las celdas que siguen siendo editables mientras el resto de la hoja queda bloqueada.
-- **Vista**: interruptores de cuadrícula, **barra de fórmulas**, encabezados y resaltado de fila y columna activas; zoom; **Normal** y **Vista previa de salto de página**. Las líneas de cuadrícula y los encabezados se guardan con la hoja; el resaltado es una preferencia tuya.
+- **Vista**: interruptores de cuadrícula, **barra de fórmulas**, encabezados y resaltado de fila y columna activas; zoom; **Normal** y **Vista previa de salto de página**. Las líneas de cuadrícula y los encabezados se guardan con la hoja; el resaltado es una preferencia suya.
 - **Diseño de gráfico**: aparece cuando hay un gráfico seleccionado: tipo de gráfico, estilos y colores, edición del rango de datos.
 
 La pestaña Datos, botón por botón (de izquierda a derecha en la imagen):
@@ -91,8 +91,8 @@ La pestaña Fórmulas, botón por botón:
 ## IA
 
 - El panel de IA lateral: seleccione un rango e indíquelo en lenguaje natural (reformatear, generar datos, escribir fórmulas).
-- Adjunta archivos a un mensaje con el botón 📎 o arrástralos hasta el panel; viajan con la pregunta y las imágenes vuelven como miniaturas.
-- Una respuesta puede citar una celda: haz clic en la referencia y la cuadrícula saltará allí.
+- Adjunte archivos a un mensaje con el botón 📎 o arrástrelos hasta el panel; viajan con la pregunta y las imágenes vuelven como miniaturas.
+- Una respuesta puede citar una celda: haga clic en la referencia y la cuadrícula saltará allí.
 - Las ediciones de la IA se pueden revertir desde el panel.
 
 ## Guardar y exportar

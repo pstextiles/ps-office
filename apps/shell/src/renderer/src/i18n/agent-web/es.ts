@@ -17,8 +17,8 @@ export const es = {
   codexNetworkOff: 'Desactivado',
   codexNetworkOn: 'Activado',
   codexNetworkWarning:
-    'Si lo activas, los comandos que ejecuta Codex pueden acceder a internet. Con «Confiar en este proyecto» acceden sin preguntar. Instrucciones ocultas en un documento recibido podrían hacer que envíen tus datos al exterior.',
+    'Si lo activa, los comandos que ejecuta Codex pueden acceder a internet. Con «Confiar en este proyecto» acceden sin preguntar. Instrucciones ocultas en un documento recibido podrían hacer que envíen sus datos al exterior.',
   codexFolderNote: 'Estos dos ajustes se recuerdan para cada carpeta de proyecto.',
   providerCodexNoteWeb:
-    'Los comandos se ejecutan en el espacio aislado de Codex: solo se puede escribir en la carpeta del proyecto y no hay acceso a internet a menos que lo actives.',
+    'Los comandos se ejecutan en el espacio aislado de Codex: solo se puede escribir en la carpeta del proyecto y no hay acceso a internet a menos que lo active.',
 } satisfies Record<keyof typeof zh, string>

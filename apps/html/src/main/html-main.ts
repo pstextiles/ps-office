@@ -358,7 +358,7 @@ const tDlg = createI18n({
     filterImages: 'Imágenes',
     untitledFile: 'Sin título',
     closeUnsavedMsg: 'Este documento tiene cambios sin guardar.',
-    closeUnsavedDetail: '¿Quieres guardarlos antes de cerrar?',
+    closeUnsavedDetail: '¿Quiere guardarlos antes de cerrar?',
     btnSave: 'Guardar',
     btnDontSave: 'No guardar',
     btnCancel: 'Cancelar',
@@ -373,7 +373,7 @@ const tDlg = createI18n({
     errFileTooLarge: 'El archivo supera el tamaño máximo',
     errParseFailed: 'No se pudo analizar el archivo',
     errImageNoText:
-      'Las imágenes adjuntas no proporcionan texto; la imagen se envía junto con el mensaje del usuario, puedes verla directamente',
+      'Las imágenes adjuntas no proporcionan texto; la imagen se envía junto con el mensaje del usuario, puede verla directamente',
     errNotImage: 'no es un tipo de imagen compatible',
   },
   th: {

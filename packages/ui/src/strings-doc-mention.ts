@@ -74,7 +74,7 @@ export const DOC_MENTION_STRINGS = defineStrings({
     groupOpen: 'Documentos abiertos',
     groupProject: 'Archivos de este proyecto',
     groupRecent: 'Documentos recientes',
-    reasonModified: 'Guárdalo para poder adjuntarlo',
+    reasonModified: 'Guárdelo para poder adjuntarlo',
     reasonUnsaved: 'Documento nuevo sin guardar',
     more: 'Buscar más…',
   },

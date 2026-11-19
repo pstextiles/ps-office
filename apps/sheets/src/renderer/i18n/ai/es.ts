@@ -1,27 +1,27 @@
 import type { zh } from './zh'
 
 export const es = {
-  aiComposerPlaceholderBuild: 'Describe la tabla, los datos o el gráfico a crear…',
-  aiEmptyBuildTitle: 'Deja que la IA construya este libro por ti',
+  aiComposerPlaceholderBuild: 'Describa la tabla, los datos o el gráfico a crear…',
+  aiEmptyBuildTitle: 'Deje que la IA construya este libro por usted',
   aiEmptyBuildBody:
-    'Describe la tabla, los datos o el gráfico que necesitas: la IA los crea directamente.',
+    'Describa la tabla, los datos o el gráfico que necesita: la IA los crea directamente.',
   aiUndelivered: 'No enviado',
   aiRetry: 'Reintentar',
   aiOpenAssistant: 'Abrir el asistente de IA',
   aiAskBtn: 'Pedir a la IA',
   aiCheckBtn: 'Revisión IA',
   aiCheckPrompt:
-    'Revisa esta hoja en busca de problemas: 1) errores de fórmula (#REF!, #DIV/0!, etc.), rangos que no cubren todos los datos, columnas omitidas en filas de totales; 2) números y texto mezclados en una misma columna, formatos de fecha inconsistentes, valores atípicos evidentes y filas duplicadas; 3) totales que no cuadran con el detalle, columnas de porcentajes que no suman 100%. Enumera los problemas encontrados y sugiere correcciones',
+    'Revise esta hoja en busca de problemas: 1) errores de fórmula (#REF!, #DIV/0!, etc.), rangos que no cubren todos los datos, columnas omitidas en filas de totales; 2) números y texto mezclados en una misma columna, formatos de fecha inconsistentes, valores atípicos evidentes y filas duplicadas; 3) totales que no cuadran con el detalle, columnas de porcentajes que no suman 100%. Enumere los problemas encontrados y sugiera correcciones',
   aiAnalyzeBtn: 'Análisis IA',
   aiAnalyzePrompt:
-    'Analiza los datos de esta hoja y resume los hallazgos clave, tendencias y anomalías',
+    'Analice los datos de esta hoja y resuma los hallazgos clave, tendencias y anomalías',
   aiSettingsTitle: 'Configuración de IA',
   aiSetUp: 'Configurar IA',
   aiNewChat: 'Nueva conversación',
   aiCollapsePanel: 'Contraer el panel de IA',
   aiHistorySep: '—— Conversación anterior ——',
-  aiEmptyTitle: 'Pregunta a la IA sobre este libro',
-  aiEmptyBodyLine1: 'Describe un cambio o pregunta sobre los datos.',
+  aiEmptyTitle: 'Pregunte a la IA sobre este libro',
+  aiEmptyBodyLine1: 'Describa un cambio o pregunte sobre los datos.',
   aiThinkingAria: 'Pensando',
   aiThinking: 'Pensando…',
   aiWorkedSteps: 'Completado · {n} pasos',
@@ -35,8 +35,8 @@ export const es = {
   aiMoreCells: 'y {count} celdas más',
   aiCellEmpty: 'vacío',
   aiRemoveAttachment: 'Quitar datos adjuntos',
-  aiAttachTitle: 'Adjuntar archivos locales (o arrástralos al panel)',
-  aiComposerPlaceholder: 'Pide a la IA que analice o modifique este libro…',
+  aiAttachTitle: 'Adjuntar archivos locales (o arrástrelos al panel)',
+  aiComposerPlaceholder: 'Pida a la IA que analice o modifique este libro…',
   aiHintIdle: 'Entrar para enviar',
   aiHintBusy: 'Esc para detener',
   aiHintIdleTitle: 'Entrar para enviar · Mayús+Entrar para nueva línea',
@@ -51,11 +51,11 @@ export const es = {
   aiSave: 'Guardar',
   aiUnknownError: 'Error desconocido',
   aiTimeoutError:
-    'La solicitud de IA agotó el tiempo de espera: no hubo respuesta de la red y se detuvo. Comprueba tu conexión e inténtalo de nuevo',
+    'La solicitud de IA agotó el tiempo de espera: no hubo respuesta de la red y se detuvo. Compruebe su conexión e inténtelo de nuevo',
   aiOverloadedError:
-    'El servicio de IA está saturado en este momento; inténtalo de nuevo en unos instantes',
+    'El servicio de IA está saturado en este momento; inténtelo de nuevo en unos instantes',
   aiNetworkError:
-    'Problema de red: no se pudo conectar con el servicio de IA. Comprueba tu conexión e inténtalo de nuevo',
+    'Problema de red: no se pudo conectar con el servicio de IA. Compruebe su conexión e inténtelo de nuevo',
   aiToolWorkbookContext: 'Leer información del libro',
   aiToolReadRange: 'Leer rango',
   aiToolReadRangeOf: 'Leer rango {range}',

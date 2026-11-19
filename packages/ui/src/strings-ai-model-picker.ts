@@ -140,7 +140,7 @@ export const AI_EFFORT_STRINGS: Record<Lang, AiEffortStrings> = {
   },
   es: {
     title: 'Esfuerzo de razonamiento',
-    hint: 'Cuánto piensa el modelo antes de responder. Cuanto más alto, más lento y más uso de tu suscripción o de tu crédito de API.',
+    hint: 'Cuánto piensa el modelo antes de responder. Cuanto más alto, más lento y más uso de su suscripción o de su crédito de API.',
     auto: 'Predeterminado',
     autoNamed: 'Predeterminado ({level})',
     levels: {

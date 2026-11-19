@@ -100,7 +100,7 @@ const tDlg = createI18n({
     dlgSaveTranslatedTitle: 'Guardar libro traducido',
     dlgSaveBilingualTitle: 'Guardar libro bilingüe',
     closeUnsavedMsg: 'Este documento tiene cambios sin guardar.',
-    closeUnsavedDetail: '¿Quieres guardarlos antes de cerrar?',
+    closeUnsavedDetail: '¿Quiere guardarlos antes de cerrar?',
     btnSave: 'Guardar',
     btnDontSave: 'No guardar',
     btnCancel: 'Cancelar',

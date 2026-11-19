@@ -1,9 +1,9 @@
 import type { zh } from './zh'
 
 export const es = {
-  ribbonAiCreditNote: 'Usa IA y cuenta para tu límite de uso',
+  ribbonAiCreditNote: 'Usa IA y cuenta para su límite de uso',
   ribbonAiRewriteConfirm:
-    'Esta acción llama a la IA: cuenta para tu límite de uso y puede reescribir todo el contenido. ¿Continuar? (No se volverá a preguntar.)',
+    'Esta acción llama a la IA: cuenta para su límite de uso y puede reescribir todo el contenido. ¿Continuar? (No se volverá a preguntar.)',
   // tabs
   ribbonTabFile: 'Archivo',
   ribbonTabHome: 'Inicio',
@@ -169,7 +169,7 @@ export const es = {
   ribbonNumberStartAt: 'Iniciar en',
   ribbonNumberStartAtTip: 'Número inicial (Intro para aplicar)',
   ribbonBulletCustom: 'Símbolo personalizado',
-  ribbonBulletCustomTip: 'Escribe cualquier carácter, Intro para aplicar',
+  ribbonBulletCustomTip: 'Escriba cualquier carácter, Intro para aplicar',
   ribbonBulletPicture: 'Imagen…',
   ribbonIndentDec: 'Disminuir sangría',
   ribbonIndentInc: 'Aumentar sangría',
@@ -410,12 +410,12 @@ export const es = {
   ribbonSpellCheckTip:
     'La IA revisa cada diapositiva en busca de erratas, gramática y puntuación y las corrige directamente',
   ribbonSpellCheckPrompt:
-    'Revisa esta presentación diapositiva por diapositiva en busca de erratas, gramática y puntuación: corrige los problemas directamente con las herramientas manteniendo el diseño y el significado; después informa brevemente de los cambios por diapositiva y omite las que no tengan problemas.',
+    'Revise esta presentación diapositiva por diapositiva en busca de erratas, gramática y puntuación: corrija los problemas directamente con las herramientas manteniendo el diseño y el significado; después informe brevemente de los cambios por diapositiva y omita las que no tengan problemas.',
   ribbonTranslate: 'Traducir',
   ribbonTranslateTip:
     'La IA traduce el texto de la diapositiva actual al idioma elegido (reemplaza el original)',
   ribbonTranslatePrompt:
-    'Traduce todo el texto de la diapositiva actual a {lang}: reemplaza el original con las herramientas, manteniendo el diseño, los tamaños de fuente y los colores.',
+    'Traduzca todo el texto de la diapositiva actual a {lang}: reemplace el original con las herramientas, manteniendo el diseño, los tamaños de fuente y los colores.',
   ribbonLangEnglish: 'Inglés',
   ribbonLangSimplifiedChinese: 'Chino simplificado',
   ribbonLangTraditionalChinese: 'Chino tradicional',

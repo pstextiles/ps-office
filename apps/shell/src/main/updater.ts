@@ -328,7 +328,7 @@ const tUpd = createI18n({
     updNotesOnGitHub: 'Ver notas completas en GitHub',
     updNotesTruncated: 'Solo se muestra una parte.',
     updManualMac:
-      'Este Mac no puede instalar la actualización automáticamente. Descarga la nueva versión desde la página de descargas y colócala en la carpeta Aplicaciones. Si abriste la app directamente desde la imagen de disco, muévela a Aplicaciones y las próximas actualizaciones se instalarán solas.',
+      'Este Mac no puede instalar la actualización automáticamente. Descargue la nueva versión desde la página de descargas y colóquela en la carpeta Aplicaciones. Si abrió la app directamente desde la imagen de disco, muévala a Aplicaciones y las próximas actualizaciones se instalarán solas.',
     updInstallFailed:
       'La última actualización no se instaló. Esta vez el instalador se abre en su propia ventana para que pueda ver su progreso.',
     updVisibleInstall:
@@ -336,7 +336,7 @@ const tUpd = createI18n({
     updRestartNote:
       'Tras el reinicio, una ventana muestra el progreso de la instalación. Al terminar, la aplicación y los documentos que tenía abiertos vuelven a abrirse.',
     updRestartNoteMac:
-      'La app se cierra, se reemplaza por la nueva versión y se vuelve a abrir con los documentos que tenías abiertos.',
+      'La app se cierra, se reemplaza por la nueva versión y se vuelve a abrir con los documentos que tenía abiertos.',
   },
   th: {
     updTitle: 'อัปเดตซอฟต์แวร์',

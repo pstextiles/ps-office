@@ -350,7 +350,7 @@ const tDlg = createI18n({
     filterCertificate: 'Archivos de certificado (.p12, .pfx)',
     filterPdf: 'Documentos PDF',
     closeUnsavedMsg: 'Este PDF tiene cambios sin guardar.',
-    closeUnsavedDetail: '¿Quieres guardarlos antes de cerrar?',
+    closeUnsavedDetail: '¿Quiere guardarlos antes de cerrar?',
     btnSave: 'Guardar',
     btnDontSave: 'No guardar',
     btnCancel: 'Cancelar',

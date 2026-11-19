@@ -17,18 +17,18 @@ export const es = {
     'Este documento está cifrado, así que no se puede escribir un PDF traducido. Markdown y EPUB siguen disponibles.',
   trPdfScript:
     'No se puede crear un PDF traducido al {language}: el componente que escribe el PDF no sabe maquetar esta escritura. Markdown y EPUB siguen disponibles.',
-  trFormatRequired: 'Elige al menos un formato.',
+  trFormatRequired: 'Elija al menos un formato.',
   trNoBlocks: 'Las páginas elegidas no tienen texto que traducir.',
   trNoBlocksScanned:
-    'Estas páginas parecen escaneadas. Primero haz que la IA las lea y después tradúcelas.',
+    'Estas páginas parecen escaneadas. Primero haga que la IA las lea y después tradúzcalas.',
   trBlocksCount: '{count} bloques de texto para traducir',
   trConfirmLanguage: 'Idioma de destino: {language}',
   trConfirmCalls: 'Llamadas a la IA: {calls} ({blocks} bloques, enviados en lotes)',
   trConfirmDone: '{done} de {total} bloques ya están traducidos y no se volverán a enviar',
   trConfirmSends: 'El texto de las páginas elegidas se envía a esta IA.',
-  trRightsNotice: 'Traduce solo documentos sobre los que tengas derechos.',
+  trRightsNotice: 'Traduzca solo documentos sobre los que tenga derechos.',
   trProviderChange:
-    'La traducción guardada se hizo con {stored}. Si continúas con {next}, se mezclarán dos IA en una misma traducción.',
+    'La traducción guardada se hizo con {stored}. Si continúa con {next}, se mezclarán dos IA en una misma traducción.',
   trProviderUnknown: 'una IA desconocida',
   trConfirmNothing:
     'Todos los bloques de las páginas elegidas ya están traducidos. No se envía nada; los archivos se escriben con la traducción guardada.',
@@ -103,7 +103,7 @@ export const es = {
   trEasyConfirmNothing:
     'Todos los bloques de las páginas elegidas ya están explicados. No se envía nada; los archivos se escriben con la explicación guardada.',
   trEasyProviderChange:
-    'La explicación guardada se hizo con {stored}. Si sigues con {next}, una misma explicación mezclará dos IA.',
+    'La explicación guardada se hizo con {stored}. Si sigue con {next}, una misma explicación mezclará dos IA.',
   trEasyStart: 'Empezar la explicación',
   trEasyRestart: 'Volver a explicar desde el principio…',
   trEasyRestartConfirm:

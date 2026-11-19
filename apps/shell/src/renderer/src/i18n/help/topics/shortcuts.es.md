@@ -2,9 +2,9 @@
 
 Cada editor tiene sus propias combinaciones de teclas, y solo unas cuantas funcionan en todas partes. Esta página es la lista completa, agrupada por aplicación, con la combinación de macOS y la de Windows / Linux una al lado de la otra.
 
-## Léelo primero
+## Léalo primero
 
-**Casi nada de esto es global.** Las tres teclas de acceso de abajo sí lo son; todo lo que viene después pertenece a la aplicación que tengas delante, y cambia cuando cambias de pestaña.
+**Casi nada de esto es global.** Las tres teclas de acceso de abajo sí lo son; todo lo que viene después pertenece a la aplicación que tenga delante, y cambia cuando cambia de pestaña.
 
 | Acción                                                     | macOS | Windows / Linux |
 | ---------------------------------------------------------- | ----- | --------------- |
@@ -39,7 +39,7 @@ Cada editor tiene sus propias combinaciones de teclas, y solo unas cuantas funci
 
 ## Word
 
-Word tiene una barra de menús completa, así que las combinaciones de archivo y de formato de abajo funcionan siempre que una pestaña de Word tenga el foco, sea cual sea el documento abierto. Las combinaciones de edición necesitan un documento cargado y editable, con el cursor en el texto; no se disparan mientras escribes en el cuadro de búsqueda, en el indicador de IA ni en ningún otro campo.
+Word tiene una barra de menús completa, así que las combinaciones de archivo y de formato de abajo funcionan siempre que una pestaña de Word tenga el foco, sea cual sea el documento abierto. Las combinaciones de edición necesitan un documento cargado y editable, con el cursor en el texto; no se disparan mientras escribe en el cuadro de búsqueda, en el indicador de IA ni en ningún otro campo.
 
 ### Archivo
 
@@ -169,7 +169,7 @@ F1 abre la **guía del usuario**, no esta lista. La hoja de atajos es `⌘/` o C
 
 GenOffice Sheets abre y guarda libros .xlsx. La mayoría de los atajos de abajo son los habituales en los programas de hojas de cálculo, así que muchos ya le resultarán familiares.
 
-> **La edición manda.** Casi todos los atajos de Sheets se ignoran mientras editas una celda o escribes en la **barra de fórmulas**, para que escribir, mover el cursor y la tecla Retroceso conserven su significado habitual de edición de texto. Si una tecla parece no hacer nada, comprueba si estás a mitad de una edición: pulsa primero Esc o Enter y vuelve a intentarlo. Los comandos que actúan sobre la selección tampoco hacen nada mientras haya un cuadro de diálogo abierto. Donde una combinación sea la excepción a esta regla, la tabla lo indica.
+> **La edición manda.** Casi todos los atajos de Sheets se ignoran mientras edita una celda o escribe en la **barra de fórmulas**, para que escribir, mover el cursor y la tecla Retroceso conserven su significado habitual de edición de texto. Si una tecla parece no hacer nada, compruebe si está a mitad de una edición: pulse primero Esc o Enter y vuelva a intentarlo. Los comandos que actúan sobre la selección tampoco hacen nada mientras haya un cuadro de diálogo abierto. Donde una combinación sea la excepción a esta regla, la tabla lo indica.
 
 Dos convenciones son propias de Sheets. `⌘` y `⌃` ocupan la misma casilla de modificador — ambas se aceptan en todas las plataformas, así que `⌘1` y `Ctrl+1` son la misma combinación. **Una celda de Windows / Linux vacía significa que la combinación solo existe en macOS.**
 
@@ -226,7 +226,7 @@ Dos convenciones son propias de Sheets. `⌘` y `⌃` ocupan la misma casilla de
 | Insertar la hora actual                                                                                        | ⌘⇧;                       | Ctrl+Shift+;       |
 | Borrar el contenido de todas las celdas seleccionadas                                                          | ⌫ o ⌦                     | Backspace o Delete |
 
-La suma automática existe solo en macOS. Pulsa `⌘⇧T`.
+La suma automática existe solo en macOS. Pulse `⌘⇧T`.
 
 ### Formato
 
@@ -260,7 +260,7 @@ La suma automática existe solo en macOS. Pulsa `⌘⇧T`.
 | Ocultar las columnas seleccionadas                                                                                | ⌘0                            | Ctrl+0                           |
 | Mostrar las columnas ocultas de la selección                                                                      | ⌘⇧0                           | Ctrl+Shift+0                     |
 
-El atajo de filtro de Excel, Ctrl+Shift+L, no hace nada en Windows ni en Linux. Pulsa `⌘⇧F` en macOS, o usa el comando de filtro de la cinta en cualquier plataforma.
+El atajo de filtro de Excel, Ctrl+Shift+L, no hace nada en Windows ni en Linux. Pulse `⌘⇧F` en macOS, o use el comando de filtro de la cinta en cualquier plataforma.
 
 ### Datos y revisión
 
@@ -296,7 +296,7 @@ El atajo de filtro de Excel, Ctrl+Shift+L, no hace nada en Windows ni en Linux. 
 
 ## Slides
 
-GenOffice Slides es un editor de presentaciones al estilo de PowerPoint. La mayoría de las teclas hacen lo mismo estés donde estés, pero algunas cambian de significado según dónde esté el foco — dentro de un cuadro de texto, o mientras el **panel de miniaturas**, el **panel de esquema** o el **clasificador de diapositivas** tiene el foco del teclado. Esos casos están marcados en la columna Acción.
+GenOffice Slides es un editor de presentaciones al estilo de PowerPoint. La mayoría de las teclas hacen lo mismo esté donde esté, pero algunas cambian de significado según dónde esté el foco — dentro de un cuadro de texto, o mientras el **panel de miniaturas**, el **panel de esquema** o el **clasificador de diapositivas** tiene el foco del teclado. Esos casos están marcados en la columna Acción.
 
 ### Archivo y aplicación
 
@@ -336,7 +336,7 @@ F4 también funciona dentro del cuadro de texto: aplica el último formato al te
 
 ### Formato de texto
 
-Actúan sobre el texto de una forma seleccionada, o sobre el párrafo donde esté el cursor cuando estás dentro del cuadro de texto.
+Actúan sobre el texto de una forma seleccionada, o sobre el párrafo donde esté el cursor cuando está dentro del cuadro de texto.
 
 | Acción                                                    | macOS | Windows / Linux |
 | --------------------------------------------------------- | ----- | --------------- |
@@ -388,7 +388,7 @@ Los comandos de nivel de diapositiva del tipo PowerPoint solo se disparan mientr
 | Copiar diapositivas                                        | ⌘C                                | Ctrl+C                                            |
 | Cortar diapositivas                                        | ⌘X                                | Ctrl+X                                            |
 
-Moverte entre diapositivas con las flechas es la excepción — funciona también desde el lienzo, sin nada seleccionado. Eliminar diapositivas no se aplica mientras hay una herramienta de lápiz activa ni en la **vista de lectura**.
+Moverse entre diapositivas con las flechas es la excepción — funciona también desde el lienzo, sin nada seleccionado. Eliminar diapositivas no se aplica mientras hay una herramienta de lápiz activa ni en la **vista de lectura**.
 
 ### Dentro de un cuadro de texto
 
@@ -414,7 +414,7 @@ Tab significa dos cosas: la celda siguiente dentro de una tabla, y bajar el nive
 | Diapositiva anterior                | ← ↑ Page Up          | Left, Up, Page Up                    |
 | Primera diapositiva                 | Home                 | Home                                 |
 | Última diapositiva                  | End                  | End                                  |
-| Ir a la diapositiva N               | escribe N, y luego ⏎ | escribe N, y luego Enter             |
+| Ir a la diapositiva N               | escriba N, y luego ⏎ | escriba N, y luego Enter             |
 | Pantalla negra                      | B o .                | B o .                                |
 | Pantalla blanca                     | W o ,                | W o ,                                |
 | Restaurar tras un Fundido a negro   | cualquier tecla      | cualquier tecla                      |
@@ -430,9 +430,9 @@ Empezar desde la diapositiva actual acepta `⌘⏎` además de `⇧F5` en macOS.
 | Diapositiva anterior         | ← ↑ Page Up       | Left, Up, Page Up                    |
 | Salir de la vista de lectura | Esc               | Esc                                  |
 
-Pulsa **Esc** para salir de lo que tengas abierto — un recorte, una forma que estés dibujando, **Editar puntos**, un grupo, la herramienta de lápiz, marcador o borrador, el reproductor multimedia o la **vista de lectura** — y para borrar la selección.
+Pulse **Esc** para salir de lo que tenga abierto — un recorte, una forma que esté dibujando, **Editar puntos**, un grupo, la herramienta de lápiz, marcador o borrador, el reproductor multimedia o la **vista de lectura** — y para borrar la selección.
 
-Other dos son modificadores y no combinaciones: mantén **Mayús** mientras dibujas para conservar las proporciones de la forma nueva, y mantén **Mayús** mientras rotas para ajustar en pasos de 15°.
+Otras dos son modificadores y no combinaciones: mantenga **Mayús** mientras dibuja para conservar las proporciones de la forma nueva, y mantenga **Mayús** mientras rota para ajustar en pasos de 15°.
 
 ## PDF
 
@@ -474,7 +474,7 @@ Acercar también responde a `⌘+` y Ctrl++.
 | Ir a la primera página                | Home             | Home             |
 | Ir a la última página                 | End              | End              |
 
-No llevan modificador, así que las dos plataformas se leen igual. ↓ y ↑ son la única fila que cambia con el foco: en el documento desplazan la página, pero con el foco en la barra lateral de miniaturas avanzan una página entera. No hacen nada mientras escribes en un campo.
+No llevan modificador, así que las dos plataformas se leen igual. ↓ y ↑ son la única fila que cambia con el foco: en el documento desplazan la página, pero con el foco en la barra lateral de miniaturas avanzan una página entera. No hacen nada mientras escribe en un campo.
 
 ### Selección y edición
 
@@ -600,7 +600,7 @@ Cada una de estas necesita que ya haya un elemento seleccionado; sin selección,
 | Poner en negrita el rango seleccionado         | ⌘B    | Ctrl+B          |
 | Poner en cursiva el rango seleccionado         | ⌘I    | Ctrl+I          |
 
-Confirmar conserva lo que has escrito y devuelve el elemento al estado seleccionado.
+Confirmar conserva lo que ha escrito y devuelve el elemento al estado seleccionado.
 
 ## HWP/HWPX
 

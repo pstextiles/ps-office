@@ -12,11 +12,11 @@ export const es = {
   createNamed: 'Crear el proyecto «{name}»',
   createLocation: 'Ubicación: {path}',
   createElsewhere: 'Crear en otro lugar…',
-  newProjectNameHint: 'Escribe un nombre para el nuevo proyecto',
+  newProjectNameHint: 'Escriba un nombre para el nuevo proyecto',
   newProject: 'Nuevo proyecto',
   addFolder: 'Añadir carpeta',
   folderMissing: 'Carpeta no encontrada',
-  folderMissingTitle: 'No se encuentra la carpeta. Haz clic para elegir adónde se movió',
+  folderMissingTitle: 'No se encuentra la carpeta. Haga clic para elegir adónde se movió',
   unwritableMark: 'Sin escritura',
   pin: 'Fijar',
   unpin: 'Dejar de fijar',
@@ -74,11 +74,11 @@ export const es = {
   toolSummaryNoNameOne: 'Herramienta ejecutada una vez en {editor}',
   dismiss: 'Cerrar',
   createExists: 'Ya existe una carpeta con ese nombre, así que no se creó nada: {path}',
-  createInvalidName: 'Ese nombre no se puede usar para una carpeta. Escribe otro nombre.',
-  createUnwritable: 'No se pudo crear la carpeta. Prueba a crearla en otro lugar.',
-  refusedDriveRoot: 'Una unidad entera no puede ser un proyecto. Elige una carpeta dentro de ella.',
+  createInvalidName: 'Ese nombre no se puede usar para una carpeta. Escriba otro nombre.',
+  createUnwritable: 'No se pudo crear la carpeta. Pruebe a crearla en otro lugar.',
+  refusedDriveRoot: 'Una unidad entera no puede ser un proyecto. Elija una carpeta dentro de ella.',
   refusedUserHome:
-    'Tu carpeta de usuario entera no puede ser un proyecto. Elige una carpeta dentro de ella.',
+    'Su carpeta de usuario entera no puede ser un proyecto. Elija una carpeta dentro de ella.',
   refusedProtected:
     'La app o un programa de IA usa esta carpeta, así que no puede ser un proyecto.',
   refusedContainsProtected:
@@ -87,7 +87,7 @@ export const es = {
   refusedDifferentProject: 'Esa carpeta pertenece a otro proyecto, así que no se cambió nada.',
   deleteConfirm: '¿Mover el chat «{title}» a la papelera?',
   cancel: 'Cancelar',
-  actionFailed: 'No funcionó. Inténtalo de nuevo.',
+  actionFailed: 'No funcionó. Inténtelo de nuevo.',
   consolidateFailed: 'No se pudo ordenar. La memoria no ha cambiado.',
   contextMissing:
     'No se encontró la carpeta del proyecto, así que esta solicitud se envió sin el contexto del proyecto.',

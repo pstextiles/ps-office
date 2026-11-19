@@ -21,7 +21,7 @@ Claro / Oscuro / Seguir el sistema. «Seguir el sistema» sigue la apariencia de
 
 - **Posición de la barra lateral de IA** (izquierda o derecha), **Tamaño del texto del panel de IA** y **Corrección ortográfica en el chat de IA**.
 - **Panel de IA** — Desactivado, Contraído o Último estado.
-- **Guardar automáticamente todos los documentos** activa el guardado automático de forma predeterminada en todos los editores; todavía puedes desactivarlo para una ventana.
+- **Guardar automáticamente todos los documentos** activa el guardado automático de forma predeterminada en todos los editores; todavía puede desactivarlo para una ventana.
 - **Ubicación de guardado** con un botón **Cambiar** y **App predeterminada para documentos de Office** para reclamar .docx / .xlsx / .pptx para GenOffice.
 - **Formato de guardado de nuevos documentos HWP** decide si se ofrece primero HWP o HWPX al guardar por primera vez un documento nuevo. Los documentos abiertos conservan su propio formato.
 - **Fuentes de diapositivas con IA** define las fuentes que usa la IA en una presentación nueva cuando su solicitud no nombra ninguna. Elija Automático, Sin serifa, Con serifa o Títulos con serifa, y cambie por separado la fuente sin serifa y la fuente con serifa. Una plantilla de diseño elegida usa sus propias fuentes, y las páginas añadidas a una presentación con otras fuentes siguen esa presentación.
@@ -30,7 +30,7 @@ GenOffice no recopila ni envía estadísticas de uso, así que no hay ningún in
 
 ## Editores e IA
 
-Aquí elige qué editores usa y si usa la IA. La misma lista aparece además una vez en otros dos lugares: el paso **Elige tus editores** de las pantallas de bienvenida del primer arranque y una ventana que se muestra una sola vez en Inicio a quienes ya usaban GenOffice antes de que existiera este ajuste. Al principio todo está activado, así que si no toca nada no cambia nada. Los cambios se aplican al instante en todas las ventanas abiertas.
+Aquí elige qué editores usa y si usa la IA. La misma lista aparece además una vez en otros dos lugares: el paso **Elija sus editores** de las pantallas de bienvenida del primer arranque y una ventana que se muestra una sola vez en Inicio a quienes ya usaban GenOffice antes de que existiera este ajuste. Al principio todo está activado, así que si no toca nada no cambia nada. Los cambios se aplican al instante en todas las ventanas abiertas.
 
 - **Editores**: Word, Excel, PowerPoint, PDF, Herramientas PDF, Markdown y texto, HTML, Mapa mental, Diagrama, HWP (Hangul) y Libro electrónico (EPUB). Las herramientas PDF se activan por separado del editor de PDF. Al menos un editor tiene que seguir activado.
 - **Un editor desactivado** desaparece de las listas de documentos nuevos: las tarjetas de Inicio, el menú **+** de la barra de pestañas, Archivo ▸ Nuevo y la lista de aplicaciones predeterminadas. Los documentos ya abiertos siguen abiertos y las copias de recuperación se conservan.
@@ -46,8 +46,8 @@ Aunque la IA esté activada, no crea documentos nuevos para un editor desactivad
 Permanece cerrado hasta que se abre; la mayoría nunca lo necesita. La pestaña **Modelo de IA** contiene las claves de API y los servidores propios, para el chat. En la pestaña **Medios de IA y búsqueda**, cada capacidad elige el proveedor que la sirve, y la clave y la URL base de un proveedor se introducen una vez y se comparten:
 
 - **Búsqueda web**, **Generación de imágenes**, **Análisis de imágenes** y **Análisis de vídeo**, cada una con un proveedor, un modelo, una clave y una URL base.
-- La **búsqueda de archivos local** corre en esta máquina. Debajo, el **reranking de búsqueda Jev** está **desactivado por defecto**. Al activarlo, los extractos de los 20 primeros aciertos locales — hasta 1.200 caracteres por documento, más nombres de archivos y carpetas — van al punto final de decisión que elijas (Jev vía OpenRouter o TypeSafe, Perplexity, Liquid AI d1, Cloudflare, un motor local o una URL propia) para reordenarlos por relevancia. Desactivado, nada deja el dispositivo.
-- **Permitir que las solicitudes automáticas usen una suscripción** está **desactivado por defecto**. Decide si una solicitud que llega de la línea de comandos o de un agente de codificación conectado puede usar tu suscripción de Claude o Codex; véase [Conectar un agente de programación](help://mcp).
+- La **búsqueda de archivos local** corre en esta máquina. Debajo, el **reranking de búsqueda Jev** está **desactivado por defecto**. Al activarlo, los extractos de los 20 primeros aciertos locales — hasta 1.200 caracteres por documento, más nombres de archivos y carpetas — van al punto final de decisión que elija (Jev vía OpenRouter o TypeSafe, Perplexity, Liquid AI d1, Cloudflare, un motor local o una URL propia) para reordenarlos por relevancia. Desactivado, nada deja el dispositivo.
+- **Permitir que las solicitudes automáticas usen una suscripción** está **desactivado por defecto**. Decide si una solicitud que llega de la línea de comandos o de un agente de codificación conectado puede usar su suscripción de Claude o Codex; véase [Conectar un agente de programación](help://mcp).
 
 ## Acerca de
 

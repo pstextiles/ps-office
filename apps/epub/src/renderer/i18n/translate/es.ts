@@ -41,7 +41,7 @@ export const es = {
   btConfirmChecking: 'Comprobando la conexión con la IA…',
   btConfirmProvider: 'IA utilizada: {provider}',
   btConfirmSends: 'El texto de los capítulos elegidos se envía a esta IA.',
-  btRightsNotice: 'Traduce solo documentos sobre los que tengas derechos.',
+  btRightsNotice: 'Traduzca solo documentos sobre los que tenga derechos.',
   btConfirmPaid: '{provider} cobrará por esto',
   btProviderChange:
     'La traducción guardada se hizo con otra IA ({stored}). El resto se traducirá con {next}.',
@@ -62,7 +62,7 @@ export const es = {
   btRestartSaveYes: 'Guardar, eliminar y volver a traducir',
   btRouteChanged: 'La conexión con la IA cambió. Revise los detalles y vuelva a empezar.',
   btBookChanged:
-    'El libro se guardó después de abrir esta ventana y cambió lo que se traduciría. Revisa los nuevos datos y vuelve a empezar.',
+    'El libro se guardó después de abrir esta ventana y cambió lo que se traduciría. Revise los nuevos datos y vuelva a empezar.',
   btNoticeSends:
     'La traducción del libro envía a la IA el texto de los capítulos elegidos (párrafos con marcadores para su formato), el título del libro y las entradas del índice.',
   btBusy: 'Este libro ya se está traduciendo ({done}/{total}).',

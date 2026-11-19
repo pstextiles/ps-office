@@ -94,7 +94,7 @@ export const AI_QUEUE_LABELS: Record<Lang, AiQueueStripLabels> = {
     pauseTitle: 'Pausar la cola',
     resumeTitle: 'Reanudar la cola',
     pausedHint: 'En pausa',
-    moveTitle: 'Arrastra para reordenar (o Alt+↑/↓)',
+    moveTitle: 'Arrastre para reordenar (o Alt+↑/↓)',
     queuePlaceholder: 'Entrada para encolar · Esc para detener',
   },
   th: {

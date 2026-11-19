@@ -174,14 +174,14 @@ export const SKILL_TEMPLATE_STRINGS = defineStrings({
     saveThisTab: 'Guardar esta pestaña como plantilla',
     asIsRedacted: 'El documento tiene partes ocultas, así que no se puede guardar tal cual',
     clearRequest:
-      'Convierte este documento en una plantilla reutilizable. Vacía los valores rellenados (nombres, fechas, datos personales, contenido usado solo esta vez) y deja la forma de la plantilla (títulos, tablas, apartados y formato) tal como está.',
+      'Convierta este documento en una plantilla reutilizable. Vacíe los valores rellenados (nombres, fechas, datos personales, contenido usado solo esta vez) y deje la forma de la plantilla (títulos, tablas, apartados y formato) tal como está.',
     handoffNotSent: 'No se pudo leer una habilidad recibida, así que no se envió la solicitud',
     documentUnreadable: 'No se pudo leer el documento actual',
     untitled: 'Sin título',
-    chooseWhere: 'Este documento ya tiene contenido. ¿Dónde quieres aplicar la habilidad?',
+    chooseWhere: 'Este documento ya tiene contenido. ¿Dónde quiere aplicar la habilidad?',
     runHere: 'Hacerlo en este documento',
     openNewWithCurrent: 'Documento nuevo desde la plantilla (adjuntar este)',
-    needsSave: 'Guarda primero este documento para adjuntarlo al nuevo y vuelve a pulsar.',
+    needsSave: 'Guarde primero este documento para adjuntarlo al nuevo y vuelva a pulsar.',
     openWithoutAttach: 'Abrir sin adjuntar',
     notAttachedEditor:
       'El editor que abre esta plantilla no admite adjuntos, así que este documento no se adjuntó',

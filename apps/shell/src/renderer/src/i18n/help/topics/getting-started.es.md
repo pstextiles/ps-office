@@ -84,7 +84,7 @@ Dos de ellos cambian en Windows, por la misma razón que hace que Word los separ
 
 Windows no es una reescritura del par del Mac. Excel para Mac le da a Sheets **ambos**: ⌘⇧7 y ⌥⌘0 son dos teclas para los mismos bordes externos, así que en Windows el comando conserva la ranura Ctrl+Shift que ya tenía y la capa Option simplemente no está.
 
-Fíjate en que **⌥⌘0 significa Normal en Docs y Bordes externos en Sheets**. Nunca aparecen en el mismo editor, así que en la práctica nada colisiona, pero ⌥⌘0 está ocupado y no está disponible como atajo global.
+Fíjese en que **⌥⌘0 significa Normal en Docs y Bordes externos en Sheets**. Nunca aparecen en el mismo editor, así que en la práctica nada colisiona, pero ⌥⌘0 está ocupado y no está disponible como atajo global.
 
 **Todos los editores**: **⌥⌘R / Ctrl+F1** contrae la cinta de opciones, tal como se ha descrito arriba.
 

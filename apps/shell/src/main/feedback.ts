@@ -89,7 +89,7 @@ export const FEEDBACK_STRINGS = defineStrings({
     menuLabel: 'Enviar comentarios',
     dialogTitle: 'Enviar comentarios',
     dialogBody:
-      'La encuesta se abre en el navegador. Los datos de abajo se copian al portapapeles para que los pegues en la encuesta. La aplicación no envía nada por sí misma y el contenido de los documentos nunca se incluye.',
+      'La encuesta se abre en el navegador. Los datos de abajo se copian al portapapeles para que los pegue en la encuesta. La aplicación no envía nada por sí misma y el contenido de los documentos nunca se incluye.',
     details: 'Versión {version}\nSistema {os}\nIdioma {language}',
     btnOpen: 'Abrir la encuesta',
     btnCancel: 'Cancelar',

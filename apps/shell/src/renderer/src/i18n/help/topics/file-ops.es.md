@@ -21,7 +21,7 @@ Reglas: la extensión se conserva automáticamente; los caracteres no permitidos
 
 ## Duplicar
 
-**⋯ ▸ Duplicar** crea una copia llamada <name> copy en la misma carpeta; si el nombre ya existe, se añade un contador automáticamente. La copia se añade a **Recientes** en lugar de abrirse: queda a un clic, no delante de ti.
+**⋯ ▸ Duplicar** crea una copia llamada <name> copy en la misma carpeta; si el nombre ya existe, se añade un contador automáticamente. La copia se añade a **Recientes** en lugar de abrirse: queda a un clic, no delante de usted.
 
 ## Guardar y Guardar como
 

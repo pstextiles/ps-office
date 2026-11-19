@@ -172,7 +172,7 @@ export const SKILL_EDITORS_STRINGS = defineStrings({
     label: 'Dónde se usa',
     all: 'Todos los editores',
     some: 'Solo estos editores',
-    none: 'Elige al menos un editor',
+    none: 'Elija al menos un editor',
     checkAll: 'Marcar todos',
     clearAll: 'Desmarcar todos',
     hintSome:

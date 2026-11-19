@@ -54,10 +54,10 @@ export const DEFAULT_GENERATE_PROMPTS: Record<Lang, Record<AiTargetKind, string>
   },
   es: {
     slides:
-      'Crea una presentación a partir del material adjunto. Organiza los puntos principales en diapositivas con títulos claros.',
-    html: 'Crea una página web (HTML) a partir del material adjunto. Distribuye los puntos principales para que sean fáciles de leer.',
+      'Cree una presentación a partir del material adjunto. Organice los puntos principales en diapositivas con títulos claros.',
+    html: 'Cree una página web (HTML) a partir del material adjunto. Distribuya los puntos principales para que sean fáciles de leer.',
     mindmap:
-      'Crea un mapa mental a partir del material adjunto. Pon el tema principal en el centro y organiza los puntos clave como ramas.',
+      'Cree un mapa mental a partir del material adjunto. Ponga el tema principal en el centro y organice los puntos clave como ramas.',
   },
   th: {
     slides: 'ช่วยสร้างงานนำเสนอจากเอกสารที่แนบมา จัดประเด็นสำคัญเป็นสไลด์ที่มีหัวข้อชัดเจน',

@@ -191,17 +191,17 @@ export const es = {
   pasteDone: 'Servidores añadidos: {n}',
   statusReady: 'Listo · se conecta al usarlo',
   statusUnchecked: 'Aún sin comprobar',
-  failHttpError: 'El servidor respondió con un error. Comprueba que la dirección sea correcta.',
+  failHttpError: 'El servidor respondió con un error. Compruebe que la dirección sea correcta.',
   failUnreachableNear:
-    'No se pudo llegar al servidor. Comprueba que esté en marcha y que la dirección sea correcta.',
-  httpRecheck: 'La dirección cambió. La nueva tampoco está cifrada, así que confírmalo de nuevo.',
-  pasteUnreadableLine: 'No se pudo leer el texto. Revisa las comas y los corchetes (línea {line}).',
+    'No se pudo llegar al servidor. Compruebe que esté en marcha y que la dirección sea correcta.',
+  httpRecheck: 'La dirección cambió. La nueva tampoco está cifrada, así que confírmelo de nuevo.',
+  pasteUnreadableLine: 'No se pudo leer el texto. Revise las comas y los corchetes (línea {line}).',
   pasteTypeIgnored:
     'La app no conoce el tipo de conexión «{type}», así que lo ignoró. La app prueba la forma habitual.',
   valueFromVar:
-    'Escribe el valor. El texto pegado lo lee de la variable {name} del PC, y la app no lee variables del PC.',
+    'Escriba el valor. El texto pegado lo lee de la variable {name} del PC, y la app no lee variables del PC.',
   launchSystemFold: 'Variables básicas del PC: {n}',
-  permPaused: 'No se usa hasta que apruebes el cambio (después: {perm})',
+  permPaused: 'No se usa hasta que apruebe el cambio (después: {perm})',
   permUnusable: 'No se puede activar',
   direction: 'Aquí, la IA de GenOffice usa herramientas de servidores externos.',
 } satisfies Record<keyof typeof zh, string>

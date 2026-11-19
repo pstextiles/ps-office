@@ -837,7 +837,7 @@ const localizedCertSignStrings: Readonly<
     certErrStoreLocked: 'Falta la contraseña del almacén de certificados o es incorrecta',
     certErrNoTools: 'No está instalada la herramienta necesaria para leer el almacén del sistema',
     certStoreUnsupported:
-      'El almacén de certificados del sistema aún no está disponible en macOS — usa un archivo de certificado (.p12 / .pfx)',
+      'El almacén de certificados del sistema aún no está disponible en macOS — use un archivo de certificado (.p12 / .pfx)',
     certChoose: 'Elegir certificado…',
     certNoFile: 'No se ha elegido ningún certificado',
     certPassword: 'Contraseña',
@@ -865,7 +865,7 @@ const localizedCertSignStrings: Readonly<
     certSignButton: 'Firmar y guardar como…',
     certSigning: 'Firmando…',
     certSaveFirst:
-      'Guarda primero los cambios — la firma abarca el archivo tal como está guardado en el disco',
+      'Guarde primero los cambios — la firma abarca el archivo tal como está guardado en el disco',
     certSigned: 'Copia firmada guardada: {name}',
     certErrPassword: 'La contraseña del certificado es incorrecta',
     certErrInvalid: 'Este archivo no es un certificado PKCS#12 válido',
@@ -882,7 +882,7 @@ const localizedCertSignStrings: Readonly<
     sigPanelTitle: 'Firmas digitales',
     sigBannerValid: 'La firma es válida',
     sigBannerUntrusted: 'Firma intacta; el firmante no es de confianza',
-    sigBannerWarning: 'Firmado — algunas firmas requieren tu atención',
+    sigBannerWarning: 'Firmado — algunas firmas requieren su atención',
     sigBannerInvalid: 'Firmado — al menos una firma no es válida',
     sigBannerView: 'Ver firmas',
     sigStatusValid: 'Válida',
