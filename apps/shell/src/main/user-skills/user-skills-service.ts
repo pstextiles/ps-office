@@ -4,8 +4,8 @@
  * writes, imports, GitHub updates, export, and the AI's reads. No Electron
  * here; the IPC layer adds dialogs, the OS trash and who may ask.
  *
- * Writes go only to the app's skills folder (`~/.ieumoffice/skills`) and the
- * folder of its earlier versions (`~/.ieumoffice/skill-history`); other
+ * Writes go only to the app's skills folder (`~/.psoffice/skills`) and the
+ * folder of its earlier versions (`~/.psoffice/skill-history`); other
  * sources are read only. Imports, update checks and version comparisons also
  * use their own temporary folder under the OS temp folder.
  */

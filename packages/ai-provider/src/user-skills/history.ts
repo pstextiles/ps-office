@@ -1,7 +1,7 @@
 /**
  * Earlier versions of the app's own skills, kept so the person can go back.
  *
- *   ~/.ieumoffice/skill-history/<skill name, lower case>/<UTC time>-<reason>.zip
+ *   ~/.psoffice/skill-history/<skill name, lower case>/<UTC time>-<reason>.zip
  *
  * Each zip holds one version of the skill folder under a top folder of the
  * skill's name (the shape of a one-skill export), with the GitHub source
@@ -51,7 +51,7 @@ export interface SkillVersionDiff {
 
 /** Where every own skill's earlier versions are kept */
 export function skillHistoryDirOf(homeDir: string): string {
-  return join(homeDir, '.ieumoffice', 'skill-history')
+  return join(homeDir, '.psoffice', 'skill-history')
 }
 
 const VERSION_ID =

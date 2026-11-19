@@ -99,7 +99,7 @@ function turnSends(messages: (threadId: string) => RpcMessage[]): FakeHandler {
 }
 
 const DEFAULTS: Record<string, FakeHandler> = {
-  initialize: () => ({ userAgent: 'ieumoffice/0.166.0 (Windows 10.0.26200; x86_64) test' }),
+  initialize: () => ({ userAgent: 'psoffice/0.166.0 (Windows 10.0.26200; x86_64) test' }),
   'account/read': () => PLUS,
   'config/read': () => ({ config: {} }),
   'model/list': () => MODELS,

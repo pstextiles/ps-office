@@ -13,7 +13,7 @@ import {
  * and the envelope of a job that wrote several files, or none.
  */
 
-const argv = (...rest: string[]): string[] => ['IeumOffice.exe', ...rest]
+const argv = (...rest: string[]): string[] => ['PSOffice.exe', ...rest]
 
 describe('diagram inputs of --headless-export', () => {
   it('routes every diagram file name to the diagram module, and nothing else', () => {

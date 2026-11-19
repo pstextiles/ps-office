@@ -36,7 +36,7 @@ export const mapCommand: CommandDef = {
       name: 'ops',
       value: 'JSON|@file|-',
       description:
-        'apply: JSON array of ops, each { "op": "<name>", ...fields } (add_topic, rename_topic, move_topic, delete_topic, set_note, set_link), inline, @<file>, a file path, or "-" for stdin. See `ieumoffice guide map`.',
+        'apply: JSON array of ops, each { "op": "<name>", ...fields } (add_topic, rename_topic, move_topic, delete_topic, set_note, set_link), inline, @<file>, a file path, or "-" for stdin. See `psoffice guide map`.',
     },
     ...BATCH_OPTIONS,
     {
@@ -98,7 +98,7 @@ export const mapCommand: CommandDef = {
           EXIT.usage,
           `map create takes no file argument (${file}); the map is written by --out`,
           undefined,
-          { reason: 'invalid_argument', suggestion: 'run `ieumoffice help map`' },
+          { reason: 'invalid_argument', suggestion: 'run `psoffice help map`' },
         )
       }
       const out = args.flags.out
@@ -121,7 +121,7 @@ export const mapCommand: CommandDef = {
       undefined,
       {
         reason: verb === undefined ? 'missing_argument' : 'invalid_argument',
-        suggestion: 'run `ieumoffice help map`',
+        suggestion: 'run `psoffice help map`',
       },
     )
   },

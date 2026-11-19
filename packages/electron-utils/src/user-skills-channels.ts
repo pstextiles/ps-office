@@ -118,7 +118,7 @@ export interface UserSkillView {
   bytes: number
   /** installed from GitHub: where from */
   github: { repo: string; ref: string; path: string; commit: string } | undefined
-  /** the skill lives in the app's own folder (`~/.ieumoffice/skills`) */
+  /** the skill lives in the app's own folder (`~/.psoffice/skills`) */
   owned: boolean
   /** what the more-menu offers (spec 5.1) */
   can: {

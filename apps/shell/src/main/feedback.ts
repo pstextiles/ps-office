@@ -1,13 +1,12 @@
-import { createI18n, defineStrings, type Lang } from '@genoffice/i18n'
+import { createI18n, defineStrings, PRODUCT_WEBSITE, type Lang } from '@genoffice/i18n'
 
 /**
- * The published feedback survey (Google Forms, owned by the repository owner).
- * The Help menu and Settings → About open it in the user's browser; the app
- * itself sends nothing. Changing the form's questions does not change this
- * address, so the link stays valid as the survey is edited.
+ * Where feedback goes: a new issue on this product's GitHub repository (the
+ * upstream app's Google survey belongs to its own maintainer). The Help menu
+ * and Settings → About open it in the user's browser; the app itself sends
+ * nothing.
  */
-export const FEEDBACK_SURVEY_URL =
-  'https://docs.google.com/forms/d/e/1FAIpQLSfD_dlKfi_ZkcjBJFTH3S2nldTIoW0cMI9d_yDaEe6DwKY47A/viewform'
+export const FEEDBACK_SURVEY_URL = `${PRODUCT_WEBSITE}/issues/new`
 
 const zh = {
   menuLabel: '发送反馈',

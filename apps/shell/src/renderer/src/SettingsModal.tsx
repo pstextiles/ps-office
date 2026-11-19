@@ -13,7 +13,7 @@ import {
   clampAiCustomFontSize,
 } from '@genoffice/ui'
 import type { AiFontSize, AiPanelPrefs, AiPanelSide, AiPanelStart } from '@genoffice/ui'
-import { PRODUCT_CONTACT_EMAIL, PRODUCT_REPO_SLUG } from '@genoffice/i18n'
+import { PRODUCT_CONTACT_URL, PRODUCT_REPO_SLUG } from '@genoffice/i18n'
 import type { Lang } from '@genoffice/i18n'
 import type {
   AuthorNameSetting,
@@ -2363,7 +2363,7 @@ export function SettingsModal({
                   <div className="set-field-text">
                     <label className="set-field-label">{t('setRightsContact')}</label>
                     <div className="set-field-desc">{t('setRightsContactDesc')}</div>
-                    <div className="set-field-value">{PRODUCT_CONTACT_EMAIL}</div>
+                    <div className="set-field-value">{PRODUCT_CONTACT_URL}</div>
                   </div>
                   <button
                     className="set-btn"

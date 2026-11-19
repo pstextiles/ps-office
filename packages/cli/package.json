@@ -13,7 +13,7 @@
     "./control-protocol": "./src/control-protocol.ts"
   },
   "bin": {
-    "ieumoffice": "./bin/ieumoffice"
+    "psoffice": "./bin/psoffice"
   },
   "scripts": {
     "build": "node build.mjs && node collect-deps.mjs",

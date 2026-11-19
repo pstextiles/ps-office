@@ -14,16 +14,16 @@ describe('collectLaunchPaths', () => {
   })
 
   it('accepts an .odt from argv or the second-instance payload', () => {
+    expect(collectLaunchPaths(['PSOffice.exe', 'C:/a/report.odt'], undefined, () => true)).toEqual([
+      'C:/a/report.odt',
+    ])
     expect(
-      collectLaunchPaths(['IeumOffice.exe', 'C:/a/report.odt'], undefined, () => true),
-    ).toEqual(['C:/a/report.odt'])
-    expect(
-      collectLaunchPaths(['IeumOffice.exe'], { launchPaths: ['/a/REPORT.ODT'] }, () => true),
+      collectLaunchPaths(['PSOffice.exe'], { launchPaths: ['/a/REPORT.ODT'] }, () => true),
     ).toEqual(['/a/REPORT.ODT'])
     // an .odt next to an unsupported file is opened, not the fallback
-    expect(collectLaunchPaths(['IeumOffice.exe', 'x.rtf', 'y.odt'], undefined, () => true)).toEqual(
-      ['y.odt'],
-    )
+    expect(collectLaunchPaths(['PSOffice.exe', 'x.rtf', 'y.odt'], undefined, () => true)).toEqual([
+      'y.odt',
+    ])
   })
 
   it('accepts a .tsv from argv or the second-instance payload', () => {
@@ -35,19 +35,17 @@ describe('collectLaunchPaths', () => {
   it('accepts an OpenDocument spreadsheet from argv or the second-instance payload', () => {
     expect(LAUNCHABLE_EXTS).toContain('ods')
     expect(
-      collectLaunchPaths(['IeumOffice.exe', 'C:/data/budget.ods'], undefined, () => true),
+      collectLaunchPaths(['PSOffice.exe', 'C:/data/budget.ods'], undefined, () => true),
     ).toEqual(['C:/data/budget.ods'])
     expect(
-      collectLaunchPaths(['IeumOffice.exe'], { launchPaths: ['/data/BUDGET.ODS'] }, () => true),
+      collectLaunchPaths(['PSOffice.exe'], { launchPaths: ['/data/BUDGET.ODS'] }, () => true),
     ).toEqual(['/data/BUDGET.ODS'])
     // an .ods next to an unsupported file is opened, not the fallback
-    expect(collectLaunchPaths(['IeumOffice.exe', 'x.rtf', 'y.ods'], undefined, () => true)).toEqual(
-      ['y.ods'],
-    )
+    expect(collectLaunchPaths(['PSOffice.exe', 'x.rtf', 'y.ods'], undefined, () => true)).toEqual([
+      'y.ods',
+    ])
     // a path that is not on disk is not opened
-    expect(collectLaunchPaths(['IeumOffice.exe', '/budget.ods'], undefined, () => false)).toEqual(
-      [],
-    )
+    expect(collectLaunchPaths(['PSOffice.exe', '/budget.ods'], undefined, () => false)).toEqual([])
   })
 
   /**

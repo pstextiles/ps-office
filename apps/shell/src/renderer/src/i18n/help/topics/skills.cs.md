@@ -6,19 +6,19 @@ Dovednost je sada pracovních pokynů pro AI. Jednou si zapište, co děláte st
 
 **Nastavení ▸ Dovednosti** ukazuje dovednosti na tomto počítači, seskupené podle původu. Každá dovednost se zobrazuje pod svým jménem, stejně jako ji ukazují agenti pro programování. Pomocí vyhledávacího pole nahoře najdete dovednost podle jména nebo popisu. Vaše dovednost, která má název, ukazuje tento název v tomto seznamu, v seznamu `/` a na štítcích a jméno je malým písmem vedle něj. Hledat můžete i podle názvu. Jméno, které vytvořila aplikace (`skill-…`), se vedle názvu nezobrazuje.
 
-| Původ                        | Co obsahuje                                                            | Na začátku |
-| ---------------------------- | ---------------------------------------------------------------------- | ---------- |
-| **Vestavěné**                | Dovednosti dodávané s GenOffice                                        | Zapnuté    |
-| **Moje dovednosti**          | Dovednosti, které jste přidali nebo vytvořili (`~/.ieumoffice/skills`) | Zapnuté    |
-| **Složka dovedností Claude** | Dovednosti v `~/.claude/skills`                                        | Vypnuté    |
-| **Pluginy Claude**           | Dovednosti nainstalovaných pluginů Claude                              | Vypnuté    |
-| **Složka dovedností Codex**  | Dovednosti v `~/.agents/skills`                                        | Vypnuté    |
+| Původ                        | Co obsahuje                                                          | Na začátku |
+| ---------------------------- | -------------------------------------------------------------------- | ---------- |
+| **Vestavěné**                | Dovednosti dodávané s GenOffice                                      | Zapnuté    |
+| **Moje dovednosti**          | Dovednosti, které jste přidali nebo vytvořili (`~/.psoffice/skills`) | Zapnuté    |
+| **Složka dovedností Claude** | Dovednosti v `~/.claude/skills`                                      | Vypnuté    |
+| **Pluginy Claude**           | Dovednosti nainstalovaných pluginů Claude                            | Vypnuté    |
+| **Složka dovedností Codex**  | Dovednosti v `~/.agents/skills`                                      | Vypnuté    |
 
 - Přepínač dovednost zapíná nebo vypíná. Stejné nastavení platí pro panel AI každého editoru, pro Ask AI na stránce Domů i pro okno agenta.
 - U zapnuté dovednosti zvolte **Rozhoduje AI** nebo **Jen na vyvolání**. Na začátku je nastaveno Rozhoduje AI. S volbou Jen na vyvolání se dovednost použije jen tehdy, když ji vyvoláte sami. U vypnuté dovednosti tato volba zůstává, jen ztlumená, takže ji můžete nastavit ještě před opětovným zapnutím.
 - Dovednosti z různých zdrojů mohou mít stejný název. Rozlišíte je podle štítku původu na každém řádku. Když jsou zapnuté dvě dovednosti se stejným jménem, v seznamu `/` se zobrazí a používá jen jedna: první v pořadí Moje dovednosti, Vestavěné, Složka dovedností Claude, Složka dovedností Codex, Pluginy Claude. V řádku té druhé je uvedeno, která dovednost se používá místo ní.
 - V nabídce dalších akcí jsou **Zobrazit obsah**, **Upravit** (jen moje dovednosti), **Exportovat (zip)** (jen moje dovednosti) a **Otevřít složku**. Vestavěné dovednosti položku **Otevřít složku** nemají. **Kde se používá** otevře rovnou místo, kde se vybírají editory, ve kterých se dovednost používá.
-- Moje dovednosti jsou ve složce `~/.ieumoffice/skills`. Ve Windows je to `C:\Users\<uživatelské jméno>\.ieumoffice\skills`. **Otevřít složku** v nabídce dalších akcí otevře složku dovednosti.
+- Moje dovednosti jsou ve složce `~/.psoffice/skills`. Ve Windows je to `C:\Users\<uživatelské jméno>\.psoffice\skills`. **Otevřít složku** v nabídce dalších akcí otevře složku dovednosti.
 - **Přesunout do koše** přesune jednu z mých dovedností do systémového koše, odkud ji můžete obnovit. Pokud je vypnutá dovednost se stejným názvem z jiného zdroje, potvrzení ukáže zaškrtnuté políčko pro její opětovné zapnutí. Zrušte zaškrtnutí a zůstane vypnutá.
 - Vestavěná dovednost se neodstraňuje, ale skrývá: zvolte **Skrýt**. **Znovu zobrazit** dole v seznamu ji vrátí do původního stavu.
 - Chcete-li změnit vestavěnou dovednost nebo dovednost z jiného programu, zvolte **Kopírovat do mých dovedností**. Kopie se objeví v mých dovednostech a originál se vypne.
@@ -56,7 +56,7 @@ Když upravíte vlastní dovednost, nainstalujete místo ní jinou se stejným n
 - **Zobrazit rozdíly** ukáže, které řádky `SKILL.md` by se vrátily, které by zmizely a které další soubory by se změnily.
 - **Vrátit se k této verzi** vrátí soubory té verze přesně tak, jak byly. Současná verze zůstane také uložená, takže se k ní můžete vrátit. Zda je dovednost zapnutá a kdy se používá, zůstává podle vašeho nastavení.
 - Uložené verze zůstávají, dokud je nesmažete. **Smazat** jednu smaže natrvalo.
-- Verze jsou ve složce `~/.ieumoffice/skill-history`. **Přesunout do koše** u dovednosti přesune do koše i její uložené verze.
+- Verze jsou ve složce `~/.psoffice/skill-history`. **Přesunout do koše** u dovednosti přesune do koše i její uložené verze.
 
 ## Vyvolání dovednosti v panelu AI
 

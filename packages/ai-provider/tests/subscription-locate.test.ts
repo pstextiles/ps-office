@@ -146,7 +146,7 @@ describe('locateSubscriptionProgram on Windows', () => {
       env,
       platform: 'win32',
       arch: 'x64',
-      nodeRuntime: { command: 'C:\\Program Files\\IeumOffice\\IeumOffice.exe', electron: true },
+      nodeRuntime: { command: 'C:\\Program Files\\PSOffice\\PSOffice.exe', electron: true },
     })
     // not the Electron runtime with the JS launcher, which would open a console window
     expect(program).toMatchObject({ provider: 'codex', command: native, prefixArgs: [] })
@@ -208,7 +208,7 @@ describe('locateSubscriptionProgram on Windows', () => {
     const npm = join(env.APPDATA!, 'npm')
     await touch(join(npm, 'codex.cmd'), CODEX_SHIM)
     const entry = await touch(join(npm, 'node_modules', '@openai', 'codex', 'bin', 'codex.js'))
-    const runtime = { command: 'C:\\Program Files\\IeumOffice\\IeumOffice.exe', electron: true }
+    const runtime = { command: 'C:\\Program Files\\PSOffice\\PSOffice.exe', electron: true }
     const program = await locateSubscriptionProgram('codex', {
       env,
       platform: 'win32',

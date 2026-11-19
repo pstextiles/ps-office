@@ -59,7 +59,7 @@ describe('which servers and tools a session gets', () => {
       server('off', [tool('x', {}, 'off')], { status: 'disabled' }),
       server('failing', [tool('x', {}, 'failing')], { status: 'failed', keepResultsInside: true }),
       server('empty', [tool('only-off', { permission: 'off' }, 'empty')]),
-      server('ieumoffice-editor', [tool('create_docx', {}, 'ieumoffice-editor')]),
+      server('psoffice-editor', [tool('create_docx', {}, 'psoffice-editor')]),
       server('bad name', [tool('x', {}, 'bad name')]),
     ])
     expect(plans.map((p) => p.server)).toEqual(['law', 'failing'])

@@ -205,8 +205,8 @@ describe('parseMcpPaste: names', () => {
   })
 
   it('refuses the app server name', () => {
-    const [s] = servers(JSON.stringify({ mcpServers: { 'ieumoffice-editor': { command: 'x' } } }))
-    expect(s.name).not.toBe('ieumoffice-editor')
+    const [s] = servers(JSON.stringify({ mcpServers: { 'psoffice-editor': { command: 'x' } } }))
+    expect(s.name).not.toBe('psoffice-editor')
     expect(s.nameChanged).toBe(true)
   })
 })

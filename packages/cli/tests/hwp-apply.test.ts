@@ -137,7 +137,7 @@ const EDITS = [
   { op: 'fill_cells', table: 1, cells: [{ row: 2, col: 2, text: '032-722-4315' }] },
 ]
 
-describe('ieumoffice hwp apply', () => {
+describe('psoffice hwp apply', () => {
   it('edits a .hwp in place, keeps it .hwp and the old bytes beside it', async () => {
     const dir = tempDir()
     const original = report().exportHwp()
@@ -284,7 +284,7 @@ describe('ieumoffice hwp apply', () => {
   })
 })
 
-describe('ieumoffice create --type hwp', () => {
+describe('psoffice create --type hwp', () => {
   it('builds a new .hwp from ops on a blank document', async () => {
     const dir = tempDir()
     const out = join(dir, 'new.hwp')

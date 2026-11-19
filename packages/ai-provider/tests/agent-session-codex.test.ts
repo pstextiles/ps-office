@@ -98,7 +98,7 @@ const baseHandlers = (overrides: Record<string, Handler> = {}): Record<string, H
   'thread/start': (_server, params) => ({
     thread: { id: 'th1' },
     approvalPolicy: params.approvalPolicy,
-    activePermissionProfile: { id: 'ieumoffice-agent' },
+    activePermissionProfile: { id: 'psoffice-agent' },
   }),
   'mcpServerStatus/list': () => ({
     data: [{ name: 'github', runtimeStatus: 'disabled', tools: {} }],
@@ -207,9 +207,9 @@ describe('the launch and the thread', () => {
 
   it('opens the network of the profile only when commands may reach the internet', () => {
     const closed = codexAgentThreadParams(options(), 'gpt-x', {})
-    expect((closed.config as any).permissions['ieumoffice-agent']).not.toHaveProperty('network')
+    expect((closed.config as any).permissions['psoffice-agent']).not.toHaveProperty('network')
     const open = codexAgentThreadParams(options({ network: true }), 'gpt-x', {})
-    const profile = (open.config as any).permissions['ieumoffice-agent']
+    const profile = (open.config as any).permissions['psoffice-agent']
     expect(profile.network).toEqual({ enabled: true })
     // the file rules stay as they are, protected folders denied
     expect(profile.filesystem).toEqual(codexAgentFilesystem(options()))
@@ -223,7 +223,7 @@ describe('the launch and the thread', () => {
     expect(codexAgentApprovalPolicy('trust-project')).toBe('never')
     const params = codexAgentThreadParams(options({ mode: 'trust-project' }), 'gpt-x', {})
     expect(params).not.toHaveProperty('sandbox')
-    expect((params.config as any).default_permissions).toBe('ieumoffice-agent')
+    expect((params.config as any).default_permissions).toBe('psoffice-agent')
   })
 
   it('reads the minimal set and the runtimes, writes the project, keeps open documents read-only and denies protected folders', () => {
@@ -237,12 +237,12 @@ describe('the launch and the thread', () => {
   })
 
   it('lets the session read its skill copy', () => {
-    const bundle = 'C:\\Users\\me\\AppData\\Local\\IeumOffice\\agent-skills'
+    const bundle = 'C:\\Users\\me\\AppData\\Local\\PSOffice\\agent-skills'
     const filesystem = codexAgentFilesystem(options({ skillBundleDir: bundle }))
     expect(filesystem[bundle]).toBe('read')
     expect(filesystem['C:\\Users\\me\\.codex']).toBe('deny')
     const params = codexAgentThreadParams(options({ skillBundleDir: bundle }), 'gpt-x', {})
-    expect((params.config as any).permissions['ieumoffice-agent'].filesystem[bundle]).toBe('read')
+    expect((params.config as any).permissions['psoffice-agent'].filesystem[bundle]).toBe('read')
   })
 
   it('lets commands read the folders on PATH, but not a drive root, a protected folder or a missing one', () => {
@@ -283,7 +283,7 @@ describe('the launch and the thread', () => {
     )
     expect((params.config as any).mcp_servers).toEqual({
       github: { enabled: false },
-      'ieumoffice-editor': {
+      'psoffice-editor': {
         url: 'http://127.0.0.1:3093/mcp',
         http_headers: { Authorization: 'Bearer tok' },
         default_tools_approval_mode: 'approve',
@@ -295,7 +295,7 @@ describe('the launch and the thread', () => {
 
   it('answers only the tool approvals of the app server', () => {
     const approval = {
-      serverName: 'ieumoffice-editor',
+      serverName: 'psoffice-editor',
       mode: 'form',
       _meta: { codex_approval_kind: 'mcp_tool_call' },
     }
@@ -336,14 +336,14 @@ describe('the launch and the thread', () => {
     const table = args[6]!
     expect(table).toContain(`${JSON.stringify(probeDir)} = "read"`)
     expect(table).toContain(`${JSON.stringify(join(probeDir, 'denied'))} = "deny"`)
-    expect(args.slice(-3)).toEqual(['ieumoffice-sandbox-probe', readable, denied])
+    expect(args.slice(-3)).toEqual(['psoffice-sandbox-probe', readable, denied])
     expect(args.some((arg) => arg.includes('network'))).toBe(false)
     const open = codexSandboxProbeArgs({ ':minimal': 'read' }, probeDir, true).args
-    expect(open[open.indexOf('--') - 1]).toBe('permissions.ieumoffice-probe.network.enabled=true')
+    expect(open[open.indexOf('--') - 1]).toBe('permissions.psoffice-probe.network.enabled=true')
     expect(open[open.indexOf('--') - 2]).toBe('-c')
     // a Korean user folder comes back in the console code page: the names still match
     expect(
-      codexSandboxProbeVerdict(String.raw`C:\Users\??\ieumoffice-probe-readable.txt` + '\r\n'),
+      codexSandboxProbeVerdict(String.raw`C:\Users\??\psoffice-probe-readable.txt` + '\r\n'),
     ).toBe('contained')
     expect(codexSandboxProbeVerdict(`${readable}\r\n${denied}\r\n`)).toBe('not-contained')
     expect(codexSandboxProbeVerdict('')).toBe('unavailable')
@@ -416,7 +416,7 @@ describe('starting a session', () => {
     expect(spawnCalls[0]!.args).toContain('web_search="live"')
     expect((probeSandbox.mock.calls[0] as unknown as unknown[])[2]).toBe(true)
     const thread = server().received.find((message) => message.method === 'thread/start')!
-    expect(thread.params.config.permissions['ieumoffice-agent'].network).toEqual({ enabled: true })
+    expect(thread.params.config.permissions['psoffice-agent'].network).toEqual({ enabled: true })
     session.stop()
   })
 
@@ -426,7 +426,7 @@ describe('starting a session', () => {
     expect(spawnCalls[0]!.args).toContain('web_search="cached"')
     expect((probeSandbox.mock.calls[0] as unknown as unknown[])[2]).toBe(false)
     const thread = server().received.find((message) => message.method === 'thread/start')!
-    expect(thread.params.config.permissions['ieumoffice-agent']).not.toHaveProperty('network')
+    expect(thread.params.config.permissions['psoffice-agent']).not.toHaveProperty('network')
     session.stop()
   })
 
@@ -442,7 +442,7 @@ describe('starting a session', () => {
         'thread/start': (_server, params) => ({
           thread: { id: 'th1' },
           approvalPolicy: params.approvalPolicy,
-          activePermissionProfile: { id: 'ieumoffice-agent' },
+          activePermissionProfile: { id: 'psoffice-agent' },
           sandbox: { type: 'workspaceWrite', networkAccess: true },
         }),
       }),
@@ -502,7 +502,7 @@ describe('starting a session', () => {
         'thread/start': () => ({
           thread: { id: 'th1' },
           approvalPolicy: 'on-request',
-          activePermissionProfile: { id: 'ieumoffice-agent' },
+          activePermissionProfile: { id: 'psoffice-agent' },
         }),
       }),
     )
@@ -628,7 +628,7 @@ describe('the tools of the app server at the start', () => {
           data: [
             { name: 'github', runtimeStatus: 'disabled', tools: {} },
             {
-              name: 'ieumoffice-editor',
+              name: 'psoffice-editor',
               runtimeStatus: 'ready',
               tools: { read_document: {}, propose_skill: {}, propose_skill_install: {} },
             },
@@ -645,7 +645,7 @@ describe('the tools of the app server at the start', () => {
         'mcpServerStatus/list': () => ({
           data: [
             {
-              name: 'ieumoffice-editor',
+              name: 'psoffice-editor',
               runtimeStatus: 'ready',
               tools: { read_document: {}, create_docx: {} },
             },
@@ -662,17 +662,17 @@ describe('the tools of the app server at the start', () => {
       codexAppMcpExtraTools({
         data: [
           {
-            name: 'ieumoffice-editor',
+            name: 'psoffice-editor',
             tools: {
-              'mcp__ieumoffice-editor__propose_skill': {},
+              'mcp__psoffice-editor__propose_skill': {},
               read_pdf: {},
-              'mcp__ieumoffice-editor__use_skill': {},
+              'mcp__psoffice-editor__use_skill': {},
             },
           },
           { name: 'other', tools: { anything: {} } },
         ],
       }),
-    ).toEqual(['mcp__ieumoffice-editor__use_skill'])
+    ).toEqual(['mcp__psoffice-editor__use_skill'])
   })
 })
 
@@ -879,7 +879,7 @@ describe('a running session', () => {
               id: 'srv-6',
               method: 'mcpServer/elicitation/request',
               params: {
-                serverName: 'ieumoffice-editor',
+                serverName: 'psoffice-editor',
                 mode: 'form',
                 _meta: { codex_approval_kind: 'mcp_tool_call' },
                 message: 'Allow?',
@@ -889,7 +889,7 @@ describe('a running session', () => {
             fake.send({
               id: 'srv-7',
               method: 'mcpServer/elicitation/request',
-              params: { serverName: 'ieumoffice-editor', mode: 'url', url: 'https://x' },
+              params: { serverName: 'psoffice-editor', mode: 'url', url: 'https://x' },
             })
           })
           return { turn: { id: 'tu1' } }
@@ -1014,7 +1014,7 @@ describe('relays of the person’s MCP servers (user MCP spec 9)', () => {
         http_headers: { Authorization: 'Bearer relay-tok' },
         default_tools_approval_mode: 'approve',
       },
-      'ieumoffice-editor': {
+      'psoffice-editor': {
         url: 'http://127.0.0.1:3093/mcp',
         http_headers: { Authorization: 'Bearer tok' },
         default_tools_approval_mode: 'approve',
@@ -1025,7 +1025,7 @@ describe('relays of the person’s MCP servers (user MCP spec 9)', () => {
   it('never lets a relay take the app server name', () => {
     const params = codexAgentThreadParams(
       options({
-        userMcpRelays: [{ name: 'ieumoffice-editor', url: 'http://x/mcp', token: 'r', tools: [] }],
+        userMcpRelays: [{ name: 'psoffice-editor', url: 'http://x/mcp', token: 'r', tools: [] }],
       }),
       'gpt-x',
       {},

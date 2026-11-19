@@ -35,7 +35,7 @@ import { CliError, EXIT, type CommandResult, type ErrorReason } from '../result'
 export const MAP_EXTENSION = '.xmind'
 
 const GUIDE_HINT =
-  'run `ieumoffice map read <file> --json` for the topic ids, and `ieumoffice guide map` for the ops'
+  'run `psoffice map read <file> --json` for the topic ids, and `psoffice guide map` for the ops'
 
 export interface OpenedMap {
   path: string
@@ -147,7 +147,7 @@ export function mapOpsOf(args: ParsedArgs, ctx: PathContext): unknown[] {
   if (spec === undefined || spec === '') {
     throw new CliError(EXIT.usage, 'missing --ops <JSON|@file|->', undefined, {
       reason: 'missing_argument',
-      suggestion: 'run `ieumoffice guide map` for the ops',
+      suggestion: 'run `psoffice guide map` for the ops',
     })
   }
   let text: string
@@ -183,7 +183,7 @@ export function mapOpsOf(args: ParsedArgs, ctx: PathContext): unknown[] {
   if (!ops) {
     throw new CliError(EXIT.usage, `${source}: expected an array of ops`, undefined, {
       reason: 'invalid_argument',
-      suggestion: 'run `ieumoffice guide map` for the ops',
+      suggestion: 'run `psoffice guide map` for the ops',
     })
   }
   return ops
@@ -311,7 +311,7 @@ function sheetOf(document: XmindDocument, id: string, op: string): number {
       { topic: id },
       {
         reason: 'target_not_found',
-        suggestion: 'run `ieumoffice map read <file> --json` for the ids',
+        suggestion: 'run `psoffice map read <file> --json` for the ids',
       },
     )
   }
@@ -339,7 +339,7 @@ function inSheet(state: ViewSheet, id: string, op: string): Spot {
       { topic: id },
       {
         reason: 'target_not_found',
-        suggestion: 'run `ieumoffice map read <file> --json` for the ids',
+        suggestion: 'run `psoffice map read <file> --json` for the ids',
       },
     )
   }
@@ -835,8 +835,8 @@ const MAP_OP_NOTES: Readonly<Record<string, string>> = {
 /** The text form of the map catalog, with the rules an agent needs before writing ops. */
 export function mapGuideText(catalog: OpCatalog, group?: string): string {
   return [
-    'Map ops (ieumoffice map apply --ops; map create builds a new map from an outline): a JSON array; every entry is { "op": "<name>", ...fields }. They edit the map the way the mind map editor does, through the same engine path and the same delete guard.',
-    'Topics are named by the ids `ieumoffice map read <file> --json` lists; ids are unique per sheet only, and there is no sheet selector, so an id that appears on more than one sheet cannot be targeted at all: every op naming it is refused, and only a future sheet selector would fix that. Later ops run against the map as the earlier ops left it, but can only name ids the map already had: a new topic id comes back in detail.results[].created, and no later op in the same batch can name it (a later `map apply` run can).',
+    'Map ops (psoffice map apply --ops; map create builds a new map from an outline): a JSON array; every entry is { "op": "<name>", ...fields }. They edit the map the way the mind map editor does, through the same engine path and the same delete guard.',
+    'Topics are named by the ids `psoffice map read <file> --json` lists; ids are unique per sheet only, and there is no sheet selector, so an id that appears on more than one sheet cannot be targeted at all: every op naming it is refused, and only a future sheet selector would fix that. Later ops run against the map as the earlier ops left it, but can only name ids the map already had: a new topic id comes back in detail.results[].created, and no later op in the same batch can name it (a later `map apply` run can).',
     'delete_topic is refused when the topic would take elements the map preserves (boundaries, floating topics, callouts, the branches under a summary topic): the refusal reports how many. Everything the editor does not show goes back out on save as it came in.',
     'A batch is all or nothing by default: one refused op leaves the file as it was. --best-effort applies every op that can apply, --stop-on-error stops at the first refusal. An empty list (or one where nothing changed) writes nothing unless --out names another file.',
     'Field notation: bare = string, n = number, bool = boolean, ? = optional, a|b = one of.',

@@ -3,14 +3,16 @@
 ## Reporting a Vulnerability
 
 Please report suspected vulnerabilities privately via GitHub's
-[private vulnerability reporting](https://github.com/pblsketch/ieumoffice/security/advisories/new)
-on this repository. Do not open public issues for security reports. IeumOffice
-is maintained by volunteers, so reports are handled on a best-effort basis.
+[private vulnerability reporting](https://github.com/pstextiles/ps-office/security/advisories/new)
+on this repository. Do not open public issues for security reports. PS Office
+is maintained by PS Textiles for its own use, so reports are handled on a
+best-effort basis.
 
-IeumOffice is a modified version of GenOffice (see
+PS Office is a modified version of IeumOffice, which is itself a modified
+version of GenOffice (see
 [License and acknowledgement](README.en.md#license-and-acknowledgement)). If a
-problem is in code the two projects share (the document engines, for example),
-please consider reporting it to the upstream project as well.
+problem is in code the projects share (the document engines, for example),
+please consider reporting it to the upstream projects as well.
 
 ## Verifying a Download
 
@@ -20,21 +22,17 @@ build provenance attestation, so you can check that it was made from this
 repository's source by its own workflow:
 
 ```
-gh attestation verify IeumOffice-Setup-<version>.exe --repo pblsketch/ieumoffice
+gh attestation verify PSOffice-Setup-<version>.exe --repo pstextiles/ps-office
 ```
-
-The repository was renamed from `pblsketch/openoffice` on 2026-11-08. The
-attestation of a file released before that (0.12.11 and earlier) names the
-old repository; if it does not match the new name, verify it with
-`--repo pblsketch/openoffice`.
 
 The installer is not code-signed, so Windows shows an "unknown publisher"
 warning the first time you run it.
 
 ## Trademark and Copyright Reports
 
-Send trademark or copyright infringement reports and licensing questions to
-pblsketch@gmail.com. The same address is in the app under Settings → About.
+Send trademark or copyright infringement reports and licensing questions
+through https://github.com/pstextiles/ps-office/issues. The same address is in
+the app under Settings → About.
 
 ## Process Security Posture
 
@@ -46,8 +44,8 @@ All application windows run with the full Electron renderer lockdown:
   (payloads are schema-checked in the main process; sheets uses zod end to end).
 - Every `shell.openExternal` call goes through a single shared gate
   (`@genoffice/electron-utils` → `safeExternalUrl`) that parses the URL and
-  enforces a protocol allowlist (http/https; pdf link annotations and the
-  rights-contact button in Settings → About additionally allow mailto). `file:`, `javascript:`, and custom schemes are always rejected.
+  enforces a protocol allowlist (http/https; pdf link annotations additionally
+  allow mailto). `file:`, `javascript:`, and custom schemes are always rejected.
 - No API keys are hardcoded and the project runs no AI service of its own. By
   default AI requests run through the Claude Code or Codex program installed on
   the PC, under the login the user made there (see the next section).
@@ -55,7 +53,7 @@ All application windows run with the full Electron renderer lockdown:
   (`ai-settings.json` in the app's user-data folder). On Windows (DPAPI) and
   on Linux with a desktop keyring (GNOME Keyring, KWallet) they are sealed with
   the operating system's encryption through Electron safeStorage, which ties
-  them to the user account; the `ieumoffice` command asks the app, started
+  them to the user account; the `psoffice` command asks the app, started
   hidden, to open them. On macOS, and on Linux without a keyring, they are
   still plain JSON, protected only by the permissions of the user account:
   the Mac build is not Developer ID signed, and sealing there would ask for

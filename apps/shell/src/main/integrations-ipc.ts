@@ -33,9 +33,9 @@ export interface IntegrationsDeps {
   settingsPath: () => string
   /** the shell window dialogs attach to */
   window: () => BrowserWindow | null
-  /** directory holding ieumoffice / ieumoffice.cmd and, packaged, skills/ieumoffice/SKILL.md */
+  /** directory holding psoffice / psoffice.cmd and, packaged, skills/psoffice/SKILL.md */
   cliDir: string
-  /** skills/ieumoffice/SKILL.md (repo file in dev, Resources/cli/skills/... packaged) */
+  /** skills/psoffice/SKILL.md (repo file in dev, Resources/cli/skills/... packaged) */
   skillPath: string
   /** packages/cli/package.json (its version is the CLI version) */
   cliPackageJson: string

@@ -9,7 +9,7 @@ import type { SkillEditorId, SkillEditorsChoice } from '@genoffice/agent-core/sk
  * Where a skill comes from. Stored in the settings file as the first part of
  * an identifier, so the values never change:
  * - `builtin`: shipped with the app
- * - `app`: `~/.ieumoffice/skills` (also the ones installed from GitHub)
+ * - `app`: `~/.psoffice/skills` (also the ones installed from GitHub)
  * - `user`: Claude's skill folder, `~/.claude/skills`
  * - `plugin`: the `skills` folder of an installed Claude plugin
  * - `codex`: the shared agents folder, `~/.agents/skills`

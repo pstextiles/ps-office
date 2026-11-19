@@ -58,8 +58,7 @@ export const vi = {
   consolidateUndone: 'Đã trở lại như trước khi sắp xếp.',
   undoFailed: 'Không hoàn tác được.',
   removeMemoryAria: 'Xóa bộ nhớ này: {text}',
-  filesDesc:
-    'Các tệp AI có thể thấy trong dự án này. Tệp ẩn và thư mục .ieumoffice không được tính.',
+  filesDesc: 'Các tệp AI có thể thấy trong dự án này. Tệp ẩn và thư mục .psoffice không được tính.',
   filesEmpty: 'Không có tệp nào AI có thể thấy.',
   filesLoadFailed: 'Không đọc được danh sách tệp.',
   filesCount: '{count} tệp',

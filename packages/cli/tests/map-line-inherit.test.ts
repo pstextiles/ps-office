@@ -17,7 +17,7 @@ const env = () => ({
   ...process.env,
   GENOFFICE_AUDIT_LOG: 'off',
   GENOFFICE_USER_DATA: tempDir(),
-  GENOFFICE_APP_BIN: 'C:/no/such/IeumOffice.exe',
+  GENOFFICE_APP_BIN: 'C:/no/such/PSOffice.exe',
 })
 
 const ops = (list: unknown[]): string => JSON.stringify(list)

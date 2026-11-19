@@ -1,17 +1,17 @@
 # 安装 GenOffice
 
-每个版本都发布在项目 GitHub 的 [Releases 页面](https://github.com/pblsketch/ieumoffice/releases/latest)上。除了 Windows 版，还以 Beta 形式发布 Mac 版和 Linux 版。Mac 版和 Linux 版开发者没有亲自测试，而是通过用户的反馈来确认。
+每个版本都发布在项目 GitHub 的 [Releases 页面](https://github.com/pstextiles/ps-office/releases/latest)上。除了 Windows 版，还以 Beta 形式发布 Mac 版和 Linux 版。Mac 版和 Linux 版开发者没有亲自测试，而是通过用户的反馈来确认。
 
 ## 选择适合你机器的文件
 
-| 平台                                    | 需求                                   | 文件                              |
-| --------------------------------------- | -------------------------------------- | --------------------------------- |
-| **Windows**                             | Windows 10 或更高版本，64 位 Intel/AMD | `GenOffice-Setup-<version>.exe`   |
-| **Mac（Beta）**，Apple 芯片             | macOS 12 或更高版本，M1 或更新的芯片   | `GenOffice-<version>-arm64.dmg`   |
-| **Mac（Beta）**，Intel                  | macOS 12 或更高版本，Intel 处理器      | `GenOffice-<version>-x64.dmg`     |
-| **Linux（Beta）**，任意发行版           | 64 位（x86_64）                        | `GenOffice-<version>.AppImage`    |
-| **Linux（Beta）**，Ubuntu/Debian 系     | 64 位（x86_64）                        | `ieumoffice_<version>_amd64.deb`  |
-| **Linux（Beta）**，Fedora/RHEL/openSUSE | 64 位（x86_64）                        | `ieumoffice-<version>.x86_64.rpm` |
+| 平台                                    | 需求                                   | 文件                            |
+| --------------------------------------- | -------------------------------------- | ------------------------------- |
+| **Windows**                             | Windows 10 或更高版本，64 位 Intel/AMD | `GenOffice-Setup-<version>.exe` |
+| **Mac（Beta）**，Apple 芯片             | macOS 12 或更高版本，M1 或更新的芯片   | `GenOffice-<version>-arm64.dmg` |
+| **Mac（Beta）**，Intel                  | macOS 12 或更高版本，Intel 处理器      | `GenOffice-<version>-x64.dmg`   |
+| **Linux（Beta）**，任意发行版           | 64 位（x86_64）                        | `GenOffice-<version>.AppImage`  |
+| **Linux（Beta）**，Ubuntu/Debian 系     | 64 位（x86_64）                        | `psoffice_<version>_amd64.deb`  |
+| **Linux（Beta）**，Fedora/RHEL/openSUSE | 64 位（x86_64）                        | `psoffice-<version>.x86_64.rpm` |
 
 想知道自己用的是哪种 Mac，请打开苹果菜单 ▸ **关于本机**。如果“芯片”显示 Apple M…，请下载以 `-arm64.dmg` 结尾的文件；如果“处理器”显示 Intel …，请下载以 `-x64.dmg` 结尾的文件。Releases 页面上的其他文件（`.zip`、`.yml`、`.blockmap`）是应用自身更新时使用的，你不需要下载。旧版本仍保留在 Releases 页面上。
 
@@ -80,10 +80,10 @@ xattr -dr com.apple.quarantine /Applications/GenOffice.app
 ## 在 Linux 上（Beta）
 
 - **AppImage**：给它加上可执行权限（`chmod +x GenOffice-<version>.AppImage`），然后运行该文件。没有安装步骤。
-- **deb**：用 `sudo apt install ./ieumoffice_<version>_amd64.deb` 安装。
-- **rpm**：用 `sudo dnf install ./ieumoffice-<version>.x86_64.rpm` 安装。在 openSUSE 上，用 `sudo zypper install ./ieumoffice-<version>.x86_64.rpm` 安装。
+- **deb**：用 `sudo apt install ./psoffice_<version>_amd64.deb` 安装。
+- **rpm**：用 `sudo dnf install ./psoffice-<version>.x86_64.rpm` 安装。在 openSUSE 上，用 `sudo zypper install ./psoffice-<version>.x86_64.rpm` 安装。
 
-deb 和 rpm 会安装到 `/opt/GenOffice`，并链接终端命令 `/usr/bin/ieumoffice`。与 Mac 一样，AI 连接卡片上没有安装按钮；登录要求输入代码时，请自己在终端中运行 `claude auth login` 或 `codex login`。
+deb 和 rpm 会安装到 `/opt/GenOffice`，并链接终端命令 `/usr/bin/psoffice`。与 Mac 一样，AI 连接卡片上没有安装按钮；登录要求输入代码时，请自己在终端中运行 `claude auth login` 或 `codex login`。
 
 ## 更新
 
@@ -101,4 +101,4 @@ deb 和 rpm 会安装到 `/opt/GenOffice`，并链接终端命令 `/usr/bin/ieum
 
 ## 命令行随包附带
 
-每个安装版本都带一个 `ieumoffice` 命令，它和窗口调用的是同一套引擎，因此两者对同一个文件不会给出不同的结果。`ieumoffice install-cli` 会把它放进你的 `PATH`。它能做什么，见[命令行与智能体](help://cli)。
+每个安装版本都带一个 `psoffice` 命令，它和窗口调用的是同一套引擎，因此两者对同一个文件不会给出不同的结果。`psoffice install-cli` 会把它放进你的 `PATH`。它能做什么，见[命令行与智能体](help://cli)。

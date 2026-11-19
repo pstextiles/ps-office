@@ -1,17 +1,17 @@
 # Installare GenOffice
 
-Ogni versione viene pubblicata sulla [pagina Releases](https://github.com/pblsketch/ieumoffice/releases/latest) del progetto su GitHub. La versione per Windows viene pubblicata insieme alle versioni per Mac e Linux, rilasciate in beta. Lo sviluppatore non può provare direttamente le versioni per Mac e Linux; vengono confermate dalle segnalazioni degli utenti.
+Ogni versione viene pubblicata sulla [pagina Releases](https://github.com/pstextiles/ps-office/releases/latest) del progetto su GitHub. La versione per Windows viene pubblicata insieme alle versioni per Mac e Linux, rilasciate in beta. Lo sviluppatore non può provare direttamente le versioni per Mac e Linux; vengono confermate dalle segnalazioni degli utenti.
 
 ## Scegli il file giusto per il tuo computer
 
-| Piattaforma                               | Requisiti                                    | File                              |
-| ----------------------------------------- | -------------------------------------------- | --------------------------------- |
-| **Windows**                               | Windows 10 o successivo, Intel/AMD a 64 bit  | `GenOffice-Setup-<version>.exe`   |
-| **Mac (beta)**, Apple Silicon             | macOS 12 o successivo, chip M1 o più recente | `GenOffice-<version>-arm64.dmg`   |
-| **Mac (beta)**, Intel                     | macOS 12 o successivo, processore Intel      | `GenOffice-<version>-x64.dmg`     |
-| **Linux (beta)**, qualsiasi distribuzione | 64 bit (x86_64)                              | `GenOffice-<version>.AppImage`    |
-| **Linux (beta)**, famiglia Ubuntu/Debian  | 64 bit (x86_64)                              | `ieumoffice_<version>_amd64.deb`  |
-| **Linux (beta)**, Fedora/RHEL/openSUSE    | 64 bit (x86_64)                              | `ieumoffice-<version>.x86_64.rpm` |
+| Piattaforma                               | Requisiti                                    | File                            |
+| ----------------------------------------- | -------------------------------------------- | ------------------------------- |
+| **Windows**                               | Windows 10 o successivo, Intel/AMD a 64 bit  | `GenOffice-Setup-<version>.exe` |
+| **Mac (beta)**, Apple Silicon             | macOS 12 o successivo, chip M1 o più recente | `GenOffice-<version>-arm64.dmg` |
+| **Mac (beta)**, Intel                     | macOS 12 o successivo, processore Intel      | `GenOffice-<version>-x64.dmg`   |
+| **Linux (beta)**, qualsiasi distribuzione | 64 bit (x86_64)                              | `GenOffice-<version>.AppImage`  |
+| **Linux (beta)**, famiglia Ubuntu/Debian  | 64 bit (x86_64)                              | `psoffice_<version>_amd64.deb`  |
+| **Linux (beta)**, Fedora/RHEL/openSUSE    | 64 bit (x86_64)                              | `psoffice-<version>.x86_64.rpm` |
 
 Per sapere che Mac hai, apri il menu Apple ▸ **Informazioni su questo Mac**. Se alla voce «Chip» c'è Apple M…, prendi il file che termina con `-arm64.dmg`; se alla voce «Processore» c'è Intel …, prendi quello che termina con `-x64.dmg`. Gli altri file della pagina Releases (`.zip`, `.yml`, `.blockmap`) sono quelli che l'app stessa usa per aggiornarsi; non devi scaricarli. Le versioni più vecchie restano sulla pagina Releases.
 
@@ -80,10 +80,10 @@ Sempre su un Mac:
 ## Su Linux (beta)
 
 - **AppImage**: rendilo eseguibile (`chmod +x GenOffice-<version>.AppImage`) e avvia il file. Non ci sono passaggi di installazione.
-- **deb**: installa con `sudo apt install ./ieumoffice_<version>_amd64.deb`.
-- **rpm**: installa con `sudo dnf install ./ieumoffice-<version>.x86_64.rpm`. Su openSUSE usa `sudo zypper install ./ieumoffice-<version>.x86_64.rpm`.
+- **deb**: installa con `sudo apt install ./psoffice_<version>_amd64.deb`.
+- **rpm**: installa con `sudo dnf install ./psoffice-<version>.x86_64.rpm`. Su openSUSE usa `sudo zypper install ./psoffice-<version>.x86_64.rpm`.
 
-I pacchetti deb e rpm si installano in `/opt/GenOffice` e collegano il comando da terminale `/usr/bin/ieumoffice`. Come su un Mac, le schede di connessione IA non hanno un pulsante di installazione e, quando un accesso chiede un codice, esegui tu stesso `claude auth login` o `codex login` in un terminale.
+I pacchetti deb e rpm si installano in `/opt/GenOffice` e collegano il comando da terminale `/usr/bin/psoffice`. Come su un Mac, le schede di connessione IA non hanno un pulsante di installazione e, quando un accesso chiede un codice, esegui tu stesso `claude auth login` o `codex login` in un terminale.
 
 ## Aggiornamenti
 
@@ -101,4 +101,4 @@ I pacchetti deb e rpm si installano in `/opt/GenOffice` e collegano il comando d
 
 ## La riga di comando è inclusa
 
-Ogni installazione include il comando `ieumoffice`, che comunica con gli stessi motori della finestra, così i due non si contraddicono mai su un file. `ieumoffice install-cli` lo mette sul tuo `PATH`. Vedi [Riga di comando e agenti](help://cli) per scoprire cosa può fare.
+Ogni installazione include il comando `psoffice`, che comunica con gli stessi motori della finestra, così i due non si contraddicono mai su un file. `psoffice install-cli` lo mette sul tuo `PATH`. Vedi [Riga di comando e agenti](help://cli) per scoprire cosa può fare.

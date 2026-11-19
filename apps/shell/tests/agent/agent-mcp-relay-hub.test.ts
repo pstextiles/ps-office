@@ -30,7 +30,7 @@ import { startFakeMcp, type FakeTool } from '../mcp-client/fake-remote-server'
 
 vi.setConfig({ testTimeout: 60_000 })
 
-const CLIENT_INFO = { name: 'IeumOffice', version: '0.0.0-test' }
+const CLIENT_INFO = { name: 'PSOffice', version: '0.0.0-test' }
 
 const codec: McpSecretCodec = {
   canSeal: () => true,

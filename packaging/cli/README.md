@@ -1,6 +1,6 @@
 # Command-line archive (Linux x64)
 
-`ieumoffice` without the desktop app, for machines that only need the document
+`psoffice` without the desktop app, for machines that only need the document
 engines: agent sandboxes, servers and batch jobs. The archive carries the same
 bundle the installed app ships (`cli/genoffice.cjs`), its jsdom tree, the wasm
 engines and the xlsx sidecar, so a document is read and written by the same code
@@ -18,7 +18,7 @@ node packages/cli/pack-tarball.mjs \
   --out apps/shell/release --platform linux --arch x64
 ```
 
-That writes `ieumoffice-cli_<version>_linux-x64.tar.gz` and its `.sha256`.
+That writes `psoffice-cli_<version>_linux-x64.tar.gz` and its `.sha256`.
 `GENOFFICE_APP_VERSION` overrides the version; without it the packer reads the
 banner inside the shipped CLI bundle, so the archive cannot drift from the app.
 `.github/workflows/linux-build.yml` builds, tests and uploads it with the other
@@ -27,32 +27,32 @@ Linux files.
 Layout (the app's `resources/`):
 
 ```
-ieumoffice-cli/
-  cli/{ieumoffice, genoffice.cjs, package.json, node_modules/, skills/ieumoffice/SKILL.md}
+psoffice-cli/
+  cli/{psoffice, genoffice.cjs, package.json, node_modules/, skills/psoffice/SKILL.md}
   wasm/{pdfium.wasm, rhwp_bg.wasm, hb-subset.wasm}
   native/xlsx-sidecar
   LICENSE  NOTICE  THIRD-PARTY-NOTICES.txt
 ```
 
-`cli/ieumoffice` runs `node` on the bundle when no app binary sits beside it
-(`bin/ieumoffice` in `packages/cli`), so any Node 22 runs the archive.
+`cli/psoffice` runs `node` on the bundle when no app binary sits beside it
+(`bin/psoffice` in `packages/cli`), so any Node 22 runs the archive.
 
 ## Install
 
 `install.sh` in this folder is the one-line installer. It is served from the
-site (`https://ieumoffice.com/cli/install.sh`); bump `DEFAULT_VERSION` in it and
+site (`https://raw.githubusercontent.com/pstextiles/ps-office/main/packaging/cli/install.sh`); bump `DEFAULT_VERSION` in it and
 publish it with the same release that carries the archive.
 
 ```sh
-curl -fsSL https://ieumoffice.com/cli/install.sh | sh
+curl -fsSL https://raw.githubusercontent.com/pstextiles/ps-office/main/packaging/cli/install.sh | sh
 ```
 
-- writes only `~/.local/share/ieumoffice-cli` (or `$XDG_DATA_HOME`) and
-  `~/.local/bin/ieumoffice` (or `$XDG_BIN_HOME`); no root, no shell profile edits
+- writes only `~/.local/share/psoffice-cli` (or `$XDG_DATA_HOME`) and
+  `~/.local/bin/psoffice` (or `$XDG_BIN_HOME`); no root, no shell profile edits
 - installs Node 22 from nodejs.org (checked against its `SHASUMS256.txt`) only
   when the machine has none; `--node <path>` reuses one
 - verifies the archive against the release's `.sha256` before unpacking
-- leaves an `ieumoffice` that belongs to another program alone
+- leaves an `psoffice` that belongs to another program alone
 - `--uninstall` removes the launcher and the folder
 
 ## What it cannot do
@@ -65,7 +65,7 @@ the app sealed (`sealed:v1:`) cannot be opened without it.
 WebAssembly is the other boundary. A sandbox that caps virtual memory
 (`ulimit -v`, commonly 2 GB) cannot instantiate the PDF or Hangul engines or the
 HTTP parser Node uses: those commands answer exit 3, `error: "resource_limit"`
-instead of aborting, and `ieumoffice capabilities --json` reports
+instead of aborting, and `psoffice capabilities --json` reports
 `detail.wasm.available: false` before an agent plans the work. DOCX, XLSX, PPTX,
 Markdown, HTML, CSV and ODT work there.
 

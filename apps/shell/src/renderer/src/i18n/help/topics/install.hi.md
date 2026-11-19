@@ -1,17 +1,17 @@
 # GenOffice इंस्टॉल करना
 
-हर संस्करण GitHub पर प्रोजेक्ट के [Releases पेज](https://github.com/pblsketch/ieumoffice/releases/latest) पर प्रकाशित होता है। Windows बिल्ड के साथ Mac और Linux के बिल्ड भी प्रकाशित होते हैं, जो बीटा के रूप में जारी किए जाते हैं। डेवलपर Mac और Linux के बिल्ड सीधे नहीं जाँच सकता; उनकी पुष्टि उपयोगकर्ताओं की रिपोर्टों से होती है।
+हर संस्करण GitHub पर प्रोजेक्ट के [Releases पेज](https://github.com/pstextiles/ps-office/releases/latest) पर प्रकाशित होता है। Windows बिल्ड के साथ Mac और Linux के बिल्ड भी प्रकाशित होते हैं, जो बीटा के रूप में जारी किए जाते हैं। डेवलपर Mac और Linux के बिल्ड सीधे नहीं जाँच सकता; उनकी पुष्टि उपयोगकर्ताओं की रिपोर्टों से होती है।
 
 ## अपने मशीन के लिए फ़ाइल चुनें
 
-| प्लेटफ़ॉर्म                             | आवश्यकताएँ                          | फ़ाइल                             |
-| --------------------------------------- | ----------------------------------- | --------------------------------- |
-| **Windows**                             | Windows 10 या नया, 64-बिट Intel/AMD | `GenOffice-Setup-<version>.exe`   |
-| **Mac (बीटा)**, Apple Silicon           | macOS 12 या नया, M1 या नई चिप       | `GenOffice-<version>-arm64.dmg`   |
-| **Mac (बीटा)**, Intel                   | macOS 12 या नया, Intel प्रोसेसर     | `GenOffice-<version>-x64.dmg`     |
-| **Linux (बीटा)**, कोई भी डिस्ट्रीब्यूशन | 64-बिट (x86_64)                     | `GenOffice-<version>.AppImage`    |
-| **Linux (बीटा)**, Ubuntu/Debian परिवार  | 64-बिट (x86_64)                     | `ieumoffice_<version>_amd64.deb`  |
-| **Linux (बीटा)**, Fedora/RHEL/openSUSE  | 64-बिट (x86_64)                     | `ieumoffice-<version>.x86_64.rpm` |
+| प्लेटफ़ॉर्म                             | आवश्यकताएँ                          | फ़ाइल                           |
+| --------------------------------------- | ----------------------------------- | ------------------------------- |
+| **Windows**                             | Windows 10 या नया, 64-बिट Intel/AMD | `GenOffice-Setup-<version>.exe` |
+| **Mac (बीटा)**, Apple Silicon           | macOS 12 या नया, M1 या नई चिप       | `GenOffice-<version>-arm64.dmg` |
+| **Mac (बीटा)**, Intel                   | macOS 12 या नया, Intel प्रोसेसर     | `GenOffice-<version>-x64.dmg`   |
+| **Linux (बीटा)**, कोई भी डिस्ट्रीब्यूशन | 64-बिट (x86_64)                     | `GenOffice-<version>.AppImage`  |
+| **Linux (बीटा)**, Ubuntu/Debian परिवार  | 64-बिट (x86_64)                     | `psoffice_<version>_amd64.deb`  |
+| **Linux (बीटा)**, Fedora/RHEL/openSUSE  | 64-बिट (x86_64)                     | `psoffice-<version>.x86_64.rpm` |
 
 यह देखने के लिए कि आपके पास कौन-सा Mac है, Apple मेन्यू ▸ **About This Mac** खोलें। अगर "Chip" में Apple M… लिखा है, तो `-arm64.dmg` पर खत्म होने वाली फ़ाइल लें; अगर "Processor" में Intel … लिखा है, तो `-x64.dmg` पर खत्म होने वाली फ़ाइल लें। Releases पेज की बाकी फ़ाइलें (`.zip`, `.yml`, `.blockmap`) ऐप खुद अपडेट के लिए इस्तेमाल करता है; उन्हें डाउनलोड करने की ज़रूरत नहीं है। पुराने संस्करण Releases पेज पर ही बने रहते हैं।
 
@@ -80,10 +80,10 @@ Mac पर यह भी:
 ## Linux पर (बीटा)
 
 - **AppImage**: उसे एक्ज़ीक्यूटेबल बनाएँ (`chmod +x GenOffice-<version>.AppImage`) और फ़ाइल चलाएँ। इंस्टॉल का कोई चरण नहीं है।
-- **deb**: `sudo apt install ./ieumoffice_<version>_amd64.deb` से इंस्टॉल करें।
-- **rpm**: `sudo dnf install ./ieumoffice-<version>.x86_64.rpm` से इंस्टॉल करें। openSUSE पर `sudo zypper install ./ieumoffice-<version>.x86_64.rpm` का उपयोग करें।
+- **deb**: `sudo apt install ./psoffice_<version>_amd64.deb` से इंस्टॉल करें।
+- **rpm**: `sudo dnf install ./psoffice-<version>.x86_64.rpm` से इंस्टॉल करें। openSUSE पर `sudo zypper install ./psoffice-<version>.x86_64.rpm` का उपयोग करें।
 
-deb और rpm पैकेज `/opt/GenOffice` में इंस्टॉल होते हैं और टर्मिनल कमांड `/usr/bin/ieumoffice` को जोड़ देते हैं। Mac की तरह, AI कनेक्शन कार्डों में इंस्टॉल बटन नहीं है, और जब साइन-इन कोई कोड माँगे तो आप टर्मिनल में खुद `claude auth login` या `codex login` चलाते हैं।
+deb और rpm पैकेज `/opt/GenOffice` में इंस्टॉल होते हैं और टर्मिनल कमांड `/usr/bin/psoffice` को जोड़ देते हैं। Mac की तरह, AI कनेक्शन कार्डों में इंस्टॉल बटन नहीं है, और जब साइन-इन कोई कोड माँगे तो आप टर्मिनल में खुद `claude auth login` या `codex login` चलाते हैं।
 
 ## अपडेट
 
@@ -101,4 +101,4 @@ deb और rpm पैकेज `/opt/GenOffice` में इंस्टॉल 
 
 ## कमांड लाइन भी साथ आती है
 
-हर इंस्टॉल में `ieumoffice` कमांड रहती है जो उसी इंजनों से बात करती है जिन्हें विंडो इस्तेमाल करती है, इसलिए दोनों किसी फ़ाइल पर कभी असहमत नहीं होतीं। `ieumoffice install-cli` इसे आपके `PATH` में रख देती है। यह क्या कर सकती है, इसके लिए [कमांड लाइन और एजेंट](help://cli) देखें।
+हर इंस्टॉल में `psoffice` कमांड रहती है जो उसी इंजनों से बात करती है जिन्हें विंडो इस्तेमाल करती है, इसलिए दोनों किसी फ़ाइल पर कभी असहमत नहीं होतीं। `psoffice install-cli` इसे आपके `PATH` में रख देती है। यह क्या कर सकती है, इसके लिए [कमांड लाइन और एजेंट](help://cli) देखें।

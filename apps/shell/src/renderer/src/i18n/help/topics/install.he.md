@@ -1,17 +1,17 @@
 # התקנת GenOffice
 
-כל גרסה מתפרסמת ב[עמוד ההפצות](https://github.com/pblsketch/ieumoffice/releases/latest) של הפרויקט ב-GitHub. גרסת Windows מתפרסמת יחד עם גרסאות Mac ו-Linux שיוצאות כבטא. המפתח אינו יכול לבדוק את גרסאות Mac ו-Linux בעצמו; הן מאומתות על סמך דיווחים של משתמשים.
+כל גרסה מתפרסמת ב[עמוד ההפצות](https://github.com/pstextiles/ps-office/releases/latest) של הפרויקט ב-GitHub. גרסת Windows מתפרסמת יחד עם גרסאות Mac ו-Linux שיוצאות כבטא. המפתח אינו יכול לבדוק את גרסאות Mac ו-Linux בעצמו; הן מאומתות על סמך דיווחים של משתמשים.
 
 ## בחירת הקובץ למחשב שלך
 
-| פלטפורמה                              | דרישות                                 | קובץ                              |
-| ------------------------------------- | -------------------------------------- | --------------------------------- |
-| **Windows**                           | Windows 10 ומעלה, 64 סיביות, Intel/AMD | `GenOffice-Setup-<version>.exe`   |
-| **Mac (בטא)**, Apple Silicon          | macOS 12 ומעלה, שבב M1 ואילך           | `GenOffice-<version>-arm64.dmg`   |
-| **Mac (בטא)**, Intel                  | macOS 12 ומעלה, מעבד Intel             | `GenOffice-<version>-x64.dmg`     |
-| **Linux (בטא)**, כל הפצה              | 64 סיביות (x86_64)                     | `GenOffice-<version>.AppImage`    |
-| **Linux (בטא)**, משפחת Ubuntu/Debian  | 64 סיביות (x86_64)                     | `ieumoffice_<version>_amd64.deb`  |
-| **Linux (בטא)**, Fedora/RHEL/openSUSE | 64 סיביות (x86_64)                     | `ieumoffice-<version>.x86_64.rpm` |
+| פלטפורמה                              | דרישות                                 | קובץ                            |
+| ------------------------------------- | -------------------------------------- | ------------------------------- |
+| **Windows**                           | Windows 10 ומעלה, 64 סיביות, Intel/AMD | `GenOffice-Setup-<version>.exe` |
+| **Mac (בטא)**, Apple Silicon          | macOS 12 ומעלה, שבב M1 ואילך           | `GenOffice-<version>-arm64.dmg` |
+| **Mac (בטא)**, Intel                  | macOS 12 ומעלה, מעבד Intel             | `GenOffice-<version>-x64.dmg`   |
+| **Linux (בטא)**, כל הפצה              | 64 סיביות (x86_64)                     | `GenOffice-<version>.AppImage`  |
+| **Linux (בטא)**, משפחת Ubuntu/Debian  | 64 סיביות (x86_64)                     | `psoffice_<version>_amd64.deb`  |
+| **Linux (בטא)**, Fedora/RHEL/openSUSE | 64 סיביות (x86_64)                     | `psoffice-<version>.x86_64.rpm` |
 
 כדי לדעת איזה Mac יש לכם, פתחו את תפריט Apple ▸ **אודות Mac זה** (About This Mac). אם ב"שבב" כתוב Apple M…, קחו את הקובץ שמסתיים ב-`-arm64.dmg`; אם ב"מעבד" כתוב Intel …, קחו את הקובץ שמסתיים ב-`-x64.dmg`. שאר הקבצים בעמוד ההפצות (`.zip`, `.yml`, `.blockmap`) משמשים את האפליקציה עצמה לעדכון; אין צורך להוריד אותם. גרסאות ישנות יותר נשארות בעמוד ההפצות.
 
@@ -80,10 +80,10 @@ xattr -dr com.apple.quarantine /Applications/GenOffice.app
 ## ב-Linux (בטא)
 
 - **AppImage**: הפכו אותו להרצה (`chmod +x GenOffice-<version>.AppImage`) והריצו את הקובץ. אין שלב התקנה.
-- **deb**: התקינו בעזרת `sudo apt install ./ieumoffice_<version>_amd64.deb`.
-- **rpm**: התקינו בעזרת `sudo dnf install ./ieumoffice-<version>.x86_64.rpm`. ב-openSUSE השתמשו בפקודה `sudo zypper install ./ieumoffice-<version>.x86_64.rpm`.
+- **deb**: התקינו בעזרת `sudo apt install ./psoffice_<version>_amd64.deb`.
+- **rpm**: התקינו בעזרת `sudo dnf install ./psoffice-<version>.x86_64.rpm`. ב-openSUSE השתמשו בפקודה `sudo zypper install ./psoffice-<version>.x86_64.rpm`.
 
-חבילות deb ו-rpm מותקנות ב-`/opt/GenOffice` ומקשרות את פקודת הטרמינל `/usr/bin/ieumoffice`. כמו ב-Mac, בכרטיסי החיבור ל-AI אין כפתור התקנה, וכשההתחברות מבקשת קוד מריצים בעצמכם `claude auth login` או `codex login` בטרמינל.
+חבילות deb ו-rpm מותקנות ב-`/opt/GenOffice` ומקשרות את פקודת הטרמינל `/usr/bin/psoffice`. כמו ב-Mac, בכרטיסי החיבור ל-AI אין כפתור התקנה, וכשההתחברות מבקשת קוד מריצים בעצמכם `claude auth login` או `codex login` בטרמינל.
 
 ## עדכונים
 
@@ -101,4 +101,4 @@ xattr -dr com.apple.quarantine /Applications/GenOffice.app
 
 ## שורת הפקודה מגיעה עמה
 
-כל התקנה כוללת פקודת `ieumoffice` שמדברת עם אותם מנועים שהחלון משתמש בהם, ולכן השניים לעולם אינם חלוקים לגבי קובץ. ‏`ieumoffice install-cli` מציבה אותה ב-`PATH` שלכם. ראו [שורת פקודות וסוכנים](help://cli) למה שהיא יודעת לעשות.
+כל התקנה כוללת פקודת `psoffice` שמדברת עם אותם מנועים שהחלון משתמש בהם, ולכן השניים לעולם אינם חלוקים לגבי קובץ. ‏`psoffice install-cli` מציבה אותה ב-`PATH` שלכם. ראו [שורת פקודות וסוכנים](help://cli) למה שהיא יודעת לעשות.

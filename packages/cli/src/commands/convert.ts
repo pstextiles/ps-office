@@ -237,7 +237,7 @@ async function run(
   const viaApp = appTarget(from, to)
   if (viaApp) {
     const r = await exportViaApp(input, viaApp, output, { env: ctx.env, log: ctx.log })
-    return { detail: { via: 'ieumoffice --headless-export', summary: r.summary } }
+    return { detail: { via: 'psoffice --headless-export', summary: r.summary } }
   }
   if (from === 'pdf' && (to === 'md' || to === 'epub')) {
     return pdfReflow(input, to, output, args, ctx)
@@ -366,7 +366,7 @@ async function docxToMarkdown(docx: Uint8Array, ctx: CommandContext): Promise<Pr
       ctx.warn({
         code: 'images_dropped',
         message: `${exported.skipped.images} image(s) have no Markdown form and were dropped`,
-        suggestion: 'use `ieumoffice docs read --html` when the images matter',
+        suggestion: 'use `psoffice docs read --html` when the images matter',
       })
     }
     return {
@@ -414,7 +414,7 @@ async function withTempDocx<T>(
   docx: Uint8Array | null,
   work: (path: string) => Promise<T>,
 ): Promise<T> {
-  const dir = mkdtempSync(join(dirname(output), '.ieumoffice-odt-'))
+  const dir = mkdtempSync(join(dirname(output), '.psoffice-odt-'))
   try {
     const path = join(dir, `${stem}.docx`)
     if (docx) writeOutput(path, docx)
@@ -444,7 +444,7 @@ async function runOdt(
     const r = await withTempDocx(output, stem, docxBytes, (docx) =>
       exportViaApp(docx, target, output, { env: ctx.env, log: ctx.log }),
     )
-    return { detail: { via: 'ieumoffice --headless-export', summary: r.summary, odt_report } }
+    return { detail: { via: 'psoffice --headless-export', summary: r.summary, odt_report } }
   }
   let docx: Uint8Array
   const detail: Record<string, unknown> = {}
@@ -457,7 +457,7 @@ async function runOdt(
       await exportViaApp(input, 'docx', path, { env: ctx.env, log: ctx.log })
       return new Uint8Array(readFileSync(path))
     })
-    detail.via = 'ieumoffice --headless-export'
+    detail.via = 'psoffice --headless-export'
   }
   const { odtBytes, report } = await docxBytesToOdt(docx)
   return {
@@ -498,7 +498,7 @@ async function pdfReflow(
       code: 'pages_as_images',
       message:
         'every page is a picture without readable text, so the result holds page images only',
-      suggestion: `read the pages with \`ieumoffice pdf ai-read ${basename(input)} --pages <list>\` first, then convert again`,
+      suggestion: `read the pages with \`psoffice pdf ai-read ${basename(input)} --pages <list>\` first, then convert again`,
     })
   }
   const source = {

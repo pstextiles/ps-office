@@ -38,7 +38,7 @@ Trình soạn thảo sơ đồ mở tệp draw.io trong một thẻ. Bạn có t
 - AI đọc sơ đồ dưới dạng chữ: danh sách trang, và với mỗi hình và đường nối thì có id, chữ, loại hình, vị trí và các kết nối, cùng với những hình bạn đang chọn. AI không nhìn sơ đồ dưới dạng hình ảnh.
 - Thay đổi của AI hiện ra ngay. Mỗi thay đổi là một bước hoàn tác (Ctrl+Z), các hình và đường nối AI đã sửa được viền màu vàng, và **Hoàn tác các thay đổi này** trên thẻ dưới câu trả lời lấy lại trọn một lượt của AI. Nếu bất kỳ phần nào của một thay đổi bị từ chối, sơ đồ giữ nguyên như cũ.
 - Với lưu đồ, sơ đồ tuần tự hoặc loại tương tự mới, AI viết bằng Mermaid và GenOffice chuyển nó thành các hình ngay trên máy tính của bạn. Cách bố trí có thể hơi khác so với kết quả từ trang web draw.io.
-- Sơ đồ cũng có thể được đính kèm trong bảng AI của các trình soạn thảo khác, chọn bằng `@`, và tìm thấy qua tìm kiếm tệp ở màn hình Trang chủ. Các [lệnh trên terminal](help://cli) cũng đọc, sửa và tạo sơ đồ (`ieumoffice diagram read`, `ieumoffice diagram apply`, `ieumoffice create --type drawio`).
+- Sơ đồ cũng có thể được đính kèm trong bảng AI của các trình soạn thảo khác, chọn bằng `@`, và tìm thấy qua tìm kiếm tệp ở màn hình Trang chủ. Các [lệnh trên terminal](help://cli) cũng đọc, sửa và tạo sơ đồ (`psoffice diagram read`, `psoffice diagram apply`, `psoffice create --type drawio`).
 
 ## Dùng internet
 

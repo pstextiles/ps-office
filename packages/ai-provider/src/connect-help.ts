@@ -19,7 +19,7 @@ const CONNECT_HELP_SECTIONS: Record<SubscriptionConnectHelpPath, string> = {
 
 /** The connect help page, at the section of `path` when it names a known path */
 export function subscriptionConnectHelpUrl(path?: unknown): string {
-  const base = `${PRODUCT_WEBSITE}/connect`
+  const base = `${PRODUCT_WEBSITE}/blob/main/CONNECT.md`
   return typeof path === 'string' && Object.hasOwn(CONNECT_HELP_SECTIONS, path)
     ? `${base}#${CONNECT_HELP_SECTIONS[path as SubscriptionConnectHelpPath]}`
     : base

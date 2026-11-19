@@ -1,5 +1,5 @@
 #!/bin/sh
-# deb/rpm post-remove: drop the ieumoffice symlink only on a real uninstall.
+# deb/rpm post-remove: drop the psoffice symlink only on a real uninstall.
 # rpm runs the old package's %postun after the new %post during an upgrade
 # (with $1 = 1); deb passes "upgrade" there. Removing then would kill the
 # link the new version just created.
@@ -10,24 +10,24 @@ esac
 # fpm already removed our MIME file; rebuild the database so the icons we
 # overrode come back without a relogin.
 command -v update-mime-database >/dev/null 2>&1 && update-mime-database /usr/share/mime >/dev/null 2>&1 || true
-profile="/etc/apparmor.d/ieumoffice"
+profile="/etc/apparmor.d/psoffice"
 if [ -f "$profile" ]; then
   if apparmor_status --enabled >/dev/null 2>&1 && ! { [ -x /usr/bin/ischroot ] && /usr/bin/ischroot; } && command -v apparmor_parser >/dev/null 2>&1; then
     apparmor_parser --remove "$profile" >/dev/null 2>&1 || true
   fi
   rm -f "$profile"
 fi
-link="/usr/bin/ieumoffice"
+link="/usr/bin/psoffice"
 # same ownership rule as the post-install: only a link into our install dir is ours
 if [ -L "$link" ]; then
   case "$(readlink "$link")" in
-    /opt/IeumOffice/*) rm -f "$link" ;;
+    /opt/PSOffice/*) rm -f "$link" ;;
   esac
 fi
 # Drop the KDE "Create New" templates the post-install step installed. Only
 # our exact file names are removed, so the directory and every other app's
 # templates stay (genoffice#2384).
-for name in "IeumOffice Document.docx" "IeumOffice Spreadsheet.xlsx" "IeumOffice Presentation.pptx"; do
+for name in "PSOffice Document.docx" "PSOffice Spreadsheet.xlsx" "PSOffice Presentation.pptx"; do
   rm -f "/usr/share/templates/$name"
 done
 exit 0

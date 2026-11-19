@@ -71,8 +71,8 @@ Di bawah **Server HTTP lokal**, aplikasi juga bisa menjalankan server itu sendir
 
 ## Lembar pintasan baris perintah
 
-| Perintah            | Fungsinya                |
-| ------------------- | ------------------------ |
-| `ieumoffice <file>` | membuka sebuah file      |
-| `ieumoffice mcp`    | memulai server MCP lokal |
-| `ieumoffice --help` | semua perintah dan opsi  |
+| Perintah          | Fungsinya                |
+| ----------------- | ------------------------ |
+| `psoffice <file>` | membuka sebuah file      |
+| `psoffice mcp`    | memulai server MCP lokal |
+| `psoffice --help` | semua perintah dan opsi  |

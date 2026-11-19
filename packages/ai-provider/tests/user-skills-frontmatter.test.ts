@@ -281,7 +281,7 @@ describe('new names', () => {
     expect(validateNewUserSkillName('a-')).toBe('hyphen-edge')
     expect(validateNewUserSkillName('a--b')).toBe('double-hyphen')
     expect(validateNewUserSkillName('genoffice')).toBe('reserved')
-    expect(validateNewUserSkillName('ieumoffice')).toBe('reserved')
+    expect(validateNewUserSkillName('psoffice')).toBe('reserved')
   })
 
   it('knows the reserved names in any case', () => {

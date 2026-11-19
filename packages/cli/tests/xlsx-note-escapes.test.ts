@@ -6,7 +6,7 @@ import { describe, expect, it } from 'vitest'
 import { parseLegacyComments } from '@genoffice/xlsx-gateway/gateway/xlsx-threaded-comments'
 import { runWorkbookDsl } from '../src/formats/xlsx-dsl'
 import { blankWorkbook, writeWorkbook } from '../src/formats/xlsx'
-const tempDir = () => mkdtempSync(join(tmpdir(), 'ieumoffice-note-test-'))
+const tempDir = () => mkdtempSync(join(tmpdir(), 'psoffice-note-test-'))
 
 async function sourceWithNote(author: string, text: string): Promise<Buffer> {
   const zip = await JSZip.loadAsync(await blankWorkbook('Data'))

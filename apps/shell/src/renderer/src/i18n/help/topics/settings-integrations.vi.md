@@ -71,8 +71,8 @@ Dưới **Máy chủ HTTP cục bộ**, ứng dụng cũng có thể tự chạy
 
 ## Bảng tra nhanh dòng lệnh
 
-| Lệnh                | Tác dụng                     |
-| ------------------- | ---------------------------- |
-| `ieumoffice <file>` | mở một tập tin               |
-| `ieumoffice mcp`    | khởi động máy chủ MCP cục bộ |
-| `ieumoffice --help` | mọi lệnh và tuỳ chọn         |
+| Lệnh              | Tác dụng                     |
+| ----------------- | ---------------------------- |
+| `psoffice <file>` | mở một tập tin               |
+| `psoffice mcp`    | khởi động máy chủ MCP cục bộ |
+| `psoffice --help` | mọi lệnh và tuỳ chọn         |

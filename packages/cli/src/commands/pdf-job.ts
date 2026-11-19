@@ -126,7 +126,7 @@ export async function assertNoRunningJob(
         ...(running.progress ? { progress: running.progress } : {}),
       },
     },
-    { suggestion: `wait for it to end; \`ieumoffice ${statusCommand} <file>\` shows its progress` },
+    { suggestion: `wait for it to end; \`psoffice ${statusCommand} <file>\` shows its progress` },
   )
 }
 

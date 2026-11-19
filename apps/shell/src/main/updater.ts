@@ -1045,7 +1045,7 @@ export function initAutoUpdater(
     if (process.platform !== 'win32') return false
     installDirOk ??= installDirWritable(
       dirname(process.execPath),
-      `.ieumoffice-update-check-${process.pid}`,
+      `.psoffice-update-check-${process.pid}`,
     )
     return !installDirOk
   }

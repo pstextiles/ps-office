@@ -30,7 +30,7 @@ Proje, bilgisayarınızdaki tek bir klasördür. Bir AI panelinde bir proje seç
 ## AI’ın gördüğü dosyalar
 
 - Her istekle birlikte AI projenin adını, yönergelerini ve belleğini ve klasördeki dosyaların adlarının bir listesini alır. Bir dosyanın içeriğine ihtiyaç duyduğunda onu bir ek gibi kendisi okur; böylece AI’dan gizlenen bölümler gizli kalır.
-- Kaydedilmemiş değişiklikleri olan açık belgeleri, adı noktayla başlayan gizli dosyaları veya `.ieumoffice` klasörünü okumaz.
+- Kaydedilmemiş değişiklikleri olan açık belgeleri, adı noktayla başlayan gizli dosyaları veya `.psoffice` klasörünü okumaz.
 - Bir dosyayı AI’dan uzak tutmak için projenin sayfasının Dosyalar bölümünde **AI’dan gizle**’ye basın. Bunu geri alabilirsiniz. Dosya Giriş ekranındaki arama sonuçlarında görünmeye devam eder.
 - OneDrive, Google Drive ve benzerlerinin eşitlediği klasörlerde bu bilgisayara indirilmemiş dosyalar "Bu bilgisayarda değil" olarak görünür. AI birini okumak istediğinde önce indirip indirmeyeceğiniz sorulur.
 - Girişe `@` yazın; açık belgelerden sonra "Bu projedeki dosyalar" belirir. Birini seçmek onu ekler. Bkz. [AI asistan paneli](help://ai-panel).
@@ -59,10 +59,10 @@ Giriş ekranının kenar çubuğundaki **Projeler**, **Yeni proje** yaptığın�
 
 ## Klasörde kalanlar ve bilinmesi gerekenler
 
-- Yönergeler, bellek ve sohbetler proje klasörünün içindeki bir `.ieumoffice` klasöründe metin dosyaları olarak tutulur. Klasörü taşıyın veya başka bir bilgisayara kopyalayın, onlar da birlikte gider. Başka bir bilgisayarda onu bir kez bir AI panelindeki **Klasör ekle** veya Giriş ekranının Projeler ekranındaki **Var olan bir klasörü kullan** ile seçin.
-- `.ieumoffice` klasörü yalnızca yazılacak bir şey olduğunda oluşturulur. Dosyalarını Not Defteri’nde açıp düzenleyebilirsiniz.
+- Yönergeler, bellek ve sohbetler proje klasörünün içindeki bir `.psoffice` klasöründe metin dosyaları olarak tutulur. Klasörü taşıyın veya başka bir bilgisayara kopyalayın, onlar da birlikte gider. Başka bir bilgisayarda onu bir kez bir AI panelindeki **Klasör ekle** veya Giriş ekranının Projeler ekranındaki **Var olan bir klasörü kullan** ile seçin.
+- `.psoffice` klasörü yalnızca yazılacak bir şey olduğunda oluşturulur. Dosyalarını Not Defteri’nde açıp düzenleyebilirsiniz.
 - Bir sohbete yazdığınız şeyler belleğe girebilir. Bir şeyi dışarıda tutmak için "Hatırlandı" satırındaki **Sil** ile silin veya belleği kapatın.
 - Eşitlenen bir klasörü proje olarak seçerseniz yönergeleri, belleği ve sohbetleri de o hizmete yüklenir. Uygulama bunu ilk seçtiğinizde bir kez söyler.
 - Birkaç kişinin kullandığı paylaşılan bir klasörde bellek ve sohbetler karışabilir.
 - Uygulamanın yazamadığı bir klasörde, örneğin salt okunur bir klasörde, yönergeler ve dosya okuma yine çalışır ama sohbetler ve bellek kaydedilmez. AI paneli bunu size söyler.
-- Ajan penceresi henüz projeleri kullanmaz. Bir ajan bir klasörün `.ieumoffice` içindeki dosyaları da değiştirebilir; bu yüzden bilmediğiniz malzemenin bulunduğu bir klasörde önce soran yollardan birini kullanın. Bkz. [Ajan modu](help://agent-mode).
+- Ajan penceresi henüz projeleri kullanmaz. Bir ajan bir klasörün `.psoffice` içindeki dosyaları da değiştirebilir; bu yüzden bilmediğiniz malzemenin bulunduğu bir klasörde önce soran yollardan birini kullanın. Bkz. [Ajan modu](help://agent-mode).

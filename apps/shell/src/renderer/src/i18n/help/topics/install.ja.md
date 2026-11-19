@@ -1,17 +1,17 @@
 # GenOffice のインストール
 
-すべてのバージョンは、GitHub にあるプロジェクトの [Releases ページ](https://github.com/pblsketch/ieumoffice/releases/latest) で公開されています。Windows 版に加えて、Mac 版と Linux 版もベータとして公開しています。Mac 版と Linux 版は開発者自身が動作を確認しているわけではなく、利用者からの報告で確認しています。
+すべてのバージョンは、GitHub にあるプロジェクトの [Releases ページ](https://github.com/pstextiles/ps-office/releases/latest) で公開されています。Windows 版に加えて、Mac 版と Linux 版もベータとして公開しています。Mac 版と Linux 版は開発者自身が動作を確認しているわけではなく、利用者からの報告で確認しています。
 
 ## 自分のマシンに合わせてファイルを選ぶ
 
-| プラットフォーム                                    | 要件                                 | ファイル                          |
-| --------------------------------------------------- | ------------------------------------ | --------------------------------- |
-| **Windows**                                         | Windows 10 以降、64 ビット Intel/AMD | `GenOffice-Setup-<version>.exe`   |
-| **Mac（ベータ）**、Apple シリコン                   | macOS 12 以降、M1 以降のチップ       | `GenOffice-<version>-arm64.dmg`   |
-| **Mac（ベータ）**、Intel                            | macOS 12 以降、Intel プロセッサ      | `GenOffice-<version>-x64.dmg`     |
-| **Linux（ベータ）**、どのディストリビューションでも | 64 ビット（x86_64）                  | `GenOffice-<version>.AppImage`    |
-| **Linux（ベータ）**、Ubuntu/Debian 系               | 64 ビット（x86_64）                  | `ieumoffice_<version>_amd64.deb`  |
-| **Linux（ベータ）**、Fedora/RHEL/openSUSE           | 64 ビット（x86_64）                  | `ieumoffice-<version>.x86_64.rpm` |
+| プラットフォーム                                    | 要件                                 | ファイル                        |
+| --------------------------------------------------- | ------------------------------------ | ------------------------------- |
+| **Windows**                                         | Windows 10 以降、64 ビット Intel/AMD | `GenOffice-Setup-<version>.exe` |
+| **Mac（ベータ）**、Apple シリコン                   | macOS 12 以降、M1 以降のチップ       | `GenOffice-<version>-arm64.dmg` |
+| **Mac（ベータ）**、Intel                            | macOS 12 以降、Intel プロセッサ      | `GenOffice-<version>-x64.dmg`   |
+| **Linux（ベータ）**、どのディストリビューションでも | 64 ビット（x86_64）                  | `GenOffice-<version>.AppImage`  |
+| **Linux（ベータ）**、Ubuntu/Debian 系               | 64 ビット（x86_64）                  | `psoffice_<version>_amd64.deb`  |
+| **Linux（ベータ）**、Fedora/RHEL/openSUSE           | 64 ビット（x86_64）                  | `psoffice-<version>.x86_64.rpm` |
 
 お使いの Mac の種類は、Apple メニュー ▸ **このMacについて** を開いて確認します。「チップ」が Apple M… なら末尾が `-arm64.dmg` のファイルを、「プロセッサ」が Intel … なら末尾が `-x64.dmg` のファイルを選びます。Releases ページにあるそのほかのファイル（`.zip`、`.yml`、`.blockmap`）は、アプリ自身が更新に使うものなので、ダウンロードする必要はありません。古いバージョンは Releases ページにそのまま残っています。
 
@@ -80,10 +80,10 @@ Mac ではほかにも次の点に注意してください。
 ## Linux で（ベータ）
 
 - **AppImage**：実行権限を付け（`chmod +x GenOffice-<version>.AppImage`）、そのファイルを実行します。インストールの手順はありません。
-- **deb**：`sudo apt install ./ieumoffice_<version>_amd64.deb` でインストールします。
-- **rpm**：`sudo dnf install ./ieumoffice-<version>.x86_64.rpm` でインストールします。openSUSE では `sudo zypper install ./ieumoffice-<version>.x86_64.rpm` を使います。
+- **deb**：`sudo apt install ./psoffice_<version>_amd64.deb` でインストールします。
+- **rpm**：`sudo dnf install ./psoffice-<version>.x86_64.rpm` でインストールします。openSUSE では `sudo zypper install ./psoffice-<version>.x86_64.rpm` を使います。
 
-deb と rpm は `/opt/GenOffice` にインストールされ、ターミナル用のコマンド `/usr/bin/ieumoffice` がリンクされます。Mac と同じく、AI 接続のカードにはインストールボタンがありません。サインインでコードを求められたら、ターミナルで `claude auth login` または `codex login` をご自身で実行します。
+deb と rpm は `/opt/GenOffice` にインストールされ、ターミナル用のコマンド `/usr/bin/psoffice` がリンクされます。Mac と同じく、AI 接続のカードにはインストールボタンがありません。サインインでコードを求められたら、ターミナルで `claude auth login` または `codex login` をご自身で実行します。
 
 ## 更新
 
@@ -101,4 +101,4 @@ deb と rpm は `/opt/GenOffice` にインストールされ、ターミナル�
 
 ## コマンドラインも同梱されています
 
-どのインストールにも `ieumoffice` コマンドが含まれ、ウィンドウと同じエンジンを動かします。そのため、同じファイルについて両者の結果が食い違うことはありません。`ieumoffice install-cli` で `PATH` に追加できます。何ができるかは [コマンドラインとエージェント](help://cli) を参照してください。
+どのインストールにも `psoffice` コマンドが含まれ、ウィンドウと同じエンジンを動かします。そのため、同じファイルについて両者の結果が食い違うことはありません。`psoffice install-cli` で `PATH` に追加できます。何ができるかは [コマンドラインとエージェント](help://cli) を参照してください。

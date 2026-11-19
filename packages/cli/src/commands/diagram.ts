@@ -34,7 +34,7 @@ export const diagramCommand: CommandDef = {
       name: 'ops',
       value: 'JSON|@file|-',
       description:
-        'apply: JSON array of ops, each { "op": "<name>", ...fields } (read, add_shape, add_edge, update, delete, add_page, rename_page, delete_page, insert_mermaid), inline, @<file>, a file path, or "-" for stdin. See `ieumoffice guide diagram`.',
+        'apply: JSON array of ops, each { "op": "<name>", ...fields } (read, add_shape, add_edge, update, delete, add_page, rename_page, delete_page, insert_mermaid), inline, @<file>, a file path, or "-" for stdin. See `psoffice guide diagram`.',
     },
     ...BATCH_OPTIONS,
     {
@@ -82,7 +82,7 @@ export const diagramCommand: CommandDef = {
       undefined,
       {
         reason: verb === undefined ? 'missing_argument' : 'invalid_argument',
-        suggestion: 'run `ieumoffice help diagram`',
+        suggestion: 'run `psoffice help diagram`',
       },
     )
   },

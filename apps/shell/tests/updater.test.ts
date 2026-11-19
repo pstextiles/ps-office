@@ -172,7 +172,7 @@ vi.mock('../src/main/update-attempt', async (importOriginal) => ({
 // the Mac install: where its bundle is, whether it may replace itself, and the
 // macOS programs behind staging and the swap
 const macInstall = vi.hoisted(() => ({
-  bundle: '/Applications/IeumOffice.app' as string | null,
+  bundle: '/Applications/PSOffice.app' as string | null,
   block: null as string | null,
   stage: vi.fn<(options: { zip: string; bundle: string; version: string }) => Promise<string>>(),
   swap: vi.fn<(options: unknown) => boolean>(() => true),
@@ -240,10 +240,10 @@ const RELEASES_PATH = `/${GITHUB_REPO_OWNER}/${GITHUB_REPO_NAME}/releases`
  */
 const EMPTY_RELEASES_ATOM = `<?xml version="1.0" encoding="UTF-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom" xmlns:media="http://search.yahoo.com/mrss/" xml:lang="en-US">
-  <id>tag:github.com,2008:https://github.com/pblsketch/ieumoffice/releases</id>
-  <link type="text/html" rel="alternate" href="https://github.com/pblsketch/ieumoffice/releases"/>
-  <link type="application/atom+xml" rel="self" href="https://github.com/pblsketch/ieumoffice/releases.atom"/>
-  <title>Release notes from ieumoffice</title>
+  <id>tag:github.com,2008:https://github.com/pstextiles/ps-office/releases</id>
+  <link type="text/html" rel="alternate" href="https://github.com/pstextiles/ps-office/releases"/>
+  <link type="application/atom+xml" rel="self" href="https://github.com/pstextiles/ps-office/releases.atom"/>
+  <title>Release notes from psoffice</title>
   <updated>2026-10-13T06:34:27Z</updated>
 </feed>
 `
@@ -284,7 +284,7 @@ function releasesAtom(tags: string[], notes: Record<string, string> = {}): strin
 }
 
 function feedFile(version: string): string {
-  const installer = `IeumOffice-Setup-${version}.exe`
+  const installer = `PSOffice-Setup-${version}.exe`
   return [
     `version: ${version}`,
     'files:',
@@ -391,11 +391,11 @@ beforeEach(() => {
   updaterState.allowPrerelease = null
   updaterState.updateDownloaded = squirrelServe
   squirrelServe.mockClear()
-  macInstall.bundle = '/Applications/IeumOffice.app'
+  macInstall.bundle = '/Applications/PSOffice.app'
   macInstall.block = null
   macInstall.stage.mockReset()
   macInstall.stage.mockImplementation((options) =>
-    Promise.resolve(`/Applications/.IeumOffice.app.update/IeumOffice-${options.version}.app`),
+    Promise.resolve(`/Applications/.PSOffice.app.update/PSOffice-${options.version}.app`),
   )
   macInstall.swap.mockReset()
   macInstall.swap.mockImplementation(() => true)
@@ -572,7 +572,7 @@ describe('initAutoUpdater', () => {
 
   it('keeps the installer silent where no installer window exists (Linux AppImage)', async () => {
     setPlatform('linux')
-    process.env.APPIMAGE = '/tmp/IeumOffice.AppImage'
+    process.env.APPIMAGE = '/tmp/PSOffice.AppImage'
     try {
       const { initAutoUpdater } = await loadUpdater()
       initAutoUpdater(() => null)
@@ -1017,7 +1017,7 @@ describe('manual download fallback', () => {
     expect(openExternal).toHaveBeenCalledTimes(1)
     expect(openExternal).toHaveBeenCalledWith(GITHUB_LATEST_RELEASE_URL)
     expect(GITHUB_LATEST_RELEASE_URL).toBe(
-      'https://github.com/pblsketch/ieumoffice/releases/latest',
+      'https://github.com/pstextiles/ps-office/releases/latest',
     )
   })
 
@@ -1025,8 +1025,8 @@ describe('manual download fallback', () => {
     const actions = await failTwiceIntoManual({
       version: '0.2.0',
       files: [
-        { url: 'https://attacker.example/IeumOffice-Setup-0.2.0.exe' },
-        { url: 'IeumOffice-Setup-0.2.0.exe' },
+        { url: 'https://attacker.example/PSOffice-Setup-0.2.0.exe' },
+        { url: 'PSOffice-Setup-0.2.0.exe' },
       ],
     })
     actions.onOpenDownload()
@@ -1038,13 +1038,13 @@ describe('manual download fallback', () => {
     actions.onOpenDownload()
     expect(openExternal).toHaveBeenCalledWith(githubReleaseTagUrl('0.3.0-beta.1'))
     expect(githubReleaseTagUrl('0.3.0-beta.1')).toBe(
-      'https://github.com/pblsketch/ieumoffice/releases/tag/v0.3.0-beta.1',
+      'https://github.com/pstextiles/ps-office/releases/tag/v0.3.0-beta.1',
     )
   })
 })
 
 describe('macOS: the app installs its own update (decision 0097)', () => {
-  const zip = '/Users/me/Library/Caches/ieumoffice-updater/pending/IeumOffice-0.2.0-arm64-mac.zip'
+  const zip = '/Users/me/Library/Caches/psoffice-updater/pending/PSOffice-0.2.0-arm64-mac.zip'
 
   beforeEach(() => {
     platformSpy?.restore()
@@ -1100,7 +1100,7 @@ describe('macOS: the app installs its own update (decision 0097)', () => {
   it('clears what an interrupted update left beside the app', async () => {
     const { initAutoUpdater } = await loadUpdater()
     initAutoUpdater(() => null)
-    expect(macInstall.leftovers).toHaveBeenCalledWith('/Applications/IeumOffice.app')
+    expect(macInstall.leftovers).toHaveBeenCalledWith('/Applications/PSOffice.app')
   })
 
   it('unpacks the download beside the app, never through Squirrel.Mac', async () => {
@@ -1108,7 +1108,7 @@ describe('macOS: the app installs its own update (decision 0097)', () => {
     expect(downloadUpdate).toHaveBeenCalledTimes(1)
     expect(macInstall.stage).toHaveBeenCalledWith({
       zip,
-      bundle: '/Applications/IeumOffice.app',
+      bundle: '/Applications/PSOffice.app',
       version: '0.2.0',
     })
     expect(squirrelServe).not.toHaveBeenCalled()
@@ -1128,8 +1128,8 @@ describe('macOS: the app installs its own update (decision 0097)', () => {
     quitCompletes()
     expect(macInstall.swap).toHaveBeenCalledWith({
       pid: process.pid,
-      bundle: '/Applications/IeumOffice.app',
-      staged: '/Applications/.IeumOffice.app.update/IeumOffice-0.2.0.app',
+      bundle: '/Applications/PSOffice.app',
+      staged: '/Applications/.PSOffice.app.update/PSOffice-0.2.0.app',
       logFile: join(appState.dataDir, 'update-log.txt'),
     })
     expect(install).not.toHaveBeenCalled()

@@ -6,19 +6,19 @@ Une compétence est un ensemble d’instructions de travail pour l’IA. Notez u
 
 **Paramètres ▸ Compétences** liste les compétences présentes sur ce PC, regroupées selon leur provenance. Chaque compétence apparaît sous son nom, comme dans les agents de programmation. Le champ de recherche en haut permet d’en trouver une par nom ou description. Une de vos compétences qui porte un titre affiche ce titre dans cette liste, dans la liste `/` et sur les pastilles, avec le nom en petit à côté. La recherche fonctionne aussi avec le titre. Un nom attribué par l’application (`skill-…`) ne s’affiche pas à côté du titre.
 
-| Provenance                         | Contenu                                                                   | Au départ   |
-| ---------------------------------- | ------------------------------------------------------------------------- | ----------- |
-| **Intégrées**                      | Les compétences fournies avec GenOffice                                   | Activées    |
-| **Mes compétences**                | Les compétences que vous avez ajoutées ou créées (`~/.ieumoffice/skills`) | Activées    |
-| **Dossier des compétences Claude** | Les compétences de `~/.claude/skills`                                     | Désactivées |
-| **Plugins Claude**                 | Les compétences des plugins Claude installés                              | Désactivées |
-| **Dossier des compétences Codex**  | Les compétences de `~/.agents/skills`                                     | Désactivées |
+| Provenance                         | Contenu                                                                 | Au départ   |
+| ---------------------------------- | ----------------------------------------------------------------------- | ----------- |
+| **Intégrées**                      | Les compétences fournies avec GenOffice                                 | Activées    |
+| **Mes compétences**                | Les compétences que vous avez ajoutées ou créées (`~/.psoffice/skills`) | Activées    |
+| **Dossier des compétences Claude** | Les compétences de `~/.claude/skills`                                   | Désactivées |
+| **Plugins Claude**                 | Les compétences des plugins Claude installés                            | Désactivées |
+| **Dossier des compétences Codex**  | Les compétences de `~/.agents/skills`                                   | Désactivées |
 
 - L’interrupteur active ou désactive une compétence. Le même réglage s’applique au panneau IA de chaque éditeur, à Ask AI dans l’accueil et à la fenêtre de l’agent.
 - Pour une compétence activée, choisissez **L’IA décide** ou **Seulement sur appel**. Au départ, c’est L’IA décide. Avec Seulement sur appel, la compétence n’est utilisée que lorsque vous l’appelez vous-même. Pour une compétence désactivée, ce choix reste affiché, grisé, et vous pouvez le régler avant de la réactiver.
 - Des compétences de provenances différentes peuvent porter le même nom. L’étiquette de provenance de chaque ligne permet de les distinguer. Quand deux compétences du même nom sont activées, une seule figure dans la liste `/` et est utilisée : la première dans l’ordre Mes compétences, Intégrées, Dossier des compétences Claude, Dossier des compétences Codex, Plugins Claude. La ligne de l’autre indique quelle compétence est utilisée à sa place.
 - Le menu d’options contient **Voir le contenu**, **Modifier** (mes compétences uniquement), **Exporter (zip)** (mes compétences uniquement) et **Ouvrir le dossier**. Les compétences intégrées n’ont pas **Ouvrir le dossier**. **Où l’utiliser** ouvre directement l’endroit où l’on choisit les éditeurs dans lesquels la compétence est utilisée.
-- Mes compétences se trouvent dans le dossier `~/.ieumoffice/skills`. Sous Windows, il s’agit de `C:\Users\<nom d’utilisateur>\.ieumoffice\skills`. **Ouvrir le dossier**, dans le menu d’options, ouvre le dossier de la compétence.
+- Mes compétences se trouvent dans le dossier `~/.psoffice/skills`. Sous Windows, il s’agit de `C:\Users\<nom d’utilisateur>\.psoffice\skills`. **Ouvrir le dossier**, dans le menu d’options, ouvre le dossier de la compétence.
 - **Mettre à la corbeille** déplace une de mes compétences dans la corbeille du système, d’où vous pouvez la restaurer. Si une compétence du même nom venant d’une autre source est désactivée, la confirmation affiche une case cochée pour la réactiver. Décochez-la pour la laisser désactivée.
 - Une compétence intégrée se masque au lieu d’être supprimée : choisissez **Masquer**. **Afficher à nouveau**, en bas de la liste, la rétablit telle qu’elle était au départ.
 - Pour modifier une compétence intégrée ou issue d’un autre programme, choisissez **Copier dans mes compétences**. La copie apparaît dans mes compétences et l’original est désactivé.
@@ -56,7 +56,7 @@ Quand vous modifiez l’une de vos compétences, en installez une autre du même
 - **Voir les différences** montre quelles lignes de `SKILL.md` reviendraient, lesquelles disparaîtraient et quels autres fichiers changeraient.
 - **Revenir à cette version** remet les fichiers de cette version tels qu’ils étaient. La version actuelle est conservée elle aussi : vous pourrez y revenir. L’état activé ou non et le moment d’utilisation restent tels que vous les avez réglés.
 - Les versions conservées restent tant que vous ne les supprimez pas. **Supprimer** en supprime une définitivement.
-- Les versions se trouvent dans le dossier `~/.ieumoffice/skill-history`. **Mettre à la corbeille** sur une compétence envoie aussi ses versions conservées à la corbeille.
+- Les versions se trouvent dans le dossier `~/.psoffice/skill-history`. **Mettre à la corbeille** sur une compétence envoie aussi ses versions conservées à la corbeille.
 
 ## Appeler une compétence dans le panneau IA
 

@@ -208,7 +208,7 @@ describe('strings', () => {
     for (const lang of LANGS) {
       const dict = (pdfToolsStrings as Record<string, Record<string, string>>)[lang]!
       for (const value of Object.values(dict)) {
-        expect(value).not.toMatch(/IeumOffice|이음오피스|GenOffice|생활기록부|학생/)
+        expect(value).not.toMatch(/PSOffice|PS 오피스|GenOffice|생활기록부|학생/)
       }
     }
   })

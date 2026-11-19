@@ -1,12 +1,12 @@
 #!/bin/sh
-# IeumOffice command line, installed without the desktop app.
+# PSOffice command line, installed without the desktop app.
 #
-#   curl -fsSL https://ieumoffice.com/cli/install.sh | sh
+#   curl -fsSL https://raw.githubusercontent.com/pstextiles/ps-office/main/packaging/cli/install.sh | sh
 #
 # Flags (after `sh -s --` when piping):
 #   --version <v>   release to install (default: the version this script shipped with)
-#   --prefix <dir>  where the files live (default: $XDG_DATA_HOME/ieumoffice-cli)
-#   --bin <dir>     where the `ieumoffice` launcher goes (default: $XDG_BIN_HOME or ~/.local/bin)
+#   --prefix <dir>  where the files live (default: $XDG_DATA_HOME/psoffice-cli)
+#   --bin <dir>     where the `psoffice` launcher goes (default: $XDG_BIN_HOME or ~/.local/bin)
 #   --node <path>   use this Node 22+ instead of the one on PATH
 #   --uninstall     remove the launcher and the installed files
 #
@@ -16,16 +16,16 @@
 # shell profile edits, no other program is touched.
 set -eu
 
-REPO=pblsketch/ieumoffice
+REPO=pstextiles/ps-office
 # bumped by the release step together with the published archive
 DEFAULT_VERSION=0.13.0
 NODE_VERSION=22.12.0
-MARKER='# ieumoffice launcher (command-line install)'
+MARKER='# psoffice launcher (command-line install)'
 
 : "${HOME:?HOME is not set}"
 
 VERSION=$DEFAULT_VERSION
-PREFIX=${XDG_DATA_HOME:-$HOME/.local/share}/ieumoffice-cli
+PREFIX=${XDG_DATA_HOME:-$HOME/.local/share}/psoffice-cli
 BIN=${XDG_BIN_HOME:-$HOME/.local/bin}
 NODE_ARG=
 UNINSTALL=
@@ -38,13 +38,13 @@ die() {
 
 usage() {
   cat <<'TEXT'
-IeumOffice command line, installed without the desktop app.
+PSOffice command line, installed without the desktop app.
 
   sh install.sh [--version <v>] [--prefix <dir>] [--bin <dir>] [--node <path>] [--uninstall]
 
   --version <v>   release to install (default: the one this script shipped with)
-  --prefix <dir>  where the files live (default: $XDG_DATA_HOME/ieumoffice-cli)
-  --bin <dir>     where the ieumoffice launcher goes (default: ~/.local/bin)
+  --prefix <dir>  where the files live (default: $XDG_DATA_HOME/psoffice-cli)
+  --bin <dir>     where the psoffice launcher goes (default: ~/.local/bin)
   --node <path>   use this Node 22+ instead of the one on PATH
   --uninstall     remove the launcher and the installed files
 TEXT
@@ -65,7 +65,7 @@ done
 # --- removing -----------------------------------------------------------------
 
 if [ -n "$UNINSTALL" ]; then
-  launcher=$BIN/ieumoffice
+  launcher=$BIN/psoffice
   if [ -f "$launcher" ] && grep -qF "$MARKER" "$launcher" 2>/dev/null; then
     rm -f "$launcher"
     say "removed $launcher"
@@ -151,8 +151,8 @@ fi
 
 # --- the command line ---------------------------------------------------------
 
-say "installing IeumOffice command line $VERSION"
-asset="ieumoffice-cli_${VERSION}_${os}-${arch}.tar.gz"
+say "installing PSOffice command line $VERSION"
+asset="psoffice-cli_${VERSION}_${os}-${arch}.tar.gz"
 base="https://github.com/$REPO/releases/download/v$VERSION"
 download "$base/$asset" "$tmp/$asset"
 download "$base/$asset.sha256" "$tmp/$asset.sha256"
@@ -161,11 +161,11 @@ verify "$tmp/$asset" "$tmp/$asset.sha256"
 rm -rf "$PREFIX/$VERSION"
 mkdir -p "$PREFIX"
 tar -xzf "$tmp/$asset" -C "$PREFIX"
-mv "$PREFIX/ieumoffice-cli" "$PREFIX/$VERSION"
+mv "$PREFIX/psoffice-cli" "$PREFIX/$VERSION"
 ln -sfn "$VERSION" "$PREFIX/current"
 
 mkdir -p "$BIN"
-launcher=$BIN/ieumoffice
+launcher=$BIN/psoffice
 if [ -L "$launcher" ]; then
   case "$(readlink "$launcher")" in
     "$PREFIX"/*) ;;

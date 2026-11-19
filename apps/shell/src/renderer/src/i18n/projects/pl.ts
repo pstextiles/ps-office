@@ -62,8 +62,7 @@ export const pl = {
   consolidateUndone: 'Przywrócono stan sprzed porządkowania.',
   undoFailed: 'Nie udało się cofnąć.',
   removeMemoryAria: 'Usuń tę pamięć: {text}',
-  filesDesc:
-    'Pliki, które AI widzi w tym projekcie. Pliki ukryte i folder .ieumoffice są pominięte.',
+  filesDesc: 'Pliki, które AI widzi w tym projekcie. Pliki ukryte i folder .psoffice są pominięte.',
   filesEmpty: 'Nie ma plików, które AI może zobaczyć.',
   filesLoadFailed: 'Nie udało się odczytać listy plików.',
   filesCount: 'Plików: {count}',

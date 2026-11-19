@@ -46,7 +46,7 @@ function connect(
   const connection = createRemoteMcpConnection({
     server: { name: 'fake', url, transport: transport ?? 'auto', headers: headers ?? {} },
     oauth: memoryOAuth(),
-    clientInfo: { name: 'IeumOffice', version: '9.9.9' },
+    clientInfo: { name: 'PSOffice', version: '9.9.9' },
     fetch: (input, init) => fetch(input, init),
     ...rest,
   })
@@ -107,7 +107,7 @@ describe('remote MCP connection', () => {
     const server = await fake()
     await connect(server.url).connect()
     expect(server.clientCapabilities()).toEqual({})
-    expect(server.clientVersion()).toMatchObject({ name: 'IeumOffice', version: '9.9.9' })
+    expect(server.clientVersion()).toMatchObject({ name: 'PSOffice', version: '9.9.9' })
   })
 
   it('refuses sampling, elicitation and roots requests from the server', async () => {

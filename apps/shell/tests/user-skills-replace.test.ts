@@ -18,7 +18,7 @@ let root: string
 let home: string
 let service: UserSkillsService
 
-const appDir = () => join(home, '.ieumoffice', 'skills')
+const appDir = () => join(home, '.psoffice', 'skills')
 
 function skillMd(name: string, extra = '', body = 'Do it.\n') {
   return `---\nname: ${name}\ndescription: About ${name}\n${extra}---\n${body}`

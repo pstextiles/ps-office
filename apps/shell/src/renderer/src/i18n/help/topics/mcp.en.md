@@ -15,27 +15,27 @@ GenOffice speaks the Model Context Protocol, so a coding agent can read, write a
 The same thing from a terminal — this is the advanced path, and the one to reach for when the agent lives somewhere the pane cannot find:
 
 ```sh
-ieumoffice mcp install all
+psoffice mcp install all
 ```
 
-It finds the coding agents on this machine and writes the stdio server entry into each one's own config, leaving the rest of that file as it found it. The entry is named `ieumoffice`. Done by hand for Claude Code, the same registration is `claude mcp add --transport stdio ieumoffice -- ieumoffice mcp`.
+It finds the coding agents on this machine and writes the stdio server entry into each one's own config, leaving the rest of that file as it found it. The entry is named `psoffice`. Done by hand for Claude Code, the same registration is `claude mcp add --transport stdio psoffice -- psoffice mcp`.
 
 ```sh
-ieumoffice mcp list             # where each agent stands
-ieumoffice mcp install cursor    # just one
-ieumoffice mcp uninstall cursor  # take it back out
+psoffice mcp list             # where each agent stands
+psoffice mcp install cursor    # just one
+psoffice mcp uninstall cursor  # take it back out
 ```
 
 An agent you installed somewhere unusual takes `--dir <path>`; `--force` rewrites an entry that is already there.
 
-`ieumoffice mcp --help` puts everything the server takes on one screen: the register, remove and list forms, serving over HTTP, and the two schema flags.
+`psoffice mcp --help` puts everything the server takes on one screen: the register, remove and list forms, serving over HTTP, and the two schema flags.
 
 ## Running it without an assistant
 
 For a client on another machine, serve it over HTTP instead:
 
 ```sh
-ieumoffice mcp --http 8765 --token <secret>
+psoffice mcp --http 8765 --token <secret>
 ```
 
 `--host <addr>` changes where it listens. Pass the same token to the client.
@@ -55,7 +55,7 @@ Every command is a tool. The interesting ones:
 
 ## Search, images and media: what an agent may use
 
-A request from the `ieumoffice` command or from an MCP client was not typed by you in the app, so GenOffice is careful with it.
+A request from the `psoffice` command or from an MCP client was not typed by you in the app, so GenOffice is careful with it.
 
 - **Search** always works and is free by default. A search provider key is used only if you selected one.
 - **Generating a picture** follows the image generation choice in Settings. The default, ChatGPT plan (Codex program), uses your ChatGPT plan through the Codex program and is **not used unless you allow it** (see below). Otherwise an image provider key you set up is used. A model the agent names is used when that route offers it.
@@ -74,16 +74,16 @@ With the switch off and no key set up, the tool answers that the feature is unav
 
 ## Schemas, and a smaller budget
 
-`apply` and `create` advertise their `ops`, `cells` and `data` parameters with the typed per-op schema, generated from `ieumoffice guide <domain> --json`. That is precise and not small. A client with a tight context window can ask for plain arrays instead:
+`apply` and `create` advertise their `ops`, `cells` and `data` parameters with the typed per-op schema, generated from `psoffice guide <domain> --json`. That is precise and not small. A client with a tight context window can ask for plain arrays instead:
 
 ```sh
-ieumoffice mcp --compact-schemas
-GENOFFICE_MCP_COMPACT_SCHEMAS=1 ieumoffice mcp
+psoffice mcp --compact-schemas
+GENOFFICE_MCP_COMPACT_SCHEMAS=1 psoffice mcp
 ```
 
 ## Why the skill
 
-An agent that does not know the op vocabulary will guess. The skill carries the reference and the design guides — the same material `ieumoffice guide` prints — so the assistant writes ops whose spec it has actually read. Install it from the pane at the top, or with `ieumoffice skill` from a terminal.
+An agent that does not know the op vocabulary will guess. The skill carries the reference and the design guides — the same material `psoffice guide` prints — so the assistant writes ops whose spec it has actually read. Install it from the pane at the top, or with `psoffice skill` from a terminal.
 
 ## What it can reach in the app
 

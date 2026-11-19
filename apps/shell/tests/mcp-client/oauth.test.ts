@@ -75,7 +75,7 @@ async function setup(
   const c = createRemoteMcpConnection({
     server: { name: 'law', url: mcp.url, transport: 'auto', headers },
     oauth: oauth.access,
-    clientInfo: { name: 'IeumOffice', version: '9.9.9' },
+    clientInfo: { name: 'PSOffice', version: '9.9.9' },
     fetch: (input, init) => fetch(input, init),
     now: () => clock.now,
   })

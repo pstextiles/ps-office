@@ -15,27 +15,27 @@ GenOffice habla el Model Context Protocol, de modo que un agente de codificació
 Lo mismo desde una terminal: esta es la vía avanzada, y la que conviene usar cuando el agente está en un sitio donde el panel no puede encontrarlo:
 
 ```sh
-ieumoffice mcp install all
+psoffice mcp install all
 ```
 
-Encuentra los agentes de codificación de este equipo y escribe la entrada del servidor stdio en la configuración de cada uno, dejando el resto del archivo tal como lo encontró. La entrada se llama `ieumoffice`. Hecho a mano para Claude Code, el mismo registro es `claude mcp add --transport stdio ieumoffice -- ieumoffice mcp`.
+Encuentra los agentes de codificación de este equipo y escribe la entrada del servidor stdio en la configuración de cada uno, dejando el resto del archivo tal como lo encontró. La entrada se llama `psoffice`. Hecho a mano para Claude Code, el mismo registro es `claude mcp add --transport stdio psoffice -- psoffice mcp`.
 
 ```sh
-ieumoffice mcp list             # where each agent stands
-ieumoffice mcp install cursor    # just one
-ieumoffice mcp uninstall cursor  # take it back out
+psoffice mcp list             # where each agent stands
+psoffice mcp install cursor    # just one
+psoffice mcp uninstall cursor  # take it back out
 ```
 
 Un agente instalado en un sitio poco habitual necesita `--dir <path>`; `--force` reescribe una entrada que ya está ahí.
 
-`ieumoffice mcp --help` reúne en una pantalla todo lo que acepta el servidor: las formas de registro, eliminación y listado, el servicio por HTTP y las dos opciones de esquema.
+`psoffice mcp --help` reúne en una pantalla todo lo que acepta el servidor: las formas de registro, eliminación y listado, el servicio por HTTP y las dos opciones de esquema.
 
 ## Ejecutarlo sin asistente
 
 Para un cliente en otro equipo, sírvalo por HTTP en su lugar:
 
 ```sh
-ieumoffice mcp --http 8765 --token <secret>
+psoffice mcp --http 8765 --token <secret>
 ```
 
 `--host <addr>` cambia dónde escucha. Pásele al cliente el mismo token.
@@ -55,7 +55,7 @@ Cada orden es una herramienta. Las interesantes:
 
 ## Búsqueda, imágenes y medios: qué puede usar un agente
 
-Una solicitud que llega del comando `ieumoffice` o de un cliente MCP no la ha escrito usted en la aplicación, así que GenOffice la trata con cuidado.
+Una solicitud que llega del comando `psoffice` o de un cliente MCP no la ha escrito usted en la aplicación, así que GenOffice la trata con cuidado.
 
 - **La búsqueda** funciona siempre y es gratuita de forma predeterminada. La clave de un proveedor de búsqueda solo se usa si usted seleccionó una.
 - **Generar una imagen** sigue la opción de generación de imágenes de los ajustes. La opción predeterminada, Plan de ChatGPT (programa Codex), usa su plan de ChatGPT a través del programa Codex y **no se usa a menos que usted lo permita** (vea más abajo). Si no, se usa la clave de un proveedor de imágenes configurado. Un modelo que el agente nombre se usa cuando esa vía lo ofrece.
@@ -74,16 +74,16 @@ Con el interruptor desactivado y sin ninguna clave configurada, la herramienta r
 
 ## Esquemas y un presupuesto más pequeño
 
-`apply` y `create` anuncian sus parámetros `ops`, `cells` y `data` con el esquema tipado de cada op, generado a partir de `ieumoffice guide <domain> --json`. Es preciso y no es pequeño. Un cliente con la ventana de contexto apretada puede pedir matrices sencillas en su lugar:
+`apply` y `create` anuncian sus parámetros `ops`, `cells` y `data` con el esquema tipado de cada op, generado a partir de `psoffice guide <domain> --json`. Es preciso y no es pequeño. Un cliente con la ventana de contexto apretada puede pedir matrices sencillas en su lugar:
 
 ```sh
-ieumoffice mcp --compact-schemas
-GENOFFICE_MCP_COMPACT_SCHEMAS=1 ieumoffice mcp
+psoffice mcp --compact-schemas
+GENOFFICE_MCP_COMPACT_SCHEMAS=1 psoffice mcp
 ```
 
 ## Por qué el skill
 
-Un agente que no conoce el vocabulario de las ops adivinará. El skill lleva la referencia y las guías de diseño —el mismo material que imprime `ieumoffice guide`—, de modo que el asistente escribe ops cuya especificación realmente ha leído. Instálelo desde el panel de arriba, o con `ieumoffice skill` desde una terminal.
+Un agente que no conoce el vocabulario de las ops adivinará. El skill lleva la referencia y las guías de diseño —el mismo material que imprime `psoffice guide`—, de modo que el asistente escribe ops cuya especificación realmente ha leído. Instálelo desde el panel de arriba, o con `psoffice skill` desde una terminal.
 
 ## Qué alcanza en la aplicación
 

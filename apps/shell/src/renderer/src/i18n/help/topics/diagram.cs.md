@@ -38,7 +38,7 @@ Editor diagramů otevírá soubory draw.io na kartě. Kreslíte v něm vývojov�
 - AI čte diagram jako text: stránky a u každého tvaru a spojnice jeho id, text, tvar, polohu a propojení, k tomu i to, které tvary jste vybrali. Diagram jako obrázek nevidí.
 - Změny od AI se objeví hned. Každá změna je jeden krok vrácení zpět (Ctrl+Z), tvary a spojnice, které AI změnila, dostanou žlutý obrys a **Vrátit tyto změny** na kartě pod odpovědí vezme zpět celé kolo AI. Pokud je kterákoli část změny odmítnuta, diagram zůstane, jaký byl.
 - U nového vývojového diagramu, sekvenčního diagramu a podobně AI napíše kód Mermaid a GenOffice ho ve vašem počítači převede na tvary. Rozvržení se může trochu lišit od toho, které vytvoří web draw.io.
-- Diagramy lze také připojit v panelu AI ostatních editorů, vybrat přes `@` a najít vyhledáváním souborů na domovské stránce. [Příkazy terminálu](help://cli) diagramy také čtou, upravují a vytvářejí (`ieumoffice diagram read`, `ieumoffice diagram apply`, `ieumoffice create --type drawio`).
+- Diagramy lze také připojit v panelu AI ostatních editorů, vybrat přes `@` a najít vyhledáváním souborů na domovské stránce. [Příkazy terminálu](help://cli) diagramy také čtou, upravují a vytvářejí (`psoffice diagram read`, `psoffice diagram apply`, `psoffice create --type drawio`).
 
 ## Používání internetu
 

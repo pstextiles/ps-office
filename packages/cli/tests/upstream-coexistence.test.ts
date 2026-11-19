@@ -51,16 +51,12 @@ import { run, tempDir } from './helpers'
 const REPO = resolve(__dirname, '../../..')
 
 const OURS: McpLaunch = {
-  command: '/Applications/IeumOffice.app/Contents/Resources/cli/ieumoffice',
+  command: '/Applications/PSOffice.app/Contents/Resources/cli/psoffice',
   args: ['mcp'],
 }
 const OURS_WINDOWS: McpLaunch = {
-  command:
-    'C:\\Users\\u\\AppData\\Local\\Programs\\IeumOffice\\resources\\cli\\..\\..\\IeumOffice.exe',
-  args: [
-    'C:\\Users\\u\\AppData\\Local\\Programs\\IeumOffice\\resources\\cli\\genoffice.cjs',
-    'mcp',
-  ],
+  command: 'C:\\Users\\u\\AppData\\Local\\Programs\\PSOffice\\resources\\cli\\..\\..\\PSOffice.exe',
+  args: ['C:\\Users\\u\\AppData\\Local\\Programs\\PSOffice\\resources\\cli\\genoffice.cjs', 'mcp'],
   env: { ELECTRON_RUN_AS_NODE: '1' },
 }
 const UPSTREAM_POSIX = {
@@ -77,15 +73,15 @@ const UPSTREAM_WINDOWS = {
 const pretty = (doc: unknown) => `${JSON.stringify(doc, null, 2)}\n`
 
 describe('registered names', () => {
-  it('are all ieumoffice', () => {
-    expect(CLI_COMMAND).toBe('ieumoffice')
-    expect(MCP_SERVER_NAME).toBe('ieumoffice')
-    expect(SKILL_NAME).toBe('ieumoffice')
-    expect(HOME_DIR_NAME).toBe('.ieumoffice')
+  it('are all psoffice', () => {
+    expect(CLI_COMMAND).toBe('psoffice')
+    expect(MCP_SERVER_NAME).toBe('psoffice')
+    expect(SKILL_NAME).toBe('psoffice')
+    expect(HOME_DIR_NAME).toBe('.psoffice')
   })
 
-  it('keeps the audit log under ~/.ieumoffice', () => {
-    expect(auditLogPath({})).toBe(join(homedir(), '.ieumoffice', 'cli-audit.jsonl'))
+  it('keeps the audit log under ~/.psoffice', () => {
+    expect(auditLogPath({})).toBe(join(homedir(), '.psoffice', 'cli-audit.jsonl'))
     expect(auditLogPath({ GENOFFICE_AUTH_DIR: '/custom' })).toBe(join('/custom', 'cli-audit.jsonl'))
   })
 })
@@ -120,7 +116,7 @@ describe("an upstream genoffice MCP entry in an agent's JSON config", () => {
 
       writeMcpEntry(id, file, OURS)
       let doc = JSON.parse(readFileSync(file, 'utf-8'))
-      expect(Object.keys(doc[key])).toEqual(['genoffice', 'other', 'ieumoffice'])
+      expect(Object.keys(doc[key])).toEqual(['genoffice', 'other', 'psoffice'])
       expect(doc[key].genoffice).toEqual(upstream)
       expect(readMcpEntry(id, file, OURS).status).toBe('registered')
 
@@ -139,8 +135,8 @@ describe("an upstream genoffice MCP entry in an agent's JSON config", () => {
   )
 
   it('is never offered as the snippet key', () => {
-    expect(Object.keys(JSON.parse(mcpSnippet('cursor', OURS)).mcpServers)).toEqual(['ieumoffice'])
-    expect(mcpSnippet('codex', OURS)).toContain('[mcp_servers.ieumoffice]')
+    expect(Object.keys(JSON.parse(mcpSnippet('cursor', OURS)).mcpServers)).toEqual(['psoffice'])
+    expect(mcpSnippet('codex', OURS)).toContain('[mcp_servers.psoffice]')
     expect(mcpSnippet('codex', OURS)).not.toContain('genoffice')
   })
 })
@@ -170,7 +166,7 @@ describe('an upstream [mcp_servers.genoffice] table in the Codex config', () => 
     // re-install with an env sub-table of our own, then back without it
     writeMcpEntry('codex', file, OURS_WINDOWS)
     expect(readFileSync(file, 'utf-8')).toBe(`${ORIGINAL}\n${table(OURS_WINDOWS)}`)
-    expect(table(OURS_WINDOWS)).toContain('[mcp_servers.ieumoffice.env]')
+    expect(table(OURS_WINDOWS)).toContain('[mcp_servers.psoffice.env]')
     expect(readMcpEntry('codex', file, OURS)).toEqual({
       status: 'stale',
       command: OURS_WINDOWS.command,
@@ -188,13 +184,13 @@ describe('an upstream [mcp_servers.genoffice] table in the Codex config', () => 
     const head = '[mcp_servers.genoffice]\ncommand = "genoffice"\nargs = ["mcp"]\n\n'
     const tail = '[mcp_servers.genoffice.env]\nFOO = "1"\n\n[mcp_servers.other]\ncommand = "npx"\n'
     const stale =
-      '[mcp_servers.ieumoffice]\ncommand = "/old/IeumOffice.app/Contents/Resources/cli/ieumoffice"\nargs = ["mcp"]\n\n' +
-      '[mcp_servers.ieumoffice.env]\nBAR = "2"\n\n'
+      '[mcp_servers.psoffice]\ncommand = "/old/PSOffice.app/Contents/Resources/cli/psoffice"\nargs = ["mcp"]\n\n' +
+      '[mcp_servers.psoffice.env]\nBAR = "2"\n\n'
     writeFileSync(file, head + stale + tail)
 
     expect(readMcpEntry('codex', file, OURS)).toEqual({
       status: 'stale',
-      command: '/old/IeumOffice.app/Contents/Resources/cli/ieumoffice',
+      command: '/old/PSOffice.app/Contents/Resources/cli/psoffice',
     })
     writeMcpEntry('codex', file, OURS)
     expect(readFileSync(file, 'utf-8')).toBe(`${head}${tail}\n${table(OURS)}`)
@@ -208,7 +204,7 @@ describe('an upstream [mcp_servers.genoffice] table in the Codex config', () => 
     '[ mcp_servers . genoffice ]',
     '[mcp_servers.genoffice.env]',
     '[mcp_servers.genoffice-editor]',
-    '[mcp_servers.ieumoffice-editor]',
+    '[mcp_servers.psoffice-editor]',
   ])('%s is not our table', (header) => {
     const file = join(tempDir(), 'config.toml')
     const original = `${header}\ncommand = "genoffice"\nargs = ["mcp"]\n`
@@ -225,9 +221,9 @@ describe('an upstream [mcp_servers.genoffice] table in the Codex config', () => 
 describe('recognising our own launcher in an existing entry', () => {
   it('accepts this product only, never the upstream launcher or app', () => {
     expect(isGenofficeLauncher(OURS.command, OURS.args)).toBe(true)
-    expect(isGenofficeLauncher('C:\\IeumOffice\\resources\\cli\\ieumoffice.cmd')).toBe(true)
+    expect(isGenofficeLauncher('C:\\PSOffice\\resources\\cli\\psoffice.cmd')).toBe(true)
     expect(isGenofficeLauncher(OURS_WINDOWS.command, OURS_WINDOWS.args)).toBe(true)
-    expect(isGenofficeLauncher('ieumoffice', ['mcp'])).toBe(true)
+    expect(isGenofficeLauncher('psoffice', ['mcp'])).toBe(true)
     // a checkout runs the bundle on the system node
     expect(isGenofficeLauncher('node', ['/src/packages/cli/dist/genoffice.cjs', 'mcp'])).toBe(true)
 
@@ -237,9 +233,9 @@ describe('recognising our own launcher in an existing entry', () => {
     expect(isGenofficeLauncher('genoffice', ['mcp'])).toBe(false)
   })
 
-  it('reports an ieumoffice entry that starts the upstream app as occupied, not as ours', () => {
+  it('reports an psoffice entry that starts the upstream app as occupied, not as ours', () => {
     const file = join(tempDir(), 'mcp.json')
-    const original = pretty({ mcpServers: { ieumoffice: { type: 'stdio', ...UPSTREAM_WINDOWS } } })
+    const original = pretty({ mcpServers: { psoffice: { type: 'stdio', ...UPSTREAM_WINDOWS } } })
     writeFileSync(file, original)
     expect(readMcpEntry('cursor', file, OURS)).toEqual({
       status: 'occupied',
@@ -248,13 +244,13 @@ describe('recognising our own launcher in an existing entry', () => {
     const toml = join(tempDir(), 'config.toml')
     writeFileSync(
       toml,
-      `[mcp_servers.ieumoffice]\ncommand = ${JSON.stringify(UPSTREAM_POSIX.command)}\nargs = ["mcp"]\n`,
+      `[mcp_servers.psoffice]\ncommand = ${JSON.stringify(UPSTREAM_POSIX.command)}\nargs = ["mcp"]\n`,
     )
     expect(readMcpEntry('codex', toml, OURS).status).toBe('occupied')
   })
 })
 
-describe('ieumoffice mcp on a machine that has the upstream registered', () => {
+describe('psoffice mcp on a machine that has the upstream registered', () => {
   it('lists, installs, re-installs and uninstalls without touching the upstream entries', async () => {
     const home = tempDir()
     mkdirSync(join(home, '.cursor'))
@@ -297,8 +293,8 @@ describe('ieumoffice mcp on a machine that has the upstream registered', () => {
     const installed = await run(['mcp', 'install', 'all', '--json'], { env })
     expect(installed.code).toBe(0)
     expect(rowsOf(installed).map((a) => a.status)).toEqual(['installed', 'installed'])
-    expect(JSON.parse(readFileSync(cursor, 'utf-8')).mcpServers.ieumoffice).toBeDefined()
-    expect(readFileSync(codex, 'utf-8')).toContain('\n[mcp_servers.ieumoffice]\n')
+    expect(JSON.parse(readFileSync(cursor, 'utf-8')).mcpServers.psoffice).toBeDefined()
+    expect(readFileSync(codex, 'utf-8')).toContain('\n[mcp_servers.psoffice]\n')
     upstreamIntact()
 
     const again = await run(['mcp', 'install', 'all', '--json'], { env })
@@ -317,7 +313,7 @@ describe('ieumoffice mcp on a machine that has the upstream registered', () => {
 describe('an upstream genoffice skill folder', () => {
   const ourSkill = bundledSkillFrom(
     Buffer.from(
-      "---\nname: ieumoffice\ndescription: test\nmetadata:\n  version: 1.2.0\n  cli: '>=0.4.0'\n---\n\nRun `ieumoffice --version` first.\n",
+      "---\nname: psoffice\ndescription: test\nmetadata:\n  version: 1.2.0\n  cli: '>=0.4.0'\n---\n\nRun `psoffice --version` first.\n",
     ),
   )
   const UPSTREAM_SKILL =
@@ -339,7 +335,7 @@ describe('an upstream genoffice skill folder', () => {
   it('is not seen as an install of ours and survives install, re-install and uninstall', () => {
     const skills = skillsDirWithUpstream()
     const ledger: SkillLedger = {}
-    const path = join(skills, 'ieumoffice', 'SKILL.md')
+    const path = join(skills, 'psoffice', 'SKILL.md')
     expect(skillFilePath(skills)).toBe(path)
     expect(readInstallState(skills, ourSkill, ledger)).toEqual({ status: 'missing', path })
 
@@ -352,7 +348,7 @@ describe('an upstream genoffice skill folder', () => {
     upstreamIntact(skills)
 
     expect(uninstallSkill(skills, ledger)).toBe(true)
-    expect(existsSync(join(skills, 'ieumoffice'))).toBe(false)
+    expect(existsSync(join(skills, 'psoffice'))).toBe(false)
     expect(readdirSync(skills)).toEqual(['genoffice'])
     upstreamIntact(skills)
   })
@@ -375,16 +371,14 @@ describe('an upstream genoffice skill folder', () => {
 
   it("copied into our folder name is somebody else's content, not our skill", () => {
     const skills = join(tempDir(), 'skills')
-    mkdirSync(join(skills, 'ieumoffice'), { recursive: true })
-    writeFileSync(join(skills, 'ieumoffice', 'SKILL.md'), UPSTREAM_SKILL)
+    mkdirSync(join(skills, 'psoffice'), { recursive: true })
+    writeFileSync(join(skills, 'psoffice', 'SKILL.md'), UPSTREAM_SKILL)
     expect(readInstallState(skills, ourSkill, {}).status).toBe('occupied')
   })
 
   it('stays out of the uploaded zip layout', async () => {
     const zip = await JSZip.loadAsync(await buildSkillZip(ourSkill))
-    expect(Object.keys(zip.files).filter((f) => !zip.files[f]!.dir)).toEqual([
-      'ieumoffice/SKILL.md',
-    ])
+    expect(Object.keys(zip.files).filter((f) => !zip.files[f]!.dir)).toEqual(['psoffice/SKILL.md'])
     expect(Object.keys(zip.files).some((f) => f.startsWith('genoffice'))).toBe(false)
   })
 
@@ -404,13 +398,13 @@ describe('an upstream genoffice skill folder', () => {
     expect(claude).toMatchObject({ status: 'missing', installed_version: null })
 
     expect((await run(['skill', 'install', 'claude-code', '--json'], { env })).code).toBe(0)
-    expect(readFileSync(join(skills, 'ieumoffice', 'SKILL.md'), 'utf-8')).toBe(
-      readFileSync(join(REPO, 'skills', 'ieumoffice', 'SKILL.md'), 'utf-8'),
+    expect(readFileSync(join(skills, 'psoffice', 'SKILL.md'), 'utf-8')).toBe(
+      readFileSync(join(REPO, 'skills', 'psoffice', 'SKILL.md'), 'utf-8'),
     )
     const again = await run(['skill', 'install', 'claude-code', '--json'], { env })
     expect(again.code).toBe(0)
     expect(again.json().detail.agents[0]).toMatchObject({ status: 'installed' })
-    expect(readdirSync(skills).sort()).toEqual(['genoffice', 'ieumoffice'])
+    expect(readdirSync(skills).sort()).toEqual(['genoffice', 'psoffice'])
     expect(readdirSync(join(skills, 'genoffice'))).toEqual(['SKILL.md'])
     expect(readFileSync(join(skills, 'genoffice', 'SKILL.md'), 'utf-8')).toBe(UPSTREAM_SKILL)
   })
@@ -424,12 +418,12 @@ describe('an upstream genoffice launcher on the PATH', () => {
     for (const f of ['genoffice', 'genoffice.cjs', 'genoffice.cmd']) {
       writeFileSync(join(upstream, f), '')
     }
-    const ours = join(dir, 'opt', 'IeumOffice', 'resources', 'cli')
+    const ours = join(dir, 'opt', 'PSOffice', 'resources', 'cli')
     mkdirSync(ours, { recursive: true })
-    for (const f of ['ieumoffice', 'genoffice.cjs', 'ieumoffice.cmd']) {
+    for (const f of ['psoffice', 'genoffice.cjs', 'psoffice.cmd']) {
       writeFileSync(join(ours, f), '')
     }
-    return { dir, upstream: join(upstream, 'genoffice'), launcher: join(ours, 'ieumoffice') }
+    return { dir, upstream: join(upstream, 'genoffice'), launcher: join(ours, 'psoffice') }
   }
 
   it('keeps its link while ours is added beside it under our own name', () => {
@@ -441,13 +435,13 @@ describe('an upstream genoffice launcher on the PATH', () => {
 
     expect(inspectCliLink(opts)).toMatchObject({
       status: 'missing',
-      location: join(bin, 'ieumoffice'),
+      location: join(bin, 'psoffice'),
     })
-    expect(installCliLink(opts)).toEqual({ status: 'linked', location: join(bin, 'ieumoffice') })
-    expect(readlinkSync(join(bin, 'ieumoffice'))).toBe(m.launcher)
+    expect(installCliLink(opts)).toEqual({ status: 'linked', location: join(bin, 'psoffice') })
+    expect(readlinkSync(join(bin, 'psoffice'))).toBe(m.launcher)
     expect(readlinkSync(join(bin, 'genoffice'))).toBe(m.upstream)
     expect(installCliLink(opts).status).toBe('present')
-    expect(readdirSync(bin).sort()).toEqual(['genoffice', 'ieumoffice'])
+    expect(readdirSync(bin).sort()).toEqual(['genoffice', 'psoffice'])
     expect(readlinkSync(join(bin, 'genoffice'))).toBe(m.upstream)
     expect(opts.launcher).toBe(m.launcher)
     expect(installCliLink(opts).manual).toBeUndefined()
@@ -461,27 +455,27 @@ describe('an upstream genoffice launcher on the PATH', () => {
     // a link under our name that runs the upstream launcher belongs to whoever made it
     const bin = join(m.dir, 'bin')
     mkdirSync(bin)
-    symlinkSync(m.upstream, join(bin, 'ieumoffice'))
+    symlinkSync(m.upstream, join(bin, 'psoffice'))
     const opts = { launcher: m.launcher, platform: 'linux' as const, candidateDirs: [bin] }
     expect(inspectCliLink(opts).status).toBe('occupied')
     expect(installCliLink(opts).status).toBe('occupied')
-    expect(readlinkSync(join(bin, 'ieumoffice'))).toBe(m.upstream)
+    expect(readlinkSync(join(bin, 'psoffice'))).toBe(m.upstream)
   })
 
   it('does not stop a second copy of this product from taking over our own link', () => {
     const m = machine()
-    const older = join(m.dir, 'old', 'IeumOffice', 'resources', 'cli')
+    const older = join(m.dir, 'old', 'PSOffice', 'resources', 'cli')
     mkdirSync(older, { recursive: true })
-    writeFileSync(join(older, 'ieumoffice'), '')
+    writeFileSync(join(older, 'psoffice'), '')
     writeFileSync(join(older, 'genoffice.cjs'), '')
-    expect(isOurLauncher(join(older, 'ieumoffice'), m.launcher)).toBe(true)
+    expect(isOurLauncher(join(older, 'psoffice'), m.launcher)).toBe(true)
     const bin = join(m.dir, 'bin')
     mkdirSync(bin)
-    symlinkSync(join(older, 'ieumoffice'), join(bin, 'ieumoffice'))
+    symlinkSync(join(older, 'psoffice'), join(bin, 'psoffice'))
     writeFileSync(join(bin, 'genoffice'), '#!/bin/sh\n')
     const opts = { launcher: m.launcher, platform: 'linux' as const, candidateDirs: [bin] }
     expect(installCliLink(opts).status).toBe('linked')
-    expect(readlinkSync(join(bin, 'ieumoffice'))).toBe(m.launcher)
+    expect(readlinkSync(join(bin, 'psoffice'))).toBe(m.launcher)
     expect(readFileSync(join(bin, 'genoffice'), 'utf-8')).toBe('#!/bin/sh\n')
   })
 
@@ -489,11 +483,11 @@ describe('an upstream genoffice launcher on the PATH', () => {
     const m = machine()
     const absent = join(m.dir, 'no-such-bin')
     const r = installCliLink({ launcher: m.launcher, platform: 'linux', candidateDirs: [absent] })
-    expect(r.location).toBe(join(absent, 'ieumoffice'))
-    expect(r.manual).toContain('/usr/local/bin/ieumoffice')
+    expect(r.location).toBe(join(absent, 'psoffice'))
+    expect(r.manual).toContain('/usr/local/bin/psoffice')
 
     const scripts: string[] = []
-    const win = 'C:\\Users\\u\\AppData\\Local\\Programs\\IeumOffice\\resources\\cli\\ieumoffice.cmd'
+    const win = 'C:\\Users\\u\\AppData\\Local\\Programs\\PSOffice\\resources\\cli\\psoffice.cmd'
     const out = installCliLink({
       launcher: win,
       platform: 'win32',
@@ -502,7 +496,7 @@ describe('an upstream genoffice launcher on the PATH', () => {
         return { ok: true, stdout: 'linked\n' }
       },
     })
-    expect(out.location).toBe('C:\\Users\\u\\AppData\\Local\\Programs\\IeumOffice\\resources\\cli')
+    expect(out.location).toBe('C:\\Users\\u\\AppData\\Local\\Programs\\PSOffice\\resources\\cli')
     // the existing value is kept whole and our directory appended: no entry is dropped
     expect(scripts[0]).toContain("$next = (@($p, $dir) | Where-Object { $_ }) -join ';'")
     expect(scripts[0]).not.toMatch(/GenOffice\\resources/)
@@ -515,64 +509,62 @@ describe('finding the app', () => {
   it('looks only where this product installs', () => {
     const env = { LOCALAPPDATA: 'C:\\Users\\u\\AppData\\Local', ProgramFiles: 'C:\\Program Files' }
     expect(installedAppBinaries(env, 'win32', null)).toEqual([
-      join(env.LOCALAPPDATA, 'Programs', 'IeumOffice', 'IeumOffice.exe'),
-      join(env.ProgramFiles, 'IeumOffice', 'IeumOffice.exe'),
+      join(env.LOCALAPPDATA, 'Programs', 'PSOffice', 'PSOffice.exe'),
+      join(env.ProgramFiles, 'PSOffice', 'PSOffice.exe'),
     ])
     expect(installedAppBinaries({}, 'darwin', null).map(posix)).toEqual([
-      '/Applications/IeumOffice.app/Contents/MacOS/IeumOffice',
-      posix(join(homedir(), 'Applications/IeumOffice.app/Contents/MacOS/IeumOffice')),
+      '/Applications/PSOffice.app/Contents/MacOS/PSOffice',
+      posix(join(homedir(), 'Applications/PSOffice.app/Contents/MacOS/PSOffice')),
     ])
-    expect(installedAppBinaries({}, 'linux', null).map(posix)).toEqual([
-      '/opt/IeumOffice/ieumoffice',
-    ])
+    expect(installedAppBinaries({}, 'linux', null).map(posix)).toEqual(['/opt/PSOffice/psoffice'])
     for (const platform of ['win32', 'darwin', 'linux'] as const) {
       const found = installedAppBinaries(env, platform, null).map(posix)
       expect(found.length).toBeGreaterThan(0)
       for (const p of found) {
         expect(p).not.toMatch(/GenOffice|\/genoffice$/)
         expect(p).not.toBe('/usr/bin/genoffice')
-        expect(p).toMatch(/\/IeumOffice(\.app)?\//)
+        expect(p).toMatch(/\/PSOffice(\.app)?\//)
       }
     }
   })
 
   it('resolves the binary of the install that ships this CLI', () => {
-    expect(appBinaryForResources(join('D:\\Apps\\IeumOffice', 'resources'), 'win32')).toBe(
-      join('D:\\Apps\\IeumOffice', 'IeumOffice.exe'),
+    expect(appBinaryForResources(join('D:\\Apps\\PSOffice', 'resources'), 'win32')).toBe(
+      join('D:\\Apps\\PSOffice', 'PSOffice.exe'),
     )
     expect(
-      posix(appBinaryForResources('/Volumes/Work/IeumOffice.app/Contents/Resources', 'darwin')),
-    ).toBe('/Volumes/Work/IeumOffice.app/Contents/MacOS/IeumOffice')
-    expect(posix(appBinaryForResources('/opt/IeumOffice/resources', 'linux'))).toBe(
-      '/opt/IeumOffice/ieumoffice',
+      posix(appBinaryForResources('/Volumes/Work/PSOffice.app/Contents/Resources', 'darwin')),
+    ).toBe('/Volumes/Work/PSOffice.app/Contents/MacOS/PSOffice')
+    expect(posix(appBinaryForResources('/opt/PSOffice/resources', 'linux'))).toBe(
+      '/opt/PSOffice/psoffice',
     )
   })
 
   it('starts the MCP server on our app binary, never on an upstream one beside the launcher', () => {
-    const dir = 'C:\\Users\\Jane Doe\\AppData\\Local\\Programs\\IeumOffice\\resources\\cli'
+    const dir = 'C:\\Users\\Jane Doe\\AppData\\Local\\Programs\\PSOffice\\resources\\cli'
     expect(mcpLaunch({ status: 'present', launcherDir: dir })).toEqual({
-      command: `${dir}\\..\\..\\IeumOffice.exe`,
+      command: `${dir}\\..\\..\\PSOffice.exe`,
       args: [`${dir}\\genoffice.cjs`, 'mcp'],
       env: { ELECTRON_RUN_AS_NODE: '1' },
     })
-    const mac = '/Applications/IeumOffice.app/Contents/Resources/cli'
+    const mac = '/Applications/PSOffice.app/Contents/Resources/cli'
     expect(mcpLaunch({ status: 'present', launcherDir: mac })).toEqual({
-      command: 'ieumoffice',
+      command: 'psoffice',
       args: ['mcp'],
     })
     expect(mcpLaunch({ status: 'missing', launcherDir: mac })).toEqual({
-      command: `${mac}/ieumoffice`,
+      command: `${mac}/psoffice`,
       args: ['mcp'],
     })
 
     const upstreamOnly = (p: string) => p.endsWith('GenOffice.exe') || p.endsWith('genoffice.cjs')
-    expect(mcpLaunchFromLauncher(`${dir}\\ieumoffice.cmd`, { exists: upstreamOnly })).toEqual({
+    expect(mcpLaunchFromLauncher(`${dir}\\psoffice.cmd`, { exists: upstreamOnly })).toEqual({
       command: 'node',
       args: [`${dir}\\genoffice.cjs`, 'mcp'],
     })
-    const ours = (p: string) => p === `${dir}\\..\\..\\IeumOffice.exe`
-    expect(mcpLaunchFromLauncher(`${dir}\\ieumoffice.cmd`, { exists: ours }).command).toBe(
-      `${dir}\\..\\..\\IeumOffice.exe`,
+    const ours = (p: string) => p === `${dir}\\..\\..\\PSOffice.exe`
+    expect(mcpLaunchFromLauncher(`${dir}\\psoffice.cmd`, { exists: ours }).command).toBe(
+      `${dir}\\..\\..\\PSOffice.exe`,
     )
   })
 })
@@ -606,25 +598,23 @@ describe('finding the running app', () => {
 describe('what the CLI prints and tells agents to run', () => {
   const OLD_NAME = /genoffice|GenOffice/
 
-  it('names the command ieumoffice in the version line, usage and hints', async () => {
-    expect((await run(['--version'])).stdout).toMatch(/^ieumoffice \d+\.\d+\.\d+/)
+  it('names the command psoffice in the version line, usage and hints', async () => {
+    expect((await run(['--version'])).stdout).toMatch(/^psoffice \d+\.\d+\.\d+/)
     const help = (await run(['help'])).stdout
-    expect(help).toContain('Usage: ieumoffice <command> [options]')
-    expect(help).toMatch(/^ieumoffice \S+ — IeumOffice command line/)
+    expect(help).toContain('Usage: psoffice <command> [options]')
+    expect(help).toMatch(/^psoffice \S+ — PSOffice command line/)
     expect(help).not.toMatch(OLD_NAME)
 
     const unknown = await run(['no-such-command'])
-    expect(unknown.stderr).toMatch(/^ieumoffice: unknown command/)
-    expect(unknown.stderr).toContain('run `ieumoffice help` for the command list')
-    expect((await run(['no-such-command', '--json'])).json().suggestion).toContain(
-      'ieumoffice help',
-    )
+    expect(unknown.stderr).toMatch(/^psoffice: unknown command/)
+    expect(unknown.stderr).toContain('run `psoffice help` for the command list')
+    expect((await run(['no-such-command', '--json'])).json().suggestion).toContain('psoffice help')
   })
 
   it('names it in the help of every command', async () => {
     for (const def of defaultRegistry().list()) {
       const help = (await run(['help', def.name])).stdout
-      expect(help, def.name).toContain(`Usage: ieumoffice ${def.usage}`)
+      expect(help, def.name).toContain(`Usage: psoffice ${def.usage}`)
       expect(help, def.name).not.toMatch(OLD_NAME)
     }
   })
@@ -639,14 +629,14 @@ describe('what the CLI prints and tells agents to run', () => {
     ]) {
       const r = await run(argv)
       expect(r.code, argv.join(' ')).toBe(0)
-      expect(r.stdout, argv.join(' ')).toMatch(/ieumoffice/)
+      expect(r.stdout, argv.join(' ')).toMatch(/psoffice/)
       expect(r.stdout, argv.join(' ')).not.toMatch(OLD_NAME)
     }
   })
 
   it('names it in what the MCP server tells a client', () => {
     expect(INSTRUCTIONS).not.toMatch(OLD_NAME)
-    expect(INSTRUCTIONS).toContain('IeumOffice')
+    expect(INSTRUCTIONS).toContain('PSOffice')
     expect(remoteInstructions('http://h:1')).not.toMatch(OLD_NAME)
     for (const tool of resolveTools(defaultRegistry())) {
       expect(tool.description, tool.name).not.toMatch(OLD_NAME)
@@ -656,25 +646,25 @@ describe('what the CLI prints and tells agents to run', () => {
     }
   })
 
-  it('ships the skill under its own name with every command spelled ieumoffice', () => {
+  it('ships the skill under its own name with every command spelled psoffice', () => {
     expect(existsSync(join(REPO, 'skills', 'genoffice'))).toBe(false)
-    const text = readFileSync(join(REPO, 'skills', 'ieumoffice', 'SKILL.md'), 'utf-8')
-    expect(/^name:\s*(\S+)\s*$/m.exec(text)?.[1]).toBe('ieumoffice')
-    expect(text).toContain('`ieumoffice --version`')
-    expect(text).toContain('~/.ieumoffice/launcher')
+    const text = readFileSync(join(REPO, 'skills', 'psoffice', 'SKILL.md'), 'utf-8')
+    expect(/^name:\s*(\S+)\s*$/m.exec(text)?.[1]).toBe('psoffice')
+    expect(text).toContain('`psoffice --version`')
+    expect(text).toContain('~/.psoffice/launcher')
     expect(text).not.toMatch(OLD_NAME)
   })
 
-  it('ships launchers named ieumoffice that start only this product', () => {
+  it('ships launchers named psoffice that start only this product', () => {
     const bin = join(REPO, 'packages', 'cli', 'bin')
-    expect(readdirSync(bin).sort()).toEqual(['ieumoffice', 'ieumoffice.cmd'])
-    const sh = readFileSync(join(bin, 'ieumoffice'), 'utf-8')
-    const cmd = readFileSync(join(bin, 'ieumoffice.cmd'), 'utf-8')
-    expect(sh).toContain('MacOS/IeumOffice')
-    expect(sh).toContain('IeumOffice.exe')
-    expect(sh).toContain('"$here/../../ieumoffice"')
+    expect(readdirSync(bin).sort()).toEqual(['psoffice', 'psoffice.cmd'])
+    const sh = readFileSync(join(bin, 'psoffice'), 'utf-8')
+    const cmd = readFileSync(join(bin, 'psoffice.cmd'), 'utf-8')
+    expect(sh).toContain('MacOS/PSOffice')
+    expect(sh).toContain('PSOffice.exe')
+    expect(sh).toContain('"$here/../../psoffice"')
     expect(sh).not.toContain('"$here/../../genoffice"')
-    expect(cmd).toContain('IeumOffice.exe')
+    expect(cmd).toContain('PSOffice.exe')
     expect(sh).not.toMatch(/GenOffice/)
     expect(cmd).not.toMatch(/GenOffice/)
   })

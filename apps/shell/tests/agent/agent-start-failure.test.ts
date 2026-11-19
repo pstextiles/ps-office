@@ -55,7 +55,7 @@ function setup(overrides: Partial<AgentManagerDeps> = {}, warningAccepted = AGEN
   roots.push(home)
   const project = join(home, 'Project')
   mkdirSync(project)
-  const userData = join(home, 'AppData', 'IeumOffice')
+  const userData = join(home, 'AppData', 'PSOffice')
   mkdirSync(userData, { recursive: true })
   const codex = vi.fn(async () => fakeSession())
   const manager = createAgentManager({

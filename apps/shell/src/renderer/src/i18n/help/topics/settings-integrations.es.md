@@ -71,8 +71,8 @@ En **Servidor HTTP local**, la aplicación también puede ejecutar el servidor p
 
 ## Chuleta de la línea de comandos
 
-| Comando             | Qué hace                      |
-| ------------------- | ----------------------------- |
-| `ieumoffice <file>` | abrir un archivo              |
-| `ieumoffice mcp`    | iniciar el servidor MCP local |
-| `ieumoffice --help` | todos los comandos y opciones |
+| Comando           | Qué hace                      |
+| ----------------- | ----------------------------- |
+| `psoffice <file>` | abrir un archivo              |
+| `psoffice mcp`    | iniciar el servidor MCP local |
+| `psoffice --help` | todos los comandos y opciones |

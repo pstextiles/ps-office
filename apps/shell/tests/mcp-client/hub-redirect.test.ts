@@ -39,7 +39,7 @@ async function connectionReason(fetch: McpFetch, url = 'https://law.example.com/
   const connection = createRemoteMcpConnection({
     server: { name: 'law', url, transport: 'auto', headers: { Authorization: 'Bearer k' } },
     oauth: { read: () => null, writeTokens: async () => {} },
-    clientInfo: { name: 'IeumOffice', version: '9.9.9' },
+    clientInfo: { name: 'PSOffice', version: '9.9.9' },
     fetch: redirectSafeFetch(fetch),
   })
   cleanups.push(() => connection.close())

@@ -1,17 +1,17 @@
 # Instalace GenOffice
 
-Každá verze je zveřejněna na [stránce Releases](https://github.com/pblsketch/ieumoffice/releases/latest) projektu na GitHubu. Verze pro Windows vychází spolu s verzemi pro Mac a Linux, které vycházejí jako beta. Verze pro Mac a Linux vývojář nemůže přímo testovat; potvrzují se hlášeními uživatelů.
+Každá verze je zveřejněna na [stránce Releases](https://github.com/pstextiles/ps-office/releases/latest) projektu na GitHubu. Verze pro Windows vychází spolu s verzemi pro Mac a Linux, které vycházejí jako beta. Verze pro Mac a Linux vývojář nemůže přímo testovat; potvrzují se hlášeními uživatelů.
 
 ## Vyberte soubor pro svůj počítač
 
-| Platforma                              | Požadavky                                   | Soubor                            |
-| -------------------------------------- | ------------------------------------------- | --------------------------------- |
-| **Windows**                            | Windows 10 nebo novější, 64bitový Intel/AMD | `GenOffice-Setup-<version>.exe`   |
-| **Mac (beta)**, Apple Silicon          | macOS 12 nebo novější, čip M1 nebo novější  | `GenOffice-<version>-arm64.dmg`   |
-| **Mac (beta)**, Intel                  | macOS 12 nebo novější, procesor Intel       | `GenOffice-<version>-x64.dmg`     |
-| **Linux (beta)**, libovolná distribuce | 64bitový (x86_64)                           | `GenOffice-<version>.AppImage`    |
-| **Linux (beta)**, rodina Ubuntu/Debian | 64bitový (x86_64)                           | `ieumoffice_<version>_amd64.deb`  |
-| **Linux (beta)**, Fedora/RHEL/openSUSE | 64bitový (x86_64)                           | `ieumoffice-<version>.x86_64.rpm` |
+| Platforma                              | Požadavky                                   | Soubor                          |
+| -------------------------------------- | ------------------------------------------- | ------------------------------- |
+| **Windows**                            | Windows 10 nebo novější, 64bitový Intel/AMD | `GenOffice-Setup-<version>.exe` |
+| **Mac (beta)**, Apple Silicon          | macOS 12 nebo novější, čip M1 nebo novější  | `GenOffice-<version>-arm64.dmg` |
+| **Mac (beta)**, Intel                  | macOS 12 nebo novější, procesor Intel       | `GenOffice-<version>-x64.dmg`   |
+| **Linux (beta)**, libovolná distribuce | 64bitový (x86_64)                           | `GenOffice-<version>.AppImage`  |
+| **Linux (beta)**, rodina Ubuntu/Debian | 64bitový (x86_64)                           | `psoffice_<version>_amd64.deb`  |
+| **Linux (beta)**, Fedora/RHEL/openSUSE | 64bitový (x86_64)                           | `psoffice-<version>.x86_64.rpm` |
 
 Chcete-li zjistit, jaký máte Mac, otevřete nabídku Apple ▸ **O tomto Macu**. Pokud je u položky „Čip“ uvedeno Apple M…, vezměte soubor končící na `-arm64.dmg`; pokud je u položky „Procesor“ uvedeno Intel …, vezměte soubor končící na `-x64.dmg`. Ostatní soubory na stránce Releases (`.zip`, `.yml`, `.blockmap`) používá k aktualizaci sama aplikace; stahovat je nemusíte. Starší verze zůstávají na stránce Releases.
 
@@ -80,10 +80,10 @@ Dále na Macu:
 ## V Linuxu (beta)
 
 - **AppImage**: nastavte mu právo ke spuštění (`chmod +x GenOffice-<version>.AppImage`) a soubor spusťte. Žádný krok instalace není.
-- **deb**: nainstalujte příkazem `sudo apt install ./ieumoffice_<version>_amd64.deb`.
-- **rpm**: nainstalujte příkazem `sudo dnf install ./ieumoffice-<version>.x86_64.rpm`. V openSUSE použijte `sudo zypper install ./ieumoffice-<version>.x86_64.rpm`.
+- **deb**: nainstalujte příkazem `sudo apt install ./psoffice_<version>_amd64.deb`.
+- **rpm**: nainstalujte příkazem `sudo dnf install ./psoffice-<version>.x86_64.rpm`. V openSUSE použijte `sudo zypper install ./psoffice-<version>.x86_64.rpm`.
 
-Balíčky deb a rpm se instalují do `/opt/GenOffice` a propojují příkaz terminálu `/usr/bin/ieumoffice`. Stejně jako na Macu nemají karty připojení AI tlačítko instalace, a když přihlášení požádá o kód, spustíte sami v terminálu `claude auth login` nebo `codex login`.
+Balíčky deb a rpm se instalují do `/opt/GenOffice` a propojují příkaz terminálu `/usr/bin/psoffice`. Stejně jako na Macu nemají karty připojení AI tlačítko instalace, a když přihlášení požádá o kód, spustíte sami v terminálu `claude auth login` nebo `codex login`.
 
 ## Aktualizace
 
@@ -101,4 +101,4 @@ Balíčky deb a rpm se instalují do `/opt/GenOffice` a propojují příkaz term
 
 ## Příkazová řádka je součástí
 
-Každá instalace obsahuje příkaz `ieumoffice`, který mluví se stejnými enginy jako okno, takže se oba na souboru vždy shodnou. `ieumoffice install-cli` jej umístí do vaší `PATH`. Co umí, se dozvíte v kapitole [Příkazová řádka a agenti](help://cli).
+Každá instalace obsahuje příkaz `psoffice`, který mluví se stejnými enginy jako okno, takže se oba na souboru vždy shodnou. `psoffice install-cli` jej umístí do vaší `PATH`. Co umí, se dozvíte v kapitole [Příkazová řádka a agenti](help://cli).

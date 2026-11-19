@@ -35,7 +35,7 @@ import type { McpRuntimeKit, RuntimeResolution } from '../../src/main/mcp-client
 import { newMcpServerConfig, type McpServerConfig } from '../../src/main/mcp-client/store'
 
 const FIXTURE = resolve(__dirname, 'fixtures', 'stdio-mcp-server.mjs')
-const CLIENT_INFO = { name: 'IeumOffice', version: '0.0.0-test' }
+const CLIENT_INFO = { name: 'PSOffice', version: '0.0.0-test' }
 
 /** A kit that pairs `node` with this Node binary, as the PC's runtime */
 function nodeKit(overrides: Record<string, RuntimeResolution> = {}): McpRuntimeKit & {

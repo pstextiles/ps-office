@@ -71,8 +71,8 @@ Ayarlar, GenOffice’i `.docx` / `.xlsx` / `.pptx` / `.pdf` ve benzerleri için 
 
 ## Komut satırı kısa başvurusu
 
-| Komut               | Ne yapar                      |
-| ------------------- | ----------------------------- |
-| `ieumoffice <file>` | bir dosyayı açar              |
-| `ieumoffice mcp`    | yerel MCP sunucusunu başlatır |
-| `ieumoffice --help` | tüm komutlar ve bayraklar     |
+| Komut             | Ne yapar                      |
+| ----------------- | ----------------------------- |
+| `psoffice <file>` | bir dosyayı açar              |
+| `psoffice mcp`    | yerel MCP sunucusunu başlatır |
+| `psoffice --help` | tüm komutlar ve bayraklar     |

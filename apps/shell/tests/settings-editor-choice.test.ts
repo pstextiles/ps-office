@@ -87,7 +87,7 @@ function integrationsStatus(): IntegrationsStatus {
   return {
     cli: {
       status: 'missing',
-      location: '/usr/local/bin/ieumoffice',
+      location: '/usr/local/bin/psoffice',
       manual: 'sudo ln -sf a b',
       launcherDir: '/x',
       ephemeral: false,

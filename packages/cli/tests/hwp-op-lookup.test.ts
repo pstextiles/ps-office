@@ -47,7 +47,7 @@ describe('HWP operation lookup does not inherit object properties', () => {
     const r = await apply('hwp', 'web_search')
     expect(r.code).toBe(1)
     expect(r.json().error).toBe('unsupported')
-    expect(r.json().message).toContain('ieumoffice search')
+    expect(r.json().message).toContain('psoffice search')
     // an app-only tool is not offered as a supported op either
     expect(r.json().detail.failures[0].supported ?? []).not.toContain('web_search')
   })

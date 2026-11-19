@@ -6,19 +6,19 @@ Skill adalah sekumpulan petunjuk kerja untuk AI. Tuliskan sekali saja hal yang A
 
 **Pengaturan ▸ Skill** menampilkan skill yang ada di PC ini, dikelompokkan menurut asalnya. Setiap skill ditampilkan dengan namanya, seperti di agen pemrograman. Pakai kotak pencarian di bagian atas untuk mencari menurut nama atau deskripsi. Skill Anda yang memiliki judul menampilkan judul itu di daftar ini, di daftar `/`, dan pada chip, dengan nama berukuran kecil di sampingnya. Anda juga bisa mencari berdasarkan judul. Nama yang dibuat aplikasi (`skill-…`) tidak ditampilkan di samping judul.
 
-| Sumber                  | Isinya                                                       | Awalnya  |
-| ----------------------- | ------------------------------------------------------------ | -------- |
-| **Bawaan**              | Skill yang disertakan bersama GenOffice                      | Aktif    |
-| **Skill saya**          | Skill yang Anda tambahkan atau buat (`~/.ieumoffice/skills`) | Aktif    |
-| **Folder skill Claude** | Skill di `~/.claude/skills`                                  | Nonaktif |
-| **Plugin Claude**       | Skill dari plugin Claude yang terpasang                      | Nonaktif |
-| **Folder skill Codex**  | Skill di `~/.agents/skills`                                  | Nonaktif |
+| Sumber                  | Isinya                                                     | Awalnya  |
+| ----------------------- | ---------------------------------------------------------- | -------- |
+| **Bawaan**              | Skill yang disertakan bersama GenOffice                    | Aktif    |
+| **Skill saya**          | Skill yang Anda tambahkan atau buat (`~/.psoffice/skills`) | Aktif    |
+| **Folder skill Claude** | Skill di `~/.claude/skills`                                | Nonaktif |
+| **Plugin Claude**       | Skill dari plugin Claude yang terpasang                    | Nonaktif |
+| **Folder skill Codex**  | Skill di `~/.agents/skills`                                | Nonaktif |
 
 - Sakelar mengaktifkan atau menonaktifkan skill. Pengaturan yang sama berlaku untuk panel AI di semua editor, Tanya AI di Beranda, dan jendela agen.
 - Untuk skill yang aktif, pilih **AI yang menentukan** atau **Hanya saat dipanggil**. Awalnya disetel ke AI yang menentukan. Dengan Hanya saat dipanggil, skill hanya dipakai jika Anda sendiri yang memanggilnya. Pada skill yang nonaktif, pilihan ini tetap tampak redup, jadi Anda bisa mengaturnya sebelum mengaktifkan skill itu lagi.
 - Skill dari sumber yang berbeda bisa bernama sama. Label sumber di setiap baris membedakannya. Jika dua skill bernama sama sama-sama aktif, hanya satu yang muncul di daftar `/` dan dipakai: yang lebih dulu menurut urutan Skill saya, Bawaan, Folder skill Claude, Folder skill Codex, Plugin Claude. Baris skill yang lain menyebutkan skill mana yang dipakai sebagai gantinya.
 - Menu lainnya berisi **Lihat isi**, **Edit** (hanya skill saya), **Ekspor (zip)** (hanya skill saya), dan **Buka folder**. Skill bawaan tidak memiliki **Buka folder**. **Tempat dipakai** langsung membuka tempat memilih editor yang memakai skill itu.
-- Skill saya berada di folder `~/.ieumoffice/skills`. Di Windows, itu adalah `C:\Users\<nama pengguna>\.ieumoffice\skills`. **Buka folder** di menu lainnya membuka folder skill tersebut.
+- Skill saya berada di folder `~/.psoffice/skills`. Di Windows, itu adalah `C:\Users\<nama pengguna>\.psoffice\skills`. **Buka folder** di menu lainnya membuka folder skill tersebut.
 - **Pindahkan ke tempat sampah** memindahkan salah satu skill saya ke tempat sampah sistem, dan dari sana skill itu bisa dipulihkan. Jika ada skill bernama sama dari sumber lain yang nonaktif, konfirmasi menampilkan kotak tercentang untuk mengaktifkannya lagi. Hapus centangnya agar skill itu tetap nonaktif.
 - Skill bawaan tidak dihapus, melainkan disembunyikan: pilih **Sembunyikan**. **Tampilkan lagi** di bagian bawah daftar mengembalikannya seperti semula.
 - Untuk mengubah skill bawaan atau skill dari program lain, pilih **Salin ke skill saya**. Salinannya muncul di skill saya dan skill aslinya dinonaktifkan.
@@ -56,7 +56,7 @@ Saat Anda mengedit skill milik Anda, memasang skill lain bernama sama di tempatn
 - **Lihat perbedaan** menunjukkan baris `SKILL.md` mana yang akan kembali, mana yang akan hilang, dan berkas lain mana yang akan berubah.
 - **Kembali ke versi ini** mengembalikan berkas versi itu persis seperti semula. Versi yang sekarang juga disimpan, jadi Anda bisa kembali lagi. Apakah skill menyala dan kapan digunakan tetap seperti yang Anda atur.
 - Versi yang disimpan tetap ada sampai Anda menghapusnya. **Hapus** menghapus satu versi untuk selamanya.
-- Versi-versi itu berada di folder `~/.ieumoffice/skill-history`. **Pindahkan ke tempat sampah** pada sebuah skill juga memindahkan versi tersimpannya ke tempat sampah.
+- Versi-versi itu berada di folder `~/.psoffice/skill-history`. **Pindahkan ke tempat sampah** pada sebuah skill juga memindahkan versi tersimpannya ke tempat sampah.
 
 ## Memanggil skill di panel AI
 

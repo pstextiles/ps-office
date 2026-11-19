@@ -1,17 +1,17 @@
 # การติดตั้ง GenOffice
 
-ทุกเวอร์ชันถูกเผยแพร่ไว้ที่ [หน้าเผยแพร่ (Releases)](https://github.com/pblsketch/ieumoffice/releases/latest) ของโปรเจกต์บน GitHub รุ่นสำหรับ Windows เผยแพร่พร้อมกับรุ่นสำหรับ Mac และ Linux ที่ออกเป็นเบต้า ผู้พัฒนาไม่สามารถทดสอบรุ่น Mac และ Linux ได้โดยตรง แต่ยืนยันผ่านรายงานจากผู้ใช้
+ทุกเวอร์ชันถูกเผยแพร่ไว้ที่ [หน้าเผยแพร่ (Releases)](https://github.com/pstextiles/ps-office/releases/latest) ของโปรเจกต์บน GitHub รุ่นสำหรับ Windows เผยแพร่พร้อมกับรุ่นสำหรับ Mac และ Linux ที่ออกเป็นเบต้า ผู้พัฒนาไม่สามารถทดสอบรุ่น Mac และ Linux ได้โดยตรง แต่ยืนยันผ่านรายงานจากผู้ใช้
 
 ## เลือกไฟล์ให้ตรงกับเครื่องของคุณ
 
-| แพลตฟอร์ม                               | ข้อกำหนด                             | ไฟล์                              |
-| --------------------------------------- | ------------------------------------ | --------------------------------- |
-| **Windows**                             | Windows 10 ขึ้นไป, Intel/AMD 64 บิต  | `GenOffice-Setup-<version>.exe`   |
-| **Mac (เบต้า)**, Apple Silicon          | macOS 12 ขึ้นไป, ชิป M1 หรือใหม่กว่า | `GenOffice-<version>-arm64.dmg`   |
-| **Mac (เบต้า)**, Intel                  | macOS 12 ขึ้นไป, โปรเซสเซอร์ Intel   | `GenOffice-<version>-x64.dmg`     |
-| **Linux (เบต้า)**, ทุกดิสทริบิวชัน      | 64 บิต (x86_64)                      | `GenOffice-<version>.AppImage`    |
-| **Linux (เบต้า)**, ตระกูล Ubuntu/Debian | 64 บิต (x86_64)                      | `ieumoffice_<version>_amd64.deb`  |
-| **Linux (เบต้า)**, Fedora/RHEL/openSUSE | 64 บิต (x86_64)                      | `ieumoffice-<version>.x86_64.rpm` |
+| แพลตฟอร์ม                               | ข้อกำหนด                             | ไฟล์                            |
+| --------------------------------------- | ------------------------------------ | ------------------------------- |
+| **Windows**                             | Windows 10 ขึ้นไป, Intel/AMD 64 บิต  | `GenOffice-Setup-<version>.exe` |
+| **Mac (เบต้า)**, Apple Silicon          | macOS 12 ขึ้นไป, ชิป M1 หรือใหม่กว่า | `GenOffice-<version>-arm64.dmg` |
+| **Mac (เบต้า)**, Intel                  | macOS 12 ขึ้นไป, โปรเซสเซอร์ Intel   | `GenOffice-<version>-x64.dmg`   |
+| **Linux (เบต้า)**, ทุกดิสทริบิวชัน      | 64 บิต (x86_64)                      | `GenOffice-<version>.AppImage`  |
+| **Linux (เบต้า)**, ตระกูล Ubuntu/Debian | 64 บิต (x86_64)                      | `psoffice_<version>_amd64.deb`  |
+| **Linux (เบต้า)**, Fedora/RHEL/openSUSE | 64 บิต (x86_64)                      | `psoffice-<version>.x86_64.rpm` |
 
 หากต้องการดูว่าคุณใช้ Mac รุ่นไหน ให้เปิดเมนู Apple ▸ **เกี่ยวกับ Mac เครื่องนี้** หาก "ชิป" ระบุว่า Apple M… ให้เลือกไฟล์ที่ลงท้ายด้วย `-arm64.dmg` หาก "โปรเซสเซอร์" ระบุว่า Intel … ให้เลือกไฟล์ที่ลงท้ายด้วย `-x64.dmg` ไฟล์อื่น ๆ ในหน้าเผยแพร่ (`.zip`, `.yml`, `.blockmap`) เป็นไฟล์ที่แอปใช้อัปเดตตัวเอง คุณไม่ต้องดาวน์โหลดไฟล์เหล่านั้น เวอร์ชันเก่ากว่ายังอยู่ในหน้าเผยแพร่
 
@@ -80,10 +80,10 @@ xattr -dr com.apple.quarantine /Applications/GenOffice.app
 ## บน Linux (เบต้า)
 
 - **AppImage**: ทำให้ไฟล์รันได้ (`chmod +x GenOffice-<version>.AppImage`) แล้วรันไฟล์นั้น ไม่มีขั้นตอนติดตั้ง
-- **deb**: ติดตั้งด้วย `sudo apt install ./ieumoffice_<version>_amd64.deb`
-- **rpm**: ติดตั้งด้วย `sudo dnf install ./ieumoffice-<version>.x86_64.rpm` บน openSUSE ให้ใช้ `sudo zypper install ./ieumoffice-<version>.x86_64.rpm`
+- **deb**: ติดตั้งด้วย `sudo apt install ./psoffice_<version>_amd64.deb`
+- **rpm**: ติดตั้งด้วย `sudo dnf install ./psoffice-<version>.x86_64.rpm` บน openSUSE ให้ใช้ `sudo zypper install ./psoffice-<version>.x86_64.rpm`
 
-แพ็กเกจ deb และ rpm ติดตั้งไว้ที่ `/opt/GenOffice` และลิงก์คำสั่งเทอร์มินัล `/usr/bin/ieumoffice` เช่นเดียวกับบน Mac การ์ดการเชื่อมต่อ AI ไม่มีปุ่มติดตั้ง และเมื่อการลงชื่อเข้าใช้ขอรหัส ให้รัน `claude auth login` หรือ `codex login` ในเทอร์มินัลด้วยตัวเอง
+แพ็กเกจ deb และ rpm ติดตั้งไว้ที่ `/opt/GenOffice` และลิงก์คำสั่งเทอร์มินัล `/usr/bin/psoffice` เช่นเดียวกับบน Mac การ์ดการเชื่อมต่อ AI ไม่มีปุ่มติดตั้ง และเมื่อการลงชื่อเข้าใช้ขอรหัส ให้รัน `claude auth login` หรือ `codex login` ในเทอร์มินัลด้วยตัวเอง
 
 ## การอัปเดต
 
@@ -101,4 +101,4 @@ xattr -dr com.apple.quarantine /Applications/GenOffice.app
 
 ## บรรทัดคำสั่งมาให้ด้วย
 
-ทุกการติดตั้งมีคำสั่ง `ieumoffice` ที่คุยกับเอนจินตัวเดียวกับที่หน้าต่างใช้ ทั้งสองฝ่ายจึงไม่มีวันขัดแย้งกันเรื่องไฟล์ `ieumoffice install-cli` จะนำคำสั่งนี้ไปไว้ใน `PATH` ของคุณ ดู [บรรทัดคำสั่งและเอเจนต์](help://cli) ว่ามันทำอะไรได้บ้าง
+ทุกการติดตั้งมีคำสั่ง `psoffice` ที่คุยกับเอนจินตัวเดียวกับที่หน้าต่างใช้ ทั้งสองฝ่ายจึงไม่มีวันขัดแย้งกันเรื่องไฟล์ `psoffice install-cli` จะนำคำสั่งนี้ไปไว้ใน `PATH` ของคุณ ดู [บรรทัดคำสั่งและเอเจนต์](help://cli) ว่ามันทำอะไรได้บ้าง

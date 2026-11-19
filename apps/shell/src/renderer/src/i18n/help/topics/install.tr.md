@@ -1,17 +1,17 @@
 # GenOffice kurulumu
 
-Her sürüm, projenin GitHub’daki [Sürümler sayfasında](https://github.com/pblsketch/ieumoffice/releases/latest) yayımlanır. Windows yapısı, beta olarak çıkarılan Mac ve Linux yapılarıyla birlikte yayımlanır. Geliştirici Mac ve Linux yapılarını doğrudan deneyemez; bunlar kullanıcıların bildirimleriyle doğrulanır.
+Her sürüm, projenin GitHub’daki [Sürümler sayfasında](https://github.com/pstextiles/ps-office/releases/latest) yayımlanır. Windows yapısı, beta olarak çıkarılan Mac ve Linux yapılarıyla birlikte yayımlanır. Geliştirici Mac ve Linux yapılarını doğrudan deneyemez; bunlar kullanıcıların bildirimleriyle doğrulanır.
 
 ## Makineniz için dosyayı seçin
 
-| Platform                               | Gereksinimler                           | Dosya                             |
-| -------------------------------------- | --------------------------------------- | --------------------------------- |
-| **Windows**                            | Windows 10 veya üzeri, 64 bit Intel/AMD | `GenOffice-Setup-<version>.exe`   |
-| **Mac (beta)**, Apple Silicon          | macOS 12 veya üzeri, M1 ya da daha yeni | `GenOffice-<version>-arm64.dmg`   |
-| **Mac (beta)**, Intel                  | macOS 12 veya üzeri, Intel işlemci      | `GenOffice-<version>-x64.dmg`     |
-| **Linux (beta)**, tüm dağıtımlar       | 64 bit (x86_64)                         | `GenOffice-<version>.AppImage`    |
-| **Linux (beta)**, Ubuntu/Debian ailesi | 64 bit (x86_64)                         | `ieumoffice_<version>_amd64.deb`  |
-| **Linux (beta)**, Fedora/RHEL/openSUSE | 64 bit (x86_64)                         | `ieumoffice-<version>.x86_64.rpm` |
+| Platform                               | Gereksinimler                           | Dosya                           |
+| -------------------------------------- | --------------------------------------- | ------------------------------- |
+| **Windows**                            | Windows 10 veya üzeri, 64 bit Intel/AMD | `GenOffice-Setup-<version>.exe` |
+| **Mac (beta)**, Apple Silicon          | macOS 12 veya üzeri, M1 ya da daha yeni | `GenOffice-<version>-arm64.dmg` |
+| **Mac (beta)**, Intel                  | macOS 12 veya üzeri, Intel işlemci      | `GenOffice-<version>-x64.dmg`   |
+| **Linux (beta)**, tüm dağıtımlar       | 64 bit (x86_64)                         | `GenOffice-<version>.AppImage`  |
+| **Linux (beta)**, Ubuntu/Debian ailesi | 64 bit (x86_64)                         | `psoffice_<version>_amd64.deb`  |
+| **Linux (beta)**, Fedora/RHEL/openSUSE | 64 bit (x86_64)                         | `psoffice-<version>.x86_64.rpm` |
 
 Hangi Mac’e sahip olduğunuzu görmek için Apple menüsü ▸ **Bu Mac Hakkında**’yı açın. "Çip" Apple M… diyorsa sonu `-arm64.dmg` ile biten dosyayı, "İşlemci" Intel … diyorsa sonu `-x64.dmg` ile biteni alın. Sürümler sayfasındaki diğer dosyalar (`.zip`, `.yml`, `.blockmap`) uygulamanın kendini güncellemek için kullandıklarıdır; onları indirmeniz gerekmez. Eski sürümler Sürümler sayfasında kalır.
 
@@ -80,10 +80,10 @@ Mac’te ayrıca:
 ## Linux’ta (beta)
 
 - **AppImage**: dosyayı çalıştırılabilir yapın (`chmod +x GenOffice-<version>.AppImage`) ve çalıştırın. Kurulum adımı yoktur.
-- **deb**: `sudo apt install ./ieumoffice_<version>_amd64.deb` ile kurun.
-- **rpm**: `sudo dnf install ./ieumoffice-<version>.x86_64.rpm` ile kurun. openSUSE’de `sudo zypper install ./ieumoffice-<version>.x86_64.rpm` kullanın.
+- **deb**: `sudo apt install ./psoffice_<version>_amd64.deb` ile kurun.
+- **rpm**: `sudo dnf install ./psoffice-<version>.x86_64.rpm` ile kurun. openSUSE’de `sudo zypper install ./psoffice-<version>.x86_64.rpm` kullanın.
 
-deb ve rpm paketleri `/opt/GenOffice` konumuna kurulur ve `/usr/bin/ieumoffice` terminal komutunu bağlar. Mac’te olduğu gibi AI bağlantı kartlarında kurulum düğmesi yoktur ve bir oturum açma kod istediğinde bir terminalde `claude auth login` veya `codex login` komutunu kendiniz çalıştırırsınız.
+deb ve rpm paketleri `/opt/GenOffice` konumuna kurulur ve `/usr/bin/psoffice` terminal komutunu bağlar. Mac’te olduğu gibi AI bağlantı kartlarında kurulum düğmesi yoktur ve bir oturum açma kod istediğinde bir terminalde `claude auth login` veya `codex login` komutunu kendiniz çalıştırırsınız.
 
 ## Güncellemeler
 
@@ -101,4 +101,4 @@ deb ve rpm paketleri `/opt/GenOffice` konumuna kurulur ve `/usr/bin/ieumoffice` 
 
 ## Komut satırı da onunla gelir
 
-Her kurulum, penceredekiyle aynı motorlarla konuşan bir `ieumoffice` komutu içerir, böylece ikisi bir dosya konusunda asla anlaşmazlığa düşmez. `ieumoffice install-cli` komutu onu `PATH`’inize ekler. Neler yapabildiğini görmek için [Komut satırı ve ajanlar](help://cli) bölümüne bakın.
+Her kurulum, penceredekiyle aynı motorlarla konuşan bir `psoffice` komutu içerir, böylece ikisi bir dosya konusunda asla anlaşmazlığa düşmez. `psoffice install-cli` komutu onu `PATH`’inize ekler. Neler yapabildiğini görmek için [Komut satırı ve ajanlar](help://cli) bölümüne bakın.

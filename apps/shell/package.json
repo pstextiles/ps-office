@@ -1,13 +1,13 @@
 {
   "name": "@genoffice/shell",
-  "productName": "IeumOffice",
+  "productName": "PSOffice",
   "version": "0.13.0",
   "license": "Apache-2.0",
-  "homepage": "https://github.com/pblsketch/ieumoffice",
+  "homepage": "https://github.com/pstextiles/ps-office",
   "private": true,
-  "description": "IeumOffice",
+  "description": "PSOffice",
   "main": "out/main/index.js",
-  "desktopName": "ieumoffice.desktop",
+  "desktopName": "psoffice.desktop",
   "scripts": {
     "dev": "electron-vite dev --watch",
     "build": "electron-vite build",
@@ -53,5 +53,5 @@
     "vite": "^7.3.1",
     "vitest": "^4.1.11"
   },
-  "author": "pblsketch <pblsketch@users.noreply.github.com>"
+  "author": "pstextiles <pstextiles@users.noreply.github.com>"
 }

@@ -1,13 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
-  IeumOffice app icon (source of truth).
+  PS Office app icon (source of truth).
 
-  "Ieum" is Korean for joining/connecting. The mark is a ring linked through a
-  rounded square, the two closed shapes of the Hangul consonants in the name,
-  woven over and under each other like two links of a chain.
-
-  Geometry adapted from the Lucide icons `circle`, `square` and `link`
-  (ISC License, https://lucide.dev); see NOTICE.
+  The letters "PS" (PS Textiles) on a charcoal rounded tile with a teal rule
+  under them. The letters are Liberation Sans Bold Italic (SIL Open Font
+  License 1.1, shipped in apps/docs/src/renderer/fonts) converted to outlines,
+  so the icon renders without the font installed; see NOTICE.
 
   Every raster/container icon in the repo is derived from this file:
     node tools/gen-brand-assets.mjs
@@ -15,23 +13,7 @@
   insets the whole drawing for the macOS variants.
 -->
 <svg xmlns="http://www.w3.org/2000/svg" width="1024" height="1024" viewBox="0 0 1024 1024">
-  <defs>
-    <clipPath id="ieum-upper"><rect width="1024" height="512"/></clipPath>
-    <clipPath id="ieum-lower"><rect y="512" width="1024" height="512"/></clipPath>
-    <!-- Upper crossing: the ring passes over the square, so a gap is cut into the square. -->
-    <mask id="ieum-under-ring" maskUnits="userSpaceOnUse" x="0" y="0" width="1024" height="1024">
-      <rect width="1024" height="1024" fill="#fff"/>
-      <circle cx="399" cy="512" r="192" fill="none" stroke="#000" stroke-width="160" clip-path="url(#ieum-upper)"/>
-    </mask>
-    <!-- Lower crossing: the square passes over the ring, so a gap is cut into the ring. -->
-    <mask id="ieum-under-square" maskUnits="userSpaceOnUse" x="0" y="0" width="1024" height="1024">
-      <rect width="1024" height="1024" fill="#fff"/>
-      <rect x="453" y="330" width="364" height="364" rx="96" fill="none" stroke="#000" stroke-width="160" clip-path="url(#ieum-lower)"/>
-    </mask>
-  </defs>
-  <rect width="1024" height="1024" rx="230" fill="#4338CA"/>
-  <g fill="none" stroke-width="112">
-    <rect x="453" y="330" width="364" height="364" rx="96" stroke="#FFB020" mask="url(#ieum-under-ring)"/>
-    <circle cx="399" cy="512" r="192" stroke="#FFFFFF" mask="url(#ieum-under-square)"/>
-  </g>
+  <rect width="1024" height="1024" rx="230" fill="#1F2937"/>
+  <path fill="#FFFFFF" d="M384.2 276Q444.3 276 477.6 303.3Q510.9 330.7 510.9 379Q510.9 434 473.4 466.4Q436 498.9 373.2 498.9H281.2L257.2 620H185.5L252.1 276ZM291.7 443.5H362.2Q400.1 443.5 419 429.3Q437.9 415.2 437.9 382.9Q437.9 358 422.3 345Q406.7 331.9 377.4 331.9H313.4ZM656.7 624.9Q591.5 624.9 557.3 601.8Q523.1 578.7 516.3 530.9L586.8 518.9Q592 546 609.7 558.5Q627.4 570.9 661.5 570.9Q745.8 570.9 745.8 522.3Q745.8 502.8 731.1 491.5Q716.5 480.1 673 469.1Q628.1 457.2 606.5 444.2Q584.9 431.3 573.5 412.6Q562.2 393.9 562.2 366.8Q562.2 323.6 600.5 297.2Q638.8 270.9 702.1 270.9Q760.2 270.9 795.3 292Q830.5 313.1 838.5 353.6L768.2 370Q762.9 348 744.9 335Q727 321.9 698.2 321.9Q667.9 321.9 650.5 333.3Q633.2 344.6 633.2 364.4Q633.2 375.9 639.6 383.9Q645.9 392 658.1 398Q670.3 403.9 706.5 413.7Q745.3 424.4 763.8 433.8Q782.4 443.2 793.5 455Q804.6 466.7 810.5 481.8Q816.3 497 816.3 516.7Q816.3 569.5 775.8 597.2Q735.3 624.9 656.7 624.9Z"/>
+  <rect x="262" y="704" width="500" height="48" rx="24" fill="#2DD4BF"/>
 </svg>

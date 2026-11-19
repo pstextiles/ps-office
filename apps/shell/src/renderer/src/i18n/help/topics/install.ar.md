@@ -1,17 +1,17 @@
 # تثبيت GenOffice
 
-كل إصدار يُنشر على [صفحة الإصدارات](https://github.com/pblsketch/ieumoffice/releases/latest) الخاصة بالمشروع على GitHub. تُنشر نسخة Windows مع نسختَي Mac وLinux اللتين تصدران بوصفهما إصدارين تجريبيين. لا يستطيع المطوّر اختبار نسختَي Mac وLinux بنفسه مباشرةً؛ وإنما يُتأكَّد منهما عبر بلاغات المستخدمين.
+كل إصدار يُنشر على [صفحة الإصدارات](https://github.com/pstextiles/ps-office/releases/latest) الخاصة بالمشروع على GitHub. تُنشر نسخة Windows مع نسختَي Mac وLinux اللتين تصدران بوصفهما إصدارين تجريبيين. لا يستطيع المطوّر اختبار نسختَي Mac وLinux بنفسه مباشرةً؛ وإنما يُتأكَّد منهما عبر بلاغات المستخدمين.
 
 ## اختر الملف المناسب لجهازك
 
-| النظام                                   | المتطلبات                                    | الملف                             |
-| ---------------------------------------- | -------------------------------------------- | --------------------------------- |
-| **Windows**                              | Windows 10 أو أحدث، Intel/AMD بمعمارية 64 بت | `GenOffice-Setup-<version>.exe`   |
-| **Mac (تجريبي)**، Apple Silicon          | macOS 12 أو أحدث، شريحة M1 أو أحدث           | `GenOffice-<version>-arm64.dmg`   |
-| **Mac (تجريبي)**، Intel                  | macOS 12 أو أحدث، معالج Intel                | `GenOffice-<version>-x64.dmg`     |
-| **Linux (تجريبي)**، أي توزيعة            | 64 بت (x86_64)                               | `GenOffice-<version>.AppImage`    |
-| **Linux (تجريبي)**، عائلة Ubuntu/Debian  | 64 بت (x86_64)                               | `ieumoffice_<version>_amd64.deb`  |
-| **Linux (تجريبي)**، Fedora/RHEL/openSUSE | 64 بت (x86_64)                               | `ieumoffice-<version>.x86_64.rpm` |
+| النظام                                   | المتطلبات                                    | الملف                           |
+| ---------------------------------------- | -------------------------------------------- | ------------------------------- |
+| **Windows**                              | Windows 10 أو أحدث، Intel/AMD بمعمارية 64 بت | `GenOffice-Setup-<version>.exe` |
+| **Mac (تجريبي)**، Apple Silicon          | macOS 12 أو أحدث، شريحة M1 أو أحدث           | `GenOffice-<version>-arm64.dmg` |
+| **Mac (تجريبي)**، Intel                  | macOS 12 أو أحدث، معالج Intel                | `GenOffice-<version>-x64.dmg`   |
+| **Linux (تجريبي)**، أي توزيعة            | 64 بت (x86_64)                               | `GenOffice-<version>.AppImage`  |
+| **Linux (تجريبي)**، عائلة Ubuntu/Debian  | 64 بت (x86_64)                               | `psoffice_<version>_amd64.deb`  |
+| **Linux (تجريبي)**، Fedora/RHEL/openSUSE | 64 بت (x86_64)                               | `psoffice-<version>.x86_64.rpm` |
 
 لمعرفة نوع جهاز Mac لديك، افتح قائمة Apple ▸ **حول هذا Mac** (About This Mac). إذا ظهر في «الشريحة» Apple M…، فخذ الملف المنتهي بـ `-arm64.dmg`؛ وإذا ظهر في «المعالج» Intel …، فخذ الملف المنتهي بـ `-x64.dmg`. أما الملفات الأخرى على صفحة الإصدارات (`.zip` و`.yml` و`.blockmap`) فيستخدمها التطبيق نفسه للتحديث، ولا حاجة إلى تنزيلها. تبقى الإصدارات الأقدم على صفحة الإصدارات.
 
@@ -80,10 +80,10 @@ xattr -dr com.apple.quarantine /Applications/GenOffice.app
 ## على Linux (تجريبي)
 
 - **AppImage**: اجعله قابلًا للتنفيذ (`chmod +x GenOffice-<version>.AppImage`) وشغّل الملف. لا توجد خطوة تثبيت.
-- **deb**: ثبّته بالأمر `sudo apt install ./ieumoffice_<version>_amd64.deb`.
-- **rpm**: ثبّته بالأمر `sudo dnf install ./ieumoffice-<version>.x86_64.rpm`. وعلى openSUSE استخدم `sudo zypper install ./ieumoffice-<version>.x86_64.rpm`.
+- **deb**: ثبّته بالأمر `sudo apt install ./psoffice_<version>_amd64.deb`.
+- **rpm**: ثبّته بالأمر `sudo dnf install ./psoffice-<version>.x86_64.rpm`. وعلى openSUSE استخدم `sudo zypper install ./psoffice-<version>.x86_64.rpm`.
 
-تُثبَّت حزمتا deb وrpm في `/opt/GenOffice` وتربطان أمر الطرفية `/usr/bin/ieumoffice`. وكما على Mac، ليس في بطاقات اتصال الذكاء الاصطناعي زر تثبيت، وعندما يطلب تسجيل الدخول رمزًا تنفّذ `claude auth login` أو `codex login` في الطرفية بنفسك.
+تُثبَّت حزمتا deb وrpm في `/opt/GenOffice` وتربطان أمر الطرفية `/usr/bin/psoffice`. وكما على Mac، ليس في بطاقات اتصال الذكاء الاصطناعي زر تثبيت، وعندما يطلب تسجيل الدخول رمزًا تنفّذ `claude auth login` أو `codex login` في الطرفية بنفسك.
 
 ## التحديثات
 
@@ -101,4 +101,4 @@ xattr -dr com.apple.quarantine /Applications/GenOffice.app
 
 ## سطر الأوامر يأتي معه
 
-كل تثبيت يشحن أمر `ieumoffice` يتحدث إلى المحركات نفسها التي تستخدمها النافذة، فلا يتناقض الطرفان حول أي ملف. و`ieumoffice install-cli` يضعه في `PATH` لديك. انظر [سطر الأوامر والوكلاء](help://cli) لمعرفة ما يمكنه فعله.
+كل تثبيت يشحن أمر `psoffice` يتحدث إلى المحركات نفسها التي تستخدمها النافذة، فلا يتناقض الطرفان حول أي ملف. و`psoffice install-cli` يضعه في `PATH` لديك. انظر [سطر الأوامر والوكلاء](help://cli) لمعرفة ما يمكنه فعله.

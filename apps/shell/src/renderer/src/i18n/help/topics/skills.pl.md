@@ -6,19 +6,19 @@ Umiejętność to zestaw instrukcji roboczych dla AI. Zapisz raz to, co robisz w
 
 **Ustawienia ▸ Umiejętności** pokazuje umiejętności na tym komputerze, pogrupowane według pochodzenia. Każda umiejętność jest pokazana pod swoją nazwą, tak jak w agentach programistycznych. Polem wyszukiwania u góry znajdziesz umiejętność po nazwie lub opisie. Twoja umiejętność, która ma tytuł, pokazuje ten tytuł na tej liście, na liście `/` i na znacznikach, a nazwa jest obok małą czcionką. Możesz też szukać po tytule. Nazwa nadana przez aplikację (`skill-…`) nie jest pokazywana obok tytułu.
 
-| Pochodzenie                    | Co zawiera                                                              | Na początku |
-| ------------------------------ | ----------------------------------------------------------------------- | ----------- |
-| **Wbudowane**                  | Umiejętności dostarczane z GenOffice                                    | Włączone    |
-| **Moje umiejętności**          | Umiejętności dodane lub utworzone przez ciebie (`~/.ieumoffice/skills`) | Włączone    |
-| **Folder umiejętności Claude** | Umiejętności z `~/.claude/skills`                                       | Wyłączone   |
-| **Wtyczki Claude**             | Umiejętności zainstalowanych wtyczek Claude                             | Wyłączone   |
-| **Folder umiejętności Codex**  | Umiejętności z `~/.agents/skills`                                       | Wyłączone   |
+| Pochodzenie                    | Co zawiera                                                            | Na początku |
+| ------------------------------ | --------------------------------------------------------------------- | ----------- |
+| **Wbudowane**                  | Umiejętności dostarczane z GenOffice                                  | Włączone    |
+| **Moje umiejętności**          | Umiejętności dodane lub utworzone przez ciebie (`~/.psoffice/skills`) | Włączone    |
+| **Folder umiejętności Claude** | Umiejętności z `~/.claude/skills`                                     | Wyłączone   |
+| **Wtyczki Claude**             | Umiejętności zainstalowanych wtyczek Claude                           | Wyłączone   |
+| **Folder umiejętności Codex**  | Umiejętności z `~/.agents/skills`                                     | Wyłączone   |
 
 - Przełącznik włącza lub wyłącza umiejętność. To samo ustawienie obowiązuje w panelu AI każdego edytora, w Ask AI na stronie głównej i w oknie agenta.
 - Dla włączonej umiejętności wybierz **Decyduje AI** lub **Tylko na wezwanie**. Na początku ustawione jest Decyduje AI. Przy Tylko na wezwanie umiejętność jest używana tylko wtedy, gdy sam ją wywołasz. Przy wyłączonej umiejętności ten wybór zostaje, przygaszony, więc można go ustawić przed ponownym włączeniem.
 - Umiejętności z różnych źródeł mogą mieć tę samą nazwę. Rozróżnisz je po etykiecie pochodzenia w każdym wierszu. Gdy dwie umiejętności o tej samej nazwie są włączone, na liście `/` widać i używana jest tylko jedna: pierwsza w kolejności Moje umiejętności, Wbudowane, Folder umiejętności Claude, Folder umiejętności Codex, Wtyczki Claude. W wierszu drugiej jest podane, która umiejętność jest używana zamiast niej.
 - W menu dodatkowych opcji są **Pokaż zawartość**, **Edytuj** (tylko moje umiejętności), **Eksportuj (zip)** (tylko moje umiejętności) i **Otwórz folder**. Wbudowane umiejętności nie mają pozycji **Otwórz folder**. **Gdzie używać** otwiera od razu miejsce wyboru edytorów, w których umiejętność jest używana.
-- Moje umiejętności znajdują się w folderze `~/.ieumoffice/skills`. W systemie Windows jest to `C:\Users\<nazwa użytkownika>\.ieumoffice\skills`. **Otwórz folder** w menu dodatkowych opcji otwiera folder umiejętności.
+- Moje umiejętności znajdują się w folderze `~/.psoffice/skills`. W systemie Windows jest to `C:\Users\<nazwa użytkownika>\.psoffice\skills`. **Otwórz folder** w menu dodatkowych opcji otwiera folder umiejętności.
 - **Przenieś do kosza** przenosi jedną z moich umiejętności do systemowego kosza, skąd można ją przywrócić. Jeśli umiejętność o tej samej nazwie z innego źródła jest wyłączona, potwierdzenie pokazuje zaznaczone pole do jej ponownego włączenia. Odznacz je, aby pozostała wyłączona.
 - Wbudowanej umiejętności się nie usuwa, tylko ukrywa: wybierz **Ukryj**. **Pokaż ponownie** na dole listy przywraca ją w stanie początkowym.
 - Aby zmienić umiejętność wbudowaną lub pochodzącą z innego programu, wybierz **Kopiuj do moich umiejętności**. Kopia pojawia się w moich umiejętnościach, a oryginał zostaje wyłączony.
@@ -56,7 +56,7 @@ Gdy edytujesz własną umiejętność, instalujesz w jej miejsce inną o tej sam
 - **Pokaż różnice** pokazuje, które wiersze `SKILL.md` wróciłyby, które by zniknęły i które inne pliki by się zmieniły.
 - **Wróć do tej wersji** przywraca pliki tej wersji dokładnie takie, jakie były. Obecna wersja też zostaje zachowana, więc można do niej wrócić. To, czy umiejętność jest włączona i kiedy jest używana, pozostaje bez zmian.
 - Zachowane wersje pozostają, dopóki ich nie usuniesz. **Usuń** usuwa jedną na stałe.
-- Wersje znajdują się w folderze `~/.ieumoffice/skill-history`. **Przenieś do kosza** dla umiejętności przenosi do kosza także jej zachowane wersje.
+- Wersje znajdują się w folderze `~/.psoffice/skill-history`. **Przenieś do kosza** dla umiejętności przenosi do kosza także jej zachowane wersje.
 
 ## Wywoływanie umiejętności w panelu AI
 

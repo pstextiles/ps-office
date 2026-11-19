@@ -28,7 +28,7 @@ describe('convert a Hangul document to PDF', () => {
       expect(r.code).toBe(0)
       const out = r.json().output_path as string
       expect(out).toBe(join(dir, `form-${ext}.pdf`))
-      expect(r.json().detail.via).toBe('ieumoffice --headless-export')
+      expect(r.json().detail.via).toBe('psoffice --headless-export')
       expect(readFileSync(out).subarray(0, 5).toString()).toBe('%PDF-')
       // never over an existing file unless asked
       const again = await run(['convert', input, '--to', 'pdf', '--json'], { env })

@@ -16,7 +16,7 @@ const ctx = (overrides: Partial<AgentPolicyContext> = {}): AgentPolicyContext =>
   mode: 'ask-commands',
   projectRoot: 'C:\\Users\\me\\Project',
   openDocuments: ['C:\\Users\\me\\Project\\report.docx', 'C:\\Users\\me\\Project\\notes.md'],
-  protectedPaths: ['C:\\Users\\me\\.codex', 'C:\\Users\\me\\AppData\\Roaming\\IeumOffice'],
+  protectedPaths: ['C:\\Users\\me\\.codex', 'C:\\Users\\me\\AppData\\Roaming\\PSOffice'],
   skillBundleDir: 'C:\\Temp\\ieum-skills-1',
   platform: 'win32',
   ...overrides,
@@ -182,7 +182,7 @@ describe('names that only start with ".."', () => {
     for (const mode of ['ask-commands', 'ask-writes', 'trust-project'] as const) {
       for (const path of [
         'C:\\Users\\me\\.codex\\..x\\config.toml',
-        'C:\\Users\\me\\AppData\\Roaming\\IeumOffice\\..config\\ai-settings.json',
+        'C:\\Users\\me\\AppData\\Roaming\\PSOffice\\..config\\ai-settings.json',
       ]) {
         expect(
           agentPolicyVerdict(action({ kind: 'read', tool: 'Read', paths: [path] }), ctx({ mode })),

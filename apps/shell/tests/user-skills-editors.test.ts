@@ -20,7 +20,7 @@ let home: string
 let settingsPath: string
 let service: UserSkillsService
 
-const appDir = () => join(home, '.ieumoffice', 'skills')
+const appDir = () => join(home, '.psoffice', 'skills')
 const claudeDir = () => join(home, '.claude', 'skills')
 
 function skill(dir: string, text: string) {

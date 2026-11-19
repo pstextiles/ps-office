@@ -66,7 +66,7 @@ Edytor e-booków otwiera książki EPUB (`.epub`) na karcie. Możesz czytać ksi
 - Książka pisana pionowo staje się pozioma, chyba że jest tłumaczona na japoński, chiński lub koreański. Tłumaczenia na arabski i hebrajski czyta się od prawej do lewej.
 - To, co już przetłumaczono, jest zachowywane. Jeśli zatrzymasz tłumaczenie, wybierz **Eksportuj to, co już przetłumaczono** (reszta zostaje w języku oryginału) albo **Kontynuuj później**. Gdy otworzysz książkę z niedokończonym tłumaczeniem, GenOffice zaproponuje jego dokończenie. **Przetłumacz od nowa** najpierw usuwa zachowane tłumaczenie na ten język.
 - Zachowane tłumaczenia są liczone w Ustawienia ▸ Ogólne ▸ **Zapisane wyniki AI** razem z wynikami dokumentów PDF, a **Usuń wszystko** usuwa także je.
-- To samo tłumaczenie można też uruchomić z [poleceń terminala](help://cli) jako `ieumoffice epub translate`.
+- To samo tłumaczenie można też uruchomić z [poleceń terminala](help://cli) jako `psoffice epub translate`.
 - Wybierz **Prosty język** w polu **Tryb**, aby napisać książkę od nowa prostymi słowami w wybranym języku. Wyniki to **Książka w prostym języku** i **Oryginał, a po nim prosty język**; ich tytuł ma w tym języku oznaczenie wersji w prostym języku, a nazwa pliku ma je w języku interfejsu, by różniła się od nazwy tłumaczenia. Język to na początku język interfejsu; może to być też język książki. Wersja w prostym języku jest przechowywana osobno od tłumaczeń, jej dokończenie jest proponowane osobno, a polecenia terminala jej nie tworzą.
 
 ## Jeszcze nieobsługiwane

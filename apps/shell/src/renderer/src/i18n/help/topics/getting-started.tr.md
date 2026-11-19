@@ -24,7 +24,7 @@ Yeni belge adsız açılır; diskteki dosya ancak ilk kaydetmede oluşturulur.
 
 - **Dosya ▸ Aç** (⌘O/ctrl+O) sistem seçicisini açar: .docx / .doc / .odt / .xlsx / .xls / .csv / .tsv / .pptx / .ppt / .pdf / .md / .html.
 - Giriş ekranındaki **Son kullanılanlar** listesinde herhangi bir öğeye tıklayın.
-- Terminalden `ieumoffice <file>` komutu da dosya açar.
+- Terminalden `psoffice <file>` komutu da dosya açar.
 
 ## ODT belgeleri
 

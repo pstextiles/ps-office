@@ -31,7 +31,7 @@ const BUILD_DIR = join(SHELL_DIR, 'build')
 const LAUNCH_SCRIPT = join(BUILD_DIR, 'linux-launch.sh')
 const INSTALL_SCRIPT = join(BUILD_DIR, 'linux-after-install.sh')
 /** Where the launcher lands inside the installed app, relative to its root. */
-const PAYLOAD = 'resources/ieumoffice-launch'
+const PAYLOAD = 'resources/psoffice-launch'
 
 const require = createRequire(import.meta.url)
 // Inspect packaging metadata without downloading Electron or compiling OCR
@@ -49,7 +49,7 @@ const config = configModule.exports
 describe('Linux package: the open-file limit launcher (#488)', () => {
   it('ships the launcher in the Linux payload under the name the install step uses', () => {
     const resources = config.linux.extraResources as { from: string; to: string }[]
-    expect(resources).toContainEqual({ from: 'build/linux-launch.sh', to: 'ieumoffice-launch' })
+    expect(resources).toContainEqual({ from: 'build/linux-launch.sh', to: 'psoffice-launch' })
     expect(readFileSync(INSTALL_SCRIPT, 'utf-8')).toContain(`launch="$app/${PAYLOAD}"`)
   })
 
@@ -60,7 +60,7 @@ describe('Linux package: the open-file limit launcher (#488)', () => {
     expect(commands).toEqual([
       'ulimit -Sn "$(ulimit -Hn)" 2>/dev/null || true',
       'self="$(readlink -f "$0" 2>/dev/null)" || self="$0"',
-      'exec "${self%/*}/../ieumoffice" "$@"',
+      'exec "${self%/*}/../psoffice" "$@"',
     ])
   })
 })
@@ -69,9 +69,9 @@ describe.skipIf(process.platform !== 'linux')('Linux launcher in a sandbox (#488
   /** An app tree whose "binary" reports the limits and arguments it was started with. */
   function makeApp() {
     const root = mkdtempSync(join(tmpdir(), 'genoffice-nofile-'))
-    const app = join(root, 'opt', 'IeumOffice')
+    const app = join(root, 'opt', 'PSOffice')
     mkdirSync(join(app, 'resources'), { recursive: true })
-    const binary = join(app, 'ieumoffice')
+    const binary = join(app, 'psoffice')
     writeFileSync(
       binary,
       '#!/bin/sh\necho "soft=$(ulimit -Sn)"\necho "hard=$(ulimit -Hn)"\nfor arg in "$@"; do echo "arg=$arg"; done\n',
@@ -109,7 +109,7 @@ describe.skipIf(process.platform !== 'linux')('Linux launcher in a sandbox (#488
   it('hands the app a soft limit equal to the hard limit', () => {
     const t = makeApp()
     // the binary started directly keeps the low limit: this is what the launcher is for
-    const direct = startLow(join(t.app, 'ieumoffice'), [])
+    const direct = startLow(join(t.app, 'psoffice'), [])
     expect(direct.soft).toBe('256')
     expect(direct.hard).not.toBe('256')
 
@@ -143,13 +143,13 @@ describe.skipIf(process.platform === 'win32')(
     // linux-kde-templates.test.ts), so it needs no root and touches no real entry.
     function makeRoot(options: { launcher: boolean; exec?: (app: string) => string }) {
       const root = mkdtempSync(join(tmpdir(), 'genoffice-desktop-entry-'))
-      const app = join(root, 'opt', 'IeumOffice')
+      const app = join(root, 'opt', 'PSOffice')
       const bin = join(root, 'usr', 'bin')
       const applications = join(root, 'usr', 'share', 'applications')
       mkdirSync(join(app, 'resources', 'cli'), { recursive: true })
       mkdirSync(bin, { recursive: true })
       mkdirSync(applications, { recursive: true })
-      const cli = join(app, 'resources', 'cli', 'ieumoffice')
+      const cli = join(app, 'resources', 'cli', 'psoffice')
       writeFileSync(cli, '#!/bin/sh\n')
       chmodSync(cli, 0o755)
       if (options.launcher) {
@@ -157,25 +157,25 @@ describe.skipIf(process.platform === 'win32')(
         chmodSync(join(app, PAYLOAD), 0o755)
       }
       // the entry as electron-builder writes it for deb and rpm
-      const entry = join(applications, 'ieumoffice.desktop')
+      const entry = join(applications, 'psoffice.desktop')
       const lines = (exec: string) => [
         '[Desktop Entry]',
-        'Name=IeumOffice',
+        'Name=PSOffice',
         `Exec=${exec}`,
         'Terminal=false',
         'Type=Application',
-        'Icon=ieumoffice',
-        'StartupWMClass=ieumoffice',
+        'Icon=psoffice',
+        'StartupWMClass=psoffice',
         'MimeType=application/vnd.openxmlformats-officedocument.wordprocessingml.document;',
         'Categories=Office;',
         '',
       ]
-      writeFileSync(entry, lines(options.exec?.(app) ?? `${app}/ieumoffice %U`).join('\n'))
+      writeFileSync(entry, lines(options.exec?.(app) ?? `${app}/psoffice %U`).join('\n'))
       const file = join(root, 'linux-after-install.sh')
       writeFileSync(
         file,
         readFileSync(INSTALL_SCRIPT, 'utf-8')
-          .replaceAll('/opt/IeumOffice', app)
+          .replaceAll('/opt/PSOffice', app)
           .replaceAll('/usr/share/applications', applications)
           .replaceAll('/usr/bin/', `${bin}/`),
       )
@@ -200,18 +200,18 @@ describe.skipIf(process.platform === 'win32')(
     it('keeps the entry on the binary when the payload has no launcher', () => {
       const t = makeRoot({ launcher: false })
       expect(t.install()).toBe(0)
-      expect(t.read()).toEqual(t.lines(`${t.app}/ieumoffice %U`))
+      expect(t.read()).toEqual(t.lines(`${t.app}/psoffice %U`))
     })
 
     it('repoints an entry whose Exec line ends at the binary', () => {
-      const t = makeRoot({ launcher: true, exec: (app) => `${app}/ieumoffice` })
+      const t = makeRoot({ launcher: true, exec: (app) => `${app}/psoffice` })
       expect(t.install()).toBe(0)
       expect(t.read()).toEqual(t.lines(`${t.app}/${PAYLOAD}`))
     })
 
     it('leaves alone an Exec line that does not start our binary directly', () => {
-      const wrapped = (app: string) => `env LANG=ko_KR.UTF-8 ${app}/ieumoffice %U`
-      const other = (app: string) => `${app}/ieumoffice-other %U`
+      const wrapped = (app: string) => `env LANG=ko_KR.UTF-8 ${app}/psoffice %U`
+      const other = (app: string) => `${app}/psoffice-other %U`
       for (const exec of [wrapped, other]) {
         const t = makeRoot({ launcher: true, exec })
         expect(t.install()).toBe(0)

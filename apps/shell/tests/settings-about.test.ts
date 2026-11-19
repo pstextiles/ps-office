@@ -5,7 +5,7 @@ import { act, createElement } from 'react'
 import { createRoot } from 'react-dom/client'
 import type { Root } from 'react-dom/client'
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
-import { LANGS, PRODUCT_CONTACT_EMAIL, PRODUCT_REPO_SLUG } from '@genoffice/i18n'
+import { LANGS, PRODUCT_CONTACT_URL, PRODUCT_REPO_SLUG } from '@genoffice/i18n'
 import type { Lang } from '@genoffice/i18n'
 import type { HomeApi } from '../src/shared/home-api'
 import { LocaleProvider } from '../src/renderer/src/locale'
@@ -106,7 +106,7 @@ describe('Settings → About', () => {
 
   it('opens the bundled license notices and starts a mail to the rights contact', async () => {
     await openAbout()
-    expect(host.textContent).toContain(PRODUCT_CONTACT_EMAIL)
+    expect(host.textContent).toContain(PRODUCT_CONTACT_URL)
     await act(async () => {
       buttonLabeled(strings.en.setLicensesOpen).click()
       buttonLabeled(strings.en.setRightsContactSend).click()
@@ -125,8 +125,8 @@ describe('Settings → About', () => {
       '본 제품은 한글과컴퓨터의 한글 문서 파일(.hwp) 공개 문서를 참고하여 개발하였습니다.',
     )
     expect(text).toContain('rhwp')
-    expect(text).toContain('이음오피스는 Microsoft, 한글과컴퓨터')
-    expect(text).toContain('이음오피스는 Apache License 2.0에 따라 있는 그대로 제공되며')
+    expect(text).toContain('PS 오피스는 Microsoft, 한글과컴퓨터')
+    expect(text).toContain('PS 오피스는 Apache License 2.0에 따라 있는 그대로 제공되며')
   })
 
   it('has every notice in every UI language, each naming the product by token', () => {

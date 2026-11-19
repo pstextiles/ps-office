@@ -54,7 +54,7 @@ function dims(path: string, table: string) {
   }
 }
 
-describe('ieumoffice hwp apply on a table inside a table', () => {
+describe('psoffice hwp apply on a table inside a table', () => {
   it('adds rows, merges and colours its cells; the outer table stays and the answers keep their shape', async () => {
     const { path, opsPath } = prepare([
       { op: 'format_cells', table: 1, cells: [{ row: 1, col: 1 }], background: '#eeeeee' },

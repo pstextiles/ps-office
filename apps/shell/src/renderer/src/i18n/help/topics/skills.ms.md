@@ -6,19 +6,19 @@ Kemahiran ialah satu set arahan kerja untuk AI. Tulis sekali sahaja perkara yang
 
 **Tetapan ▸ Kemahiran** menyenaraikan kemahiran pada PC ini, dikumpulkan mengikut asalnya. Setiap kemahiran dipaparkan dengan namanya, seperti dalam ejen pengekodan. Gunakan kotak carian di bahagian atas untuk mencari mengikut nama atau keterangan. Kemahiran anda yang mempunyai tajuk memaparkan tajuk itu dalam senarai ini, dalam senarai `/` dan pada cip, dengan nama bersaiz kecil di sebelahnya. Anda juga boleh mencari mengikut tajuk. Nama yang direka oleh aplikasi (`skill-…`) tidak dipaparkan di sebelah tajuk.
 
-| Sumber                      | Kandungannya                                                  | Pada mulanya |
-| --------------------------- | ------------------------------------------------------------- | ------------ |
-| **Terbina dalam**           | Kemahiran yang disertakan bersama GenOffice                   | Hidup        |
-| **Kemahiran saya**          | Kemahiran yang anda tambah atau buat (`~/.ieumoffice/skills`) | Hidup        |
-| **Folder kemahiran Claude** | Kemahiran dalam `~/.claude/skills`                            | Mati         |
-| **Pemalam Claude**          | Kemahiran daripada pemalam Claude yang dipasang               | Mati         |
-| **Folder kemahiran Codex**  | Kemahiran dalam `~/.agents/skills`                            | Mati         |
+| Sumber                      | Kandungannya                                                | Pada mulanya |
+| --------------------------- | ----------------------------------------------------------- | ------------ |
+| **Terbina dalam**           | Kemahiran yang disertakan bersama GenOffice                 | Hidup        |
+| **Kemahiran saya**          | Kemahiran yang anda tambah atau buat (`~/.psoffice/skills`) | Hidup        |
+| **Folder kemahiran Claude** | Kemahiran dalam `~/.claude/skills`                          | Mati         |
+| **Pemalam Claude**          | Kemahiran daripada pemalam Claude yang dipasang             | Mati         |
+| **Folder kemahiran Codex**  | Kemahiran dalam `~/.agents/skills`                          | Mati         |
 
 - Suis menghidupkan atau mematikan kemahiran. Tetapan yang sama terpakai pada panel AI setiap editor, Tanya AI di Laman Utama dan tetingkap ejen.
 - Bagi kemahiran yang hidup, pilih **AI tentukan** atau **Hanya apabila dipanggil**. Pada mulanya ia ditetapkan kepada AI tentukan. Dengan Hanya apabila dipanggil, kemahiran itu digunakan hanya apabila anda sendiri memanggilnya. Pada kemahiran yang mati, pilihan ini kekal kelihatan malap, jadi anda boleh menetapkannya sebelum menghidupkan kemahiran itu semula.
 - Kemahiran daripada sumber yang berlainan boleh mempunyai nama yang sama. Label sumber pada setiap baris membezakannya. Apabila dua kemahiran dengan nama yang sama kedua-duanya dihidupkan, hanya satu yang muncul dalam senarai `/` dan digunakan: yang pertama mengikut susunan Kemahiran saya, Terbina dalam, Folder kemahiran Claude, Folder kemahiran Codex, Pemalam Claude. Baris kemahiran yang satu lagi menyatakan kemahiran mana yang digunakan sebagai ganti.
 - Menu lagi mengandungi **Lihat kandungan**, **Sunting** (kemahiran saya sahaja), **Eksport (zip)** (kemahiran saya sahaja) dan **Buka folder**. Kemahiran terbina dalam tiada **Buka folder**. **Tempat digunakan** terus membuka tempat memilih editor yang menggunakan kemahiran itu.
-- Kemahiran saya berada dalam folder `~/.ieumoffice/skills`. Pada Windows, ia ialah `C:\Users\<nama pengguna>\.ieumoffice\skills`. **Buka folder** dalam menu lagi membuka folder kemahiran itu.
+- Kemahiran saya berada dalam folder `~/.psoffice/skills`. Pada Windows, ia ialah `C:\Users\<nama pengguna>\.psoffice\skills`. **Buka folder** dalam menu lagi membuka folder kemahiran itu.
 - **Alih ke tong sampah** memindahkan salah satu kemahiran saya ke tong sampah sistem, dan anda boleh memulihkannya dari situ. Jika kemahiran dengan nama yang sama daripada sumber lain dimatikan, pengesahan menunjukkan kotak bertanda untuk menghidupkannya semula. Kosongkan kotak itu untuk membiarkannya mati.
 - Kemahiran terbina dalam tidak dibuang tetapi disembunyikan: pilih **Sembunyikan**. **Tunjukkan semula** di bahagian bawah senarai mengembalikannya seperti keadaan asal.
 - Untuk mengubah kemahiran terbina dalam atau kemahiran daripada program lain, pilih **Salin ke kemahiran saya**. Salinannya muncul dalam kemahiran saya dan kemahiran asal dimatikan.
@@ -56,7 +56,7 @@ Apabila anda menyunting kemahiran sendiri, memasang kemahiran lain dengan nama y
 - **Lihat perbezaan** menunjukkan baris `SKILL.md` yang akan kembali, yang akan hilang, dan fail lain yang akan berubah.
 - **Kembali ke versi ini** meletakkan semula fail versi itu tepat seperti asalnya. Versi sekarang juga disimpan, jadi anda boleh kembali kepadanya. Sama ada kemahiran dihidupkan dan bila ia digunakan kekal seperti yang anda tetapkan.
 - Versi yang disimpan kekal sehingga anda memadamnya. **Padam** memadam satu versi untuk selama-lamanya.
-- Versi-versi itu berada dalam folder `~/.ieumoffice/skill-history`. **Alih ke tong sampah** pada sesuatu kemahiran turut mengalihkan versi simpanannya ke tong sampah.
+- Versi-versi itu berada dalam folder `~/.psoffice/skill-history`. **Alih ke tong sampah** pada sesuatu kemahiran turut mengalihkan versi simpanannya ke tong sampah.
 
 ## Memanggil kemahiran dalam panel AI
 

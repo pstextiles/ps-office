@@ -33,7 +33,7 @@ let settingsPath: string
 let trash: ReturnType<typeof vi.fn>
 let service: UserSkillsService
 
-const appDir = () => join(home, '.ieumoffice', 'skills')
+const appDir = () => join(home, '.psoffice', 'skills')
 
 function skill(dir: string, name: string, description: string, extra = '', body = 'Do it.\n') {
   mkdirSync(dir, { recursive: true })
@@ -212,7 +212,7 @@ describe('removing and copying', () => {
   it('keeps the own skill when its earlier version cannot be kept', async () => {
     skill(join(home, '.agents', 'skills', 'mine'), 'mine', 'Codex copy')
     // a file where the versions folder would be: nothing can be kept there
-    writeFileSync(join(home, '.ieumoffice', 'skill-history'), 'in the way')
+    writeFileSync(join(home, '.psoffice', 'skill-history'), 'in the way')
     expect(await service.copyToMine('codex:mine', true)).toEqual({ ok: false, reason: 'failed' })
     expect(
       parseSkillMd(readFileSync(join(appDir(), 'mine', 'SKILL.md'), 'utf8'))!.description,
@@ -242,7 +242,7 @@ describe('saving skills', () => {
       reason: 'bad-name',
       problem: 'characters',
     })
-    expect(await service.saveFromCard({ ...card, name: 'ieumoffice' })).toMatchObject({
+    expect(await service.saveFromCard({ ...card, name: 'psoffice' })).toMatchObject({
       problem: 'reserved',
     })
     expect(await service.saveFromCard({ ...card, description: ' ' })).toMatchObject({

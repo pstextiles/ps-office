@@ -26,9 +26,9 @@ const TEMPLATE_DIR = join(BUILD_DIR, 'shell-new')
 // post-install script installs one blank document per format there
 // (genoffice#2384); the menu label is the installed file name.
 const TEMPLATES = {
-  docx: 'IeumOffice Document.docx',
-  xlsx: 'IeumOffice Spreadsheet.xlsx',
-  pptx: 'IeumOffice Presentation.pptx',
+  docx: 'PSOffice Document.docx',
+  xlsx: 'PSOffice Spreadsheet.xlsx',
+  pptx: 'PSOffice Presentation.pptx',
 } as const
 
 const INSTALL_SCRIPT = join(BUILD_DIR, 'linux-after-install.sh')
@@ -106,10 +106,10 @@ describe.skipIf(process.platform === 'win32')('Linux post-install scripts in a s
   // test needs no root and touches no real system directory.
   function makeRoot(withPayload: boolean) {
     const root = mkdtempSync(join(tmpdir(), 'genoffice-kde-templates-'))
-    const app = join(root, 'opt', 'IeumOffice')
+    const app = join(root, 'opt', 'PSOffice')
     const bin = join(root, 'usr', 'bin')
     const templates = join(root, 'usr', 'share', 'templates')
-    const launcher = join(app, 'resources', 'cli', 'ieumoffice')
+    const launcher = join(app, 'resources', 'cli', 'psoffice')
     mkdirSync(join(app, 'resources', 'cli'), { recursive: true })
     mkdirSync(bin, { recursive: true })
     writeFileSync(launcher, '#!/bin/sh\n')
@@ -126,7 +126,7 @@ describe.skipIf(process.platform === 'win32')('Linux post-install scripts in a s
       writeFileSync(
         file,
         readFileSync(join(BUILD_DIR, name), 'utf-8')
-          .replaceAll('/opt/IeumOffice', app)
+          .replaceAll('/opt/PSOffice', app)
           .replaceAll('/usr/share/templates', templates)
           .replaceAll('/usr/bin/', `${bin}/`),
       )

@@ -70,7 +70,7 @@ import menuDiagramIcon2x from './assets/menu-diagram@2x.png?asset'
 import menuHomeIcon1x from './assets/menu-home.png?asset'
 import menuHomeIcon2x from './assets/menu-home@2x.png?asset'
 import { createI18n, isLang, normalizeLang, setUiLang, type Lang } from '@genoffice/i18n'
-import { DEV_USER_DATA_DIR_NAME, PRODUCT_CONTACT_EMAIL, productName } from '@genoffice/i18n'
+import { DEV_USER_DATA_DIR_NAME, PRODUCT_CONTACT_URL, productName } from '@genoffice/i18n'
 import {
   DEFAULT_SAVE_DIR_KEY,
   defaultSaveDirFallback,
@@ -808,7 +808,7 @@ function bundledCliRunner(): ReturnType<typeof createCliRunner> {
  * project folder only through its write guard, after the conversion succeeded.
  */
 async function markdownDocxBytes(markdown: string): Promise<Uint8Array> {
-  const dir = mkdtempSync(join(tmpdir(), 'ieumoffice-kb-docx-'))
+  const dir = mkdtempSync(join(tmpdir(), 'psoffice-kb-docx-'))
   try {
     const out = join(dir, 'document.docx')
     await createFileViaCli(bundledCliRunner(), {
@@ -7643,12 +7643,12 @@ function registerHomeIpc(): void {
   })
 
   ipcMain.handle(HOME_CHANNELS.openRightsContact, () => {
-    const url = safeExternalUrl(`mailto:${PRODUCT_CONTACT_EMAIL}`, {
-      allowedProtocols: ['mailto:'],
+    const url = safeExternalUrl(PRODUCT_CONTACT_URL, {
+      allowedProtocols: ['https:'],
     })
     if (!url) return
     shell.openExternal(url).catch(() => {
-      // no mail handler registered; the address is shown in Settings to copy by hand
+      // no browser handler registered; the address is shown in Settings to copy by hand
     })
   })
 
@@ -9946,7 +9946,7 @@ async function openPdfAsHwp(): Promise<void> {
 const markdownImportDeps: MarkdownImportDeps = {
   defaultFormat: () => readHwpDefaultFormat(app),
   makeDir: () => {
-    const dir = join(app.getPath('temp'), 'ieumoffice-hwp-imports', randomUUID())
+    const dir = join(app.getPath('temp'), 'psoffice-hwp-imports', randomUUID())
     mkdirSync(dir, { recursive: true })
     return dir
   },
@@ -9979,7 +9979,7 @@ const markdownImportDeps: MarkdownImportDeps = {
 /** The copy of `pdfPath` as a new, untitled Hangul tab that imports it; the copy goes with the tab. */
 function openPdfCopyAsHwp(pdfPath: string): void {
   if (!tabManager) return
-  const dir = join(app.getPath('temp'), 'ieumoffice-pdf-imports', randomUUID())
+  const dir = join(app.getPath('temp'), 'psoffice-pdf-imports', randomUUID())
   const baseName = basename(pdfPath).replace(/\.pdf$/i, '')
   let tabId: string
   try {
@@ -10190,8 +10190,8 @@ registerIntegrationsIpc({
     ? join(process.resourcesPath, 'cli')
     : join(APPS_ROOT, '..', 'packages', 'cli', 'bin'),
   skillPath: app.isPackaged
-    ? join(process.resourcesPath, 'cli', 'skills', 'ieumoffice', 'SKILL.md')
-    : join(APPS_ROOT, '..', 'skills', 'ieumoffice', 'SKILL.md'),
+    ? join(process.resourcesPath, 'cli', 'skills', 'psoffice', 'SKILL.md')
+    : join(APPS_ROOT, '..', 'skills', 'psoffice', 'SKILL.md'),
   cliPackageJson: app.isPackaged
     ? join(process.resourcesPath, 'cli', 'package.json')
     : join(APPS_ROOT, '..', 'packages', 'cli', 'package.json'),
@@ -10219,7 +10219,7 @@ registerPdfConvertUiIpc({
 
 // The person's skills (settings → skills, the AI windows' `/` list and skill
 // reads, skill cards, the agent session's skills). Writes go only to
-// ~/.ieumoffice/skills; removing is the OS trash; GitHub only on request.
+// ~/.psoffice/skills; removing is the OS trash; GitHub only on request.
 const builtinSkillsDir = (): string =>
   builtinSkillsDirFor({
     isPackaged: app.isPackaged,
@@ -10230,7 +10230,7 @@ const userSkills = createUserSkillsService({
   homeDir: () => homedir(),
   builtinDir: builtinSkillsDir,
   settingsPath: APP_SETTINGS_PATH,
-  tempDir: () => join(tmpdir(), 'ieumoffice-skills'),
+  tempDir: () => join(tmpdir(), 'psoffice-skills'),
   trash: (path) => shell.trashItem(path),
   // Node's fetch: no browser cookies; the core sets no-redirect and no-credentials per request
   fetch: (url, init) => fetch(url, init),
@@ -10264,7 +10264,7 @@ const userSkillsIpc = registerUserSkillsIpc({
 // through its own send gate. The skill folder is only read here.
 const templateTabs = createTemplateTabs({
   makeCopyDir: async () => {
-    const dir = join(app.getPath('temp'), 'ieumoffice-template-copies', randomUUID())
+    const dir = join(app.getPath('temp'), 'psoffice-template-copies', randomUUID())
     mkdirSync(dir, { recursive: true })
     return dir
   },
@@ -10873,7 +10873,7 @@ app.whenReady().then(async () => {
         withProject ? enabled : enabled.filter((skill) => skill.source !== 'project'),
         // not under userData: that folder is protected from sessions, and the
         // copied skills' scripts must be readable to run
-        join(process.env.LOCALAPPDATA ?? tmpdir(), 'IeumOffice', 'agent-skills'),
+        join(process.env.LOCALAPPDATA ?? tmpdir(), 'PSOffice', 'agent-skills'),
       )
     },
     projectSkills: {

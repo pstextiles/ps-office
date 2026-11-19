@@ -64,7 +64,7 @@ export const tr = {
   undoFailed: 'Geri alınamadı.',
   removeMemoryAria: 'Bu belleği sil: {text}',
   filesDesc:
-    'AI’ın bu projede görebildiği dosyalar. Gizli dosyalar ve .ieumoffice klasörü dışarıda bırakılır.',
+    'AI’ın bu projede görebildiği dosyalar. Gizli dosyalar ve .psoffice klasörü dışarıda bırakılır.',
   filesEmpty: 'AI’ın görebildiği dosya yok.',
   filesLoadFailed: 'Dosya listesi okunamadı.',
   filesCount: '{count} dosya',

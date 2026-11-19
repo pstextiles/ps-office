@@ -20,7 +20,7 @@ export const MCP_SERVER_NAME_MAX = 24
 export const MCP_TOOL_NAME_MAX = 64
 
 /** The app's own MCP server; a user server may not take its name */
-export const APP_MCP_SERVER_NAME = 'ieumoffice-editor'
+export const APP_MCP_SERVER_NAME = 'psoffice-editor'
 /** Server names refused, compared without case */
 export const RESERVED_MCP_SERVER_NAMES: ReadonlySet<string> = new Set([APP_MCP_SERVER_NAME])
 

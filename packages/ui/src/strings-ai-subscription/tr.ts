@@ -149,7 +149,7 @@ export const tr = {
     'Hâlâ takıldınız mı? Bağlantı ayrıntılarını kopyalayıp size yardım edene gönderin. Bunlarda hesap ve dosya yolu yoktur.',
   actionCopyInfo: 'Yardım için ayrıntıları kopyala',
   copyInfoDone: 'Kopyalandı',
-  actionConnectHelp: 'Her adımı ekranda görün (sayfa Korece)',
+  actionConnectHelp: 'Her adımı ekranda görün',
   guidePathChatGptBody:
     'ChatGPT hesabınızla oturum açıp planınızı kullanın. Yüklenecek bir şey yok. Ücretsiz plan yalnızca az bir kullanıma izin verir.',
   guideUseCodex: 'Bu bilgisayarda Codex programını zaten kullanıyor musunuz? Codex ile bağlanın',

@@ -1,17 +1,17 @@
 # GenOffice 설치
 
-모든 버전은 GitHub에 있는 프로젝트의 [Releases 페이지](https://github.com/pblsketch/ieumoffice/releases/latest)에 올라옵니다. Windows판과 함께 Mac판과 Linux판이 베타로 올라옵니다. Mac판과 Linux판은 개발자가 직접 확인하지 못하고 사용자들의 보고로 확인합니다.
+모든 버전은 GitHub에 있는 프로젝트의 [Releases 페이지](https://github.com/pstextiles/ps-office/releases/latest)에 올라옵니다. Windows판과 함께 Mac판과 Linux판이 베타로 올라옵니다. Mac판과 Linux판은 개발자가 직접 확인하지 못하고 사용자들의 보고로 확인합니다.
 
 ## 내 컴퓨터에 맞는 파일 고르기
 
-| 플랫폼                                 | 필요한 것                         | 파일                              |
-| -------------------------------------- | --------------------------------- | --------------------------------- |
-| **Windows**                            | Windows 10 이상, 64비트 Intel/AMD | `GenOffice-Setup-<version>.exe`   |
-| **Mac (베타)**, Apple Silicon          | macOS 12 이상, M1 이후 칩         | `GenOffice-<version>-arm64.dmg`   |
-| **Mac (베타)**, Intel                  | macOS 12 이상, Intel 프로세서     | `GenOffice-<version>-x64.dmg`     |
-| **Linux (베타)**, 모든 배포판          | 64비트(x86_64)                    | `GenOffice-<version>.AppImage`    |
-| **Linux (베타)**, Ubuntu·Debian 계열   | 64비트(x86_64)                    | `ieumoffice_<version>_amd64.deb`  |
-| **Linux (베타)**, Fedora·RHEL·openSUSE | 64비트(x86_64)                    | `ieumoffice-<version>.x86_64.rpm` |
+| 플랫폼                                 | 필요한 것                         | 파일                            |
+| -------------------------------------- | --------------------------------- | ------------------------------- |
+| **Windows**                            | Windows 10 이상, 64비트 Intel/AMD | `GenOffice-Setup-<version>.exe` |
+| **Mac (베타)**, Apple Silicon          | macOS 12 이상, M1 이후 칩         | `GenOffice-<version>-arm64.dmg` |
+| **Mac (베타)**, Intel                  | macOS 12 이상, Intel 프로세서     | `GenOffice-<version>-x64.dmg`   |
+| **Linux (베타)**, 모든 배포판          | 64비트(x86_64)                    | `GenOffice-<version>.AppImage`  |
+| **Linux (베타)**, Ubuntu·Debian 계열   | 64비트(x86_64)                    | `psoffice_<version>_amd64.deb`  |
+| **Linux (베타)**, Fedora·RHEL·openSUSE | 64비트(x86_64)                    | `psoffice-<version>.x86_64.rpm` |
 
 내 Mac이 어느 쪽인지는 Apple 메뉴 ▸ **이 Mac에 관하여**에서 봅니다. "칩"에 Apple M…이 적혀 있으면 이름이 `-arm64.dmg`로 끝나는 파일을, "프로세서"에 Intel …이 적혀 있으면 `-x64.dmg`로 끝나는 파일을 받습니다. Releases 페이지의 다른 파일(`.zip`, `.yml`, `.blockmap`)은 앱이 업데이트할 때 쓰는 것이라 따로 받지 않아도 됩니다. 이전 버전은 Releases 페이지에 그대로 남아 있습니다.
 
@@ -80,10 +80,10 @@ Mac에서 그 밖에 다른 점:
 ## Linux에서 (베타)
 
 - **AppImage**: 실행 권한을 준 뒤(`chmod +x GenOffice-<version>.AppImage`) 그 파일을 실행합니다. 설치 과정이 없습니다.
-- **deb**: `sudo apt install ./ieumoffice_<version>_amd64.deb`로 설치합니다.
-- **rpm**: `sudo dnf install ./ieumoffice-<version>.x86_64.rpm`로 설치합니다. openSUSE에서는 `sudo zypper install ./ieumoffice-<version>.x86_64.rpm`을 씁니다.
+- **deb**: `sudo apt install ./psoffice_<version>_amd64.deb`로 설치합니다.
+- **rpm**: `sudo dnf install ./psoffice-<version>.x86_64.rpm`로 설치합니다. openSUSE에서는 `sudo zypper install ./psoffice-<version>.x86_64.rpm`을 씁니다.
 
-deb와 rpm은 `/opt/GenOffice`에 설치되고, 터미널 명령 `/usr/bin/ieumoffice`를 연결합니다. Mac처럼 AI 연결 카드에 설치 단추가 없고, 로그인 중에 코드를 붙여 넣으라고 하면 터미널에서 `claude auth login` 또는 `codex login`을 직접 실행합니다.
+deb와 rpm은 `/opt/GenOffice`에 설치되고, 터미널 명령 `/usr/bin/psoffice`를 연결합니다. Mac처럼 AI 연결 카드에 설치 단추가 없고, 로그인 중에 코드를 붙여 넣으라고 하면 터미널에서 `claude auth login` 또는 `codex login`을 직접 실행합니다.
 
 ## 업데이트
 
@@ -101,4 +101,4 @@ deb와 rpm은 `/opt/GenOffice`에 설치되고, 터미널 명령 `/usr/bin/ieumo
 
 ## 명령줄도 함께 옵니다
 
-모든 설치본에는 `ieumoffice` 명령이 들어 있고, 창이 쓰는 바로 그 엔진을 구동합니다. 같은 파일에 대한 둘의 판단이 어긋날 일은 없습니다. `ieumoffice install-cli`로 `PATH`에 넣습니다. 무엇을 할 수 있는지는 [명령줄과 에이전트](help://cli)를 보세요.
+모든 설치본에는 `psoffice` 명령이 들어 있고, 창이 쓰는 바로 그 엔진을 구동합니다. 같은 파일에 대한 둘의 판단이 어긋날 일은 없습니다. `psoffice install-cli`로 `PATH`에 넣습니다. 무엇을 할 수 있는지는 [명령줄과 에이전트](help://cli)를 보세요.

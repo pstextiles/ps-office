@@ -3,13 +3,13 @@ import { join } from 'node:path'
 import { describe, expect, it } from 'vitest'
 import { shellWindowTitle } from '../src/main/window-title'
 
-const home = { kind: 'home' as const, title: 'IeumOffice', active: false }
+const home = { kind: 'home' as const, title: 'PSOffice', active: false }
 
 describe('shellWindowTitle', () => {
   it('names the active document before the product, like other document programs', () => {
     expect(
-      shellWindowTitle([home, { kind: 'hwp', title: '보고서.hwp', active: true }], '이음오피스'),
-    ).toBe('보고서.hwp - 이음오피스')
+      shellWindowTitle([home, { kind: 'hwp', title: '보고서.hwp', active: true }], 'PS 오피스'),
+    ).toBe('보고서.hwp - PS 오피스')
   })
 
   it('is the product alone on Home', () => {
@@ -19,24 +19,24 @@ describe('shellWindowTitle', () => {
           { ...home, active: true },
           { kind: 'docs', title: 'a.docx', active: false },
         ],
-        '이음오피스',
+        'PS 오피스',
       ),
-    ).toBe('이음오피스')
+    ).toBe('PS 오피스')
   })
 
   it('uses an untitled tab name as the tab strip shows it', () => {
     expect(
       shellWindowTitle(
         [home, { kind: 'docs', title: '제목 없는 문서', active: true }],
-        '이음오피스',
+        'PS 오피스',
       ),
-    ).toBe('제목 없는 문서 - 이음오피스')
+    ).toBe('제목 없는 문서 - PS 오피스')
   })
 
   it('falls back to the product with no active tab or an empty title', () => {
-    expect(shellWindowTitle([home], 'IeumOffice')).toBe('IeumOffice')
-    expect(shellWindowTitle([home, { kind: 'pdf', title: '  ', active: true }], 'IeumOffice')).toBe(
-      'IeumOffice',
+    expect(shellWindowTitle([home], 'PSOffice')).toBe('PSOffice')
+    expect(shellWindowTitle([home, { kind: 'pdf', title: '  ', active: true }], 'PSOffice')).toBe(
+      'PSOffice',
     )
   })
 })

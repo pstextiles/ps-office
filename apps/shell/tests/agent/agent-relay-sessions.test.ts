@@ -91,7 +91,7 @@ function setup(keepResultsInside: string[] = ['law']) {
     statuses: () => ({ 'claude-code': ready('claude-code'), codex: ready('codex') }),
     aiSettings: () => normalizeAiSettings({ providers: {} }),
     openDocuments: () => [],
-    userData: join(home, 'AppData', 'IeumOffice'),
+    userData: join(home, 'AppData', 'PSOffice'),
     homeDir: home,
     language: () => 'ko',
     startRelays,
@@ -290,8 +290,8 @@ describe('the window’s card and lines for MCP tools', () => {
     const line = (tool: string): AgentActionView => ({ kind: 'app-tool', tool, paths: [] })
     expect(agentUserMcpTool(line('mcp__law__search'))).toEqual({ server: 'law', tool: 'search' })
     expect(agentUserMcpTool(line('law:search'))).toEqual({ server: 'law', tool: 'search' })
-    expect(agentUserMcpTool(line('mcp__ieumoffice-editor__read_document'))).toBeUndefined()
-    expect(agentUserMcpTool(line('ieumoffice-editor:read_document'))).toBeUndefined()
+    expect(agentUserMcpTool(line('mcp__psoffice-editor__read_document'))).toBeUndefined()
+    expect(agentUserMcpTool(line('psoffice-editor:read_document'))).toBeUndefined()
     expect(agentUserMcpTool({ kind: 'command', tool: 'Bash', paths: [] })).toBeUndefined()
   })
 

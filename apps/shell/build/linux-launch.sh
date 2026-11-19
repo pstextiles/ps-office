@@ -9,4 +9,4 @@
 # The deb/rpm post-install step points the desktop entry at this file.
 ulimit -Sn "$(ulimit -Hn)" 2>/dev/null || true
 self="$(readlink -f "$0" 2>/dev/null)" || self="$0"
-exec "${self%/*}/../ieumoffice" "$@"
+exec "${self%/*}/../psoffice" "$@"

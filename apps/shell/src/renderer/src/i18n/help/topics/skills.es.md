@@ -6,19 +6,19 @@ Una habilidad es un conjunto de instrucciones de trabajo para la IA. Anote una s
 
 **Configuración ▸ Habilidades** muestra las habilidades de este PC, agrupadas según su origen. Cada habilidad aparece con su nombre, como la muestran los agentes de programación. Use el cuadro de búsqueda de arriba para encontrar una por nombre o descripción. Una habilidad suya que tiene título muestra ese título en esta lista, en la lista de `/` y en las fichas, con el nombre en pequeño al lado. También puede buscar por el título. Un nombre puesto por la aplicación (`skill-…`) no se muestra junto al título.
 
-| Origen                               | Qué contiene                                                     | Al principio |
-| ------------------------------------ | ---------------------------------------------------------------- | ------------ |
-| **Integradas**                       | Las habilidades que vienen con GenOffice                         | Activadas    |
-| **Mis habilidades**                  | Las habilidades que usted añadió o creó (`~/.ieumoffice/skills`) | Activadas    |
-| **Carpeta de habilidades de Claude** | Las habilidades de `~/.claude/skills`                            | Desactivadas |
-| **Complementos de Claude**           | Las habilidades de los complementos de Claude instalados         | Desactivadas |
-| **Carpeta de habilidades de Codex**  | Las habilidades de `~/.agents/skills`                            | Desactivadas |
+| Origen                               | Qué contiene                                                   | Al principio |
+| ------------------------------------ | -------------------------------------------------------------- | ------------ |
+| **Integradas**                       | Las habilidades que vienen con GenOffice                       | Activadas    |
+| **Mis habilidades**                  | Las habilidades que usted añadió o creó (`~/.psoffice/skills`) | Activadas    |
+| **Carpeta de habilidades de Claude** | Las habilidades de `~/.claude/skills`                          | Desactivadas |
+| **Complementos de Claude**           | Las habilidades de los complementos de Claude instalados       | Desactivadas |
+| **Carpeta de habilidades de Codex**  | Las habilidades de `~/.agents/skills`                          | Desactivadas |
 
 - El interruptor activa o desactiva una habilidad. El mismo ajuste vale para el panel de IA de todos los editores, para Ask AI en Inicio y para la ventana del agente.
 - Para una habilidad activada, elija **Decide la IA** o **Solo cuando se llama**. Al principio está en Decide la IA. Con Solo cuando se llama, la habilidad solo se usa cuando usted mismo la llama. En una habilidad desactivada esta opción sigue ahí, atenuada, para que pueda elegirla antes de volver a activarla.
 - Habilidades de orígenes distintos pueden tener el mismo nombre. La etiqueta de origen de cada fila las distingue. Cuando dos habilidades con el mismo nombre están activadas, solo una aparece en la lista `/` y se usa: la primera en el orden Mis habilidades, Integradas, Carpeta de habilidades de Claude, Carpeta de habilidades de Codex, Complementos de Claude. La fila de la otra indica qué habilidad se usa en su lugar.
 - El menú de más opciones tiene **Ver contenido**, **Editar** (solo mis habilidades), **Exportar (zip)** (solo mis habilidades) y **Abrir carpeta**. Las habilidades integradas no tienen **Abrir carpeta**. **Dónde se usa** abre directamente el lugar donde se eligen los editores en los que se usa la habilidad.
-- Mis habilidades están en la carpeta `~/.ieumoffice/skills`. En Windows es `C:\Users\<nombre de usuario>\.ieumoffice\skills`. **Abrir carpeta**, en el menú de más opciones, abre la carpeta de la habilidad.
+- Mis habilidades están en la carpeta `~/.psoffice/skills`. En Windows es `C:\Users\<nombre de usuario>\.psoffice\skills`. **Abrir carpeta**, en el menú de más opciones, abre la carpeta de la habilidad.
 - **Mover a la papelera** lleva una de mis habilidades a la papelera del sistema, desde donde puede restaurarla. Si una habilidad con el mismo nombre de otro origen está desactivada, la confirmación muestra una casilla marcada para volver a activarla. Desmárquela para dejarla desactivada.
 - Una habilidad integrada se oculta en lugar de eliminarse: elija **Ocultar**. **Volver a mostrar**, al final de la lista, la recupera tal como era al principio.
 - Para cambiar una habilidad integrada o una de otro programa, elija **Copiar a mis habilidades**. La copia aparece en mis habilidades y la original se desactiva.
@@ -56,7 +56,7 @@ Cuando editas una de tus habilidades, instalas otra con el mismo nombre en su lu
 - **Ver diferencias** muestra qué líneas de `SKILL.md` volverían, cuáles desaparecerían y qué otros archivos cambiarían.
 - **Volver a esta versión** vuelve a poner los archivos de esa versión tal como estaban. La versión actual también se guarda, así que puedes volver a ella. Si la habilidad está activada y cuándo se usa quedan como los dejaste.
 - Las versiones guardadas permanecen hasta que las eliminas. **Eliminar** elimina una definitivamente.
-- Las versiones están en la carpeta `~/.ieumoffice/skill-history`. **Mover a la papelera** en una habilidad envía también sus versiones guardadas a la papelera.
+- Las versiones están en la carpeta `~/.psoffice/skill-history`. **Mover a la papelera** en una habilidad envía también sus versiones guardadas a la papelera.
 
 ## Llamar a una habilidad en el panel de IA
 

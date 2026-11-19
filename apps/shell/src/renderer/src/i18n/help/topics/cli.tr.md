@@ -1,19 +1,19 @@
 # Komut satırı ve ajanlar
 
-Her kurulum, penceredekiyle aynı motorları çalıştıran bir `ieumoffice` komutu içerir — aynı ayrıştırıcılar, aynı yazıcı, aynı görüntüleyici. Uygulamanın kaydettiği dosya ile komutun yazdığı dosya aynı dosyadır; uygulamanın AI panelinin geçtiği bir denetimden komut da geçer.
+Her kurulum, penceredekiyle aynı motorları çalıştıran bir `psoffice` komutu içerir — aynı ayrıştırıcılar, aynı yazıcı, aynı görüntüleyici. Uygulamanın kaydettiği dosya ile komutun yazdığı dosya aynı dosyadır; uygulamanın AI panelinin geçtiği bir denetimden komut da geçer.
 
 ```sh
-ieumoffice --help          # every command
-ieumoffice guide slides    # the op reference, for writing your own
+psoffice --help          # every command
+psoffice guide slides    # the op reference, for writing your own
 ```
 
-`ieumoffice --help` tek ekranda bütün yüzeydir: her komut ne yaptığını söyleyen bir satırla, ardından genel seçenekler ve çıkış kodları.
+`psoffice --help` tek ekranda bütün yüzeydir: her komut ne yaptığını söyleyen bir satırla, ardından genel seçenekler ve çıkış kodları.
 
 ## Komutu edinme
 
-Komut uygulamanın içinde gelir. Adıyla kullanmak için bir kez `ieumoffice install-cli` komutunu çalıştırın: Windows’ta komutu barındıran klasörü kullanıcı `PATH`’inize ekler ve sonrasında açtığınız terminaller onu bulur. **Ayarlar ▸ Entegrasyonlar**, terminalinizin komutu zaten bulup bulmadığını ve bulamıyorsa çalıştırılacak tam satırı gösterir.
+Komut uygulamanın içinde gelir. Adıyla kullanmak için bir kez `psoffice install-cli` komutunu çalıştırın: Windows’ta komutu barındıran klasörü kullanıcı `PATH`’inize ekler ve sonrasında açtığınız terminaller onu bulur. **Ayarlar ▸ Entegrasyonlar**, terminalinizin komutu zaten bulup bulmadığını ve bulamıyorsa çalıştırılacak tam satırı gösterir.
 
-Kodlama ajanları bu adıma ihtiyaç duymaz. Uygulama komutun yerini `~/.ieumoffice/launcher` dosyasına yazar; ajanlar onu orada bulur.
+Kodlama ajanları bu adıma ihtiyaç duymaz. Uygulama komutun yerini `~/.psoffice/launcher` dosyasına yazar; ajanlar onu orada bulur.
 
 ## Bilinmeye değer komutlar
 
@@ -32,18 +32,18 @@ Kodlama ajanları bu adıma ihtiyaç duymaz. Uygulama komutun yerini `~/.ieumoff
 | `merge`           | Bir `.docx`, `.pptx` veya `.xlsx` şablonundaki `{{key}}` yer tutucularını doldurur.                                                                                                                                                        |
 | `capabilities`    | Bu makinede hangi AI özelliklerinin (arama, görsel oluşturma, görsel ve video analizi) hangi yolla kullanılabildiğini bildirir.                                                                                                            |
 | `guide`           | Yürütücünün doğruladığı tanımların aynısından üretilen op başvurusu ve tasarım kılavuzları — böylece `apply` komutunun kabul ettiğinden sapamaz. `--json` her op’un şemasıyla birlikte döndürür.                                           |
-| `install-cli`     | `ieumoffice` komutunu `PATH`’e koyar.                                                                                                                                                                                                      |
+| `install-cli`     | `psoffice` komutunu `PATH`’e koyar.                                                                                                                                                                                                        |
 | `skill`           | Bu makinede bulunan kodlama ajanlarını listeler ve onlara GenOffice becerisini kurar veya günceller.                                                                                                                                       |
 | `mcp`             | Her komutu bir Model Context Protocol aracı olarak sunar. Bkz. **Bir kodlama ajanı bağlama**.                                                                                                                                              |
 
 ## Düzenleme: docs, sheets, slides
 
-`ieumoffice docs`, `ieumoffice sheet` ve `ieumoffice slides` komutlarının her biri önce bir alt komut alır — `read`, `apply`, `check` ve slides için `audit`, `render`, `replace` — ve uygulamanın kullandığı aynı yazma yolundan geçer. Tek bir sözlüğü paylaşırlar: bir **op** tek bir düzenlemedir, bir **spec** ise sırayla uygulanan op listesidir.
+`psoffice docs`, `psoffice sheet` ve `psoffice slides` komutlarının her biri önce bir alt komut alır — `read`, `apply`, `check` ve slides için `audit`, `render`, `replace` — ve uygulamanın kullandığı aynı yazma yolundan geçer. Tek bir sözlüğü paylaşırlar: bir **op** tek bir düzenlemedir, bir **spec** ise sırayla uygulanan op listesidir.
 
 ```sh
-ieumoffice sheet read report.xlsx
-ieumoffice slides apply deck.pptx --ops ops.json --dry-run
-ieumoffice docs apply brief.docx --ops ops.json
+psoffice sheet read report.xlsx
+psoffice slides apply deck.pptx --ops ops.json --dry-run
+psoffice docs apply brief.docx --ops ops.json
 ```
 
 `--dry-run` bir toplu işin ne yapacağını bildirir ve hiçbir şey yazmaz; bir spec’i uygulamaya koymadan önce denetlemenin ucuz yolu budur. Uygulamadaki AI paneli tam olarak bu op’lar üzerinde çalışır, yani ona yaptırabileceğiniz her şeyi betikleştirebilirsiniz.
@@ -57,7 +57,7 @@ ieumoffice docs apply brief.docx --ops ops.json
 - Bir görsel üzerinde `media`, kuruluysa bir anahtar sağlayıcı kullanır. Claude veya Codex aboneliğinizi yalnızca buna izin verdiyseniz kullanır ve bu varsayılan olarak **kapalıdır**; [Bir kodlama ajanı bağlama](help://mcp) anahtarı ve sınırlarını açıklar.
 - Video veya ses üzerinde `media`, videoyu destekleyen bir anahtar sağlayıcı gerektirir.
 
-`ieumoffice capabilities --json` bütün bunları hiçbir AI’ı çağırmadan bildirir. `detail` alanı şunları taşır:
+`psoffice capabilities --json` bütün bunları hiçbir AI’ı çağırmadan bildirir. `detail` alanı şunları taşır:
 
 | Alan                                                                             | Ne söyler                                                                                                                                                                                                                                                           |
 | -------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -71,15 +71,15 @@ ieumoffice docs apply brief.docx --ops ops.json
 
 ## Bu bilgisayarda neler tutar
 
-İki dosya da kullanıcı klasörünüzdeki `.ieumoffice` klasöründedir:
+İki dosya da kullanıcı klasörünüzdeki `.psoffice` klasöründedir:
 
-- `~/.ieumoffice/launcher` uygulamanın komutunun nerede olduğunu kaydeder, böylece bir kodlama ajanı onu `PATH`’inizde olmasa bile bulur.
-- `~/.ieumoffice/cli-audit.jsonl` çalıştırılan her komut için bir satır alır — komut, bağımsız değişkenleri ve sonuç — böylece sonradan bir ajanın ne yaptığını görebilirsiniz.
+- `~/.psoffice/launcher` uygulamanın komutunun nerede olduğunu kaydeder, böylece bir kodlama ajanı onu `PATH`’inizde olmasa bile bulur.
+- `~/.psoffice/cli-audit.jsonl` çalıştırılan her komut için bir satır alır — komut, bağımsız değişkenleri ve sonuç — böylece sonradan bir ajanın ne yaptığını görebilirsiniz.
 
 ## Model Context Protocol
 
-`ieumoffice mcp` her komutu bir MCP aracı olarak sunar; `ieumoffice mcp install <agent|all>` ise onu bir kodlama ajanının kendi yapılandırmasına kaydeder. O taraf için bkz. **Bir kodlama ajanı bağlama**.
+`psoffice mcp` her komutu bir MCP aracı olarak sunar; `psoffice mcp install <agent|all>` ise onu bir kodlama ajanının kendi yapılandırmasına kaydeder. O taraf için bkz. **Bir kodlama ajanı bağlama**.
 
 ## Komutun yapmadıkları
 
-Dosyayı okur ve yazar. Uygulama değildir: penceresi yoktur ve uygulama içi güncelleme iletişim kutusu burada geçerli değildir. Pencereyi gerektiren her şey — AI paneli, işlenmiş bir slayt üzerinde kalite denetimi — siz dosyayı açana kadar bekler. `ieumoffice render` pikselleri o olmadan verir, `ieumoffice slides` ise bir sunumun düzenini kendi başına denetler.
+Dosyayı okur ve yazar. Uygulama değildir: penceresi yoktur ve uygulama içi güncelleme iletişim kutusu burada geçerli değildir. Pencereyi gerektiren her şey — AI paneli, işlenmiş bir slayt üzerinde kalite denetimi — siz dosyayı açana kadar bekler. `psoffice render` pikselleri o olmadan verir, `psoffice slides` ise bir sunumun düzenini kendi başına denetler.

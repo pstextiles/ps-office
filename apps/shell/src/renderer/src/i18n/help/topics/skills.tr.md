@@ -6,19 +6,19 @@ Beceri, AI için bir dizi çalışma yönergesidir. Tekrar tekrar yaptığınız
 
 **Ayarlar ▸ Beceriler** bu bilgisayardaki becerileri geldikleri yere göre gruplayarak listeler. Her beceri, kodlama ajanlarının gösterdiği gibi adıyla görünür. Birini adına veya açıklamasına göre bulmak için üstteki arama kutusunu kullanın. Başlığı olan bir becerim bu listede, `/` listesinde ve çiplerde başlığıyla, yanında küçük yazıyla adıyla görünür. Başlığa göre de arayabilirsiniz. Uygulamanın kendisinin verdiği bir ad (`skill-…`) başlığın yanında gösterilmez.
 
-| Kaynak                    | Neleri barındırır                                                  | İlk durumda |
-| ------------------------- | ------------------------------------------------------------------ | ----------- |
-| **Yerleşik**              | GenOffice ile gelen beceriler                                      | Açık        |
-| **Becerilerim**           | Eklediğiniz veya oluşturduğunuz beceriler (`~/.ieumoffice/skills`) | Açık        |
-| **Claude beceri klasörü** | `~/.claude/skills` içindeki beceriler                              | Kapalı      |
-| **Claude eklentileri**    | Kurulu Claude eklentilerinin becerileri                            | Kapalı      |
-| **Codex beceri klasörü**  | `~/.agents/skills` içindeki beceriler                              | Kapalı      |
+| Kaynak                    | Neleri barındırır                                                | İlk durumda |
+| ------------------------- | ---------------------------------------------------------------- | ----------- |
+| **Yerleşik**              | GenOffice ile gelen beceriler                                    | Açık        |
+| **Becerilerim**           | Eklediğiniz veya oluşturduğunuz beceriler (`~/.psoffice/skills`) | Açık        |
+| **Claude beceri klasörü** | `~/.claude/skills` içindeki beceriler                            | Kapalı      |
+| **Claude eklentileri**    | Kurulu Claude eklentilerinin becerileri                          | Kapalı      |
+| **Codex beceri klasörü**  | `~/.agents/skills` içindeki beceriler                            | Kapalı      |
 
 - Anahtar bir beceriyi açar veya kapatır. Aynı ayar her düzenleyicinin AI panelinde, Giriş ekranındaki AI’a sor bölümünde ve ajan penceresinde geçerlidir.
 - Açık bir beceri için **AI karar verir** veya **Yalnızca çağrıldığında** seçin. AI karar verir olarak başlar. Yalnızca çağrıldığında seçiliyken beceri yalnızca siz çağırdığınızda kullanılır. Kapalı bir beceri bu seçimi soluk olarak korur; böylece beceriyi yeniden açmadan önce ayarlayabilirsiniz.
 - Farklı kaynaklardan gelen beceriler aynı adı paylaşabilir. Her satırdaki kaynak etiketi onları ayırır. Aynı adlı iki beceri birden açıksa `/` altında yalnızca biri listelenir ve kullanılır: Becerilerim, Yerleşik, Claude beceri klasörü, Codex beceri klasörü, Claude eklentileri sırasında önce gelen. Diğerinin satırı onun yerine hangi becerinin kullanıldığını söyler.
 - Daha fazla menüsünde **İçeriği görüntüle**, **Düzenle** (yalnızca becerilerim), **Dışa aktar (zip)** (yalnızca becerilerim) ve **Klasörü aç** bulunur. Yerleşik becerilerde **Klasörü aç** yoktur. **Nerede kullanılır**, becerinin kullanılacağı düzenleyicileri seçtiğiniz yeri doğrudan açar.
-- Becerilerim `~/.ieumoffice/skills` klasöründe tutulur. Windows’ta bu `C:Users<kullanıcı adınız>.ieumofficeskills` olur. Daha fazla menüsündeki **Klasörü aç** becerinin klasörünü açar.
+- Becerilerim `~/.psoffice/skills` klasöründe tutulur. Windows’ta bu `C:Users<kullanıcı adınız>.psofficeskills` olur. Daha fazla menüsündeki **Klasörü aç** becerinin klasörünü açar.
 - **Geri Dönüşüm Kutusu’na taşı** becerilerimden birini sistem geri dönüşüm kutusuna taşır; oradan geri yükleyebilirsiniz. Başka bir kaynaktan aynı adı taşıyan bir beceri kapalıysa onay penceresinde onu yeniden açmak için işaretli bir kutu görünür. Kapalı bırakmak için işareti kaldırın.
 - Yerleşik bir beceri kaldırılmak yerine gizlenir: **Gizle** seçin. Listenin altındaki **Yeniden göster** onu ilk durumundaki gibi geri getirir.
 - Yerleşik bir beceriyi veya başka bir programdan gelen bir beceriyi değiştirmek için **Becerilerime kopyala** seçin. Kopya becerilerimde görünür ve özgün beceri kapatılır.
@@ -56,7 +56,7 @@ Becerilerimden birini düzenlediğinizde, aynı adla üzerine başka bir beceri 
 - **Farkları gör**, `SKILL.md` dosyasının hangi satırlarının geri geleceğini ve hangilerinin kaybolacağını, başka hangi dosyaların değişeceğini gösterir.
 - **Bu sürüme geri dön**, o sürümün dosyalarını tam olarak oldukları gibi geri koyar. Şu anki sürüm de saklanır; ona yeniden dönebilirsiniz. Becerinin açık olup olmadığı ve ne zaman kullanıldığı sizin ayarladığınız gibi kalır.
 - Saklanan sürümler siz silene kadar kalır. **Sil** bir sürümü kalıcı olarak siler.
-- Sürümler `~/.ieumoffice/skill-history` klasöründedir. Bir becerideki **Geri Dönüşüm Kutusu’na taşı**, saklanan sürümlerini de geri dönüşüm kutusuna taşır.
+- Sürümler `~/.psoffice/skill-history` klasöründedir. Bir becerideki **Geri Dönüşüm Kutusu’na taşı**, saklanan sürümlerini de geri dönüşüm kutusuna taşır.
 
 ## AI panelinde beceri çağırma
 

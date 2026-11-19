@@ -33,7 +33,7 @@ describe('server names', () => {
     expect(serverNameProblem('_a')).toBe('edge-underscore')
     expect(serverNameProblem('a_')).toBe('edge-underscore')
     expect(serverNameProblem(APP_MCP_SERVER_NAME)).toBe('reserved')
-    expect(serverNameProblem('IeumOffice-Editor')).toBe('reserved')
+    expect(serverNameProblem('PSOffice-Editor')).toBe('reserved')
   })
 
   it('takes a different length limit', () => {
@@ -47,10 +47,10 @@ describe('server names', () => {
     expect(suggestServerName('법령')).toBe('server')
     expect(suggestServerName('x'.repeat(40))).toBe('x'.repeat(24))
     expect(suggestServerName('x'.repeat(23) + '_y')).toBe('x'.repeat(23))
-    expect(suggestServerName(APP_MCP_SERVER_NAME)).toBe('ieumoffice-editor-2')
+    expect(suggestServerName(APP_MCP_SERVER_NAME)).toBe('psoffice-editor-2')
     expect(suggestServerName('law', ['law', 'law-2'])).toBe('law-3')
     expect(suggestServerName('good_name')).toBe('good_name')
-    for (const raw of ['a b', '__', '', 'x'.repeat(40), '.-.', 'ieumoffice-editor']) {
+    for (const raw of ['a b', '__', '', 'x'.repeat(40), '.-.', 'psoffice-editor']) {
       expect(serverNameProblem(suggestServerName(raw))).toBeNull()
     }
     // a number suffix still fits the limit

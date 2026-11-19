@@ -1,6 +1,6 @@
 // Trial of OpenRouter free models before they go into OPENROUTER_FREE_MODELS.
 // Spends the free daily requests of the OpenRouter key the installed app holds
-// (%APPDATA%/IeumOffice/ai-settings.json); the key is never printed. Needs a
+// (%APPDATA%/PSOffice/ai-settings.json); the key is never printed. Needs a
 // build (`npm run build:all`). The app seals stored keys (decision 0063); a
 // sealed one is opened the way the terminal command opens it, by starting this
 // checkout's build (or the installed app) hidden with --reveal-ai-secrets. The
@@ -45,7 +45,7 @@ if (!existsSync(join(root, 'apps/shell/out/main/index.js'))) {
   process.exit(2)
 }
 
-const SETTINGS_PATH = join(process.env.APPDATA ?? '', 'IeumOffice', 'ai-settings.json')
+const SETTINGS_PATH = join(process.env.APPDATA ?? '', 'PSOffice', 'ai-settings.json')
 const SEALED_PREFIX = 'sealed:v1:'
 const REVEAL_TIMEOUT_MS = 30_000
 
@@ -58,7 +58,7 @@ function revealLaunches() {
     process.platform === 'win32' ? 'electron.exe' : 'electron',
   )
   if (existsSync(electron)) launches.push([electron, [join(root, 'apps/shell')]])
-  const installed = join(process.env.LOCALAPPDATA ?? '', 'Programs/IeumOffice/IeumOffice.exe')
+  const installed = join(process.env.LOCALAPPDATA ?? '', 'Programs/PSOffice/PSOffice.exe')
   if (process.platform === 'win32' && existsSync(installed)) launches.push([installed, []])
   return launches
 }

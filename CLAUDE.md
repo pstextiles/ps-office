@@ -1,4 +1,15 @@
-# 이음오피스 (IeumOffice)
+# PS 오피스 (PSOffice) — 이음오피스의 PS Textiles 판
+
+> **이 저장소는 [이음오피스](https://github.com/pblsketch/ieumoffice)를 PS Textiles가 고친 판(`pstextiles/ps-office`)이다.**
+> 이음오피스와 다른 것은 제품 이름(`PSOffice`, 한국어 화면 `PS 오피스`), 명령어 `psoffice`, 아이콘·로고
+> (`apps/shell/build/brand/`, Liberation Sans 윤곽선), 업데이트·의견·문의 주소(이 저장소의 릴리스와 이슈),
+> AI 연결 도움말(`CONNECT.md`)뿐이다. 이음오피스의 개선은 `upstream` 원격(`pblsketch/ieumoffice`)에서 받아온다.
+> 받아온 뒤에는 이름이 다시 들어오지 않았는지 `git grep -n -I -E "IeumOffice|ieumoffice|이음오피스|pblsketch"`로
+> 보고, `NOTICE`·README의 출처 문단과 `setBasedOn`의 출처 표시만 남긴다. 아래 본문은 이음오피스의 안내를
+> 그대로 둔 것이며, 그 안의 "이음오피스"는 원본 프로젝트를 가리킨다.
+> 이음오피스·GenOffice의 이름과 로고는 제품 이름이나 아이콘으로 쓰지 않는다(Apache License 2.0 6조).
+
+## 원본 이음오피스 안내
 
 워드·엑셀·파워포인트·PDF·마크다운·HTML·한글(HWP) 문서와 마인드맵(XMind 파일 `.xmind`), 다이어그램(draw.io 파일 `.drawio`)을 한 창에서 열고 고치는 데스크톱 오피스 프로그램이다. AI가 문서를 직접 고친다. 누구나 무료로 쓰도록 배포하며, 특정 직업군용이 아니다.
 

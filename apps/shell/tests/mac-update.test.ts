@@ -45,32 +45,32 @@ afterEach(() => {
 
 describe('macAppBundle', () => {
   it('finds the bundle around the executable', () => {
-    expect(macAppBundle('/Applications/IeumOffice.app/Contents/MacOS/IeumOffice')).toBe(
-      '/Applications/IeumOffice.app',
+    expect(macAppBundle('/Applications/PSOffice.app/Contents/MacOS/PSOffice')).toBe(
+      '/Applications/PSOffice.app',
     )
-    expect(macAppBundle('/Users/me/Apps/IeumOffice 2.app/Contents/MacOS/IeumOffice')).toBe(
-      '/Users/me/Apps/IeumOffice 2.app',
+    expect(macAppBundle('/Users/me/Apps/PSOffice 2.app/Contents/MacOS/PSOffice')).toBe(
+      '/Users/me/Apps/PSOffice 2.app',
     )
   })
 
   it('rejects an executable outside an app bundle', () => {
-    expect(macAppBundle('/usr/local/bin/IeumOffice')).toBeNull()
-    expect(macAppBundle('/Applications/IeumOffice/Contents/MacOS/IeumOffice')).toBeNull()
-    expect(macAppBundle('/Applications/IeumOffice.app/Contents/Resources/IeumOffice')).toBeNull()
+    expect(macAppBundle('/usr/local/bin/PSOffice')).toBeNull()
+    expect(macAppBundle('/Applications/PSOffice/Contents/MacOS/PSOffice')).toBeNull()
+    expect(macAppBundle('/Applications/PSOffice.app/Contents/Resources/PSOffice')).toBeNull()
   })
 
   it('keeps the update folders beside the bundle, hidden', () => {
-    expect(macStagingDir('/Applications/IeumOffice.app')).toBe(
-      join('/Applications', '.IeumOffice.app.update'),
+    expect(macStagingDir('/Applications/PSOffice.app')).toBe(
+      join('/Applications', '.PSOffice.app.update'),
     )
-    expect(macPreviousDir('/Applications/IeumOffice.app')).toBe(
-      join('/Applications', '.IeumOffice.app.previous'),
+    expect(macPreviousDir('/Applications/PSOffice.app')).toBe(
+      join('/Applications', '.PSOffice.app.previous'),
     )
   })
 })
 
 describe('macSelfUpdateBlock', () => {
-  const exe = '/Applications/IeumOffice.app/Contents/MacOS/IeumOffice'
+  const exe = '/Applications/PSOffice.app/Contents/MacOS/PSOffice'
 
   it('allows an app in a folder this user can write', () => {
     const probed: string[] = []
@@ -90,19 +90,19 @@ describe('macSelfUpdateBlock', () => {
   it('blocks a translocated app without probing it', () => {
     const writable = vi.fn(() => true)
     const translocated =
-      '/private/var/folders/ab/xyz/T/AppTranslocation/1234-ABCD/d/IeumOffice.app/Contents/MacOS/IeumOffice'
+      '/private/var/folders/ab/xyz/T/AppTranslocation/1234-ABCD/d/PSOffice.app/Contents/MacOS/PSOffice'
     expect(macSelfUpdateBlock(translocated, writable)).toBe('translocated')
     expect(writable).not.toHaveBeenCalled()
   })
 
   it('blocks a run outside an app bundle', () => {
-    expect(macSelfUpdateBlock('/opt/ieumoffice/IeumOffice', () => true)).toBe('not-an-app-bundle')
+    expect(macSelfUpdateBlock('/opt/psoffice/PSOffice', () => true)).toBe('not-an-app-bundle')
   })
 })
 
 /** an installed bundle under `root`, with its Info.plist values */
 function installedBundle(): string {
-  const bundle = join(root, 'Applications', 'IeumOffice.app')
+  const bundle = join(root, 'Applications', 'PSOffice.app')
   mkdirSync(join(bundle, 'Contents', 'MacOS'), { recursive: true })
   return bundle
 }
@@ -125,8 +125,8 @@ function fakeMac(options: {
   dittoFails?: boolean
 }): FakeMac {
   const {
-    apps = { 'IeumOffice.app': { version: '0.2.0', id: 'com.pblsketch.ieumoffice' } },
-    installed = { version: '0.1.0', id: 'com.pblsketch.ieumoffice' },
+    apps = { 'PSOffice.app': { version: '0.2.0', id: 'com.pstextiles.psoffice' } },
+    installed = { version: '0.1.0', id: 'com.pstextiles.psoffice' },
   } = options
   const plists = new Map<string, { version: string; id: string }>()
   const calls: [string, string[]][] = []
@@ -165,7 +165,7 @@ describe('stageMacUpdate', () => {
       version: '0.2.0',
       run: mac.run,
     })
-    expect(staged).toBe(join(macStagingDir(bundle), 'IeumOffice.app'))
+    expect(staged).toBe(join(macStagingDir(bundle), 'PSOffice.app'))
     expect(mac.calls[0]).toEqual([
       '/usr/bin/ditto',
       ['-x', '-k', join(root, 'update.zip'), macStagingDir(bundle)],
@@ -186,7 +186,7 @@ describe('stageMacUpdate', () => {
       version: '0.2.0',
       run: fakeMac({}).run,
     })
-    expect(staged).toBe(join(macStagingDir(bundle), 'IeumOffice.app'))
+    expect(staged).toBe(join(macStagingDir(bundle), 'PSOffice.app'))
     expect(existsSync(join(macStagingDir(bundle), 'Old.app'))).toBe(false)
   })
 
@@ -197,7 +197,7 @@ describe('stageMacUpdate', () => {
       'a zip with two apps',
       {
         apps: {
-          'IeumOffice.app': { version: '0.2.0', id: 'com.pblsketch.ieumoffice' },
+          'PSOffice.app': { version: '0.2.0', id: 'com.pstextiles.psoffice' },
           'Other.app': { version: '0.2.0', id: 'com.example.other' },
         },
       },
@@ -205,12 +205,12 @@ describe('stageMacUpdate', () => {
     ],
     [
       'another version than the feed announced',
-      { apps: { 'IeumOffice.app': { version: '0.1.9', id: 'com.pblsketch.ieumoffice' } } },
+      { apps: { 'PSOffice.app': { version: '0.1.9', id: 'com.pstextiles.psoffice' } } },
       /0\.1\.9, not 0\.2\.0/,
     ],
     [
       'another app than the installed one',
-      { apps: { 'IeumOffice.app': { version: '0.2.0', id: 'com.example.other' } } },
+      { apps: { 'PSOffice.app': { version: '0.2.0', id: 'com.example.other' } } },
       /com\.example\.other/,
     ],
     ['a bundle whose signature does not cover its files', { codesignFails: true }, /sealed/],
@@ -230,7 +230,7 @@ describe('stageMacUpdate', () => {
 describe('removeMacLeftovers', () => {
   it('clears both update folders beside the bundle', () => {
     const bundle = installedBundle()
-    mkdirSync(join(macStagingDir(bundle), 'IeumOffice.app'), { recursive: true })
+    mkdirSync(join(macStagingDir(bundle), 'PSOffice.app'), { recursive: true })
     mkdirSync(join(macPreviousDir(bundle), 'Contents'), { recursive: true })
     removeMacLeftovers(bundle)
     expect(existsSync(macStagingDir(bundle))).toBe(false)
@@ -260,7 +260,7 @@ describe('installMacStaging', () => {
   }
 
   const event = {
-    downloadedFile: '/cache/pending/IeumOffice-0.2.0-arm64-mac.zip',
+    downloadedFile: '/cache/pending/PSOffice-0.2.0-arm64-mac.zip',
     version: '0.2.0',
   }
 
@@ -318,9 +318,9 @@ describe('startMacSwap', () => {
     const spawnProgram = vi.fn(() => child as unknown as ChildProcess)
     const started = startMacSwap({
       pid: 7,
-      bundle: '/Applications/IeumOffice.app',
-      staged: '/Applications/.IeumOffice.app.update/IeumOffice.app',
-      logFile: '/Users/me/Library/Application Support/IeumOffice/update-log.txt',
+      bundle: '/Applications/PSOffice.app',
+      staged: '/Applications/.PSOffice.app.update/PSOffice.app',
+      logFile: '/Users/me/Library/Application Support/PSOffice/update-log.txt',
       spawnProgram: spawnProgram as unknown as typeof spawn,
     })
     expect(started).toBe(true)
@@ -329,13 +329,13 @@ describe('startMacSwap', () => {
       [
         '-c',
         MAC_SWAP_SCRIPT,
-        'ieumoffice-update',
+        'psoffice-update',
         '7',
-        '/Applications/IeumOffice.app',
-        '/Applications/.IeumOffice.app.update/IeumOffice.app',
-        join('/Applications', '.IeumOffice.app.update'),
-        join('/Applications', '.IeumOffice.app.previous'),
-        '/Users/me/Library/Application Support/IeumOffice/update-log.txt',
+        '/Applications/PSOffice.app',
+        '/Applications/.PSOffice.app.update/PSOffice.app',
+        join('/Applications', '.PSOffice.app.update'),
+        join('/Applications', '.PSOffice.app.previous'),
+        '/Users/me/Library/Application Support/PSOffice/update-log.txt',
         '/usr/bin/open',
       ],
       { detached: true, stdio: 'ignore' },
@@ -371,10 +371,10 @@ describe.skipIf(process.platform === 'win32')('the swap script', () => {
 
   beforeEach(() => {
     apps = join(root, 'Applications')
-    bundle = join(apps, 'IeumOffice.app')
+    bundle = join(apps, 'PSOffice.app')
     mkdirSync(join(bundle, 'Contents'), { recursive: true })
     writeFileSync(join(bundle, 'Contents', 'version'), 'old')
-    staged = join(macStagingDir(bundle), 'IeumOffice.app')
+    staged = join(macStagingDir(bundle), 'PSOffice.app')
     mkdirSync(join(staged, 'Contents'), { recursive: true })
     writeFileSync(join(staged, 'Contents', 'version'), 'new')
     log = join(root, 'update-log.txt')
@@ -392,7 +392,7 @@ describe.skipIf(process.platform === 'win32')('the swap script', () => {
       [
         '-c',
         MAC_SWAP_SCRIPT,
-        'ieumoffice-update',
+        'psoffice-update',
         String(pid),
         bundle,
         staged,
@@ -435,10 +435,10 @@ describe.skipIf(process.platform === 'win32')('the swap script', () => {
   it('handles paths with spaces and quotes as plain values', async () => {
     const odd = join(root, "My Apps 'x'")
     mkdirSync(odd)
-    const oddBundle = join(odd, 'IeumOffice.app')
+    const oddBundle = join(odd, 'PSOffice.app')
     mkdirSync(join(oddBundle, 'Contents'), { recursive: true })
     writeFileSync(join(oddBundle, 'Contents', 'version'), 'old')
-    const oddStaged = join(macStagingDir(oddBundle), 'IeumOffice.app')
+    const oddStaged = join(macStagingDir(oddBundle), 'PSOffice.app')
     mkdirSync(join(oddStaged, 'Contents'), { recursive: true })
     writeFileSync(join(oddStaged, 'Contents', 'version'), 'new')
     bundle = oddBundle

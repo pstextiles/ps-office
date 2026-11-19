@@ -5,7 +5,7 @@ import { buildBlankDocx } from '@genoffice/docx-engine'
 import JSZip from 'jszip'
 import { describe, expect, it } from 'vitest'
 import { closeDocument, listFields, openDocumentFile } from '../src/formats/docx'
-const tempDir = () => mkdtempSync(join(tmpdir(), 'ieumoffice-field-test-'))
+const tempDir = () => mkdtempSync(join(tmpdir(), 'psoffice-field-test-'))
 
 const complex = (instruction: string, result: string) =>
   '<w:r><w:fldChar w:fldCharType="begin"/></w:r>' +

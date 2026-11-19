@@ -1,30 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
-  IeumOffice app icon, small optical size (16-32 px slots).
+  PS Office app icon, small optical size (16-32 px slots).
 
-  Same mark as app-icon.svg, redrawn bolder on a 64-unit grid (one pixel at
-  16 px, two at 32 px) so every stroke edge lands on a pixel boundary and the
-  ring and the rounded square stay distinct in a taskbar or title bar. The
-  over/under gaps are dropped because they would be thinner than a pixel.
+  Same mark as app-icon.svg with larger letters and a thicker rule so both stay
+  legible in a taskbar or title bar.
 
   Used by tools/gen-brand-assets.mjs for canvases of 32 px and below.
 -->
 <svg xmlns="http://www.w3.org/2000/svg" width="1024" height="1024" viewBox="0 0 1024 1024">
-  <defs>
-    <clipPath id="ieum-upper"><rect width="1024" height="512"/></clipPath>
-    <clipPath id="ieum-lower"><rect y="512" width="1024" height="512"/></clipPath>
-    <mask id="ieum-under-ring" maskUnits="userSpaceOnUse" x="0" y="0" width="1024" height="1024">
-      <rect width="1024" height="1024" fill="#fff"/>
-      <circle cx="384" cy="512" r="192" fill="none" stroke="#000" stroke-width="128" clip-path="url(#ieum-upper)"/>
-    </mask>
-    <mask id="ieum-under-square" maskUnits="userSpaceOnUse" x="0" y="0" width="1024" height="1024">
-      <rect width="1024" height="1024" fill="#fff"/>
-      <rect x="448" y="320" width="384" height="384" rx="100" fill="none" stroke="#000" stroke-width="128" clip-path="url(#ieum-lower)"/>
-    </mask>
-  </defs>
-  <rect width="1024" height="1024" rx="230" fill="#4338CA"/>
-  <g fill="none" stroke-width="128">
-    <rect x="448" y="320" width="384" height="384" rx="100" stroke="#FFB020" mask="url(#ieum-under-ring)"/>
-    <circle cx="384" cy="512" r="192" stroke="#FFFFFF" mask="url(#ieum-under-square)"/>
-  </g>
+  <rect width="1024" height="1024" rx="230" fill="#1F2937"/>
+  <path fill="#FFFFFF" d="M358.6 227.2Q430.7 227.2 470.7 260Q510.7 292.8 510.7 350.8Q510.7 416.8 465.7 455.7Q420.7 494.7 345.4 494.7H235L206.3 640H120.2L200.1 227.2ZM247.6 428.2H332.3Q377.7 428.2 400.4 411.2Q423.1 394.2 423.1 355.5Q423.1 325.6 404.3 310Q385.6 294.3 350.4 294.3H273.7ZM685.6 645.9Q607.4 645.9 566.3 618.2Q525.3 590.5 517.1 533.1L601.8 518.7Q607.9 551.2 629.2 566.2Q650.4 581.1 691.4 581.1Q792.5 581.1 792.5 522.8Q792.5 499.4 774.9 485.8Q757.4 472.1 705.2 458.9Q651.3 444.6 625.4 429.1Q599.5 413.5 585.8 391.1Q572.2 368.7 572.2 336.2Q572.2 284.3 618.2 252.7Q664.2 221.1 740.1 221.1Q809.8 221.1 852 246.4Q894.2 271.7 903.8 320.4L819.5 340Q813 313.6 791.5 298Q770 282.3 735.4 282.3Q699.1 282.3 678.3 295.9Q657.5 309.5 657.5 333.3Q657.5 347 665.1 356.7Q672.7 366.4 687.3 373.5Q702 380.7 745.3 392.4Q791.9 405.3 814.2 416.6Q836.5 427.9 849.8 442Q863.1 456 870.2 474.2Q877.2 492.3 877.2 516.1Q877.2 579.4 828.6 612.6Q779.9 645.9 685.6 645.9Z"/>
+  <rect x="262" y="736" width="500" height="96" rx="48" fill="#2DD4BF"/>
 </svg>

@@ -55,7 +55,7 @@ describe('PRINT_LAYOUT_STRINGS', () => {
     for (const lang of LANGS) {
       for (const key of KEYS) {
         expect(PRINT_LAYOUT_STRINGS[lang][key], `${lang}.${key}`).not.toMatch(
-          /Avery|Herma|Formtec|Brother|Dymo|Microsoft|Windows|Apple|macOS|Adobe|Acrobat|Chrome|Electron|Hancom|GenOffice|IeumOffice|이음오피스/i,
+          /Avery|Herma|Formtec|Brother|Dymo|Microsoft|Windows|Apple|macOS|Adobe|Acrobat|Chrome|Electron|Hancom|GenOffice|PSOffice|PS 오피스/i,
         )
       }
     }

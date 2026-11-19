@@ -20,7 +20,7 @@ const RUN_TIMEOUT = 240_000
 async function storedKey(): Promise<string> {
   const fromRunner = process.env.TRIAL_OPENROUTER_KEY?.trim()
   if (fromRunner) return fromRunner
-  const path = join(process.env.APPDATA ?? '', 'IeumOffice', 'ai-settings.json')
+  const path = join(process.env.APPDATA ?? '', 'PSOffice', 'ai-settings.json')
   const settings = JSON.parse(await readFile(path, 'utf8'))
   const key: string = settings.providers.openrouter.apiKey
   // the scratch folder's app cannot open another folder's seal (decision 0063)

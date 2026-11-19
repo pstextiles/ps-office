@@ -180,6 +180,25 @@ IeumOffice is not affiliated with, sponsored by or endorsed by Mainfunc, Inc.
 The names GenOffice and Genspark and their logos belong to their owners and
 are used here only to identify the original work.
 
+PS Office modifications
+
+PS Office (https://github.com/pstextiles/ps-office) is a modified version of
+IeumOffice (https://github.com/pblsketch/ieumoffice), itself a modified
+version of GenOffice as described above. PS Textiles, S.A. changed the
+product name, the icons and logo, the repository the app updates from, and
+the feedback and contact addresses; the repository history records each
+change. The modifications are licensed under the Apache License, Version
+2.0, like the works they modify.
+
+PS Office is not affiliated with, sponsored by or endorsed by the IeumOffice
+contributors or Mainfunc, Inc. The names IeumOffice, 이음오피스, GenOffice
+and Genspark and their logos belong to their owners and are used here only to
+identify the works PS Office is based on.
+
+The PS Office icon and logo draw their letters from Liberation Sans Bold and
+Bold Italic (SIL Open Font License 1.1, shipped in
+apps/docs/src/renderer/fonts), converted to outlines.
+
 Hangul (HWP) document format
 
 The HWP/HWPX editor is built on rhwp (https://github.com/edwardkim/rhwp,
@@ -239,8 +258,11 @@ what it works with. The file-type icons and the AI provider marks in the app
 are original drawings, not those companies' logos.
 
 The Apache License 2.0 grants no rights to the names or logos "IeumOffice",
-"이음오피스" or "GenOffice" (section 6).
+"이음오피스" or "GenOffice" (section 6). The same holds for PS Office: the
+statements above about IeumOffice apply to PS Office in the same way.
 
 Contact
 
-Trademark and copyright reports and licensing questions: pblsketch@gmail.com
+PS Office: trademark and copyright reports and licensing questions go to
+https://github.com/pstextiles/ps-office/issues
+IeumOffice (the work PS Office is based on): pblsketch@gmail.com

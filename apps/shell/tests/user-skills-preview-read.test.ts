@@ -74,7 +74,7 @@ describe('opening a found skill in the preview', () => {
       file: { text: '# Colors\n', truncated: false },
     })
     // looking installs nothing
-    expect(existsSync(join(home, '.ieumoffice', 'skills', 'deck'))).toBe(false)
+    expect(existsSync(join(home, '.psoffice', 'skills', 'deck'))).toBe(false)
   })
 
   it('cuts a long body and a long file at the display limit and says so', async () => {

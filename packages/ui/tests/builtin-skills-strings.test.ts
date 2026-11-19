@@ -100,7 +100,7 @@ describe('BUILTIN_SKILL_STRINGS', () => {
       expect(
         manifest.find((e) => e.name === name),
         name,
-      ).toMatchObject({ source: 'ieumoffice', agentOnly: false })
+      ).toMatchObject({ source: 'psoffice', agentOnly: false })
       const text = readFileSync(join(MANIFEST, '..', name, 'SKILL.md'), 'utf8')
       const front = text.split('\n---\n')[0]!
       expect(front.split('\n')[1], name).toBe(`name: ${name}`)

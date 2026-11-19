@@ -321,17 +321,17 @@ export const strings = {
     intgExample1: '把 ~/Downloads/report.md 转成 Word 文档',
     intgExample2: '做一份 6 页的幻灯片，介绍我们第三季度的业绩',
     intgExample3: '把 budget.xlsx 转成 PDF，并在 GenOffice 里打开',
-    intgStep2Note: '助手会自己调用 ieumoffice 命令行，你不需要输入任何命令。',
+    intgStep2Note: '助手会自己调用 psoffice 命令行，你不需要输入任何命令。',
     intgCliPartTitle: 'CLI · 命令行 + skill',
     intgCliPartDesc:
-      '适合能运行终端命令的助手（Claude Code、Codex、Cursor 等）。安装 skill 后，助手会自己调用 ieumoffice 命令行创建、转换、读取和编辑文件，你不需要输入任何命令。',
+      '适合能运行终端命令的助手（Claude Code、Codex、Cursor 等）。安装 skill 后，助手会自己调用 psoffice 命令行创建、转换、读取和编辑文件，你不需要输入任何命令。',
     intgMcpPartTitle: 'MCP',
     intgMcpPartWho: '这里是让其他 AI 程序使用 GenOffice。',
     intgMcpPartDesc:
       'MCP 是 AI 助手调用外部工具的通用协议。助手不能运行命令（如 Claude Desktop），或你想让它直接操作 GenOffice 窗口时用这条路。下面两种接法任选一种。',
     intgMcpStdioTitle: '由助手启动（推荐）',
     intgMcpStdioDesc:
-      '助手自己拉起 ieumoffice mcp，不需要在这里开任何开关，GenOffice 也不用开着。功能与 CLI 完全相同。',
+      '助手自己拉起 psoffice mcp，不需要在这里开任何开关，GenOffice 也不用开着。功能与 CLI 完全相同。',
     intgMcpHttpTitle: '本地 HTTP 服务',
     intgMcpHttpDesc:
       '在 GenOffice 内运行，助手通过网址连接，可以看着它在 Word 编辑器里逐步生成。需要 GenOffice 保持打开；目前只支持 Word。',
@@ -343,10 +343,10 @@ export const strings = {
     intgMcpOtherDesc:
       '把这段加进它的 MCP 服务器配置（一个 JSON 文件，或设置里的「添加 MCP 服务器」）：',
     intgMcpNote: 'skill 和 MCP 可以同时存在，助手会自己选用；两者做的事完全一样。',
-    intgCliTitle: '高级：命令行 ieumoffice',
-    intgCliReady: 'ieumoffice {v} · 已可在终端直接使用（{path}）',
+    intgCliTitle: '高级：命令行 psoffice',
+    intgCliReady: 'psoffice {v} · 已可在终端直接使用（{path}）',
     intgCliNotOnPath:
-      'ieumoffice {v} · 尚未加入终端 PATH。助手仍能通过 ~/.ieumoffice/launcher 找到它，skill 不受影响。若想自己在终端输入 ieumoffice，运行一次：',
+      'psoffice {v} · 尚未加入终端 PATH。助手仍能通过 ~/.psoffice/launcher 找到它，skill 不受影响。若想自己在终端输入 psoffice，运行一次：',
     intgCliLauncher: '启动器目录',
     intgStateOutdated: '已安装 {v}，可更新到 {next}',
     intgStateModified: '已安装 {v}（已被修改）',
@@ -427,13 +427,13 @@ export const strings = {
     setReadUrlClear: '清除',
     setAiSharedKeyHint: '同一服务商的 key 与 Base URL 在各项能力间共用，只需填一次。',
     setGithub: '开源项目',
-    setBasedOn: '基于开源项目 {{GenOffice}} 构建（Apache License 2.0）。',
+    setBasedOn: '基于开源项目 IeumOffice / {{GenOffice}} 构建（Apache License 2.0）。',
     setLicenses: '开源许可',
     setLicensesDesc: '查看本应用附带的软件和字体的许可证与版权声明。',
     setLicensesOpen: '查看',
     setRightsContact: '商标与版权联系',
     setRightsContactDesc: '侵权举报和许可相关问题请发送到此地址。',
-    setRightsContactSend: '写邮件',
+    setRightsContactSend: '在 GitHub 上查看',
     setTrademarks:
       'GenOffice 与 Microsoft、Hancom、Adobe、XMind、Google、Anthropic、OpenAI 均无关联，也未获得其赞助或认可。Word、Excel、PowerPoint 是 Microsoft 的商标；Hangul（한글）、HWP、HWPX 是 Hancom 的商标；XMind 是 XMind Ltd. 的商标；Google 云端硬盘是 Google 的商标；Claude 是 Anthropic 的商标；ChatGPT 和 Codex 是 OpenAI 的商标。这些名称仅用于说明本应用能打开哪些文件以及与哪些服务配合使用。',
     setHwpNotice:
@@ -910,17 +910,17 @@ export const strings = {
     intgExample2: 'Make a 6-slide deck about our Q3 results',
     intgExample3: 'Convert budget.xlsx to PDF and open it in GenOffice',
     intgStep2Note:
-      'The assistant runs the ieumoffice command line itself; you never have to type it.',
+      'The assistant runs the psoffice command line itself; you never have to type it.',
     intgCliPartTitle: 'CLI · command line + skill',
     intgCliPartDesc:
-      'For assistants that can run terminal commands (Claude Code, Codex, Cursor and others). Once the skill is installed, the assistant calls the ieumoffice command line itself to create, convert, read and edit files.',
+      'For assistants that can run terminal commands (Claude Code, Codex, Cursor and others). Once the skill is installed, the assistant calls the psoffice command line itself to create, convert, read and edit files.',
     intgMcpPartTitle: 'MCP',
     intgMcpPartWho: 'Here, other AI programs use GenOffice.',
     intgMcpPartDesc:
       'MCP is the common protocol AI assistants use to call external tools. Use it when your assistant cannot run commands (Claude Desktop, for example) or when you want it to drive the GenOffice window directly. Pick either of the two ways below.',
     intgMcpStdioTitle: 'Started by the assistant (recommended)',
     intgMcpStdioDesc:
-      'The assistant launches ieumoffice mcp itself: nothing to switch on here, and GenOffice does not need to be open. Same features as the CLI.',
+      'The assistant launches psoffice mcp itself: nothing to switch on here, and GenOffice does not need to be open. Same features as the CLI.',
     intgMcpHttpTitle: 'Local HTTP server',
     intgMcpHttpDesc:
       'Runs inside GenOffice; the assistant connects to a URL and you can watch it build the document step by step in the Word editor. GenOffice must stay open; Word documents only for now.',
@@ -933,10 +933,10 @@ export const strings = {
       'Add this to its MCP server settings (a JSON file, or "Add MCP server" in its settings):',
     intgMcpNote:
       'The skill and MCP can be set up side by side; the assistant picks one. They do exactly the same things.',
-    intgCliTitle: 'Advanced: ieumoffice command line',
-    intgCliReady: 'ieumoffice {v} · ready in your terminal ({path})',
+    intgCliTitle: 'Advanced: psoffice command line',
+    intgCliReady: 'psoffice {v} · ready in your terminal ({path})',
     intgCliNotOnPath:
-      "ieumoffice {v} · not on your terminal's PATH. Assistants still find it through ~/.ieumoffice/launcher, so the skill works. To type ieumoffice yourself, run this once:",
+      "psoffice {v} · not on your terminal's PATH. Assistants still find it through ~/.psoffice/launcher, so the skill works. To type psoffice yourself, run this once:",
     intgCliLauncher: 'Launcher folder',
     intgStateOutdated: 'Installed {v}, update to {next} available',
     intgStateModified: 'Installed {v} (modified)',
@@ -1020,14 +1020,14 @@ export const strings = {
     setAiSharedKeyHint:
       "A vendor's key and base URL are shared across capabilities; enter them once.",
     setGithub: 'Open Source',
-    setBasedOn: 'Based on the open-source project {{GenOffice}} (Apache License 2.0).',
+    setBasedOn: 'Based on the open-source project IeumOffice / {{GenOffice}} (Apache License 2.0).',
     setLicenses: 'Open-source licenses',
     setLicensesDesc:
       'License and copyright notices for the software and fonts that ship with this app.',
     setLicensesOpen: 'View',
     setRightsContact: 'Trademark and copyright contact',
     setRightsContactDesc: 'Send infringement reports and licensing questions to this address.',
-    setRightsContactSend: 'Write an email',
+    setRightsContactSend: 'View on GitHub',
     setTrademarks:
       'GenOffice is not affiliated with, sponsored by or endorsed by Microsoft, Hancom, Adobe, XMind, Google, Anthropic or OpenAI. Word, Excel and PowerPoint are trademarks of Microsoft; Hangul, HWP and HWPX of Hancom; XMind of XMind Ltd.; Google Drive of Google; Claude of Anthropic; ChatGPT and Codex of OpenAI. These names are used only to say which files the app opens and what it works with.',
     setHwpNotice:
@@ -1510,17 +1510,17 @@ export const strings = {
     intgExample1: 'Chuyển đổi ~/Downloads/report.md thành tài liệu Word',
     intgExample2: 'Tạo bài thuyết trình 6 trang trình bày về kết quả quý 3 của chúng tôi',
     intgExample3: 'Chuyển đổi budget.xlsx sang PDF và mở trong GenOffice',
-    intgStep2Note: 'Trợ lý tự chạy dòng lệnh ieumoffice; bạn không bao giờ phải nhập lệnh.',
+    intgStep2Note: 'Trợ lý tự chạy dòng lệnh psoffice; bạn không bao giờ phải nhập lệnh.',
     intgCliPartTitle: 'CLI · dòng lệnh + kỹ năng',
     intgCliPartDesc:
-      'Dành cho các trợ lý có thể chạy lệnh terminal (Claude Code, Codex, Cursor và các trợ lý khác). Khi kỹ năng đã được cài đặt, trợ lý sẽ tự gọi dòng lệnh ieumoffice để tạo, chuyển đổi, đọc và chỉnh sửa tệp; bạn không cần nhập lệnh.',
+      'Dành cho các trợ lý có thể chạy lệnh terminal (Claude Code, Codex, Cursor và các trợ lý khác). Khi kỹ năng đã được cài đặt, trợ lý sẽ tự gọi dòng lệnh psoffice để tạo, chuyển đổi, đọc và chỉnh sửa tệp; bạn không cần nhập lệnh.',
     intgMcpPartTitle: 'MCP',
     intgMcpPartWho: 'Ở đây, các chương trình AI khác dùng GenOffice.',
     intgMcpPartDesc:
       'MCP là giao thức tiêu chuẩn mà các trợ lý AI dùng để gọi công cụ bên ngoài. Sử dụng khi trợ lý của bạn không thể chạy lệnh (ví dụ Claude Desktop) hoặc khi bạn muốn trợ lý điều khiển trực tiếp cửa sổ GenOffice. Chọn một trong hai cách bên dưới.',
     intgMcpStdioTitle: 'Được khởi động bởi trợ lý (khuyến nghị)',
     intgMcpStdioDesc:
-      'Trợ lý sẽ tự khởi chạy ieumoffice mcp: không cần bật gì ở đây và GenOffice không cần phải mở. Có đầy đủ tính năng tương tự CLI.',
+      'Trợ lý sẽ tự khởi chạy psoffice mcp: không cần bật gì ở đây và GenOffice không cần phải mở. Có đầy đủ tính năng tương tự CLI.',
     intgMcpHttpTitle: 'Máy chủ HTTP cục bộ',
     intgMcpHttpDesc:
       'Chạy bên trong GenOffice; trợ lý kết nối với một URL và bạn có thể theo dõi nó tạo tài liệu từng bước trong trình chỉnh sửa Word. GenOffice phải luôn mở; hiện tại chỉ hỗ trợ tài liệu Word.',
@@ -1533,10 +1533,10 @@ export const strings = {
       'Thêm nội dung này vào cài đặt máy chủ MCP của trợ lý (tệp JSON hoặc "Add MCP server" trong phần cài đặt):',
     intgMcpNote:
       'Kỹ năng và MCP có thể được thiết lập song song; trợ lý sẽ chọn một trong hai. Chúng thực hiện chức năng hoàn toàn giống nhau.',
-    intgCliTitle: 'Nâng cao: dòng lệnh ieumoffice',
-    intgCliReady: 'ieumoffice {v} · đã sẵn sàng trong terminal của bạn ({path})',
+    intgCliTitle: 'Nâng cao: dòng lệnh psoffice',
+    intgCliReady: 'psoffice {v} · đã sẵn sàng trong terminal của bạn ({path})',
     intgCliNotOnPath:
-      'ieumoffice {v} · không có trong PATH của terminal. Trợ lý vẫn tìm thấy qua ~/.ieumoffice/launcher, vì vậy kỹ năng vẫn hoạt động. Để tự chạy lệnh ieumoffice, hãy thực hiện lệnh này một lần:',
+      'psoffice {v} · không có trong PATH của terminal. Trợ lý vẫn tìm thấy qua ~/.psoffice/launcher, vì vậy kỹ năng vẫn hoạt động. Để tự chạy lệnh psoffice, hãy thực hiện lệnh này một lần:',
     intgCliLauncher: 'Thư mục trình khởi chạy',
     intgStateOutdated: 'Đã cài đặt {v}, có bản cập nhật lên {next}',
     intgStateModified: 'Đã cài đặt {v} (đã sửa đổi)',
@@ -1622,14 +1622,14 @@ export const strings = {
     setAiSharedKeyHint:
       'Khóa và URL cơ sở của nhà cung cấp được dùng chung cho các chức năng; chỉ cần nhập một lần.',
     setGithub: 'Mã nguồn mở',
-    setBasedOn: 'Dựa trên dự án mã nguồn mở {{GenOffice}} (Apache License 2.0).',
+    setBasedOn: 'Dựa trên dự án mã nguồn mở IeumOffice / {{GenOffice}} (Apache License 2.0).',
     setLicenses: 'Giấy phép mã nguồn mở',
     setLicensesDesc:
       'Xem thông báo giấy phép và bản quyền của phần mềm và phông chữ đi kèm ứng dụng này.',
     setLicensesOpen: 'Xem',
     setRightsContact: 'Liên hệ về nhãn hiệu và bản quyền',
     setRightsContactDesc: 'Gửi báo cáo vi phạm và câu hỏi về giấy phép đến địa chỉ này.',
-    setRightsContactSend: 'Viết email',
+    setRightsContactSend: 'Xem trên GitHub',
     setTrademarks:
       'GenOffice không liên kết với, không được tài trợ hay xác nhận bởi Microsoft, Hancom, Adobe, XMind, Google, Anthropic hoặc OpenAI. Word, Excel và PowerPoint là nhãn hiệu của Microsoft; Hangul, HWP và HWPX của Hancom; XMind của XMind Ltd.; Google Drive của Google; Claude của Anthropic; ChatGPT và Codex của OpenAI. Các tên này chỉ được dùng để cho biết ứng dụng mở được tệp nào và hoạt động cùng với gì.',
     setHwpNotice:
@@ -2115,17 +2115,17 @@ export const strings = {
     intgExample1: '~/Downloads/report.md dosyasını Word belgesine dönüştür',
     intgExample2: 'Üçüncü çeyrek sonuçlarımız hakkında 6 slaytlık bir sunum hazırla',
     intgExample3: 'budget.xlsx dosyasını PDF yap ve GenOffice ile aç',
-    intgStep2Note: 'Asistan ieumoffice komut satırını kendisi çalıştırır; sizin yazmanız gerekmez.',
+    intgStep2Note: 'Asistan psoffice komut satırını kendisi çalıştırır; sizin yazmanız gerekmez.',
     intgCliPartTitle: 'CLI · komut satırı + beceri',
     intgCliPartDesc:
-      'Terminal komutları çalıştırabilen asistanlar için (Claude Code, Codex, Cursor ve diğerleri). Beceri kurulduktan sonra asistan dosya oluşturmak, dönüştürmek, okumak ve düzenlemek için ieumoffice komut satırını kendisi çağırır; siz hiçbir komut yazmazsınız.',
+      'Terminal komutları çalıştırabilen asistanlar için (Claude Code, Codex, Cursor ve diğerleri). Beceri kurulduktan sonra asistan dosya oluşturmak, dönüştürmek, okumak ve düzenlemek için psoffice komut satırını kendisi çağırır; siz hiçbir komut yazmazsınız.',
     intgMcpPartTitle: 'MCP',
     intgMcpPartWho: 'Burada diğer AI programları GenOffice’i kullanır.',
     intgMcpPartDesc:
       'MCP, yapay zekâ asistanlarının dış araçları çağırmak için kullandığı ortak protokoldür. Asistanınız komut çalıştıramıyorsa (örneğin Claude Desktop) veya GenOffice penceresini doğrudan kullanmasını istiyorsanız bunu kullanın. Aşağıdaki iki yoldan birini seçin.',
     intgMcpStdioTitle: 'Asistan başlatır (önerilir)',
     intgMcpStdioDesc:
-      'Asistan ieumoffice mcp komutunu kendisi başlatır: burada açmanız gereken bir şey yok ve GenOffice açık olmak zorunda değil. CLI ile aynı özellikler.',
+      'Asistan psoffice mcp komutunu kendisi başlatır: burada açmanız gereken bir şey yok ve GenOffice açık olmak zorunda değil. CLI ile aynı özellikler.',
     intgMcpHttpTitle: 'Yerel HTTP sunucusu',
     intgMcpHttpDesc:
       "GenOffice içinde çalışır; asistan bir URL'ye bağlanır ve belgeyi Word düzenleyicide adım adım oluşturmasını izleyebilirsiniz. GenOffice açık kalmalıdır; şimdilik yalnızca Word belgeleri.",
@@ -2139,10 +2139,10 @@ export const strings = {
       'Bunu MCP sunucusu ayarlarına ekleyin (bir JSON dosyası veya ayarlarındaki “MCP sunucusu ekle”):',
     intgMcpNote:
       'Beceri ve MCP bir arada kurulabilir; asistan birini seçer. İkisi tamamen aynı işleri yapar.',
-    intgCliTitle: 'Gelişmiş: ieumoffice komut satırı',
-    intgCliReady: 'ieumoffice {v} · terminalinizde hazır ({path})',
+    intgCliTitle: 'Gelişmiş: psoffice komut satırı',
+    intgCliReady: 'psoffice {v} · terminalinizde hazır ({path})',
     intgCliNotOnPath:
-      "ieumoffice {v} · terminalinizin PATH'inde değil. Asistanlar yine de onu ~/.ieumoffice/launcher üzerinden bulur, bu yüzden beceri çalışır. ieumoffice yazmak istiyorsanız bunu bir kez çalıştırın:",
+      "psoffice {v} · terminalinizin PATH'inde değil. Asistanlar yine de onu ~/.psoffice/launcher üzerinden bulur, bu yüzden beceri çalışır. psoffice yazmak istiyorsanız bunu bir kez çalıştırın:",
     intgCliLauncher: 'Başlatıcı klasörü',
     intgStateOutdated: '{v} kurulu, {next} sürümüne güncelleme var',
     intgStateModified: 'Kurulu {v} (değiştirilmiş)',
@@ -2229,14 +2229,14 @@ export const strings = {
     setAiSharedKeyHint:
       "Bir satıcının anahtarı ve temel URL'si tüm yeteneklerde ortaktır; bir kez girin.",
     setGithub: 'Açık kaynak',
-    setBasedOn: 'Açık kaynaklı {{GenOffice}} projesine dayanır (Apache License 2.0).',
+    setBasedOn: 'Açık kaynaklı IeumOffice / {{GenOffice}} projesine dayanır (Apache License 2.0).',
     setLicenses: 'Açık kaynak lisansları',
     setLicensesDesc:
       'Bu uygulamayla birlikte gelen yazılım ve yazı tiplerinin lisans ve telif bildirimleri.',
     setLicensesOpen: 'Görüntüle',
     setRightsContact: 'Ticari marka ve telif iletişimi',
     setRightsContactDesc: 'İhlal bildirimlerini ve lisans sorularını bu adrese gönderin.',
-    setRightsContactSend: 'E-posta gönder',
+    setRightsContactSend: 'GitHub üzerinde görüntüle',
     setTrademarks:
       "GenOffice; Microsoft, Hancom, Adobe, XMind, Google, Anthropic veya OpenAI ile bağlantılı değildir, onlar tarafından desteklenmez veya onaylanmaz. Word, Excel ve PowerPoint Microsoft'un; Hangul, HWP ve HWPX Hancom'un; XMind, XMind Ltd.'nin; Google Drive, Google'ın; Claude, Anthropic'in; ChatGPT ve Codex, OpenAI'nin ticari markalarıdır. Bu adlar yalnızca uygulamanın hangi dosyaları açtığını ve nelerle çalıştığını belirtmek için kullanılır.",
     setHwpNotice:
@@ -2730,17 +2730,17 @@ export const strings = {
     intgExample2: '第 3 四半期の業績について 6 枚のスライドを作って',
     intgExample3: 'budget.xlsx を PDF に変換して GenOffice で開いて',
     intgStep2Note:
-      'ieumoffice コマンドラインはアシスタントが自分で実行します。あなたが入力する必要はありません。',
+      'psoffice コマンドラインはアシスタントが自分で実行します。あなたが入力する必要はありません。',
     intgCliPartTitle: 'CLI · コマンドライン + skill',
     intgCliPartDesc:
-      'ターミナルコマンドを実行できるアシスタント（Claude Code、Codex、Cursor など）向け。skill をインストールすると、アシスタントが自分で ieumoffice コマンドラインを呼び出してファイルを作成・変換・読み取り・編集します。コマンドを入力する必要はありません。',
+      'ターミナルコマンドを実行できるアシスタント（Claude Code、Codex、Cursor など）向け。skill をインストールすると、アシスタントが自分で psoffice コマンドラインを呼び出してファイルを作成・変換・読み取り・編集します。コマンドを入力する必要はありません。',
     intgMcpPartTitle: 'MCP',
     intgMcpPartWho: 'ここでは他の AI プログラムが GenOffice を使います。',
     intgMcpPartDesc:
       'MCP は AI アシスタントが外部ツールを呼び出すための共通プロトコルです。アシスタントがコマンドを実行できない場合（Claude Desktop など）や、GenOffice のウィンドウを直接操作させたい場合に使います。下の 2 つの方法からどちらか 1 つを選んでください。',
     intgMcpStdioTitle: 'アシスタントが起動する（推奨）',
     intgMcpStdioDesc:
-      'アシスタントが ieumoffice mcp を自分で起動します。ここで何かをオンにする必要はなく、GenOffice を開いておく必要もありません。機能は CLI と同じです。',
+      'アシスタントが psoffice mcp を自分で起動します。ここで何かをオンにする必要はなく、GenOffice を開いておく必要もありません。機能は CLI と同じです。',
     intgMcpHttpTitle: 'ローカル HTTP サーバー',
     intgMcpHttpDesc:
       'GenOffice 内で動作し、アシスタントは URL で接続します。Word エディター上で文書が段階的に生成される様子を見られます。GenOffice を開いたままにする必要があり、現時点では Word のみ対応です。',
@@ -2754,10 +2754,10 @@ export const strings = {
       'これを MCP サーバー設定（JSON ファイル、または設定の「MCP サーバーを追加」）に追加します：',
     intgMcpNote:
       'スキルと MCP は併用できます。アシスタントがどちらかを選びます。両者の機能はまったく同じです。',
-    intgCliTitle: '上級：コマンドライン ieumoffice',
-    intgCliReady: 'ieumoffice {v} · ターミナルで使えます（{path}）',
+    intgCliTitle: '上級：コマンドライン psoffice',
+    intgCliReady: 'psoffice {v} · ターミナルで使えます（{path}）',
     intgCliNotOnPath:
-      'ieumoffice {v} · ターミナルの PATH にありません。アシスタントは ~/.ieumoffice/launcher 経由で見つけられるため、スキルは動作します。自分で ieumoffice を入力したい場合は一度だけ次を実行：',
+      'psoffice {v} · ターミナルの PATH にありません。アシスタントは ~/.psoffice/launcher 経由で見つけられるため、スキルは動作します。自分で psoffice を入力したい場合は一度だけ次を実行：',
     intgCliLauncher: 'ランチャーフォルダー',
     intgStateOutdated: 'インストール済み {v}、{next} に更新できます',
     intgStateModified: 'インストール済み {v}（変更されています）',
@@ -2843,7 +2843,7 @@ export const strings = {
       '同じプロバイダーのキーと Base URL は各機能で共有されます。一度入力すれば済みます。',
     setGithub: 'オープンソース',
     setBasedOn:
-      'オープンソースプロジェクト {{GenOffice}}（Apache License 2.0）をもとに開発されています。',
+      'オープンソースプロジェクト IeumOffice / {{GenOffice}}（Apache License 2.0）をもとに開発されています。',
     setLicenses: 'オープンソースライセンス',
     setLicensesDesc:
       'このアプリに同梱されているソフトウェアとフォントのライセンスおよび著作権表示を表示します。',
@@ -2851,7 +2851,7 @@ export const strings = {
     setRightsContact: '商標・著作権のお問い合わせ',
     setRightsContactDesc:
       '権利侵害の報告やライセンスに関するお問い合わせは、このアドレスへお送りください。',
-    setRightsContactSend: 'メールを書く',
+    setRightsContactSend: 'GitHub で見る',
     setTrademarks:
       'GenOffice は Microsoft、Hancom、Adobe、XMind、Google、Anthropic、OpenAI と提携しておらず、これらの企業による後援や保証も受けていません。Word、Excel、PowerPoint は Microsoft の商標、Hangul（한글）、HWP、HWPX は Hancom の商標、XMind は XMind Ltd. の商標、Google ドライブは Google の商標、Claude は Anthropic の商標、ChatGPT と Codex は OpenAI の商標です。これらの名称は、開けるファイルや連携するサービスを示すためにのみ使用しています。',
     setHwpNotice:
@@ -3339,17 +3339,17 @@ export const strings = {
     intgExample1: '~/Downloads/report.md를 Word 문서로 만들어 줘',
     intgExample2: '3분기 실적을 소개하는 6장짜리 슬라이드를 만들어 줘',
     intgExample3: 'budget.xlsx를 PDF로 변환해서 GenOffice에서 열어 줘',
-    intgStep2Note: 'ieumoffice 명령줄은 어시스턴트가 실행하므로 직접 입력할 필요가 없습니다.',
+    intgStep2Note: 'psoffice 명령줄은 어시스턴트가 실행하므로 직접 입력할 필요가 없습니다.',
     intgCliPartTitle: 'CLI · 명령줄 + 스킬',
     intgCliPartDesc:
-      '터미널 명령을 실행할 수 있는 어시스턴트(Claude Code, Codex, Cursor 등)용입니다. 스킬을 설치하면 어시스턴트가 스스로 ieumoffice 명령줄을 호출해 파일을 만들고 변환하고 읽고 편집합니다.',
+      '터미널 명령을 실행할 수 있는 어시스턴트(Claude Code, Codex, Cursor 등)용입니다. 스킬을 설치하면 어시스턴트가 스스로 psoffice 명령줄을 호출해 파일을 만들고 변환하고 읽고 편집합니다.',
     intgMcpPartTitle: 'MCP',
     intgMcpPartWho: '여기서는 다른 AI 프로그램이 GenOffice를 씁니다.',
     intgMcpPartDesc:
       'MCP는 AI 어시스턴트가 외부 도구를 호출하는 공통 프로토콜입니다. 어시스턴트가 명령을 실행할 수 없거나(예: Claude Desktop) GenOffice 창을 직접 조작하게 하려면 이 방식을 사용하세요. 아래 두 방법 중 하나를 선택하면 됩니다.',
     intgMcpStdioTitle: '어시스턴트가 실행(권장)',
     intgMcpStdioDesc:
-      '어시스턴트가 ieumoffice mcp를 직접 실행합니다. 여기서 켤 것이 없고 GenOffice가 열려 있을 필요도 없습니다. 기능은 CLI와 같습니다.',
+      '어시스턴트가 psoffice mcp를 직접 실행합니다. 여기서 켤 것이 없고 GenOffice가 열려 있을 필요도 없습니다. 기능은 CLI와 같습니다.',
     intgMcpHttpTitle: '로컬 HTTP 서버',
     intgMcpHttpDesc:
       'GenOffice 안에서 실행되며 어시스턴트가 URL로 연결합니다. Word 편집기에서 문서가 단계별로 만들어지는 과정을 볼 수 있습니다. GenOffice를 열어 두어야 하며 현재는 Word만 지원합니다.',
@@ -3363,10 +3363,10 @@ export const strings = {
       '이 내용을 해당 어시스턴트의 MCP 서버 설정(JSON 파일 또는 설정의 "MCP 서버 추가")에 추가하세요:',
     intgMcpNote:
       '스킬과 MCP는 함께 설정할 수 있으며 어시스턴트가 하나를 선택합니다. 두 방식이 하는 일은 완전히 같습니다.',
-    intgCliTitle: '고급: 명령줄 ieumoffice',
-    intgCliReady: 'ieumoffice {v} · 터미널에서 바로 사용 가능({path})',
+    intgCliTitle: '고급: 명령줄 psoffice',
+    intgCliReady: 'psoffice {v} · 터미널에서 바로 사용 가능({path})',
     intgCliNotOnPath:
-      'ieumoffice {v} · 터미널 PATH에 없습니다. 어시스턴트는 ~/.ieumoffice/launcher로 찾을 수 있어 스킬은 정상 작동합니다. 직접 ieumoffice를 입력하려면 한 번만 실행:',
+      'psoffice {v} · 터미널 PATH에 없습니다. 어시스턴트는 ~/.psoffice/launcher로 찾을 수 있어 스킬은 정상 작동합니다. 직접 psoffice를 입력하려면 한 번만 실행:',
     intgCliLauncher: '런처 폴더',
     intgStateOutdated: '설치됨 {v}, {next}(으)로 업데이트 가능',
     intgStateModified: '설치됨 {v} (수정됨)',
@@ -3448,13 +3448,14 @@ export const strings = {
     setAiSharedKeyHint:
       '같은 제공업체의 키와 Base URL은 모든 기능에서 공유되므로 한 번만 입력하면 됩니다.',
     setGithub: '오픈 소스',
-    setBasedOn: '오픈 소스 프로젝트 {{GenOffice}}(Apache License 2.0)를 바탕으로 만들었습니다.',
+    setBasedOn:
+      '오픈 소스 프로젝트 IeumOffice / {{GenOffice}}(Apache License 2.0)를 바탕으로 만들었습니다.',
     setLicenses: '오픈소스 라이선스',
     setLicensesDesc: '이 앱에 함께 들어 있는 프로그램과 글꼴의 라이선스, 저작권 고지를 봅니다.',
     setLicensesOpen: '보기',
     setRightsContact: '상표·저작권 문의',
     setRightsContactDesc: '권리 침해 신고나 라이선스 문의는 이 주소로 보내 주세요.',
-    setRightsContactSend: '메일 쓰기',
+    setRightsContactSend: 'GitHub에서 보기',
     setTrademarks:
       'GenOffice는 Microsoft, 한글과컴퓨터, Adobe, XMind, Google, Anthropic, OpenAI와 제휴하지 않았고, 이들의 후원이나 보증을 받지 않습니다. Word·Excel·PowerPoint는 Microsoft의, 한글·HWP·HWPX는 한글과컴퓨터의, XMind는 XMind Ltd.의, Google 드라이브는 Google의, Claude는 Anthropic의, ChatGPT·Codex는 OpenAI의 상표입니다. 이 이름들은 어떤 파일을 열고 무엇과 함께 쓰는지 알리는 데만 씁니다.',
     setHwpNotice:
@@ -3952,17 +3953,17 @@ export const strings = {
     intgExample2: 'Prépare une présentation de 6 diapositives sur nos résultats du T3',
     intgExample3: 'Convertis budget.xlsx en PDF et ouvre-le dans GenOffice',
     intgStep2Note:
-      "L'assistant lance lui-même la ligne de commande ieumoffice ; vous n'avez jamais à la saisir.",
+      "L'assistant lance lui-même la ligne de commande psoffice ; vous n'avez jamais à la saisir.",
     intgCliPartTitle: 'CLI · ligne de commande + skill',
     intgCliPartDesc:
-      'Pour les assistants capables de lancer des commandes dans le terminal (Claude Code, Codex, Cursor, etc.). Une fois le skill installé, l’assistant appelle lui-même la ligne de commande ieumoffice pour créer, convertir, lire et modifier les fichiers ; vous ne tapez jamais de commande.',
+      'Pour les assistants capables de lancer des commandes dans le terminal (Claude Code, Codex, Cursor, etc.). Une fois le skill installé, l’assistant appelle lui-même la ligne de commande psoffice pour créer, convertir, lire et modifier les fichiers ; vous ne tapez jamais de commande.',
     intgMcpPartTitle: 'MCP',
     intgMcpPartWho: 'Ici, d’autres programmes d’IA utilisent GenOffice.',
     intgMcpPartDesc:
       'MCP est le protocole commun que les assistants IA utilisent pour appeler des outils externes. Utilisez-le si votre assistant ne peut pas lancer de commandes (Claude Desktop, par exemple) ou si vous voulez qu’il pilote directement la fenêtre GenOffice. Choisissez l’une des deux méthodes ci-dessous.',
     intgMcpStdioTitle: 'Lancé par l’assistant (recommandé)',
     intgMcpStdioDesc:
-      'L’assistant lance lui-même ieumoffice mcp : rien à activer ici, et GenOffice n’a pas besoin d’être ouvert. Mêmes fonctions que la CLI.',
+      'L’assistant lance lui-même psoffice mcp : rien à activer ici, et GenOffice n’a pas besoin d’être ouvert. Mêmes fonctions que la CLI.',
     intgMcpHttpTitle: 'Serveur HTTP local',
     intgMcpHttpDesc:
       'Tourne dans GenOffice ; l’assistant se connecte à une URL et vous voyez le document se construire pas à pas dans l’éditeur Word. GenOffice doit rester ouvert ; documents Word uniquement pour l’instant.',
@@ -3975,10 +3976,10 @@ export const strings = {
       'Ajoutez ceci à sa configuration de serveurs MCP (un fichier JSON, ou « Ajouter un serveur MCP » dans ses réglages) :',
     intgMcpNote:
       "Le skill et MCP peuvent coexister ; l'assistant choisit l'un des deux. Ils font exactement la même chose.",
-    intgCliTitle: 'Avancé : ligne de commande ieumoffice',
-    intgCliReady: 'ieumoffice {v} · prêt dans votre terminal ({path})',
+    intgCliTitle: 'Avancé : ligne de commande psoffice',
+    intgCliReady: 'psoffice {v} · prêt dans votre terminal ({path})',
     intgCliNotOnPath:
-      'ieumoffice {v} · absent du PATH de votre terminal. Les assistants le trouvent quand même via ~/.ieumoffice/launcher, le skill fonctionne donc. Pour taper ieumoffice vous-même, exécutez ceci une fois :',
+      'psoffice {v} · absent du PATH de votre terminal. Les assistants le trouvent quand même via ~/.psoffice/launcher, le skill fonctionne donc. Pour taper psoffice vous-même, exécutez ceci une fois :',
     intgCliLauncher: 'Dossier du lanceur',
     intgStateOutdated: 'Installé {v}, mise à jour {next} disponible',
     intgStateModified: 'Installé {v} (modifié)',
@@ -4066,7 +4067,7 @@ export const strings = {
     setAiSharedKeyHint:
       "La clé et l'URL de base d'un fournisseur sont partagées entre les capacités ; saisissez-les une seule fois.",
     setGithub: 'Open source',
-    setBasedOn: 'Basé sur le projet open source {{GenOffice}} (Apache License 2.0).',
+    setBasedOn: 'Basé sur le projet open source IeumOffice / {{GenOffice}} (Apache License 2.0).',
     setLicenses: 'Licences open source',
     setLicensesDesc:
       'Afficher les licences et mentions de droits d’auteur des logiciels et polices fournis avec cette application.',
@@ -4074,7 +4075,7 @@ export const strings = {
     setRightsContact: 'Contact marques et droits d’auteur',
     setRightsContactDesc:
       'Envoyez à cette adresse les signalements d’atteinte aux droits et les questions de licence.',
-    setRightsContactSend: 'Écrire un e-mail',
+    setRightsContactSend: 'Voir sur GitHub',
     setTrademarks:
       'GenOffice n’est ni affilié à Microsoft, Hancom, Adobe, XMind, Google, Anthropic ou OpenAI, ni parrainé ou approuvé par eux. Word, Excel et PowerPoint sont des marques de Microsoft ; Hangul, HWP et HWPX de Hancom ; XMind de XMind Ltd. ; Google Drive de Google ; Claude d’Anthropic ; ChatGPT et Codex d’OpenAI. Ces noms servent uniquement à indiquer quels fichiers l’application ouvre et avec quoi elle fonctionne.',
     setHwpNotice:
@@ -4581,17 +4582,17 @@ export const strings = {
     intgExample2: 'Erstelle eine Präsentation mit 6 Folien zu unseren Q3-Ergebnissen',
     intgExample3: 'Wandle budget.xlsx in PDF um und öffne es in GenOffice',
     intgStep2Note:
-      'Der Assistent ruft die ieumoffice-Befehlszeile selbst auf; Sie müssen sie nie eintippen.',
+      'Der Assistent ruft die psoffice-Befehlszeile selbst auf; Sie müssen sie nie eintippen.',
     intgCliPartTitle: 'CLI · Kommandozeile + Skill',
     intgCliPartDesc:
-      'Für Assistenten, die Terminalbefehle ausführen können (Claude Code, Codex, Cursor u. a.). Nach der Installation des Skills ruft der Assistent die ieumoffice-Kommandozeile selbst auf, um Dateien zu erstellen, zu konvertieren, zu lesen und zu bearbeiten; Sie tippen nie einen Befehl.',
+      'Für Assistenten, die Terminalbefehle ausführen können (Claude Code, Codex, Cursor u. a.). Nach der Installation des Skills ruft der Assistent die psoffice-Kommandozeile selbst auf, um Dateien zu erstellen, zu konvertieren, zu lesen und zu bearbeiten; Sie tippen nie einen Befehl.',
     intgMcpPartTitle: 'MCP',
     intgMcpPartWho: 'Hier nutzen andere KI-Programme GenOffice.',
     intgMcpPartDesc:
       'MCP ist das gemeinsame Protokoll, über das KI-Assistenten externe Werkzeuge aufrufen. Nutzen Sie es, wenn der Assistent keine Befehle ausführen kann (z. B. Claude Desktop) oder wenn er das GenOffice-Fenster direkt steuern soll. Wählen Sie einen der beiden Wege unten.',
     intgMcpStdioTitle: 'Vom Assistenten gestartet (empfohlen)',
     intgMcpStdioDesc:
-      'Der Assistent startet ieumoffice mcp selbst: hier ist nichts einzuschalten, und GenOffice muss nicht geöffnet sein. Gleicher Funktionsumfang wie die CLI.',
+      'Der Assistent startet psoffice mcp selbst: hier ist nichts einzuschalten, und GenOffice muss nicht geöffnet sein. Gleicher Funktionsumfang wie die CLI.',
     intgMcpHttpTitle: 'Lokaler HTTP-Server',
     intgMcpHttpDesc:
       'Läuft in GenOffice; der Assistent verbindet sich über eine URL, und Sie sehen im Word-Editor zu, wie das Dokument Schritt für Schritt entsteht. GenOffice muss geöffnet bleiben; derzeit nur Word-Dokumente.',
@@ -4604,10 +4605,10 @@ export const strings = {
       'Fügen Sie dies in seine MCP-Server-Konfiguration ein (eine JSON-Datei oder „MCP-Server hinzufügen“ in den Einstellungen):',
     intgMcpNote:
       'Skill und MCP können nebeneinander eingerichtet sein; der Assistent wählt eines. Beide tun genau dasselbe.',
-    intgCliTitle: 'Erweitert: Befehlszeile ieumoffice',
-    intgCliReady: 'ieumoffice {v} · im Terminal verfügbar ({path})',
+    intgCliTitle: 'Erweitert: Befehlszeile psoffice',
+    intgCliReady: 'psoffice {v} · im Terminal verfügbar ({path})',
     intgCliNotOnPath:
-      'ieumoffice {v} · nicht im PATH Ihres Terminals. Assistenten finden es trotzdem über ~/.ieumoffice/launcher, der Skill funktioniert also. Um ieumoffice selbst einzugeben, führen Sie dies einmal aus:',
+      'psoffice {v} · nicht im PATH Ihres Terminals. Assistenten finden es trotzdem über ~/.psoffice/launcher, der Skill funktioniert also. Um psoffice selbst einzugeben, führen Sie dies einmal aus:',
     intgCliLauncher: 'Launcher-Ordner',
     intgStateOutdated: 'Installiert {v}, Update auf {next} verfügbar',
     intgStateModified: 'Installiert {v} (geändert)',
@@ -4693,7 +4694,8 @@ export const strings = {
     setAiSharedKeyHint:
       'Schlüssel und Base URL eines Anbieters gelten für alle Fähigkeiten; einmal eintragen genügt.',
     setGithub: 'Open Source',
-    setBasedOn: 'Basiert auf dem Open-Source-Projekt {{GenOffice}} (Apache License 2.0).',
+    setBasedOn:
+      'Basiert auf dem Open-Source-Projekt IeumOffice / {{GenOffice}} (Apache License 2.0).',
     setLicenses: 'Open-Source-Lizenzen',
     setLicensesDesc:
       'Lizenz- und Urheberrechtshinweise der Software und Schriften anzeigen, die mit dieser App geliefert werden.',
@@ -4701,7 +4703,7 @@ export const strings = {
     setRightsContact: 'Kontakt zu Marken und Urheberrecht',
     setRightsContactDesc:
       'Meldungen über Rechtsverletzungen und Fragen zur Lizenz bitte an diese Adresse senden.',
-    setRightsContactSend: 'E-Mail schreiben',
+    setRightsContactSend: 'Auf GitHub ansehen',
     setTrademarks:
       'GenOffice ist nicht mit Microsoft, Hancom, Adobe, XMind, Google, Anthropic oder OpenAI verbunden und wird von ihnen weder gesponsert noch unterstützt. Word, Excel und PowerPoint sind Marken von Microsoft; Hangul, HWP und HWPX von Hancom; XMind von XMind Ltd.; Google Drive von Google; Claude von Anthropic; ChatGPT und Codex von OpenAI. Diese Namen werden nur verwendet, um zu sagen, welche Dateien die App öffnet und womit sie zusammenarbeitet.',
     setHwpNotice:
@@ -5209,17 +5211,17 @@ export const strings = {
     intgExample2: 'Haz una presentación de 6 diapositivas sobre nuestros resultados del T3',
     intgExample3: 'Convierte budget.xlsx a PDF y ábrelo en GenOffice',
     intgStep2Note:
-      'El asistente ejecuta la línea de comandos ieumoffice por sí mismo; nunca tienes que escribirla.',
+      'El asistente ejecuta la línea de comandos psoffice por sí mismo; nunca tienes que escribirla.',
     intgCliPartTitle: 'CLI · línea de comandos + skill',
     intgCliPartDesc:
-      'Para asistentes que pueden ejecutar comandos de terminal (Claude Code, Codex, Cursor y otros). Con el skill instalado, el asistente llama por sí mismo a la línea de comandos ieumoffice para crear, convertir, leer y editar archivos; nunca escribes un comando.',
+      'Para asistentes que pueden ejecutar comandos de terminal (Claude Code, Codex, Cursor y otros). Con el skill instalado, el asistente llama por sí mismo a la línea de comandos psoffice para crear, convertir, leer y editar archivos; nunca escribes un comando.',
     intgMcpPartTitle: 'MCP',
     intgMcpPartWho: 'Aquí, otros programas de IA usan GenOffice.',
     intgMcpPartDesc:
       'MCP es el protocolo común con el que los asistentes de IA llaman a herramientas externas. Úsalo cuando tu asistente no pueda ejecutar comandos (Claude Desktop, por ejemplo) o cuando quieras que controle directamente la ventana de GenOffice. Elige una de las dos formas de abajo.',
     intgMcpStdioTitle: 'Iniciado por el asistente (recomendado)',
     intgMcpStdioDesc:
-      'El asistente lanza ieumoffice mcp por sí mismo: nada que activar aquí, y GenOffice no necesita estar abierto. Mismas funciones que la CLI.',
+      'El asistente lanza psoffice mcp por sí mismo: nada que activar aquí, y GenOffice no necesita estar abierto. Mismas funciones que la CLI.',
     intgMcpHttpTitle: 'Servidor HTTP local',
     intgMcpHttpDesc:
       'Se ejecuta dentro de GenOffice; el asistente se conecta a una URL y puedes ver cómo construye el documento paso a paso en el editor de Word. GenOffice debe permanecer abierto; por ahora solo documentos Word.',
@@ -5232,10 +5234,10 @@ export const strings = {
       'Añade esto a su configuración de servidores MCP (un archivo JSON, o «Añadir servidor MCP» en sus ajustes):',
     intgMcpNote:
       'El skill y MCP pueden convivir; el asistente elige uno. Ambos hacen exactamente lo mismo.',
-    intgCliTitle: 'Avanzado: línea de comandos ieumoffice',
-    intgCliReady: 'ieumoffice {v} · listo en tu terminal ({path})',
+    intgCliTitle: 'Avanzado: línea de comandos psoffice',
+    intgCliReady: 'psoffice {v} · listo en tu terminal ({path})',
     intgCliNotOnPath:
-      'ieumoffice {v} · no está en el PATH de tu terminal. Los asistentes lo encuentran igualmente mediante ~/.ieumoffice/launcher, así que el skill funciona. Para escribir ieumoffice tú mismo, ejecuta esto una vez:',
+      'psoffice {v} · no está en el PATH de tu terminal. Los asistentes lo encuentran igualmente mediante ~/.psoffice/launcher, así que el skill funciona. Para escribir psoffice tú mismo, ejecuta esto una vez:',
     intgCliLauncher: 'Carpeta del lanzador',
     intgStateOutdated: 'Instalado {v}, actualización a {next} disponible',
     intgStateModified: 'Instalado {v} (modificado)',
@@ -5320,7 +5322,8 @@ export const strings = {
     setAiSharedKeyHint:
       'La clave y la URL base de un proveedor se comparten entre capacidades; introdúcelas una sola vez.',
     setGithub: 'Código abierto',
-    setBasedOn: 'Basado en el proyecto de código abierto {{GenOffice}} (Apache License 2.0).',
+    setBasedOn:
+      'Basado en el proyecto de código abierto IeumOffice / {{GenOffice}} (Apache License 2.0).',
     setLicenses: 'Licencias de código abierto',
     setLicensesDesc:
       'Ver los avisos de licencia y derechos de autor del software y las fuentes que se incluyen con esta aplicación.',
@@ -5328,7 +5331,7 @@ export const strings = {
     setRightsContact: 'Contacto sobre marcas y derechos de autor',
     setRightsContactDesc:
       'Envía a esta dirección los avisos de infracción y las consultas sobre licencias.',
-    setRightsContactSend: 'Escribir un correo',
+    setRightsContactSend: 'Ver en GitHub',
     setTrademarks:
       'GenOffice no está afiliado a Microsoft, Hancom, Adobe, XMind, Google, Anthropic ni OpenAI, ni cuenta con su patrocinio o respaldo. Word, Excel y PowerPoint son marcas de Microsoft; Hangul, HWP y HWPX, de Hancom; XMind, de XMind Ltd.; Google Drive, de Google; Claude, de Anthropic; ChatGPT y Codex, de OpenAI. Estos nombres se usan solo para indicar qué archivos abre la aplicación y con qué funciona.',
     setHwpNotice:
@@ -5816,17 +5819,17 @@ export const strings = {
     intgExample1: 'แปลง ~/Downloads/report.md เป็นเอกสาร Word',
     intgExample2: 'ทำสไลด์ 6 หน้าเกี่ยวกับผลประกอบการไตรมาส 3 ของเรา',
     intgExample3: 'แปลง budget.xlsx เป็น PDF แล้วเปิดใน GenOffice',
-    intgStep2Note: 'ผู้ช่วยจะเรียกใช้บรรทัดคำสั่ง ieumoffice เอง คุณไม่ต้องพิมพ์คำสั่งใด ๆ',
+    intgStep2Note: 'ผู้ช่วยจะเรียกใช้บรรทัดคำสั่ง psoffice เอง คุณไม่ต้องพิมพ์คำสั่งใด ๆ',
     intgCliPartTitle: 'CLI · บรรทัดคำสั่ง + skill',
     intgCliPartDesc:
-      'สำหรับผู้ช่วยที่รันคำสั่งเทอร์มินัลได้ (Claude Code, Codex, Cursor และอื่น ๆ) เมื่อติดตั้ง skill แล้ว ผู้ช่วยจะเรียกบรรทัดคำสั่ง ieumoffice เองเพื่อสร้าง แปลง อ่าน และแก้ไขไฟล์ คุณไม่ต้องพิมพ์คำสั่งใด ๆ',
+      'สำหรับผู้ช่วยที่รันคำสั่งเทอร์มินัลได้ (Claude Code, Codex, Cursor และอื่น ๆ) เมื่อติดตั้ง skill แล้ว ผู้ช่วยจะเรียกบรรทัดคำสั่ง psoffice เองเพื่อสร้าง แปลง อ่าน และแก้ไขไฟล์ คุณไม่ต้องพิมพ์คำสั่งใด ๆ',
     intgMcpPartTitle: 'MCP',
     intgMcpPartWho: 'ส่วนนี้ให้โปรแกรม AI อื่นใช้ GenOffice',
     intgMcpPartDesc:
       'MCP คือโปรโตคอลกลางที่ผู้ช่วย AI ใช้เรียกเครื่องมือภายนอก ใช้เมื่อผู้ช่วยรันคำสั่งไม่ได้ (เช่น Claude Desktop) หรือเมื่อต้องการให้มันควบคุมหน้าต่าง GenOffice โดยตรง เลือกวิธีใดวิธีหนึ่งจากสองวิธีด้านล่าง',
     intgMcpStdioTitle: 'ให้ผู้ช่วยเป็นผู้เริ่ม (แนะนำ)',
     intgMcpStdioDesc:
-      'ผู้ช่วยจะเรียก ieumoffice mcp ขึ้นมาเอง ไม่ต้องเปิดสวิตช์ใดที่นี่ และไม่ต้องเปิด GenOffice ไว้ ความสามารถเหมือน CLI ทุกประการ',
+      'ผู้ช่วยจะเรียก psoffice mcp ขึ้นมาเอง ไม่ต้องเปิดสวิตช์ใดที่นี่ และไม่ต้องเปิด GenOffice ไว้ ความสามารถเหมือน CLI ทุกประการ',
     intgMcpHttpTitle: 'เซิร์ฟเวอร์ HTTP ในเครื่อง',
     intgMcpHttpDesc:
       'ทำงานอยู่ใน GenOffice ผู้ช่วยเชื่อมต่อผ่าน URL และคุณจะเห็นเอกสารค่อย ๆ ถูกสร้างขึ้นในตัวแก้ไข Word ต้องเปิด GenOffice ไว้ตลอด ปัจจุบันรองรับเฉพาะ Word',
@@ -5839,10 +5842,10 @@ export const strings = {
       'เพิ่มส่วนนี้ลงในการตั้งค่าเซิร์ฟเวอร์ MCP ของผู้ช่วย (ไฟล์ JSON หรือ "เพิ่มเซิร์ฟเวอร์ MCP" ในการตั้งค่า):',
     intgMcpNote:
       'สกิลและ MCP ตั้งค่าไว้พร้อมกันได้ ผู้ช่วยจะเลือกใช้เอง ทั้งสองทำงานเหมือนกันทุกอย่าง',
-    intgCliTitle: 'ขั้นสูง: บรรทัดคำสั่ง ieumoffice',
-    intgCliReady: 'ieumoffice {v} · พร้อมใช้ในเทอร์มินัล ({path})',
+    intgCliTitle: 'ขั้นสูง: บรรทัดคำสั่ง psoffice',
+    intgCliReady: 'psoffice {v} · พร้อมใช้ในเทอร์มินัล ({path})',
     intgCliNotOnPath:
-      'ieumoffice {v} · ยังไม่อยู่ใน PATH ของเทอร์มินัล ผู้ช่วยยังหาเจอผ่าน ~/.ieumoffice/launcher สกิลจึงใช้งานได้ตามปกติ หากต้องการพิมพ์ ieumoffice เอง ให้รันคำสั่งนี้ครั้งเดียว:',
+      'psoffice {v} · ยังไม่อยู่ใน PATH ของเทอร์มินัล ผู้ช่วยยังหาเจอผ่าน ~/.psoffice/launcher สกิลจึงใช้งานได้ตามปกติ หากต้องการพิมพ์ psoffice เอง ให้รันคำสั่งนี้ครั้งเดียว:',
     intgCliLauncher: 'โฟลเดอร์ตัวเรียกใช้',
     intgStateOutdated: 'ติดตั้งแล้ว {v} อัปเดตเป็น {next} ได้',
     intgStateModified: 'ติดตั้งแล้ว {v} (ถูกแก้ไข)',
@@ -5925,13 +5928,13 @@ export const strings = {
     setAiSharedKeyHint:
       'คีย์และ Base URL ของผู้ให้บริการเดียวกันใช้ร่วมกันทุกความสามารถ กรอกครั้งเดียวพอ',
     setGithub: 'โอเพนซอร์ส',
-    setBasedOn: 'พัฒนาต่อยอดจากโครงการโอเพนซอร์ส {{GenOffice}} (Apache License 2.0)',
+    setBasedOn: 'พัฒนาต่อยอดจากโครงการโอเพนซอร์ส IeumOffice / {{GenOffice}} (Apache License 2.0)',
     setLicenses: 'สัญญาอนุญาตโอเพนซอร์ส',
     setLicensesDesc: 'ดูประกาศสัญญาอนุญาตและลิขสิทธิ์ของซอฟต์แวร์และฟอนต์ที่มาพร้อมกับแอปนี้',
     setLicensesOpen: 'ดู',
     setRightsContact: 'ติดต่อเรื่องเครื่องหมายการค้าและลิขสิทธิ์',
     setRightsContactDesc: 'ส่งการแจ้งละเมิดสิทธิ์และคำถามเกี่ยวกับสัญญาอนุญาตมาที่อีเมลนี้',
-    setRightsContactSend: 'เขียนอีเมล',
+    setRightsContactSend: 'ดูบน GitHub',
     setTrademarks:
       'GenOffice ไม่มีความเกี่ยวข้องกับ Microsoft, Hancom, Adobe, XMind, Google, Anthropic หรือ OpenAI และไม่ได้รับการสนับสนุนหรือรับรองจากบริษัทเหล่านี้ Word, Excel และ PowerPoint เป็นเครื่องหมายการค้าของ Microsoft; Hangul, HWP และ HWPX ของ Hancom; XMind ของ XMind Ltd.; Google Drive ของ Google; Claude ของ Anthropic; ChatGPT และ Codex ของ OpenAI ชื่อเหล่านี้ใช้เพียงเพื่อบอกว่าแอปเปิดไฟล์ใดได้และทำงานร่วมกับอะไร',
     setHwpNotice:
@@ -6427,17 +6430,17 @@ export const strings = {
     intgExample2: 'Buat presentasi 6 slide tentang hasil Q3 kami',
     intgExample3: 'Konversi budget.xlsx ke PDF dan buka di GenOffice',
     intgStep2Note:
-      'Asisten menjalankan baris perintah ieumoffice sendiri; Anda tidak perlu mengetiknya.',
+      'Asisten menjalankan baris perintah psoffice sendiri; Anda tidak perlu mengetiknya.',
     intgCliPartTitle: 'CLI · baris perintah + skill',
     intgCliPartDesc:
-      'Untuk asisten yang bisa menjalankan perintah terminal (Claude Code, Codex, Cursor, dan lainnya). Setelah skill terpasang, asisten memanggil baris perintah ieumoffice sendiri untuk membuat, mengonversi, membaca, dan mengedit file; Anda tidak pernah mengetik perintah.',
+      'Untuk asisten yang bisa menjalankan perintah terminal (Claude Code, Codex, Cursor, dan lainnya). Setelah skill terpasang, asisten memanggil baris perintah psoffice sendiri untuk membuat, mengonversi, membaca, dan mengedit file; Anda tidak pernah mengetik perintah.',
     intgMcpPartTitle: 'MCP',
     intgMcpPartWho: 'Di sini, program AI lain memakai GenOffice.',
     intgMcpPartDesc:
       'MCP adalah protokol umum yang dipakai asisten AI untuk memanggil alat eksternal. Gunakan saat asisten Anda tidak bisa menjalankan perintah (misalnya Claude Desktop) atau saat Anda ingin ia mengendalikan jendela GenOffice secara langsung. Pilih salah satu dari dua cara di bawah.',
     intgMcpStdioTitle: 'Dijalankan oleh asisten (disarankan)',
     intgMcpStdioDesc:
-      'Asisten menjalankan ieumoffice mcp sendiri: tidak ada yang perlu dinyalakan di sini, dan GenOffice tidak perlu terbuka. Fitur sama dengan CLI.',
+      'Asisten menjalankan psoffice mcp sendiri: tidak ada yang perlu dinyalakan di sini, dan GenOffice tidak perlu terbuka. Fitur sama dengan CLI.',
     intgMcpHttpTitle: 'Server HTTP lokal',
     intgMcpHttpDesc:
       'Berjalan di dalam GenOffice; asisten terhubung lewat URL dan Anda bisa melihat dokumen dibangun langkah demi langkah di editor Word. GenOffice harus tetap terbuka; untuk saat ini hanya dokumen Word.',
@@ -6450,10 +6453,10 @@ export const strings = {
       'Tambahkan ini ke pengaturan server MCP miliknya (berkas JSON, atau "Tambah server MCP" di pengaturannya):',
     intgMcpNote:
       'Skill dan MCP bisa dipasang bersamaan; asisten akan memilih salah satu. Keduanya melakukan hal yang sama persis.',
-    intgCliTitle: 'Lanjutan: baris perintah ieumoffice',
-    intgCliReady: 'ieumoffice {v} · siap di terminal Anda ({path})',
+    intgCliTitle: 'Lanjutan: baris perintah psoffice',
+    intgCliReady: 'psoffice {v} · siap di terminal Anda ({path})',
     intgCliNotOnPath:
-      'ieumoffice {v} · belum ada di PATH terminal Anda. Asisten tetap menemukannya lewat ~/.ieumoffice/launcher, jadi skill tetap berfungsi. Untuk mengetik ieumoffice sendiri, jalankan ini sekali:',
+      'psoffice {v} · belum ada di PATH terminal Anda. Asisten tetap menemukannya lewat ~/.psoffice/launcher, jadi skill tetap berfungsi. Untuk mengetik psoffice sendiri, jalankan ini sekali:',
     intgCliLauncher: 'Folder peluncur',
     intgStateOutdated: 'Terpasang {v}, pembaruan ke {next} tersedia',
     intgStateModified: 'Terpasang {v} (dimodifikasi)',
@@ -6537,14 +6540,15 @@ export const strings = {
     setAiSharedKeyHint:
       'Kunci dan Base URL satu penyedia dipakai bersama oleh semua kemampuan; cukup isi sekali.',
     setGithub: 'Sumber Terbuka',
-    setBasedOn: 'Dibuat berdasarkan proyek sumber terbuka {{GenOffice}} (Apache License 2.0).',
+    setBasedOn:
+      'Dibuat berdasarkan proyek sumber terbuka IeumOffice / {{GenOffice}} (Apache License 2.0).',
     setLicenses: 'Lisensi sumber terbuka',
     setLicensesDesc:
       'Lihat pemberitahuan lisensi dan hak cipta untuk perangkat lunak dan font yang disertakan dengan aplikasi ini.',
     setLicensesOpen: 'Lihat',
     setRightsContact: 'Kontak merek dagang dan hak cipta',
     setRightsContactDesc: 'Kirim laporan pelanggaran dan pertanyaan lisensi ke alamat ini.',
-    setRightsContactSend: 'Tulis email',
+    setRightsContactSend: 'Lihat di GitHub',
     setTrademarks:
       'GenOffice tidak berafiliasi dengan, disponsori, atau didukung oleh Microsoft, Hancom, Adobe, XMind, Google, Anthropic, atau OpenAI. Word, Excel, dan PowerPoint adalah merek dagang Microsoft; Hangul, HWP, dan HWPX milik Hancom; XMind milik XMind Ltd.; Google Drive milik Google; Claude milik Anthropic; ChatGPT dan Codex milik OpenAI. Nama-nama ini hanya digunakan untuk menyebutkan file apa yang dapat dibuka aplikasi dan dengan apa aplikasi bekerja.',
     setHwpNotice:
@@ -7042,18 +7046,17 @@ export const strings = {
     intgExample1: 'Преврати ~/Downloads/report.md в документ Word',
     intgExample2: 'Сделай презентацию из 6 слайдов о наших результатах за 3-й квартал',
     intgExample3: 'Конвертируй budget.xlsx в PDF и открой в GenOffice',
-    intgStep2Note:
-      'Ассистент сам запускает командную строку ieumoffice; вводить её вам не придётся.',
+    intgStep2Note: 'Ассистент сам запускает командную строку psoffice; вводить её вам не придётся.',
     intgCliPartTitle: 'CLI · командная строка + skill',
     intgCliPartDesc:
-      'Для ассистентов, умеющих выполнять команды терминала (Claude Code, Codex, Cursor и другие). После установки skill ассистент сам вызывает командную строку ieumoffice, чтобы создавать, конвертировать, читать и редактировать файлы; вам не нужно вводить команды.',
+      'Для ассистентов, умеющих выполнять команды терминала (Claude Code, Codex, Cursor и другие). После установки skill ассистент сам вызывает командную строку psoffice, чтобы создавать, конвертировать, читать и редактировать файлы; вам не нужно вводить команды.',
     intgMcpPartTitle: 'MCP',
     intgMcpPartWho: 'Здесь другие ИИ-программы пользуются GenOffice.',
     intgMcpPartDesc:
       'MCP — общий протокол, через который ИИ-ассистенты вызывают внешние инструменты. Используйте его, если ассистент не умеет выполнять команды (например, Claude Desktop) или если хотите, чтобы он напрямую управлял окном GenOffice. Выберите один из двух способов ниже.',
     intgMcpStdioTitle: 'Запускает ассистент (рекомендуется)',
     intgMcpStdioDesc:
-      'Ассистент сам запускает ieumoffice mcp: здесь ничего включать не нужно, и GenOffice не обязан быть открыт. Те же возможности, что у CLI.',
+      'Ассистент сам запускает psoffice mcp: здесь ничего включать не нужно, и GenOffice не обязан быть открыт. Те же возможности, что у CLI.',
     intgMcpHttpTitle: 'Локальный HTTP-сервер',
     intgMcpHttpDesc:
       'Работает внутри GenOffice; ассистент подключается по URL, и вы видите, как документ шаг за шагом собирается в редакторе Word. GenOffice должен оставаться открытым; пока только документы Word.',
@@ -7066,10 +7069,10 @@ export const strings = {
       'Добавьте это в его настройки MCP-серверов (JSON-файл или «Добавить MCP-сервер» в настройках):',
     intgMcpNote:
       'Скилл и MCP могут быть настроены одновременно; ассистент выберет один из них. Они делают одно и то же.',
-    intgCliTitle: 'Дополнительно: командная строка ieumoffice',
-    intgCliReady: 'ieumoffice {v} · доступен в терминале ({path})',
+    intgCliTitle: 'Дополнительно: командная строка psoffice',
+    intgCliReady: 'psoffice {v} · доступен в терминале ({path})',
     intgCliNotOnPath:
-      'ieumoffice {v} · отсутствует в PATH терминала. Ассистенты всё равно находят его через ~/.ieumoffice/launcher, так что скилл работает. Чтобы вводить ieumoffice самостоятельно, выполните один раз:',
+      'psoffice {v} · отсутствует в PATH терминала. Ассистенты всё равно находят его через ~/.psoffice/launcher, так что скилл работает. Чтобы вводить psoffice самостоятельно, выполните один раз:',
     intgCliLauncher: 'Папка лаунчера',
     intgStateOutdated: 'Установлен {v}, доступно обновление до {next}',
     intgStateModified: 'Установлен {v} (изменён)',
@@ -7154,7 +7157,7 @@ export const strings = {
       'Ключ и базовый URL провайдера общие для всех функций; введите их один раз.',
     setGithub: 'Открытый код',
     setBasedOn:
-      'Создано на основе проекта с открытым исходным кодом {{GenOffice}} (Apache License 2.0).',
+      'Создано на основе проекта с открытым исходным кодом IeumOffice / {{GenOffice}} (Apache License 2.0).',
     setLicenses: 'Лицензии открытого ПО',
     setLicensesDesc:
       'Уведомления о лицензиях и авторских правах на программы и шрифты, входящие в приложение.',
@@ -7162,7 +7165,7 @@ export const strings = {
     setRightsContact: 'Связь по вопросам товарных знаков и авторских прав',
     setRightsContactDesc:
       'Сообщения о нарушении прав и вопросы о лицензиях отправляйте на этот адрес.',
-    setRightsContactSend: 'Написать письмо',
+    setRightsContactSend: 'Открыть на GitHub',
     setTrademarks:
       'GenOffice не связан с Microsoft, Hancom, Adobe, XMind, Google, Anthropic или OpenAI и не спонсируется и не одобряется ими. Word, Excel и PowerPoint — товарные знаки Microsoft; Hangul, HWP и HWPX — Hancom; XMind — XMind Ltd.; Google Диск — Google; Claude — Anthropic; ChatGPT и Codex — OpenAI. Эти названия используются только для того, чтобы указать, какие файлы открывает приложение и с чем оно работает.',
     setHwpNotice:
@@ -7652,17 +7655,17 @@ export const strings = {
     intgExample1: 'حوّل ~/Downloads/report.md إلى مستند Word',
     intgExample2: 'أنشئ عرضاً من 6 شرائح عن نتائج الربع الثالث',
     intgExample3: 'حوّل budget.xlsx إلى PDF وافتحه في GenOffice',
-    intgStep2Note: 'المساعد يشغّل سطر أوامر ieumoffice بنفسه؛ لن تحتاج إلى كتابته أبداً.',
+    intgStep2Note: 'المساعد يشغّل سطر أوامر psoffice بنفسه؛ لن تحتاج إلى كتابته أبداً.',
     intgCliPartTitle: 'CLI · سطر الأوامر + skill',
     intgCliPartDesc:
-      'للمساعدين الذين يستطيعون تنفيذ أوامر الطرفية (Claude Code وCodex وCursor وغيرها). بعد تثبيت skill، يستدعي المساعد سطر أوامر ieumoffice بنفسه لإنشاء الملفات وتحويلها وقراءتها وتحريرها؛ لن تكتب أي أمر.',
+      'للمساعدين الذين يستطيعون تنفيذ أوامر الطرفية (Claude Code وCodex وCursor وغيرها). بعد تثبيت skill، يستدعي المساعد سطر أوامر psoffice بنفسه لإنشاء الملفات وتحويلها وقراءتها وتحريرها؛ لن تكتب أي أمر.',
     intgMcpPartTitle: 'MCP',
     intgMcpPartWho: 'هنا تستخدم برامج الذكاء الاصطناعي الأخرى GenOffice.',
     intgMcpPartDesc:
       'MCP هو البروتوكول المشترك الذي يستخدمه مساعدو الذكاء الاصطناعي لاستدعاء أدوات خارجية. استخدمه إذا كان مساعدك لا يستطيع تنفيذ الأوامر (مثل Claude Desktop) أو إذا أردت أن يتحكم في نافذة GenOffice مباشرة. اختر إحدى الطريقتين أدناه.',
     intgMcpStdioTitle: 'يشغّله المساعد (موصى به)',
     intgMcpStdioDesc:
-      'يشغّل المساعد ieumoffice mcp بنفسه: لا شيء لتفعيله هنا، ولا يلزم أن يكون GenOffice مفتوحًا. نفس إمكانات CLI.',
+      'يشغّل المساعد psoffice mcp بنفسه: لا شيء لتفعيله هنا، ولا يلزم أن يكون GenOffice مفتوحًا. نفس إمكانات CLI.',
     intgMcpHttpTitle: 'خادم HTTP محلي',
     intgMcpHttpDesc:
       'يعمل داخل GenOffice؛ يتصل المساعد عبر عنوان URL ويمكنك مشاهدة المستند يُبنى خطوة بخطوة في محرر Word. يجب أن يبقى GenOffice مفتوحًا؛ مستندات Word فقط حاليًا.',
@@ -7675,10 +7678,10 @@ export const strings = {
       'أضف هذا إلى إعدادات خوادم MCP لديه (ملف JSON، أو «إضافة خادم MCP» في إعداداته):',
     intgMcpNote:
       'يمكن إعداد المهارة و MCP معاً؛ يختار المساعد أحدهما. كلاهما يقوم بالأشياء نفسها تماماً.',
-    intgCliTitle: 'متقدم: سطر أوامر ieumoffice',
-    intgCliReady: 'ieumoffice {v} · جاهز في الطرفية ({path})',
+    intgCliTitle: 'متقدم: سطر أوامر psoffice',
+    intgCliReady: 'psoffice {v} · جاهز في الطرفية ({path})',
     intgCliNotOnPath:
-      'ieumoffice {v} · غير موجود في PATH الطرفية. ما زال المساعدون يجدونه عبر ~/.ieumoffice/launcher، فالمهارة تعمل. لكتابة ieumoffice بنفسك، شغّل هذا مرة واحدة:',
+      'psoffice {v} · غير موجود في PATH الطرفية. ما زال المساعدون يجدونه عبر ~/.psoffice/launcher، فالمهارة تعمل. لكتابة psoffice بنفسك، شغّل هذا مرة واحدة:',
     intgCliLauncher: 'مجلد المشغّل',
     intgStateOutdated: 'مثبّت {v}، يتوفر تحديث إلى {next}',
     intgStateModified: 'مثبّت {v} (تم تعديله)',
@@ -7761,13 +7764,13 @@ export const strings = {
     setAiSharedKeyHint:
       'مفتاح المزوّد وعنوان Base URL مشتركان بين جميع القدرات؛ أدخلهما مرة واحدة فقط.',
     setGithub: 'مفتوح المصدر',
-    setBasedOn: 'مبني على المشروع مفتوح المصدر {{GenOffice}} (Apache License 2.0).',
+    setBasedOn: 'مبني على المشروع مفتوح المصدر IeumOffice / {{GenOffice}} (Apache License 2.0).',
     setLicenses: 'تراخيص المصادر المفتوحة',
     setLicensesDesc: 'عرض إشعارات الترخيص وحقوق النشر للبرامج والخطوط المضمّنة في هذا التطبيق.',
     setLicensesOpen: 'عرض',
     setRightsContact: 'التواصل بشأن العلامات التجارية وحقوق النشر',
     setRightsContactDesc: 'أرسل بلاغات انتهاك الحقوق والأسئلة المتعلقة بالترخيص إلى هذا العنوان.',
-    setRightsContactSend: 'كتابة رسالة',
+    setRightsContactSend: 'عرض على GitHub',
     setTrademarks:
       'GenOffice غير تابع لشركات Microsoft أو Hancom أو Adobe أو XMind أو Google أو Anthropic أو OpenAI، ولا يحظى برعايتها أو تأييدها. Word وExcel وPowerPoint علامات تجارية لشركة Microsoft؛ وHangul وHWP وHWPX لشركة Hancom؛ وXMind لشركة XMind Ltd.؛ وGoogle Drive لشركة Google؛ وClaude لشركة Anthropic؛ وChatGPT وCodex لشركة OpenAI. تُستخدم هذه الأسماء فقط لبيان الملفات التي يفتحها التطبيق وما يعمل معه.',
     setHwpNotice:
@@ -8259,17 +8262,17 @@ export const strings = {
     intgExample2: 'Monte uma apresentação de 6 slides sobre nossos resultados do 3º trimestre',
     intgExample3: 'Converta budget.xlsx para PDF e abra no GenOffice',
     intgStep2Note:
-      'O assistente executa a linha de comando ieumoffice sozinho; você nunca precisa digitá-la.',
+      'O assistente executa a linha de comando psoffice sozinho; você nunca precisa digitá-la.',
     intgCliPartTitle: 'CLI · linha de comando + skill',
     intgCliPartDesc:
-      'Para assistentes que executam comandos de terminal (Claude Code, Codex, Cursor e outros). Com o skill instalado, o assistente chama a linha de comando ieumoffice sozinho para criar, converter, ler e editar arquivos; você nunca digita um comando.',
+      'Para assistentes que executam comandos de terminal (Claude Code, Codex, Cursor e outros). Com o skill instalado, o assistente chama a linha de comando psoffice sozinho para criar, converter, ler e editar arquivos; você nunca digita um comando.',
     intgMcpPartTitle: 'MCP',
     intgMcpPartWho: 'Aqui, outros programas de IA usam o GenOffice.',
     intgMcpPartDesc:
       'MCP é o protocolo comum que assistentes de IA usam para chamar ferramentas externas. Use-o quando o assistente não puder executar comandos (Claude Desktop, por exemplo) ou quando quiser que ele controle a janela do GenOffice diretamente. Escolha uma das duas formas abaixo.',
     intgMcpStdioTitle: 'Iniciado pelo assistente (recomendado)',
     intgMcpStdioDesc:
-      'O assistente inicia o ieumoffice mcp sozinho: nada para ligar aqui, e o GenOffice não precisa estar aberto. Mesmos recursos da CLI.',
+      'O assistente inicia o psoffice mcp sozinho: nada para ligar aqui, e o GenOffice não precisa estar aberto. Mesmos recursos da CLI.',
     intgMcpHttpTitle: 'Servidor HTTP local',
     intgMcpHttpDesc:
       'Roda dentro do GenOffice; o assistente conecta por URL e você acompanha o documento sendo montado passo a passo no editor Word. O GenOffice precisa ficar aberto; por enquanto só documentos Word.',
@@ -8282,10 +8285,10 @@ export const strings = {
       'Adicione isto à configuração de servidores MCP dele (um arquivo JSON, ou "Adicionar servidor MCP" nas configurações):',
     intgMcpNote:
       'O skill e o MCP podem coexistir; o assistente escolhe um deles. Ambos fazem exatamente as mesmas coisas.',
-    intgCliTitle: 'Avançado: linha de comando ieumoffice',
-    intgCliReady: 'ieumoffice {v} · pronto no seu terminal ({path})',
+    intgCliTitle: 'Avançado: linha de comando psoffice',
+    intgCliReady: 'psoffice {v} · pronto no seu terminal ({path})',
     intgCliNotOnPath:
-      'ieumoffice {v} · não está no PATH do seu terminal. Os assistentes ainda o encontram por ~/.ieumoffice/launcher, então o skill funciona. Para digitar ieumoffice você mesmo, execute isto uma vez:',
+      'psoffice {v} · não está no PATH do seu terminal. Os assistentes ainda o encontram por ~/.psoffice/launcher, então o skill funciona. Para digitar psoffice você mesmo, execute isto uma vez:',
     intgCliLauncher: 'Pasta do inicializador',
     intgStateOutdated: 'Instalado {v}, atualização para {next} disponível',
     intgStateModified: 'Instalado {v} (modificado)',
@@ -8371,7 +8374,8 @@ export const strings = {
     setAiSharedKeyHint:
       'A chave e a URL base de um provedor são compartilhadas entre as capacidades; insira-as uma só vez.',
     setGithub: 'Código aberto',
-    setBasedOn: 'Baseado no projeto de código aberto {{GenOffice}} (Apache License 2.0).',
+    setBasedOn:
+      'Baseado no projeto de código aberto IeumOffice / {{GenOffice}} (Apache License 2.0).',
     setLicenses: 'Licenças de código aberto',
     setLicensesDesc:
       'Ver os avisos de licença e direitos autorais do software e das fontes incluídos neste aplicativo.',
@@ -8379,7 +8383,7 @@ export const strings = {
     setRightsContact: 'Contato sobre marcas e direitos autorais',
     setRightsContactDesc:
       'Envie denúncias de violação e dúvidas sobre licenças para este endereço.',
-    setRightsContactSend: 'Escrever e-mail',
+    setRightsContactSend: 'Ver no GitHub',
     setTrademarks:
       'GenOffice não é afiliado à Microsoft, Hancom, Adobe, XMind, Google, Anthropic ou OpenAI, nem patrocinado ou endossado por elas. Word, Excel e PowerPoint são marcas da Microsoft; Hangul, HWP e HWPX, da Hancom; XMind, da XMind Ltd.; Google Drive, do Google; Claude, da Anthropic; ChatGPT e Codex, da OpenAI. Esses nomes são usados apenas para indicar quais arquivos o aplicativo abre e com o que ele funciona.',
     setHwpNotice:
@@ -8871,17 +8875,17 @@ export const strings = {
     intgExample2: 'Prepara una presentazione di 6 slide sui nostri risultati del terzo trimestre',
     intgExample3: 'Converti budget.xlsx in PDF e aprilo in GenOffice',
     intgStep2Note:
-      "L'assistente esegue da solo la riga di comando ieumoffice; non dovrai mai digitarla.",
+      "L'assistente esegue da solo la riga di comando psoffice; non dovrai mai digitarla.",
     intgCliPartTitle: 'CLI · riga di comando + skill',
     intgCliPartDesc:
-      'Per assistenti che possono eseguire comandi da terminale (Claude Code, Codex, Cursor e altri). Installato lo skill, l’assistente richiama da sé la riga di comando ieumoffice per creare, convertire, leggere e modificare file; non digiti mai un comando.',
+      'Per assistenti che possono eseguire comandi da terminale (Claude Code, Codex, Cursor e altri). Installato lo skill, l’assistente richiama da sé la riga di comando psoffice per creare, convertire, leggere e modificare file; non digiti mai un comando.',
     intgMcpPartTitle: 'MCP',
     intgMcpPartWho: 'Qui altri programmi di IA usano GenOffice.',
     intgMcpPartDesc:
       'MCP è il protocollo comune con cui gli assistenti IA richiamano strumenti esterni. Usalo quando l’assistente non può eseguire comandi (Claude Desktop, ad esempio) o quando vuoi che controlli direttamente la finestra di GenOffice. Scegli uno dei due modi qui sotto.',
     intgMcpStdioTitle: 'Avviato dall’assistente (consigliato)',
     intgMcpStdioDesc:
-      'L’assistente avvia ieumoffice mcp da sé: niente da attivare qui, e GenOffice non deve essere aperto. Stesse funzioni della CLI.',
+      'L’assistente avvia psoffice mcp da sé: niente da attivare qui, e GenOffice non deve essere aperto. Stesse funzioni della CLI.',
     intgMcpHttpTitle: 'Server HTTP locale',
     intgMcpHttpDesc:
       'Gira dentro GenOffice; l’assistente si collega a un URL e puoi vedere il documento prendere forma passo dopo passo nell’editor Word. GenOffice deve restare aperto; per ora solo documenti Word.',
@@ -8894,10 +8898,10 @@ export const strings = {
       'Aggiungi questo alla sua configurazione dei server MCP (un file JSON, oppure «Aggiungi server MCP» nelle impostazioni):',
     intgMcpNote:
       "Skill e MCP possono convivere; l'assistente ne sceglie uno. Fanno esattamente le stesse cose.",
-    intgCliTitle: 'Avanzato: riga di comando ieumoffice',
-    intgCliReady: 'ieumoffice {v} · pronto nel terminale ({path})',
+    intgCliTitle: 'Avanzato: riga di comando psoffice',
+    intgCliReady: 'psoffice {v} · pronto nel terminale ({path})',
     intgCliNotOnPath:
-      'ieumoffice {v} · non è nel PATH del terminale. Gli assistenti lo trovano comunque tramite ~/.ieumoffice/launcher, quindi lo skill funziona. Per digitare ieumoffice tu stesso, esegui questo una volta:',
+      'psoffice {v} · non è nel PATH del terminale. Gli assistenti lo trovano comunque tramite ~/.psoffice/launcher, quindi lo skill funziona. Per digitare psoffice tu stesso, esegui questo una volta:',
     intgCliLauncher: 'Cartella del launcher',
     intgStateOutdated: 'Installato {v}, aggiornamento a {next} disponibile',
     intgStateModified: 'Installato {v} (modificato)',
@@ -8982,7 +8986,7 @@ export const strings = {
     setAiSharedKeyHint:
       "La chiave e l'URL base di un provider sono condivisi tra le capacità; inseriscili una volta sola.",
     setGithub: 'Open source',
-    setBasedOn: 'Basato sul progetto open source {{GenOffice}} (Apache License 2.0).',
+    setBasedOn: 'Basato sul progetto open source IeumOffice / {{GenOffice}} (Apache License 2.0).',
     setLicenses: 'Licenze open source',
     setLicensesDesc:
       'Visualizza le note di licenza e copyright del software e dei font inclusi in questa app.',
@@ -8990,7 +8994,7 @@ export const strings = {
     setRightsContact: 'Contatti per marchi e copyright',
     setRightsContactDesc:
       'Invia a questo indirizzo segnalazioni di violazione e domande sulle licenze.',
-    setRightsContactSend: 'Scrivi un’email',
+    setRightsContactSend: 'Vedi su GitHub',
     setTrademarks:
       'GenOffice non è affiliato a Microsoft, Hancom, Adobe, XMind, Google, Anthropic od OpenAI, né sponsorizzato o approvato da loro. Word, Excel e PowerPoint sono marchi di Microsoft; Hangul, HWP e HWPX di Hancom; XMind di XMind Ltd.; Google Drive di Google; Claude di Anthropic; ChatGPT e Codex di OpenAI. Questi nomi sono usati solo per indicare quali file l’app apre e con cosa funziona.',
     setHwpNotice:
@@ -9480,18 +9484,17 @@ export const strings = {
     intgExample1: 'Zamień ~/Downloads/report.md na dokument Word',
     intgExample2: 'Zrób prezentację z 6 slajdów o naszych wynikach za III kwartał',
     intgExample3: 'Przekonwertuj budget.xlsx do PDF i otwórz w GenOffice',
-    intgStep2Note:
-      'Asystent sam uruchamia wiersz poleceń ieumoffice; nigdy nie musisz go wpisywać.',
+    intgStep2Note: 'Asystent sam uruchamia wiersz poleceń psoffice; nigdy nie musisz go wpisywać.',
     intgCliPartTitle: 'CLI · wiersz poleceń + skill',
     intgCliPartDesc:
-      'Dla asystentów, które potrafią uruchamiać polecenia terminala (Claude Code, Codex, Cursor i inne). Po zainstalowaniu skilla asystent sam wywołuje wiersz poleceń ieumoffice, aby tworzyć, konwertować, czytać i edytować pliki; nigdy nie wpisujesz polecenia.',
+      'Dla asystentów, które potrafią uruchamiać polecenia terminala (Claude Code, Codex, Cursor i inne). Po zainstalowaniu skilla asystent sam wywołuje wiersz poleceń psoffice, aby tworzyć, konwertować, czytać i edytować pliki; nigdy nie wpisujesz polecenia.',
     intgMcpPartTitle: 'MCP',
     intgMcpPartWho: 'Tutaj inne programy AI korzystają z GenOffice.',
     intgMcpPartDesc:
       'MCP to wspólny protokół, którym asystenci AI wywołują zewnętrzne narzędzia. Użyj go, gdy asystent nie potrafi uruchamiać poleceń (np. Claude Desktop) lub gdy chcesz, aby bezpośrednio sterował oknem GenOffice. Wybierz jeden z dwóch sposobów poniżej.',
     intgMcpStdioTitle: 'Uruchamiany przez asystenta (zalecane)',
     intgMcpStdioDesc:
-      'Asystent sam uruchamia ieumoffice mcp: nic tu nie trzeba włączać, a GenOffice nie musi być otwarty. Te same funkcje co CLI.',
+      'Asystent sam uruchamia psoffice mcp: nic tu nie trzeba włączać, a GenOffice nie musi być otwarty. Te same funkcje co CLI.',
     intgMcpHttpTitle: 'Lokalny serwer HTTP',
     intgMcpHttpDesc:
       'Działa wewnątrz GenOffice; asystent łączy się przez URL, a Ty widzisz, jak dokument powstaje krok po kroku w edytorze Word. GenOffice musi pozostać otwarty; na razie tylko dokumenty Word.',
@@ -9504,10 +9507,10 @@ export const strings = {
       'Dodaj to do jego konfiguracji serwerów MCP (plik JSON lub „Dodaj serwer MCP” w ustawieniach):',
     intgMcpNote:
       'Skill i MCP mogą działać obok siebie; asystent wybiera jedno z nich. Oba robią dokładnie to samo.',
-    intgCliTitle: 'Zaawansowane: wiersz poleceń ieumoffice',
-    intgCliReady: 'ieumoffice {v} · gotowy w terminalu ({path})',
+    intgCliTitle: 'Zaawansowane: wiersz poleceń psoffice',
+    intgCliReady: 'psoffice {v} · gotowy w terminalu ({path})',
     intgCliNotOnPath:
-      'ieumoffice {v} · nie ma go w PATH terminala. Asystenty i tak znajdą go przez ~/.ieumoffice/launcher, więc skill działa. Aby samodzielnie wpisywać ieumoffice, uruchom to raz:',
+      'psoffice {v} · nie ma go w PATH terminala. Asystenty i tak znajdą go przez ~/.psoffice/launcher, więc skill działa. Aby samodzielnie wpisywać psoffice, uruchom to raz:',
     intgCliLauncher: 'Folder programu uruchamiającego',
     intgStateOutdated: 'Zainstalowano {v}, dostępna aktualizacja do {next}',
     intgStateModified: 'Zainstalowano {v} (zmodyfikowano)',
@@ -9592,14 +9595,14 @@ export const strings = {
     setAiSharedKeyHint:
       'Klucz i bazowy URL dostawcy są wspólne dla wszystkich funkcji; wpisz je raz.',
     setGithub: 'Open source',
-    setBasedOn: 'Oparte na projekcie open source {{GenOffice}} (Apache License 2.0).',
+    setBasedOn: 'Oparte na projekcie open source IeumOffice / {{GenOffice}} (Apache License 2.0).',
     setLicenses: 'Licencje open source',
     setLicensesDesc:
       'Wyświetl informacje o licencjach i prawach autorskich do oprogramowania i czcionek dołączonych do tej aplikacji.',
     setLicensesOpen: 'Wyświetl',
     setRightsContact: 'Kontakt w sprawie znaków towarowych i praw autorskich',
     setRightsContactDesc: 'Zgłoszenia naruszeń i pytania o licencje wysyłaj na ten adres.',
-    setRightsContactSend: 'Napisz e-mail',
+    setRightsContactSend: 'Zobacz na GitHubie',
     setTrademarks:
       'GenOffice nie jest powiązany z firmami Microsoft, Hancom, Adobe, XMind, Google, Anthropic ani OpenAI, ani przez nie sponsorowany czy popierany. Word, Excel i PowerPoint są znakami towarowymi Microsoft; Hangul, HWP i HWPX — Hancom; XMind — XMind Ltd.; Dysk Google — Google; Claude — Anthropic; ChatGPT i Codex — OpenAI. Nazwy te służą wyłącznie do wskazania, jakie pliki otwiera aplikacja i z czym współpracuje.',
     setHwpNotice:
@@ -10037,17 +10040,17 @@ export const strings = {
     intgExample1: 'Převeď ~/Downloads/report.md na dokument Word',
     intgExample2: 'Udělej prezentaci o 6 snímcích o našich výsledcích za 3. čtvrtletí',
     intgExample3: 'Převeď budget.xlsx do PDF a otevři ho v GenOffice',
-    intgStep2Note: 'Asistent spouští příkazový řádek ieumoffice sám; nikdy ho nemusíte psát.',
+    intgStep2Note: 'Asistent spouští příkazový řádek psoffice sám; nikdy ho nemusíte psát.',
     intgCliPartTitle: 'CLI · příkazový řádek + skill',
     intgCliPartDesc:
-      'Pro asistenty, kteří umí spouštět příkazy terminálu (Claude Code, Codex, Cursor a další). Po instalaci skillu asistent sám volá příkazový řádek ieumoffice k vytváření, převodu, čtení a úpravám souborů; žádný příkaz nepíšete.',
+      'Pro asistenty, kteří umí spouštět příkazy terminálu (Claude Code, Codex, Cursor a další). Po instalaci skillu asistent sám volá příkazový řádek psoffice k vytváření, převodu, čtení a úpravám souborů; žádný příkaz nepíšete.',
     intgMcpPartTitle: 'MCP',
     intgMcpPartWho: 'Zde jiné programy AI používají GenOffice.',
     intgMcpPartDesc:
       'MCP je společný protokol, kterým AI asistenti volají externí nástroje. Použijte ho, když asistent neumí spouštět příkazy (např. Claude Desktop) nebo když chcete, aby přímo ovládal okno GenOffice. Vyberte jeden ze dvou způsobů níže.',
     intgMcpStdioTitle: 'Spouští asistent (doporučeno)',
     intgMcpStdioDesc:
-      'Asistent spustí ieumoffice mcp sám: tady není co zapínat a GenOffice nemusí být otevřený. Stejné funkce jako CLI.',
+      'Asistent spustí psoffice mcp sám: tady není co zapínat a GenOffice nemusí být otevřený. Stejné funkce jako CLI.',
     intgMcpHttpTitle: 'Místní HTTP server',
     intgMcpHttpDesc:
       'Běží uvnitř GenOffice; asistent se připojí přes URL a v editoru Word sledujete, jak dokument krok za krokem vzniká. GenOffice musí zůstat otevřený; zatím jen dokumenty Word.',
@@ -10060,10 +10063,10 @@ export const strings = {
       'Přidejte toto do jeho nastavení MCP serverů (soubor JSON nebo „Přidat MCP server“ v nastavení):',
     intgMcpNote:
       'Skill a MCP mohou být nastaveny současně; asistent si jeden vybere. Oba dělají přesně to samé.',
-    intgCliTitle: 'Pokročilé: příkazový řádek ieumoffice',
-    intgCliReady: 'ieumoffice {v} · připraven v terminálu ({path})',
+    intgCliTitle: 'Pokročilé: příkazový řádek psoffice',
+    intgCliReady: 'psoffice {v} · připraven v terminálu ({path})',
     intgCliNotOnPath:
-      'ieumoffice {v} · není v PATH terminálu. Asistenti ho i tak najdou přes ~/.ieumoffice/launcher, skill tedy funguje. Chcete-li ieumoffice psát sami, spusťte jednou:',
+      'psoffice {v} · není v PATH terminálu. Asistenti ho i tak najdou přes ~/.psoffice/launcher, skill tedy funguje. Chcete-li psoffice psát sami, spusťte jednou:',
     intgCliLauncher: 'Složka spouštěče',
     intgStateOutdated: 'Nainstalováno {v}, k dispozici aktualizace na {next}',
     intgStateModified: 'Nainstalováno {v} (upraveno)',
@@ -10148,14 +10151,14 @@ export const strings = {
     setAiSharedKeyHint:
       'Klíč a základní URL jednoho poskytovatele se sdílejí mezi funkcemi; zadejte je jen jednou.',
     setGithub: 'Open source',
-    setBasedOn: 'Založeno na open source projektu {{GenOffice}} (Apache License 2.0).',
+    setBasedOn: 'Založeno na open source projektu IeumOffice / {{GenOffice}} (Apache License 2.0).',
     setLicenses: 'Licence open source',
     setLicensesDesc:
       'Zobrazit licenční a autorskoprávní upozornění k softwaru a písmům dodávaným s touto aplikací.',
     setLicensesOpen: 'Zobrazit',
     setRightsContact: 'Kontakt ve věci ochranných známek a autorských práv',
     setRightsContactDesc: 'Oznámení o porušení práv a dotazy k licencím posílejte na tuto adresu.',
-    setRightsContactSend: 'Napsat e-mail',
+    setRightsContactSend: 'Zobrazit na GitHubu',
     setTrademarks:
       'GenOffice není spojen se společnostmi Microsoft, Hancom, Adobe, XMind, Google, Anthropic ani OpenAI a není jimi sponzorován ani podporován. Word, Excel a PowerPoint jsou ochranné známky společnosti Microsoft; Hangul, HWP a HWPX společnosti Hancom; XMind společnosti XMind Ltd.; Disk Google společnosti Google; Claude společnosti Anthropic; ChatGPT a Codex společnosti OpenAI. Tyto názvy slouží jen k uvedení, které soubory aplikace otevírá a s čím spolupracuje.',
     setHwpNotice:
@@ -10692,17 +10695,17 @@ export const strings = {
     intgExample2: 'Maak een presentatie van 6 dia’s over onze Q3-resultaten',
     intgExample3: 'Zet budget.xlsx om naar PDF en open het in GenOffice',
     intgStep2Note:
-      'De assistent voert de ieumoffice-opdrachtregel zelf uit; u hoeft die nooit te typen.',
+      'De assistent voert de psoffice-opdrachtregel zelf uit; u hoeft die nooit te typen.',
     intgCliPartTitle: 'CLI · opdrachtregel + skill',
     intgCliPartDesc:
-      'Voor assistenten die terminalopdrachten kunnen uitvoeren (Claude Code, Codex, Cursor en andere). Na installatie van de skill roept de assistent zelf de ieumoffice-opdrachtregel aan om bestanden te maken, converteren, lezen en bewerken; je typt nooit een opdracht.',
+      'Voor assistenten die terminalopdrachten kunnen uitvoeren (Claude Code, Codex, Cursor en andere). Na installatie van de skill roept de assistent zelf de psoffice-opdrachtregel aan om bestanden te maken, converteren, lezen en bewerken; je typt nooit een opdracht.',
     intgMcpPartTitle: 'MCP',
     intgMcpPartWho: 'Hier gebruiken andere AI-programma’s GenOffice.',
     intgMcpPartDesc:
       'MCP is het gemeenschappelijke protocol waarmee AI-assistenten externe tools aanroepen. Gebruik het als je assistent geen opdrachten kan uitvoeren (bijvoorbeeld Claude Desktop) of als je wilt dat hij het GenOffice-venster rechtstreeks bestuurt. Kies een van de twee manieren hieronder.',
     intgMcpStdioTitle: 'Gestart door de assistent (aanbevolen)',
     intgMcpStdioDesc:
-      'De assistent start ieumoffice mcp zelf: hier hoeft niets aan, en GenOffice hoeft niet open te staan. Dezelfde functies als de CLI.',
+      'De assistent start psoffice mcp zelf: hier hoeft niets aan, en GenOffice hoeft niet open te staan. Dezelfde functies als de CLI.',
     intgMcpHttpTitle: 'Lokale HTTP-server',
     intgMcpHttpDesc:
       'Draait in GenOffice; de assistent verbindt via een URL en je ziet het document stap voor stap ontstaan in de Word-editor. GenOffice moet open blijven; voorlopig alleen Word-documenten.',
@@ -10715,10 +10718,10 @@ export const strings = {
       'Voeg dit toe aan de MCP-serverinstellingen (een JSON-bestand, of "MCP-server toevoegen" in de instellingen):',
     intgMcpNote:
       'De skill en MCP kunnen naast elkaar bestaan; de assistent kiest er een. Ze doen precies hetzelfde.',
-    intgCliTitle: 'Geavanceerd: ieumoffice-opdrachtregel',
-    intgCliReady: 'ieumoffice {v} · klaar in uw terminal ({path})',
+    intgCliTitle: 'Geavanceerd: psoffice-opdrachtregel',
+    intgCliReady: 'psoffice {v} · klaar in uw terminal ({path})',
     intgCliNotOnPath:
-      'ieumoffice {v} · staat niet in het PATH van uw terminal. Assistenten vinden het toch via ~/.ieumoffice/launcher, dus de skill werkt. Om zelf ieumoffice te typen, voert u dit één keer uit:',
+      'psoffice {v} · staat niet in het PATH van uw terminal. Assistenten vinden het toch via ~/.psoffice/launcher, dus de skill werkt. Om zelf psoffice te typen, voert u dit één keer uit:',
     intgCliLauncher: 'Launcher-map',
     intgStateOutdated: 'Geïnstalleerd {v}, update naar {next} beschikbaar',
     intgStateModified: 'Geïnstalleerd {v} (gewijzigd)',
@@ -10801,14 +10804,15 @@ export const strings = {
     setAiSharedKeyHint:
       'De sleutel en basis-URL van een provider gelden voor alle functies; één keer invoeren volstaat.',
     setGithub: 'Open source',
-    setBasedOn: 'Gebaseerd op het opensourceproject {{GenOffice}} (Apache License 2.0).',
+    setBasedOn:
+      'Gebaseerd op het opensourceproject IeumOffice / {{GenOffice}} (Apache License 2.0).',
     setLicenses: 'Opensourcelicenties',
     setLicensesDesc:
       'Bekijk de licentie- en auteursrechtvermeldingen van de software en lettertypen die bij deze app worden geleverd.',
     setLicensesOpen: 'Bekijken',
     setRightsContact: 'Contact over merken en auteursrecht',
     setRightsContactDesc: 'Stuur meldingen van inbreuk en vragen over licenties naar dit adres.',
-    setRightsContactSend: 'E-mail schrijven',
+    setRightsContactSend: 'Bekijken op GitHub',
     setTrademarks:
       'GenOffice is niet verbonden aan Microsoft, Hancom, Adobe, XMind, Google, Anthropic of OpenAI en wordt niet door hen gesponsord of onderschreven. Word, Excel en PowerPoint zijn handelsmerken van Microsoft; Hangul, HWP en HWPX van Hancom; XMind van XMind Ltd.; Google Drive van Google; Claude van Anthropic; ChatGPT en Codex van OpenAI. Deze namen worden alleen gebruikt om aan te geven welke bestanden de app opent en waarmee hij samenwerkt.',
     setHwpNotice:
@@ -11300,17 +11304,17 @@ export const strings = {
     intgExample2: 'Buat pembentangan 6 slaid tentang hasil S3 kami',
     intgExample3: 'Tukar budget.xlsx kepada PDF dan buka dalam GenOffice',
     intgStep2Note:
-      'Pembantu menjalankan baris arahan ieumoffice sendiri; anda tidak perlu menaipnya.',
+      'Pembantu menjalankan baris arahan psoffice sendiri; anda tidak perlu menaipnya.',
     intgCliPartTitle: 'CLI · baris arahan + skill',
     intgCliPartDesc:
-      'Untuk pembantu yang boleh menjalankan arahan terminal (Claude Code, Codex, Cursor dan lain-lain). Setelah skill dipasang, pembantu memanggil baris arahan ieumoffice sendiri untuk mencipta, menukar, membaca dan mengedit fail; anda tidak perlu menaip sebarang arahan.',
+      'Untuk pembantu yang boleh menjalankan arahan terminal (Claude Code, Codex, Cursor dan lain-lain). Setelah skill dipasang, pembantu memanggil baris arahan psoffice sendiri untuk mencipta, menukar, membaca dan mengedit fail; anda tidak perlu menaip sebarang arahan.',
     intgMcpPartTitle: 'MCP',
     intgMcpPartWho: 'Di sini, program AI lain menggunakan GenOffice.',
     intgMcpPartDesc:
       'MCP ialah protokol umum yang digunakan pembantu AI untuk memanggil alat luaran. Gunakannya apabila pembantu anda tidak boleh menjalankan arahan (contohnya Claude Desktop) atau apabila anda mahu ia mengawal tetingkap GenOffice secara langsung. Pilih salah satu daripada dua cara di bawah.',
     intgMcpStdioTitle: 'Dimulakan oleh pembantu (disyorkan)',
     intgMcpStdioDesc:
-      'Pembantu melancarkan ieumoffice mcp sendiri: tiada apa yang perlu dihidupkan di sini, dan GenOffice tidak perlu dibuka. Ciri sama seperti CLI.',
+      'Pembantu melancarkan psoffice mcp sendiri: tiada apa yang perlu dihidupkan di sini, dan GenOffice tidak perlu dibuka. Ciri sama seperti CLI.',
     intgMcpHttpTitle: 'Pelayan HTTP tempatan',
     intgMcpHttpDesc:
       'Berjalan di dalam GenOffice; pembantu menyambung melalui URL dan anda boleh melihat dokumen dibina langkah demi langkah dalam editor Word. GenOffice mesti kekal dibuka; buat masa ini dokumen Word sahaja.',
@@ -11324,10 +11328,10 @@ export const strings = {
       'Tambahkan ini pada tetapan pelayan MCP pembantu tersebut (fail JSON, atau "Tambah pelayan MCP" dalam tetapannya):',
     intgMcpNote:
       'Skill dan MCP boleh dipasang serentak; pembantu akan memilih satu. Kedua-duanya melakukan perkara yang sama.',
-    intgCliTitle: 'Lanjutan: baris arahan ieumoffice',
-    intgCliReady: 'ieumoffice {v} · sedia dalam terminal anda ({path})',
+    intgCliTitle: 'Lanjutan: baris arahan psoffice',
+    intgCliReady: 'psoffice {v} · sedia dalam terminal anda ({path})',
     intgCliNotOnPath:
-      'ieumoffice {v} · tiada dalam PATH terminal anda. Pembantu masih menemuinya melalui ~/.ieumoffice/launcher, jadi skill berfungsi. Untuk menaip ieumoffice sendiri, jalankan ini sekali:',
+      'psoffice {v} · tiada dalam PATH terminal anda. Pembantu masih menemuinya melalui ~/.psoffice/launcher, jadi skill berfungsi. Untuk menaip psoffice sendiri, jalankan ini sekali:',
     intgCliLauncher: 'Folder pelancar',
     intgStateOutdated: 'Dipasang {v}, kemas kini ke {next} tersedia',
     intgStateModified: 'Dipasang {v} (diubah suai)',
@@ -11413,14 +11417,14 @@ export const strings = {
     setAiSharedKeyHint:
       'Kunci dan Base URL pembekal dikongsi oleh semua keupayaan; isi sekali sahaja.',
     setGithub: 'Sumber Terbuka',
-    setBasedOn: 'Berasaskan projek sumber terbuka {{GenOffice}} (Apache License 2.0).',
+    setBasedOn: 'Berasaskan projek sumber terbuka IeumOffice / {{GenOffice}} (Apache License 2.0).',
     setLicenses: 'Lesen sumber terbuka',
     setLicensesDesc:
       'Lihat notis lesen dan hak cipta bagi perisian dan fon yang disertakan dengan aplikasi ini.',
     setLicensesOpen: 'Lihat',
     setRightsContact: 'Hubungan tanda dagangan dan hak cipta',
     setRightsContactDesc: 'Hantar laporan pelanggaran hak dan soalan lesen ke alamat ini.',
-    setRightsContactSend: 'Tulis e-mel',
+    setRightsContactSend: 'Lihat di GitHub',
     setTrademarks:
       'GenOffice tidak bergabung dengan, ditaja atau disokong oleh Microsoft, Hancom, Adobe, XMind, Google, Anthropic atau OpenAI. Word, Excel dan PowerPoint ialah tanda dagangan Microsoft; Hangul, HWP dan HWPX milik Hancom; XMind milik XMind Ltd.; Google Drive milik Google; Claude milik Anthropic; ChatGPT dan Codex milik OpenAI. Nama-nama ini hanya digunakan untuk menyatakan fail yang dibuka oleh aplikasi dan perkara yang digunakan bersamanya.',
     setHwpNotice:
@@ -11897,17 +11901,17 @@ export const strings = {
     intgExample1: 'הפוך את ~/Downloads/report.md למסמך Word',
     intgExample2: 'הכן מצגת של 6 שקופיות על תוצאות הרבעון השלישי שלנו',
     intgExample3: 'המר את budget.xlsx ל-PDF ופתח אותו ב-GenOffice',
-    intgStep2Note: 'העוזר מריץ בעצמו את שורת הפקודה ieumoffice; לעולם לא תצטרכו להקליד אותה.',
+    intgStep2Note: 'העוזר מריץ בעצמו את שורת הפקודה psoffice; לעולם לא תצטרכו להקליד אותה.',
     intgCliPartTitle: 'CLI · שורת פקודה + skill',
     intgCliPartDesc:
-      'לעוזרים שיכולים להריץ פקודות טרמינל (Claude Code‏, Codex‏, Cursor ואחרים). לאחר התקנת ה‑skill העוזר קורא בעצמו לשורת הפקודה ieumoffice כדי ליצור, להמיר, לקרוא ולערוך קבצים; אתם לא מקלידים שום פקודה.',
+      'לעוזרים שיכולים להריץ פקודות טרמינל (Claude Code‏, Codex‏, Cursor ואחרים). לאחר התקנת ה‑skill העוזר קורא בעצמו לשורת הפקודה psoffice כדי ליצור, להמיר, לקרוא ולערוך קבצים; אתם לא מקלידים שום פקודה.',
     intgMcpPartTitle: 'MCP',
     intgMcpPartWho: 'כאן תוכנות בינה מלאכותית אחרות משתמשות ב-GenOffice.',
     intgMcpPartDesc:
       'MCP הוא הפרוטוקול המשותף שבו עוזרי AI קוראים לכלים חיצוניים. השתמשו בו כשהעוזר אינו יכול להריץ פקודות (למשל Claude Desktop) או כשאתם רוצים שהוא ישלוט ישירות בחלון GenOffice. בחרו אחת משתי הדרכים למטה.',
     intgMcpStdioTitle: 'מופעל על ידי העוזר (מומלץ)',
     intgMcpStdioDesc:
-      'העוזר מפעיל את ieumoffice mcp בעצמו: אין מה להפעיל כאן, ו‑GenOffice לא חייב להיות פתוח. אותן יכולות כמו ב‑CLI.',
+      'העוזר מפעיל את psoffice mcp בעצמו: אין מה להפעיל כאן, ו‑GenOffice לא חייב להיות פתוח. אותן יכולות כמו ב‑CLI.',
     intgMcpHttpTitle: 'שרת HTTP מקומי',
     intgMcpHttpDesc:
       'פועל בתוך GenOffice; העוזר מתחבר דרך כתובת URL ואפשר לראות את המסמך נבנה צעד אחר צעד בעורך Word. GenOffice חייב להישאר פתוח; בשלב זה מסמכי Word בלבד.',
@@ -11919,10 +11923,10 @@ export const strings = {
     intgMcpOtherDesc: 'הוסיפו זאת להגדרות שרתי ה-MCP שלו (קובץ JSON, או "הוספת שרת MCP" בהגדרות):',
     intgMcpNote:
       'הסקיל ו-MCP יכולים להיות מוגדרים יחד; העוזר יבחר אחד מהם. שניהם עושים בדיוק את אותם הדברים.',
-    intgCliTitle: 'מתקדם: שורת הפקודה ieumoffice',
-    intgCliReady: 'ieumoffice {v} · מוכן בטרמינל ({path})',
+    intgCliTitle: 'מתקדם: שורת הפקודה psoffice',
+    intgCliReady: 'psoffice {v} · מוכן בטרמינל ({path})',
     intgCliNotOnPath:
-      'ieumoffice {v} · לא נמצא ב-PATH של הטרמינל. העוזרים עדיין מוצאים אותו דרך ~/.ieumoffice/launcher, ולכן ה-skill עובד. כדי להקליד ieumoffice בעצמכם, הריצו זאת פעם אחת:',
+      'psoffice {v} · לא נמצא ב-PATH של הטרמינל. העוזרים עדיין מוצאים אותו דרך ~/.psoffice/launcher, ולכן ה-skill עובד. כדי להקליד psoffice בעצמכם, הריצו זאת פעם אחת:',
     intgCliLauncher: 'תיקיית המשגר',
     intgStateOutdated: 'מותקן {v}, זמין עדכון ל-{next}',
     intgStateModified: 'מותקן {v} (שונה)',
@@ -12005,13 +12009,13 @@ export const strings = {
     setAiSharedKeyHint:
       'המפתח וכתובת ה-Base URL של ספק משותפים לכל היכולות; יש להזין אותם פעם אחת בלבד.',
     setGithub: 'קוד פתוח',
-    setBasedOn: 'מבוסס על פרויקט הקוד הפתוח {{GenOffice}} (Apache License 2.0).',
+    setBasedOn: 'מבוסס על פרויקט הקוד הפתוח IeumOffice / {{GenOffice}} (Apache License 2.0).',
     setLicenses: 'רישיונות קוד פתוח',
     setLicensesDesc: 'הצגת הודעות הרישיון וזכויות היוצרים של התוכנות והגופנים שמצורפים לאפליקציה.',
     setLicensesOpen: 'הצגה',
     setRightsContact: 'פנייה בנושא סימני מסחר וזכויות יוצרים',
     setRightsContactDesc: 'דיווחים על הפרת זכויות ושאלות בנושא רישוי יש לשלוח לכתובת זו.',
-    setRightsContactSend: 'כתיבת דוא״ל',
+    setRightsContactSend: 'הצגה ב-GitHub',
     setTrademarks:
       'GenOffice אינו קשור ל-Microsoft, Hancom, Adobe, XMind, Google, Anthropic או OpenAI, ואינו בחסותן או באישורן. Word, Excel ו-PowerPoint הם סימני מסחר של Microsoft; Hangul, HWP ו-HWPX של Hancom; XMind של XMind Ltd.; Google Drive של Google; Claude של Anthropic; ChatGPT ו-Codex של OpenAI. השמות האלה משמשים רק כדי לציין אילו קבצים האפליקציה פותחת ועם מה היא עובדת.',
     setHwpNotice:
@@ -12490,17 +12494,17 @@ export const strings = {
     intgExample1: '~/Downloads/report.md को Word दस्तावेज़ बना दो',
     intgExample2: 'हमारे Q3 नतीजों पर 6 स्लाइड का प्रेज़ेंटेशन बनाओ',
     intgExample3: 'budget.xlsx को PDF में बदलो और GenOffice में खोलो',
-    intgStep2Note: 'ieumoffice कमांड लाइन असिस्टेंट खुद चलाता है; आपको कभी टाइप नहीं करना पड़ता।',
+    intgStep2Note: 'psoffice कमांड लाइन असिस्टेंट खुद चलाता है; आपको कभी टाइप नहीं करना पड़ता।',
     intgCliPartTitle: 'CLI · कमांड लाइन + skill',
     intgCliPartDesc:
-      'उन सहायकों के लिए जो टर्मिनल कमांड चला सकते हैं (Claude Code, Codex, Cursor आदि)। skill इंस्टॉल होने के बाद सहायक फ़ाइलें बनाने, बदलने, पढ़ने और संपादित करने के लिए खुद ieumoffice कमांड लाइन चलाता है; आपको कोई कमांड टाइप नहीं करना पड़ता।',
+      'उन सहायकों के लिए जो टर्मिनल कमांड चला सकते हैं (Claude Code, Codex, Cursor आदि)। skill इंस्टॉल होने के बाद सहायक फ़ाइलें बनाने, बदलने, पढ़ने और संपादित करने के लिए खुद psoffice कमांड लाइन चलाता है; आपको कोई कमांड टाइप नहीं करना पड़ता।',
     intgMcpPartTitle: 'MCP',
     intgMcpPartWho: 'यहाँ दूसरे AI प्रोग्राम GenOffice इस्तेमाल करते हैं।',
     intgMcpPartDesc:
       'MCP वह साझा प्रोटोकॉल है जिससे AI सहायक बाहरी टूल बुलाते हैं। इसे तब चुनें जब सहायक कमांड न चला सके (जैसे Claude Desktop) या आप चाहें कि वह GenOffice की विंडो को सीधे चलाए। नीचे दिए दो तरीकों में से कोई एक चुनें।',
     intgMcpStdioTitle: 'सहायक द्वारा शुरू (अनुशंसित)',
     intgMcpStdioDesc:
-      'सहायक खुद ieumoffice mcp चलाता है: यहाँ कुछ चालू करने की ज़रूरत नहीं, और GenOffice खुला होना भी ज़रूरी नहीं। सुविधाएँ CLI जैसी ही।',
+      'सहायक खुद psoffice mcp चलाता है: यहाँ कुछ चालू करने की ज़रूरत नहीं, और GenOffice खुला होना भी ज़रूरी नहीं। सुविधाएँ CLI जैसी ही।',
     intgMcpHttpTitle: 'स्थानीय HTTP सर्वर',
     intgMcpHttpDesc:
       'GenOffice के अंदर चलता है; सहायक URL से जुड़ता है और आप Word संपादक में दस्तावेज़ को चरण-दर-चरण बनते देख सकते हैं। GenOffice खुला रहना चाहिए; अभी केवल Word दस्तावेज़।',
@@ -12514,10 +12518,10 @@ export const strings = {
       'इसे उसकी MCP सर्वर सेटिंग्स में जोड़ें (एक JSON फ़ाइल, या सेटिंग्स में "MCP सर्वर जोड़ें"):',
     intgMcpNote:
       'स्किल और MCP एक साथ सेट किए जा सकते हैं; असिस्टेंट एक को चुन लेता है। दोनों बिल्कुल एक जैसे काम करते हैं।',
-    intgCliTitle: 'उन्नत: ieumoffice कमांड लाइन',
-    intgCliReady: 'ieumoffice {v} · टर्मिनल में तैयार ({path})',
+    intgCliTitle: 'उन्नत: psoffice कमांड लाइन',
+    intgCliReady: 'psoffice {v} · टर्मिनल में तैयार ({path})',
     intgCliNotOnPath:
-      'ieumoffice {v} · टर्मिनल के PATH में नहीं है। असिस्टेंट इसे ~/.ieumoffice/launcher से फिर भी ढूँढ लेते हैं, इसलिए skill काम करता है। खुद ieumoffice टाइप करने के लिए यह एक बार चलाएँ:',
+      'psoffice {v} · टर्मिनल के PATH में नहीं है। असिस्टेंट इसे ~/.psoffice/launcher से फिर भी ढूँढ लेते हैं, इसलिए skill काम करता है। खुद psoffice टाइप करने के लिए यह एक बार चलाएँ:',
     intgCliLauncher: 'लॉन्चर फ़ोल्डर',
     intgStateOutdated: 'इंस्टॉल {v}, {next} पर अपडेट उपलब्ध',
     intgStateModified: 'इंस्टॉल {v} (बदला गया)',
@@ -12600,14 +12604,14 @@ export const strings = {
     setAiSharedKeyHint:
       'एक प्रदाता की कुंजी और Base URL सभी क्षमताओं में साझा होते हैं; एक बार ही दर्ज करें।',
     setGithub: 'ओपन सोर्स',
-    setBasedOn: 'ओपन सोर्स प्रोजेक्ट {{GenOffice}} (Apache License 2.0) पर आधारित।',
+    setBasedOn: 'ओपन सोर्स प्रोजेक्ट IeumOffice / {{GenOffice}} (Apache License 2.0) पर आधारित।',
     setLicenses: 'ओपन सोर्स लाइसेंस',
     setLicensesDesc:
       'इस ऐप के साथ आने वाले सॉफ़्टवेयर और फ़ॉन्ट के लाइसेंस और कॉपीराइट नोटिस देखें।',
     setLicensesOpen: 'देखें',
     setRightsContact: 'ट्रेडमार्क और कॉपीराइट संपर्क',
     setRightsContactDesc: 'अधिकार उल्लंघन की शिकायतें और लाइसेंस से जुड़े प्रश्न इस पते पर भेजें।',
-    setRightsContactSend: 'ईमेल लिखें',
+    setRightsContactSend: 'GitHub पर देखें',
     setTrademarks:
       'GenOffice का Microsoft, Hancom, Adobe, XMind, Google, Anthropic या OpenAI से कोई संबंध नहीं है, और न ही यह उनके द्वारा प्रायोजित या समर्थित है। Word, Excel और PowerPoint, Microsoft के ट्रेडमार्क हैं; Hangul, HWP और HWPX, Hancom के; XMind, XMind Ltd. का; Google Drive, Google का; Claude, Anthropic का; और ChatGPT व Codex, OpenAI के ट्रेडमार्क हैं। ये नाम केवल यह बताने के लिए उपयोग किए जाते हैं कि ऐप कौन-सी फ़ाइलें खोलता है और किसके साथ काम करता है।',
     setHwpNotice:
@@ -13072,17 +13076,17 @@ export const strings = {
     intgExample1: '把 ~/Downloads/report.md 轉成 Word 文件',
     intgExample2: '做一份 6 頁的簡報，介紹我們第三季的業績',
     intgExample3: '把 budget.xlsx 轉成 PDF，並在 GenOffice 中開啟',
-    intgStep2Note: '助理會自行呼叫 ieumoffice 命令列，你不需要輸入任何指令。',
+    intgStep2Note: '助理會自行呼叫 psoffice 命令列，你不需要輸入任何指令。',
     intgCliPartTitle: 'CLI · 命令列 + skill',
     intgCliPartDesc:
-      '適合能執行終端機指令的助理（Claude Code、Codex、Cursor 等）。安裝 skill 後，助理會自己呼叫 ieumoffice 命令列建立、轉換、讀取和編輯檔案，你不需要輸入任何指令。',
+      '適合能執行終端機指令的助理（Claude Code、Codex、Cursor 等）。安裝 skill 後，助理會自己呼叫 psoffice 命令列建立、轉換、讀取和編輯檔案，你不需要輸入任何指令。',
     intgMcpPartTitle: 'MCP',
     intgMcpPartWho: '這裡是讓其他 AI 程式使用 GenOffice。',
     intgMcpPartDesc:
       'MCP 是 AI 助理呼叫外部工具的通用協定。助理不能執行指令（如 Claude Desktop），或你想讓它直接操作 GenOffice 視窗時用這條路。下面兩種接法任選一種。',
     intgMcpStdioTitle: '由助理啟動（建議）',
     intgMcpStdioDesc:
-      '助理自己啟動 ieumoffice mcp，不需要在這裡開任何開關，GenOffice 也不用開著。功能與 CLI 完全相同。',
+      '助理自己啟動 psoffice mcp，不需要在這裡開任何開關，GenOffice 也不用開著。功能與 CLI 完全相同。',
     intgMcpHttpTitle: '本機 HTTP 服務',
     intgMcpHttpDesc:
       '在 GenOffice 內執行，助理透過網址連線，可以看著它在 Word 編輯器裡逐步產生。需要 GenOffice 保持開啟；目前只支援 Word。',
@@ -13094,10 +13098,10 @@ export const strings = {
     intgMcpOtherDesc:
       '把這段加進它的 MCP 伺服器設定（一個 JSON 檔，或設定裡的「新增 MCP 伺服器」）：',
     intgMcpNote: 'skill 和 MCP 可以同時存在，助理會自行選用；兩者做的事完全相同。',
-    intgCliTitle: '進階：命令列 ieumoffice',
-    intgCliReady: 'ieumoffice {v} · 已可在終端機直接使用（{path}）',
+    intgCliTitle: '進階：命令列 psoffice',
+    intgCliReady: 'psoffice {v} · 已可在終端機直接使用（{path}）',
     intgCliNotOnPath:
-      'ieumoffice {v} · 尚未加入終端機 PATH。助理仍能透過 ~/.ieumoffice/launcher 找到它，skill 不受影響。若想自己在終端機輸入 ieumoffice，執行一次：',
+      'psoffice {v} · 尚未加入終端機 PATH。助理仍能透過 ~/.psoffice/launcher 找到它，skill 不受影響。若想自己在終端機輸入 psoffice，執行一次：',
     intgCliLauncher: '啟動器資料夾',
     intgStateOutdated: '已安裝 {v}，可更新至 {next}',
     intgStateModified: '已安裝 {v}（已被修改）',
@@ -13177,13 +13181,13 @@ export const strings = {
     setReadUrlClear: '清除',
     setAiSharedKeyHint: '同一服務商的 key 與 Base URL 在各項能力間共用，只需填一次。',
     setGithub: '開源專案',
-    setBasedOn: '以開源專案 {{GenOffice}} 為基礎打造（Apache License 2.0）。',
+    setBasedOn: '以開源專案 IeumOffice / {{GenOffice}} 為基礎打造（Apache License 2.0）。',
     setLicenses: '開源授權',
     setLicensesDesc: '檢視本應用程式隨附的軟體與字型之授權與著作權聲明。',
     setLicensesOpen: '檢視',
     setRightsContact: '商標與著作權聯絡',
     setRightsContactDesc: '侵權檢舉與授權相關問題請寄到此地址。',
-    setRightsContactSend: '寫信',
+    setRightsContactSend: '在 GitHub 上查看',
     setTrademarks:
       'GenOffice 與 Microsoft、Hancom、Adobe、XMind、Google、Anthropic、OpenAI 皆無關聯，也未獲其贊助或認可。Word、Excel、PowerPoint 是 Microsoft 的商標；Hangul（한글）、HWP、HWPX 是 Hancom 的商標；XMind 是 XMind Ltd. 的商標；Google 雲端硬碟是 Google 的商標；Claude 是 Anthropic 的商標；ChatGPT 與 Codex 是 OpenAI 的商標。這些名稱僅用於說明本應用程式能開啟哪些檔案，以及能與哪些服務搭配使用。',
     setHwpNotice:

@@ -12,7 +12,7 @@ afterEach(() => {
 })
 
 async function template(outer = 'Company', deep = false) {
-  const dir = mkdtempSync(join(tmpdir(), 'ieumoffice-merge-nested-'))
+  const dir = mkdtempSync(join(tmpdir(), 'psoffice-merge-nested-'))
   dirs.push(dir)
   const inside: TableModel = {
     rows: [

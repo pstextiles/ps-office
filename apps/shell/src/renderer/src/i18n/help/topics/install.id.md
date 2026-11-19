@@ -1,17 +1,17 @@
 # Memasang GenOffice
 
-Setiap versi dipublikasikan di [halaman Rilis](https://github.com/pblsketch/ieumoffice/releases/latest) proyek ini di GitHub. Build Windows dipublikasikan bersama build Mac dan Linux yang dirilis sebagai beta. Pengembang tidak dapat menguji build Mac dan Linux secara langsung; keduanya dipastikan lewat laporan para pengguna.
+Setiap versi dipublikasikan di [halaman Rilis](https://github.com/pstextiles/ps-office/releases/latest) proyek ini di GitHub. Build Windows dipublikasikan bersama build Mac dan Linux yang dirilis sebagai beta. Pengembang tidak dapat menguji build Mac dan Linux secara langsung; keduanya dipastikan lewat laporan para pengguna.
 
 ## Pilih berkas untuk komputer Anda
 
-| Platform                                 | Kebutuhan                                         | Berkas                            |
-| ---------------------------------------- | ------------------------------------------------- | --------------------------------- |
-| **Windows**                              | Windows 10 atau lebih baru, Intel/AMD 64-bit      | `GenOffice-Setup-<version>.exe`   |
-| **Mac (beta)**, Apple Silicon            | macOS 12 atau lebih baru, chip M1 atau lebih baru | `GenOffice-<version>-arm64.dmg`   |
-| **Mac (beta)**, Intel                    | macOS 12 atau lebih baru, prosesor Intel          | `GenOffice-<version>-x64.dmg`     |
-| **Linux (beta)**, distribusi apa pun     | 64-bit (x86_64)                                   | `GenOffice-<version>.AppImage`    |
-| **Linux (beta)**, keluarga Ubuntu/Debian | 64-bit (x86_64)                                   | `ieumoffice_<version>_amd64.deb`  |
-| **Linux (beta)**, Fedora/RHEL/openSUSE   | 64-bit (x86_64)                                   | `ieumoffice-<version>.x86_64.rpm` |
+| Platform                                 | Kebutuhan                                         | Berkas                          |
+| ---------------------------------------- | ------------------------------------------------- | ------------------------------- |
+| **Windows**                              | Windows 10 atau lebih baru, Intel/AMD 64-bit      | `GenOffice-Setup-<version>.exe` |
+| **Mac (beta)**, Apple Silicon            | macOS 12 atau lebih baru, chip M1 atau lebih baru | `GenOffice-<version>-arm64.dmg` |
+| **Mac (beta)**, Intel                    | macOS 12 atau lebih baru, prosesor Intel          | `GenOffice-<version>-x64.dmg`   |
+| **Linux (beta)**, distribusi apa pun     | 64-bit (x86_64)                                   | `GenOffice-<version>.AppImage`  |
+| **Linux (beta)**, keluarga Ubuntu/Debian | 64-bit (x86_64)                                   | `psoffice_<version>_amd64.deb`  |
+| **Linux (beta)**, Fedora/RHEL/openSUSE   | 64-bit (x86_64)                                   | `psoffice-<version>.x86_64.rpm` |
 
 Untuk mengetahui Mac Anda yang mana, buka menu Apple ▸ **Tentang Mac Ini**. Jika "Chip" menyebut Apple M…, ambil berkas yang berakhiran `-arm64.dmg`; jika "Prosesor" menyebut Intel …, ambil yang berakhiran `-x64.dmg`. Berkas lain di halaman Rilis (`.zip`, `.yml`, `.blockmap`) dipakai oleh aplikasi itu sendiri untuk memperbarui diri; Anda tidak perlu mengunduhnya. Versi lama tetap ada di halaman Rilis.
 
@@ -80,10 +80,10 @@ Juga di Mac:
 ## Di Linux (beta)
 
 - **AppImage**: jadikan dapat dieksekusi (`chmod +x GenOffice-<version>.AppImage`) lalu jalankan berkasnya. Tidak ada langkah pemasangan.
-- **deb**: pasang dengan `sudo apt install ./ieumoffice_<version>_amd64.deb`.
-- **rpm**: pasang dengan `sudo dnf install ./ieumoffice-<version>.x86_64.rpm`. Di openSUSE, gunakan `sudo zypper install ./ieumoffice-<version>.x86_64.rpm`.
+- **deb**: pasang dengan `sudo apt install ./psoffice_<version>_amd64.deb`.
+- **rpm**: pasang dengan `sudo dnf install ./psoffice-<version>.x86_64.rpm`. Di openSUSE, gunakan `sudo zypper install ./psoffice-<version>.x86_64.rpm`.
 
-Paket deb dan rpm dipasang di `/opt/GenOffice` dan menautkan perintah terminal `/usr/bin/ieumoffice`. Seperti di Mac, kartu koneksi AI tidak punya tombol instal, dan saat proses masuk meminta kode, Anda menjalankan sendiri `claude auth login` atau `codex login` di terminal.
+Paket deb dan rpm dipasang di `/opt/GenOffice` dan menautkan perintah terminal `/usr/bin/psoffice`. Seperti di Mac, kartu koneksi AI tidak punya tombol instal, dan saat proses masuk meminta kode, Anda menjalankan sendiri `claude auth login` atau `codex login` di terminal.
 
 ## Pembaruan
 
@@ -101,4 +101,4 @@ Paket deb dan rpm dipasang di `/opt/GenOffice` dan menautkan perintah terminal `
 
 ## Baris perintahnya sudah ikut
 
-Setiap pemasangan membawa perintah `ieumoffice` yang berbicara dengan mesin yang sama dengan jendela, sehingga keduanya tidak pernah berbeda pendapat tentang sebuah berkas. `ieumoffice install-cli` menaruhnya di `PATH` Anda. Lihat [Baris perintah dan agen](help://cli) untuk mengetahui apa saja yang dapat dilakukannya.
+Setiap pemasangan membawa perintah `psoffice` yang berbicara dengan mesin yang sama dengan jendela, sehingga keduanya tidak pernah berbeda pendapat tentang sebuah berkas. `psoffice install-cli` menaruhnya di `PATH` Anda. Lihat [Baris perintah dan agen](help://cli) untuk mengetahui apa saja yang dapat dilakukannya.

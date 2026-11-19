@@ -77,7 +77,7 @@ describe('the editor dictionaries', () => {
     for (const lang of LANGS) {
       for (const key of keys) {
         expect(strings[lang][key], `${lang}.${key}`).not.toMatch(/xmind/i)
-        expect(strings[lang][key], `${lang}.${key}`).not.toMatch(/IeumOffice|이음오피스/)
+        expect(strings[lang][key], `${lang}.${key}`).not.toMatch(/PSOffice|PS 오피스/)
       }
     }
   })

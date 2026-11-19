@@ -178,5 +178,5 @@ export function createCliRunner(paths: CliRunnerPaths): CliRunner {
 export function cliErrorMessage(outcome: CliRunOutcome): string {
   if (outcome.json && outcome.json.status === 'error') return outcome.json.message
   const detail = outcome.stderr.trim() || outcome.stdout.trim()
-  return detail ? `ieumoffice failed: ${detail}` : `ieumoffice exited with code ${outcome.code}`
+  return detail ? `psoffice failed: ${detail}` : `psoffice exited with code ${outcome.code}`
 }

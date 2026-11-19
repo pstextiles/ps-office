@@ -21,12 +21,12 @@
       <li>A local-first design: files stay on disk, working offline</li>
     </ul>
   </description>
-  <developer id="io.github.pblsketch">
-    <name>pblsketch</name>
+  <developer id="io.github.pstextiles">
+    <name>pstextiles</name>
   </developer>
   <launchable type="desktop-id">com.genoffice.app.desktop</launchable>
-  <url type="homepage">https://github.com/pblsketch/ieumoffice</url>
-  <url type="bugtracker">https://github.com/pblsketch/ieumoffice/issues</url>
+  <url type="homepage">https://github.com/pstextiles/ps-office</url>
+  <url type="bugtracker">https://github.com/pstextiles/ps-office/issues</url>
   <content_rating type="oars-1.1" />
   <provides>
     <mediatype type="application/vnd.openxmlformats-officedocument.wordprocessingml.document" />
@@ -43,7 +43,7 @@
   </provides>
   <releases>
     <release version="0.11.0" date="2026-09-28">
-      <url type="details">https://github.com/pblsketch/ieumoffice/releases/tag/v0.11.0</url>
+      <url type="details">https://github.com/pstextiles/ps-office/releases/tag/v0.11.0</url>
     </release>
   </releases>
 </component>

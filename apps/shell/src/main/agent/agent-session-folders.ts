@@ -10,7 +10,7 @@ import { windowsSystemDir, windowsSystemTool } from '@genoffice/ai-provider/subs
  * folder. Each carries a mark naming the process that made it, so that the
  * folders an app left when it did not quit normally (ended from Task Manager,
  * power lost) can be removed at the next start without touching the folders of
- * another IeumOffice that runs now: the installed app and a development run
+ * another PSOffice that runs now: the installed app and a development run
  * share the temporary folder.
  */
 

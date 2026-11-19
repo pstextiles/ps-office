@@ -66,7 +66,7 @@ E-kitap düzenleyici EPUB kitaplarını (`.epub`) bir sekmede açar. Kitabı oku
 - Dikey yazılmış bir kitap, Japonca, Çince veya Koreceye çevrilmediği sürece yatay olur. Arapça ve İbranice çeviriler sağdan sola okunur.
 - Çevrilen kısımlar saklanır. Durdurursanız **Şimdiye kadar çevrilenleri dışa aktar** (kalanı özgün dilinde kalır) veya **Daha sonra devam et** seçeneğini seçin. Bitmemiş çevirisi olan bir kitabı açtığınızda GenOffice devam etmeyi önerir. **Baştan yeniden çevir** önce o dil için saklanan çeviriyi siler.
 - Saklanan çeviriler, PDF belgelerininkilerle birlikte Ayarlar ▸ Genel ▸ **Saklanan AI sonuçları** altında sayılır ve **Tümünü sil** onları da kaldırır.
-- Aynı çeviri [terminal komutlarından](help://cli) `ieumoffice epub translate` ile de çalıştırılabilir.
+- Aynı çeviri [terminal komutlarından](help://cli) `psoffice epub translate` ile de çalıştırılabilir.
 - Kitabı seçilen dilde kolay sözcüklerle yeniden yazmak için **Mod** altında **Sade dil**’i seçin. Sonuçlar **Sade dilde kitap** ve **Önce özgün, sonra sade dil** olur; başlıkları o dilde sade dil sürümü olarak işaretlenir, dosya adları ise çeviriden ayrılsın diye işareti ekran dilinde taşır. Dil ekran diliyle başlar ve kitabın kendi dili de olabilir. Sade dil sürümü çevirilerden ayrı tutulur, ona devam etmek ayrıca önerilir ve terminal komutları onu üretmez.
 
 ## Henüz desteklenmeyenler

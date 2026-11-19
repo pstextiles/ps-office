@@ -15,27 +15,27 @@ Bunu yapacağınız yer **Ayarlar ▸ Entegrasyonlar**. Bölmenin iki yarısı v
 Aynı şeyi bir terminalden yapmak — bu ileri düzey yoldur; ajan, bölmenin bulamadığı bir yerdeyse buna başvurun:
 
 ```sh
-ieumoffice mcp install all
+psoffice mcp install all
 ```
 
-Bu makinedeki kodlama ajanlarını bulur ve stdio sunucu girdisini her birinin kendi yapılandırmasına yazar; dosyanın geri kalanını bulduğu gibi bırakır. Girdinin adı `ieumoffice` olur. Claude Code için elle yapıldığında aynı kayıt `claude mcp add --transport stdio ieumoffice -- ieumoffice mcp` olur.
+Bu makinedeki kodlama ajanlarını bulur ve stdio sunucu girdisini her birinin kendi yapılandırmasına yazar; dosyanın geri kalanını bulduğu gibi bırakır. Girdinin adı `psoffice` olur. Claude Code için elle yapıldığında aynı kayıt `claude mcp add --transport stdio psoffice -- psoffice mcp` olur.
 
 ```sh
-ieumoffice mcp list             # where each agent stands
-ieumoffice mcp install cursor    # just one
-ieumoffice mcp uninstall cursor  # take it back out
+psoffice mcp list             # where each agent stands
+psoffice mcp install cursor    # just one
+psoffice mcp uninstall cursor  # take it back out
 ```
 
 Alışılmadık bir yere kurduğunuz bir ajan için `--dir <path>` gerekir; `--force` zaten var olan bir girdiyi yeniden yazar.
 
-`ieumoffice mcp --help` sunucunun kabul ettiği her şeyi tek ekrana koyar: kaydetme, kaldırma ve listeleme biçimleri, HTTP üzerinden sunma ve iki şema bayrağı.
+`psoffice mcp --help` sunucunun kabul ettiği her şeyi tek ekrana koyar: kaydetme, kaldırma ve listeleme biçimleri, HTTP üzerinden sunma ve iki şema bayrağı.
 
 ## Asistansız çalıştırma
 
 Başka bir makinedeki istemci için bunun yerine HTTP üzerinden sunun:
 
 ```sh
-ieumoffice mcp --http 8765 --token <secret>
+psoffice mcp --http 8765 --token <secret>
 ```
 
 `--host <addr>` dinlediği yeri değiştirir. Aynı belirteci istemciye geçin.
@@ -55,7 +55,7 @@ Her komut bir araçtır. İlginç olanlar:
 
 ## Arama, görseller ve medya: ajan neleri kullanabilir
 
-`ieumoffice` komutundan veya bir MCP istemcisinden gelen isteği uygulamada siz yazmadığınız için GenOffice onunla dikkatli davranır.
+`psoffice` komutundan veya bir MCP istemcisinden gelen isteği uygulamada siz yazmadığınız için GenOffice onunla dikkatli davranır.
 
 - **Arama** her zaman çalışır ve varsayılan olarak ücretsizdir. Bir arama sağlayıcısı anahtarı yalnızca bir tane seçtiyseniz kullanılır.
 - **Görsel oluşturma**, Ayarlar'daki görsel üretimi seçimini izler. Varsayılan seçim olan ChatGPT planı (Codex programı), Codex programı üzerinden ChatGPT planınızı kullanır ve **izin vermedikçe kullanılmaz** (aşağıya bakın). Aksi halde kurduğunuz bir görsel sağlayıcısının anahtarı kullanılır. Ajanın adını verdiği model, o yol sunuyorsa kullanılır.
@@ -74,16 +74,16 @@ Anahtar kapalıyken ve hiçbir anahtar kurulu değilken araç, özelliğin kulla
 
 ## Şemalar ve daha küçük bir bütçe
 
-`apply` ve `create`, `ops`, `cells` ve `data` parametrelerini `ieumoffice guide <domain> --json` çıktısından üretilen tipli op şemasıyla duyurur. Bu kesindir ve küçük değildir. Bağlam penceresi dar bir istemci bunun yerine düz diziler isteyebilir:
+`apply` ve `create`, `ops`, `cells` ve `data` parametrelerini `psoffice guide <domain> --json` çıktısından üretilen tipli op şemasıyla duyurur. Bu kesindir ve küçük değildir. Bağlam penceresi dar bir istemci bunun yerine düz diziler isteyebilir:
 
 ```sh
-ieumoffice mcp --compact-schemas
-GENOFFICE_MCP_COMPACT_SCHEMAS=1 ieumoffice mcp
+psoffice mcp --compact-schemas
+GENOFFICE_MCP_COMPACT_SCHEMAS=1 psoffice mcp
 ```
 
 ## Beceri neden gerekli
 
-Op sözlüğünü bilmeyen bir ajan tahmin eder. Beceri, başvuruyu ve tasarım kılavuzlarını taşır — `ieumoffice guide` komutunun yazdırdığı aynı malzemeyi — böylece asistan, spec’ini gerçekten okuduğu op’ları yazar. Yukarıdaki bölmeden ya da bir terminalden `ieumoffice skill` ile kurun.
+Op sözlüğünü bilmeyen bir ajan tahmin eder. Beceri, başvuruyu ve tasarım kılavuzlarını taşır — `psoffice guide` komutunun yazdırdığı aynı malzemeyi — böylece asistan, spec’ini gerçekten okuduğu op’ları yazar. Yukarıdaki bölmeden ya da bir terminalden `psoffice skill` ile kurun.
 
 ## Uygulamada neye erişebilir
 

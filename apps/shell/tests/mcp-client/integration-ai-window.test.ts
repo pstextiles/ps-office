@@ -61,7 +61,7 @@ import {
 vi.setConfig({ testTimeout: 90_000 })
 
 const FIXTURE = resolve(__dirname, 'fixtures', 'stdio-mcp-server.mjs')
-const CLIENT_INFO = { name: 'IeumOffice', version: '0.0.0-test' }
+const CLIENT_INFO = { name: 'PSOffice', version: '0.0.0-test' }
 const WAIT = { timeout: 15_000, interval: 20 }
 
 /** Sealing stands in for the OS cipher: reversible, and marked so a plain value shows */

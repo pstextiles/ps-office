@@ -1,17 +1,17 @@
 # Установка GenOffice
 
-Каждая версия публикуется на [странице релизов](https://github.com/pblsketch/ieumoffice/releases/latest) проекта на GitHub. Сборка для Windows публикуется вместе со сборками для Mac и Linux, которые выходят как бета-версии. Разработчик не может сам проверить сборки для Mac и Linux; их работа подтверждается по сообщениям пользователей.
+Каждая версия публикуется на [странице релизов](https://github.com/pstextiles/ps-office/releases/latest) проекта на GitHub. Сборка для Windows публикуется вместе со сборками для Mac и Linux, которые выходят как бета-версии. Разработчик не может сам проверить сборки для Mac и Linux; их работа подтверждается по сообщениям пользователей.
 
 ## Выберите файл для своего компьютера
 
-| Платформа                                 | Требования                                   | Файл                              |
-| ----------------------------------------- | -------------------------------------------- | --------------------------------- |
-| **Windows**                               | Windows 10 или новее, 64-разрядный Intel/AMD | `GenOffice-Setup-<version>.exe`   |
-| **Mac (бета)**, Apple Silicon             | macOS 12 или новее, чип M1 или новее         | `GenOffice-<version>-arm64.dmg`   |
-| **Mac (бета)**, Intel                     | macOS 12 или новее, процессор Intel          | `GenOffice-<version>-x64.dmg`     |
-| **Linux (бета)**, любой дистрибутив       | 64-разрядная система (x86_64)                | `GenOffice-<version>.AppImage`    |
-| **Linux (бета)**, семейство Ubuntu/Debian | 64-разрядная система (x86_64)                | `ieumoffice_<version>_amd64.deb`  |
-| **Linux (бета)**, Fedora/RHEL/openSUSE    | 64-разрядная система (x86_64)                | `ieumoffice-<version>.x86_64.rpm` |
+| Платформа                                 | Требования                                   | Файл                            |
+| ----------------------------------------- | -------------------------------------------- | ------------------------------- |
+| **Windows**                               | Windows 10 или новее, 64-разрядный Intel/AMD | `GenOffice-Setup-<version>.exe` |
+| **Mac (бета)**, Apple Silicon             | macOS 12 или новее, чип M1 или новее         | `GenOffice-<version>-arm64.dmg` |
+| **Mac (бета)**, Intel                     | macOS 12 или новее, процессор Intel          | `GenOffice-<version>-x64.dmg`   |
+| **Linux (бета)**, любой дистрибутив       | 64-разрядная система (x86_64)                | `GenOffice-<version>.AppImage`  |
+| **Linux (бета)**, семейство Ubuntu/Debian | 64-разрядная система (x86_64)                | `psoffice_<version>_amd64.deb`  |
+| **Linux (бета)**, Fedora/RHEL/openSUSE    | 64-разрядная система (x86_64)                | `psoffice-<version>.x86_64.rpm` |
 
 Чтобы узнать, какой у вас Mac, откройте меню Apple ▸ **Об этом Mac**. Если в строке «Чип» указано Apple M…, берите файл, имя которого оканчивается на `-arm64.dmg`; если в строке «Процессор» указано Intel …, берите файл, имя которого оканчивается на `-x64.dmg`. Остальные файлы на странице релизов (`.zip`, `.yml`, `.blockmap`) приложение само использует для обновления; скачивать их не нужно. Более старые версии остаются на странице релизов.
 
@@ -80,10 +80,10 @@ xattr -dr com.apple.quarantine /Applications/GenOffice.app
 ## В Linux (бета)
 
 - **AppImage**: сделайте файл исполняемым (`chmod +x GenOffice-<version>.AppImage`) и запустите его. Установка не нужна.
-- **deb**: установите командой `sudo apt install ./ieumoffice_<version>_amd64.deb`.
-- **rpm**: установите командой `sudo dnf install ./ieumoffice-<version>.x86_64.rpm`. В openSUSE используйте `sudo zypper install ./ieumoffice-<version>.x86_64.rpm`.
+- **deb**: установите командой `sudo apt install ./psoffice_<version>_amd64.deb`.
+- **rpm**: установите командой `sudo dnf install ./psoffice-<version>.x86_64.rpm`. В openSUSE используйте `sudo zypper install ./psoffice-<version>.x86_64.rpm`.
 
-Пакеты deb и rpm устанавливаются в `/opt/GenOffice` и добавляют команду терминала `/usr/bin/ieumoffice`. Как и на Mac, у карточек подключения ИИ нет кнопки установки, а когда при входе запрашивается код, вы сами выполняете `claude auth login` или `codex login` в терминале.
+Пакеты deb и rpm устанавливаются в `/opt/GenOffice` и добавляют команду терминала `/usr/bin/psoffice`. Как и на Mac, у карточек подключения ИИ нет кнопки установки, а когда при входе запрашивается код, вы сами выполняете `claude auth login` или `codex login` в терминале.
 
 ## Обновления
 
@@ -101,4 +101,4 @@ xattr -dr com.apple.quarantine /Applications/GenOffice.app
 
 ## Командная строка идёт в комплекте
 
-Каждая установка включает команду `ieumoffice`, которая работает через те же движки, что и окно, поэтому они никогда не расходятся во мнении о файле. `ieumoffice install-cli` помещает её в ваш `PATH`. Что она умеет — см. [Командная строка и агенты](help://cli).
+Каждая установка включает команду `psoffice`, которая работает через те же движки, что и окно, поэтому они никогда не расходятся во мнении о файле. `psoffice install-cli` помещает её в ваш `PATH`. Что она умеет — см. [Командная строка и агенты](help://cli).

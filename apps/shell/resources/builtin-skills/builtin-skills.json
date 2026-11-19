@@ -46,7 +46,7 @@
   },
   {
     "name": "administration-report",
-    "source": "ieumoffice",
+    "source": "psoffice",
     "path": "",
     "commit": "",
     "license": "Apache-2.0",
@@ -55,7 +55,7 @@
   },
   {
     "name": "administration-report-draft",
-    "source": "ieumoffice",
+    "source": "psoffice",
     "path": "",
     "commit": "",
     "license": "Apache-2.0",
@@ -100,7 +100,7 @@
   },
   {
     "name": "hwp-document",
-    "source": "ieumoffice",
+    "source": "psoffice",
     "path": "",
     "commit": "",
     "license": "Apache-2.0",
@@ -109,7 +109,7 @@
   },
   {
     "name": "hwp-exam-paper",
-    "source": "ieumoffice",
+    "source": "psoffice",
     "path": "",
     "commit": "",
     "license": "Apache-2.0",
@@ -118,7 +118,7 @@
   },
   {
     "name": "mindmap",
-    "source": "ieumoffice",
+    "source": "psoffice",
     "path": "",
     "commit": "",
     "license": "Apache-2.0",
@@ -127,7 +127,7 @@
   },
   {
     "name": "diagram",
-    "source": "ieumoffice",
+    "source": "psoffice",
     "path": "",
     "commit": "",
     "license": "Apache-2.0",
@@ -136,7 +136,7 @@
   },
   {
     "name": "html-document",
-    "source": "ieumoffice",
+    "source": "psoffice",
     "path": "",
     "commit": "",
     "license": "Apache-2.0",

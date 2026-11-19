@@ -39,7 +39,7 @@ function setup() {
   roots.push(home)
   const project = join(home, 'Project')
   mkdirSync(project)
-  const userData = join(home, 'AppData', 'IeumOffice')
+  const userData = join(home, 'AppData', 'PSOffice')
   mkdirSync(userData, { recursive: true })
   const stops: Array<ReturnType<typeof vi.fn>> = []
   let onEvent: ((event: AgentSessionEvent) => void) | undefined

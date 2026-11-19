@@ -20,7 +20,7 @@ import { createMcpServersStore, mcpServersFilePath } from './store'
  */
 
 /** Under the app's temp folder: the empty working folders of "my PC" servers (5.3) */
-const LOCAL_WORK_DIR_NAME = 'ieumoffice-mcp'
+const LOCAL_WORK_DIR_NAME = 'psoffice-mcp'
 
 export interface McpHubAppDeps {
   lang: () => Lang
