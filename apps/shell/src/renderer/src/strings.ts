@@ -433,7 +433,7 @@ export const strings = {
     setLicensesOpen: '查看',
     setRightsContact: '商标与版权联系',
     setRightsContactDesc: '侵权举报和许可相关问题请发送到此地址。',
-    setRightsContactSend: '在 GitHub 上查看',
+    setRightsContactSend: '在 GitHub 上反馈',
     setTrademarks:
       'GenOffice 与 Microsoft、Hancom、Adobe、XMind、Google、Anthropic、OpenAI 均无关联，也未获得其赞助或认可。Word、Excel、PowerPoint 是 Microsoft 的商标；Hangul（한글）、HWP、HWPX 是 Hancom 的商标；XMind 是 XMind Ltd. 的商标；Google 云端硬盘是 Google 的商标；Claude 是 Anthropic 的商标；ChatGPT 和 Codex 是 OpenAI 的商标。这些名称仅用于说明本应用能打开哪些文件以及与哪些服务配合使用。',
     setHwpNotice:
@@ -1027,7 +1027,7 @@ export const strings = {
     setLicensesOpen: 'View',
     setRightsContact: 'Trademark and copyright contact',
     setRightsContactDesc: 'Send infringement reports and licensing questions to this address.',
-    setRightsContactSend: 'View on GitHub',
+    setRightsContactSend: 'Report on GitHub',
     setTrademarks:
       'GenOffice is not affiliated with, sponsored by or endorsed by Microsoft, Hancom, Adobe, XMind, Google, Anthropic or OpenAI. Word, Excel and PowerPoint are trademarks of Microsoft; Hangul, HWP and HWPX of Hancom; XMind of XMind Ltd.; Google Drive of Google; Claude of Anthropic; ChatGPT and Codex of OpenAI. These names are used only to say which files the app opens and what it works with.',
     setHwpNotice:
@@ -1629,7 +1629,7 @@ export const strings = {
     setLicensesOpen: 'Xem',
     setRightsContact: 'Liên hệ về nhãn hiệu và bản quyền',
     setRightsContactDesc: 'Gửi báo cáo vi phạm và câu hỏi về giấy phép đến địa chỉ này.',
-    setRightsContactSend: 'Xem trên GitHub',
+    setRightsContactSend: 'Báo cáo trên GitHub',
     setTrademarks:
       'GenOffice không liên kết với, không được tài trợ hay xác nhận bởi Microsoft, Hancom, Adobe, XMind, Google, Anthropic hoặc OpenAI. Word, Excel và PowerPoint là nhãn hiệu của Microsoft; Hangul, HWP và HWPX của Hancom; XMind của XMind Ltd.; Google Drive của Google; Claude của Anthropic; ChatGPT và Codex của OpenAI. Các tên này chỉ được dùng để cho biết ứng dụng mở được tệp nào và hoạt động cùng với gì.',
     setHwpNotice:
@@ -2236,7 +2236,7 @@ export const strings = {
     setLicensesOpen: 'Görüntüle',
     setRightsContact: 'Ticari marka ve telif iletişimi',
     setRightsContactDesc: 'İhlal bildirimlerini ve lisans sorularını bu adrese gönderin.',
-    setRightsContactSend: 'GitHub üzerinde görüntüle',
+    setRightsContactSend: "GitHub'da bildir",
     setTrademarks:
       "GenOffice; Microsoft, Hancom, Adobe, XMind, Google, Anthropic veya OpenAI ile bağlantılı değildir, onlar tarafından desteklenmez veya onaylanmaz. Word, Excel ve PowerPoint Microsoft'un; Hangul, HWP ve HWPX Hancom'un; XMind, XMind Ltd.'nin; Google Drive, Google'ın; Claude, Anthropic'in; ChatGPT ve Codex, OpenAI'nin ticari markalarıdır. Bu adlar yalnızca uygulamanın hangi dosyaları açtığını ve nelerle çalıştığını belirtmek için kullanılır.",
     setHwpNotice:
@@ -2851,7 +2851,7 @@ export const strings = {
     setRightsContact: '商標・著作権のお問い合わせ',
     setRightsContactDesc:
       '権利侵害の報告やライセンスに関するお問い合わせは、このアドレスへお送りください。',
-    setRightsContactSend: 'GitHub で見る',
+    setRightsContactSend: 'GitHub で報告',
     setTrademarks:
       'GenOffice は Microsoft、Hancom、Adobe、XMind、Google、Anthropic、OpenAI と提携しておらず、これらの企業による後援や保証も受けていません。Word、Excel、PowerPoint は Microsoft の商標、Hangul（한글）、HWP、HWPX は Hancom の商標、XMind は XMind Ltd. の商標、Google ドライブは Google の商標、Claude は Anthropic の商標、ChatGPT と Codex は OpenAI の商標です。これらの名称は、開けるファイルや連携するサービスを示すためにのみ使用しています。',
     setHwpNotice:
@@ -3455,7 +3455,7 @@ export const strings = {
     setLicensesOpen: '보기',
     setRightsContact: '상표·저작권 문의',
     setRightsContactDesc: '권리 침해 신고나 라이선스 문의는 이 주소로 보내 주세요.',
-    setRightsContactSend: 'GitHub에서 보기',
+    setRightsContactSend: 'GitHub에 남기기',
     setTrademarks:
       'GenOffice는 Microsoft, 한글과컴퓨터, Adobe, XMind, Google, Anthropic, OpenAI와 제휴하지 않았고, 이들의 후원이나 보증을 받지 않습니다. Word·Excel·PowerPoint는 Microsoft의, 한글·HWP·HWPX는 한글과컴퓨터의, XMind는 XMind Ltd.의, Google 드라이브는 Google의, Claude는 Anthropic의, ChatGPT·Codex는 OpenAI의 상표입니다. 이 이름들은 어떤 파일을 열고 무엇과 함께 쓰는지 알리는 데만 씁니다.',
     setHwpNotice:
@@ -4075,7 +4075,7 @@ export const strings = {
     setRightsContact: 'Contact marques et droits d’auteur',
     setRightsContactDesc:
       'Envoyez à cette adresse les signalements d’atteinte aux droits et les questions de licence.',
-    setRightsContactSend: 'Voir sur GitHub',
+    setRightsContactSend: 'Signaler sur GitHub',
     setTrademarks:
       'GenOffice n’est ni affilié à Microsoft, Hancom, Adobe, XMind, Google, Anthropic ou OpenAI, ni parrainé ou approuvé par eux. Word, Excel et PowerPoint sont des marques de Microsoft ; Hangul, HWP et HWPX de Hancom ; XMind de XMind Ltd. ; Google Drive de Google ; Claude d’Anthropic ; ChatGPT et Codex d’OpenAI. Ces noms servent uniquement à indiquer quels fichiers l’application ouvre et avec quoi elle fonctionne.',
     setHwpNotice:
@@ -4703,7 +4703,7 @@ export const strings = {
     setRightsContact: 'Kontakt zu Marken und Urheberrecht',
     setRightsContactDesc:
       'Meldungen über Rechtsverletzungen und Fragen zur Lizenz bitte an diese Adresse senden.',
-    setRightsContactSend: 'Auf GitHub ansehen',
+    setRightsContactSend: 'Auf GitHub melden',
     setTrademarks:
       'GenOffice ist nicht mit Microsoft, Hancom, Adobe, XMind, Google, Anthropic oder OpenAI verbunden und wird von ihnen weder gesponsert noch unterstützt. Word, Excel und PowerPoint sind Marken von Microsoft; Hangul, HWP und HWPX von Hancom; XMind von XMind Ltd.; Google Drive von Google; Claude von Anthropic; ChatGPT und Codex von OpenAI. Diese Namen werden nur verwendet, um zu sagen, welche Dateien die App öffnet und womit sie zusammenarbeitet.',
     setHwpNotice:
@@ -5331,7 +5331,7 @@ export const strings = {
     setRightsContact: 'Contacto sobre marcas y derechos de autor',
     setRightsContactDesc:
       'Envía a esta dirección los avisos de infracción y las consultas sobre licencias.',
-    setRightsContactSend: 'Ver en GitHub',
+    setRightsContactSend: 'Informar en GitHub',
     setTrademarks:
       'GenOffice no está afiliado a Microsoft, Hancom, Adobe, XMind, Google, Anthropic ni OpenAI, ni cuenta con su patrocinio o respaldo. Word, Excel y PowerPoint son marcas de Microsoft; Hangul, HWP y HWPX, de Hancom; XMind, de XMind Ltd.; Google Drive, de Google; Claude, de Anthropic; ChatGPT y Codex, de OpenAI. Estos nombres se usan solo para indicar qué archivos abre la aplicación y con qué funciona.',
     setHwpNotice:
@@ -5934,7 +5934,7 @@ export const strings = {
     setLicensesOpen: 'ดู',
     setRightsContact: 'ติดต่อเรื่องเครื่องหมายการค้าและลิขสิทธิ์',
     setRightsContactDesc: 'ส่งการแจ้งละเมิดสิทธิ์และคำถามเกี่ยวกับสัญญาอนุญาตมาที่อีเมลนี้',
-    setRightsContactSend: 'ดูบน GitHub',
+    setRightsContactSend: 'แจ้งบน GitHub',
     setTrademarks:
       'GenOffice ไม่มีความเกี่ยวข้องกับ Microsoft, Hancom, Adobe, XMind, Google, Anthropic หรือ OpenAI และไม่ได้รับการสนับสนุนหรือรับรองจากบริษัทเหล่านี้ Word, Excel และ PowerPoint เป็นเครื่องหมายการค้าของ Microsoft; Hangul, HWP และ HWPX ของ Hancom; XMind ของ XMind Ltd.; Google Drive ของ Google; Claude ของ Anthropic; ChatGPT และ Codex ของ OpenAI ชื่อเหล่านี้ใช้เพียงเพื่อบอกว่าแอปเปิดไฟล์ใดได้และทำงานร่วมกับอะไร',
     setHwpNotice:
@@ -6548,7 +6548,7 @@ export const strings = {
     setLicensesOpen: 'Lihat',
     setRightsContact: 'Kontak merek dagang dan hak cipta',
     setRightsContactDesc: 'Kirim laporan pelanggaran dan pertanyaan lisensi ke alamat ini.',
-    setRightsContactSend: 'Lihat di GitHub',
+    setRightsContactSend: 'Laporkan di GitHub',
     setTrademarks:
       'GenOffice tidak berafiliasi dengan, disponsori, atau didukung oleh Microsoft, Hancom, Adobe, XMind, Google, Anthropic, atau OpenAI. Word, Excel, dan PowerPoint adalah merek dagang Microsoft; Hangul, HWP, dan HWPX milik Hancom; XMind milik XMind Ltd.; Google Drive milik Google; Claude milik Anthropic; ChatGPT dan Codex milik OpenAI. Nama-nama ini hanya digunakan untuk menyebutkan file apa yang dapat dibuka aplikasi dan dengan apa aplikasi bekerja.',
     setHwpNotice:
@@ -7165,7 +7165,7 @@ export const strings = {
     setRightsContact: 'Связь по вопросам товарных знаков и авторских прав',
     setRightsContactDesc:
       'Сообщения о нарушении прав и вопросы о лицензиях отправляйте на этот адрес.',
-    setRightsContactSend: 'Открыть на GitHub',
+    setRightsContactSend: 'Сообщить на GitHub',
     setTrademarks:
       'GenOffice не связан с Microsoft, Hancom, Adobe, XMind, Google, Anthropic или OpenAI и не спонсируется и не одобряется ими. Word, Excel и PowerPoint — товарные знаки Microsoft; Hangul, HWP и HWPX — Hancom; XMind — XMind Ltd.; Google Диск — Google; Claude — Anthropic; ChatGPT и Codex — OpenAI. Эти названия используются только для того, чтобы указать, какие файлы открывает приложение и с чем оно работает.',
     setHwpNotice:
@@ -7770,7 +7770,7 @@ export const strings = {
     setLicensesOpen: 'عرض',
     setRightsContact: 'التواصل بشأن العلامات التجارية وحقوق النشر',
     setRightsContactDesc: 'أرسل بلاغات انتهاك الحقوق والأسئلة المتعلقة بالترخيص إلى هذا العنوان.',
-    setRightsContactSend: 'عرض على GitHub',
+    setRightsContactSend: 'الإبلاغ على GitHub',
     setTrademarks:
       'GenOffice غير تابع لشركات Microsoft أو Hancom أو Adobe أو XMind أو Google أو Anthropic أو OpenAI، ولا يحظى برعايتها أو تأييدها. Word وExcel وPowerPoint علامات تجارية لشركة Microsoft؛ وHangul وHWP وHWPX لشركة Hancom؛ وXMind لشركة XMind Ltd.؛ وGoogle Drive لشركة Google؛ وClaude لشركة Anthropic؛ وChatGPT وCodex لشركة OpenAI. تُستخدم هذه الأسماء فقط لبيان الملفات التي يفتحها التطبيق وما يعمل معه.',
     setHwpNotice:
@@ -8383,7 +8383,7 @@ export const strings = {
     setRightsContact: 'Contato sobre marcas e direitos autorais',
     setRightsContactDesc:
       'Envie denúncias de violação e dúvidas sobre licenças para este endereço.',
-    setRightsContactSend: 'Ver no GitHub',
+    setRightsContactSend: 'Relatar no GitHub',
     setTrademarks:
       'GenOffice não é afiliado à Microsoft, Hancom, Adobe, XMind, Google, Anthropic ou OpenAI, nem patrocinado ou endossado por elas. Word, Excel e PowerPoint são marcas da Microsoft; Hangul, HWP e HWPX, da Hancom; XMind, da XMind Ltd.; Google Drive, do Google; Claude, da Anthropic; ChatGPT e Codex, da OpenAI. Esses nomes são usados apenas para indicar quais arquivos o aplicativo abre e com o que ele funciona.',
     setHwpNotice:
@@ -8994,7 +8994,7 @@ export const strings = {
     setRightsContact: 'Contatti per marchi e copyright',
     setRightsContactDesc:
       'Invia a questo indirizzo segnalazioni di violazione e domande sulle licenze.',
-    setRightsContactSend: 'Vedi su GitHub',
+    setRightsContactSend: 'Segnala su GitHub',
     setTrademarks:
       'GenOffice non è affiliato a Microsoft, Hancom, Adobe, XMind, Google, Anthropic od OpenAI, né sponsorizzato o approvato da loro. Word, Excel e PowerPoint sono marchi di Microsoft; Hangul, HWP e HWPX di Hancom; XMind di XMind Ltd.; Google Drive di Google; Claude di Anthropic; ChatGPT e Codex di OpenAI. Questi nomi sono usati solo per indicare quali file l’app apre e con cosa funziona.',
     setHwpNotice:
@@ -9602,7 +9602,7 @@ export const strings = {
     setLicensesOpen: 'Wyświetl',
     setRightsContact: 'Kontakt w sprawie znaków towarowych i praw autorskich',
     setRightsContactDesc: 'Zgłoszenia naruszeń i pytania o licencje wysyłaj na ten adres.',
-    setRightsContactSend: 'Zobacz na GitHubie',
+    setRightsContactSend: 'Zgłoś na GitHubie',
     setTrademarks:
       'GenOffice nie jest powiązany z firmami Microsoft, Hancom, Adobe, XMind, Google, Anthropic ani OpenAI, ani przez nie sponsorowany czy popierany. Word, Excel i PowerPoint są znakami towarowymi Microsoft; Hangul, HWP i HWPX — Hancom; XMind — XMind Ltd.; Dysk Google — Google; Claude — Anthropic; ChatGPT i Codex — OpenAI. Nazwy te służą wyłącznie do wskazania, jakie pliki otwiera aplikacja i z czym współpracuje.',
     setHwpNotice:
@@ -10158,7 +10158,7 @@ export const strings = {
     setLicensesOpen: 'Zobrazit',
     setRightsContact: 'Kontakt ve věci ochranných známek a autorských práv',
     setRightsContactDesc: 'Oznámení o porušení práv a dotazy k licencím posílejte na tuto adresu.',
-    setRightsContactSend: 'Zobrazit na GitHubu',
+    setRightsContactSend: 'Nahlásit na GitHubu',
     setTrademarks:
       'GenOffice není spojen se společnostmi Microsoft, Hancom, Adobe, XMind, Google, Anthropic ani OpenAI a není jimi sponzorován ani podporován. Word, Excel a PowerPoint jsou ochranné známky společnosti Microsoft; Hangul, HWP a HWPX společnosti Hancom; XMind společnosti XMind Ltd.; Disk Google společnosti Google; Claude společnosti Anthropic; ChatGPT a Codex společnosti OpenAI. Tyto názvy slouží jen k uvedení, které soubory aplikace otevírá a s čím spolupracuje.',
     setHwpNotice:
@@ -10812,7 +10812,7 @@ export const strings = {
     setLicensesOpen: 'Bekijken',
     setRightsContact: 'Contact over merken en auteursrecht',
     setRightsContactDesc: 'Stuur meldingen van inbreuk en vragen over licenties naar dit adres.',
-    setRightsContactSend: 'Bekijken op GitHub',
+    setRightsContactSend: 'Melden op GitHub',
     setTrademarks:
       'GenOffice is niet verbonden aan Microsoft, Hancom, Adobe, XMind, Google, Anthropic of OpenAI en wordt niet door hen gesponsord of onderschreven. Word, Excel en PowerPoint zijn handelsmerken van Microsoft; Hangul, HWP en HWPX van Hancom; XMind van XMind Ltd.; Google Drive van Google; Claude van Anthropic; ChatGPT en Codex van OpenAI. Deze namen worden alleen gebruikt om aan te geven welke bestanden de app opent en waarmee hij samenwerkt.',
     setHwpNotice:
@@ -11424,7 +11424,7 @@ export const strings = {
     setLicensesOpen: 'Lihat',
     setRightsContact: 'Hubungan tanda dagangan dan hak cipta',
     setRightsContactDesc: 'Hantar laporan pelanggaran hak dan soalan lesen ke alamat ini.',
-    setRightsContactSend: 'Lihat di GitHub',
+    setRightsContactSend: 'Laporkan di GitHub',
     setTrademarks:
       'GenOffice tidak bergabung dengan, ditaja atau disokong oleh Microsoft, Hancom, Adobe, XMind, Google, Anthropic atau OpenAI. Word, Excel dan PowerPoint ialah tanda dagangan Microsoft; Hangul, HWP dan HWPX milik Hancom; XMind milik XMind Ltd.; Google Drive milik Google; Claude milik Anthropic; ChatGPT dan Codex milik OpenAI. Nama-nama ini hanya digunakan untuk menyatakan fail yang dibuka oleh aplikasi dan perkara yang digunakan bersamanya.',
     setHwpNotice:
@@ -12015,7 +12015,7 @@ export const strings = {
     setLicensesOpen: 'הצגה',
     setRightsContact: 'פנייה בנושא סימני מסחר וזכויות יוצרים',
     setRightsContactDesc: 'דיווחים על הפרת זכויות ושאלות בנושא רישוי יש לשלוח לכתובת זו.',
-    setRightsContactSend: 'הצגה ב-GitHub',
+    setRightsContactSend: 'דיווח ב-GitHub',
     setTrademarks:
       'GenOffice אינו קשור ל-Microsoft, Hancom, Adobe, XMind, Google, Anthropic או OpenAI, ואינו בחסותן או באישורן. Word, Excel ו-PowerPoint הם סימני מסחר של Microsoft; Hangul, HWP ו-HWPX של Hancom; XMind של XMind Ltd.; Google Drive של Google; Claude של Anthropic; ChatGPT ו-Codex של OpenAI. השמות האלה משמשים רק כדי לציין אילו קבצים האפליקציה פותחת ועם מה היא עובדת.',
     setHwpNotice:
@@ -12611,7 +12611,7 @@ export const strings = {
     setLicensesOpen: 'देखें',
     setRightsContact: 'ट्रेडमार्क और कॉपीराइट संपर्क',
     setRightsContactDesc: 'अधिकार उल्लंघन की शिकायतें और लाइसेंस से जुड़े प्रश्न इस पते पर भेजें।',
-    setRightsContactSend: 'GitHub पर देखें',
+    setRightsContactSend: 'GitHub पर रिपोर्ट करें',
     setTrademarks:
       'GenOffice का Microsoft, Hancom, Adobe, XMind, Google, Anthropic या OpenAI से कोई संबंध नहीं है, और न ही यह उनके द्वारा प्रायोजित या समर्थित है। Word, Excel और PowerPoint, Microsoft के ट्रेडमार्क हैं; Hangul, HWP और HWPX, Hancom के; XMind, XMind Ltd. का; Google Drive, Google का; Claude, Anthropic का; और ChatGPT व Codex, OpenAI के ट्रेडमार्क हैं। ये नाम केवल यह बताने के लिए उपयोग किए जाते हैं कि ऐप कौन-सी फ़ाइलें खोलता है और किसके साथ काम करता है।',
     setHwpNotice:
@@ -13187,7 +13187,7 @@ export const strings = {
     setLicensesOpen: '檢視',
     setRightsContact: '商標與著作權聯絡',
     setRightsContactDesc: '侵權檢舉與授權相關問題請寄到此地址。',
-    setRightsContactSend: '在 GitHub 上查看',
+    setRightsContactSend: '在 GitHub 上回報',
     setTrademarks:
       'GenOffice 與 Microsoft、Hancom、Adobe、XMind、Google、Anthropic、OpenAI 皆無關聯，也未獲其贊助或認可。Word、Excel、PowerPoint 是 Microsoft 的商標；Hangul（한글）、HWP、HWPX 是 Hancom 的商標；XMind 是 XMind Ltd. 的商標；Google 雲端硬碟是 Google 的商標；Claude 是 Anthropic 的商標；ChatGPT 與 Codex 是 OpenAI 的商標。這些名稱僅用於說明本應用程式能開啟哪些檔案，以及能與哪些服務搭配使用。',
     setHwpNotice:

@@ -94,17 +94,20 @@ describe('Settings → About', () => {
     expect(openGitHubRepo).toHaveBeenCalledTimes(1)
   })
 
-  it('asks for no star and names the upstream project only in the acknowledgement', async () => {
+  it('asks for no star and names the upstream projects only in the acknowledgement', async () => {
     await openAbout()
     const pane = host.querySelector<HTMLElement>('.set-pane-title')!.parentElement!
     const text = pane.textContent ?? ''
     expect(text).not.toMatch(/\bstars?\b|starred/i)
-    expect(text).toContain('Based on the open-source project GenOffice (Apache License 2.0).')
-    // the acknowledgement is the one place the upstream name appears
+    expect(text).toContain(
+      'Based on the open-source project IeumOffice / GenOffice (Apache License 2.0).',
+    )
+    // the acknowledgement is the one place the upstream names appear
     expect(text.match(/GenOffice/g)).toHaveLength(1)
+    expect(text.match(/IeumOffice/g)).toHaveLength(1)
   })
 
-  it('opens the bundled license notices and starts a mail to the rights contact', async () => {
+  it('opens the bundled license notices and the rights contact page', async () => {
     await openAbout()
     expect(host.textContent).toContain(PRODUCT_CONTACT_URL)
     await act(async () => {
