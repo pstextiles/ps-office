@@ -744,7 +744,7 @@ describe('relays of the person’s MCP servers (user MCP spec 9)', () => {
     expect(
       agentUsableRelays([
         { name: 'psoffice-editor', url: 'u', token: 't', tools: ['create_docx'] },
-        { name: 'IEUMOFFICE-EDITOR', url: 'u', token: 't', tools: [] },
+        { name: 'PSOFFICE-EDITOR', url: 'u', token: 't', tools: [] },
         { name: 'a__b', url: 'u', token: 't', tools: [] },
         { name: '_x', url: 'u', token: 't', tools: [] },
         { name: 'x y', url: 'u', token: 't', tools: [] },

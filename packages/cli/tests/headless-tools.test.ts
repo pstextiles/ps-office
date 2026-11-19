@@ -643,7 +643,7 @@ describe('search on the automatic-call path', () => {
       .spyOn(aiSearch, 'imageSearchTool')
       .mockResolvedValue({ method: 'duckduckgo', images: [] })
     const { env, dir } = dataFolder({ provider: 'claude-code', ...ON })
-    const r = await run(['search', 'ieum office', '--json'], { env })
+    const r = await run(['search', 'ps office', '--json'], { env })
     expect(r.code).toBe(0)
     expect(r.json().detail).toEqual({
       method: 'parallel',

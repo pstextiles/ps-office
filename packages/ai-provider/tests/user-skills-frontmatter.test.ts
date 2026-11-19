@@ -286,7 +286,7 @@ describe('new names', () => {
 
   it('knows the reserved names in any case', () => {
     expect(isReservedUserSkillName('GenOffice')).toBe(true)
-    expect(isReservedUserSkillName('IEUMOFFICE')).toBe(true)
+    expect(isReservedUserSkillName('PSOFFICE')).toBe(true)
     expect(isReservedUserSkillName('genoffice-x')).toBe(false)
   })
 
