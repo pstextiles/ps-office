@@ -18,7 +18,8 @@ import {
   type BundledSkill,
   type SkillLedger,
 } from '@genoffice/cli/agent-skills'
-import { CLI_COMMAND, inspectCliLink, launcherFileName } from '@genoffice/cli/install'
+import { CLI_COMMAND, inspectCliLinkAsync, launcherFileName } from '@genoffice/cli/install'
+import type { InstallOutcome } from '@genoffice/cli/install'
 import { readAppSettings, writeAppSetting } from './app-settings'
 import { isEphemeralInstall } from './cli-link'
 import { isInstallableSkillDir } from './skill-target'
@@ -55,13 +56,30 @@ export function registerIntegrationsIpc(deps: IntegrationsDeps): void {
   const stateOf = (skillsDir: string): SkillInstallState =>
     readInstallState(skillsDir, bundled(), ledger())
 
-  ipcMain.handle(INTEGRATIONS_CHANNELS.status, (): IntegrationsStatus => {
+  // Home asks for the status on every mount and after each Settings close. On
+  // Windows the PATH check starts PowerShell (seconds on a slow PC): run it
+  // without blocking the main process and reuse the answer for a few minutes.
+  let cliLinkCheck: { at: number; outcome: Promise<InstallOutcome> } | null = null
+  const CLI_LINK_CHECK_TTL_MS = 5 * 60 * 1000
+  const cliLinkOutcome = (launcher: string): Promise<InstallOutcome> => {
+    if (!cliLinkCheck || Date.now() - cliLinkCheck.at > CLI_LINK_CHECK_TTL_MS) {
+      cliLinkCheck = {
+        at: Date.now(),
+        outcome: inspectCliLinkAsync({ launcher }).catch((): InstallOutcome => ({
+          status: 'unsupported',
+        })),
+      }
+    }
+    return cliLinkCheck.outcome
+  }
+
+  ipcMain.handle(INTEGRATIONS_CHANNELS.status, async (): Promise<IntegrationsStatus> => {
     const skill = bundled()
     const l = ledger()
     const launcher = join(deps.cliDir, launcherFileName(process.platform))
     return {
       cli: {
-        ...inspectCliLink({ launcher }),
+        ...(await cliLinkOutcome(launcher)),
         launcherDir: deps.cliDir,
         ephemeral: app.isPackaged && isEphemeralInstall(process.resourcesPath, process.env),
         version: cliVersion(deps.cliPackageJson),

@@ -71,6 +71,7 @@ vi.mock('@genoffice/cli/agent-skills', () => {
 vi.mock('@genoffice/cli/install', () => ({
   CLI_COMMAND: 'psoffice',
   inspectCliLink: () => ({ linked: false }),
+  inspectCliLinkAsync: async () => ({ linked: false }),
   launcherFileName: () => 'psoffice',
 }))
 

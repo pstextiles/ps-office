@@ -13,6 +13,7 @@ import {
   defaultCandidateDirs,
   homebrewBinDirs,
   inspectCliLink,
+  inspectCliLinkAsync,
   installCliLink,
   isOurLauncher,
   pathHint,
@@ -298,6 +299,38 @@ describe('installCliLink', () => {
     })
     expect(missing.status).toBe('missing')
     expect(missing.manual).toContain('SetEnvironmentVariable')
+  })
+
+  it('checks the Windows PATH without blocking, with the same answer', async () => {
+    const launcher = 'C:\\PSOffice\\resources\\psoffice\\psoffice.cmd'
+    const scripts: string[] = []
+    const blocking = () => {
+      throw new Error('the app must not run the blocking check')
+    }
+    const present = await inspectCliLinkAsync({
+      launcher,
+      platform: 'win32',
+      runPowerShell: blocking,
+      runPowerShellAsync: async (s) => (scripts.push(s), { ok: true, stdout: 'present\n' }),
+    })
+    expect(present).toMatchObject({
+      status: 'present',
+      location: 'C:\\PSOffice\\resources\\psoffice',
+    })
+    expect(scripts[0]).not.toContain('SetValue')
+    const missing = await inspectCliLinkAsync({
+      launcher,
+      platform: 'win32',
+      runPowerShell: blocking,
+      runPowerShellAsync: async () => ({ ok: true, stdout: 'missing\n' }),
+    })
+    expect(missing.status).toBe('missing')
+    const failed = await inspectCliLinkAsync({
+      launcher,
+      platform: 'win32',
+      runPowerShellAsync: async () => ({ ok: false, stdout: '' }),
+    })
+    expect(failed.status).toBe('unwritable')
   })
 })
 

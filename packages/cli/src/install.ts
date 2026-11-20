@@ -1,4 +1,4 @@
-import { spawnSync } from 'node:child_process'
+import { execFile, spawnSync } from 'node:child_process'
 import {
   accessSync,
   constants,
@@ -32,6 +32,8 @@ export interface InstallOptions {
   env?: NodeJS.ProcessEnv
   /** test seam for the Windows registry edit */
   runPowerShell?: (script: string) => { ok: boolean; stdout: string }
+  /** test seam for the non-blocking Windows PATH check (inspectCliLinkAsync) */
+  runPowerShellAsync?: (script: string) => Promise<{ ok: boolean; stdout: string }>
 }
 
 export type InstallStatus =
@@ -299,18 +301,54 @@ function installWindowsPath(opts: InstallOptions): InstallOutcome {
   return { status: r.stdout.trim() === 'present' ? 'present' : 'linked', location: dir }
 }
 
-function inspectWindowsPath(opts: InstallOptions): InstallOutcome {
-  const dir = win32.dirname(opts.launcher)
+function windowsPathCheck(launcher: string): {
+  dir: string
+  manual: string
+  script: string
+  outcome: (r: { ok: boolean; stdout: string }) => InstallOutcome
+} {
+  const dir = win32.dirname(launcher)
   const manual = `[Environment]::SetEnvironmentVariable('Path', [Environment]::GetEnvironmentVariable('Path','User') + ';${dir}', 'User')`
   const script =
     `$dir = ${psQuote(dir)}; ` +
     "$key = [Microsoft.Win32.Registry]::CurrentUser.OpenSubKey('Environment'); " +
     "$p = [string]$key.GetValue('Path', '', 'DoNotExpandEnvironmentNames'); " +
     "if (($p -split ';') -contains $dir) { 'present' } else { 'missing' }"
+  const outcome = (r: { ok: boolean; stdout: string }): InstallOutcome =>
+    !r.ok
+      ? { status: 'unwritable', location: dir, manual }
+      : { status: r.stdout.trim() === 'present' ? 'present' : 'missing', location: dir, manual }
+  return { dir, manual, script, outcome }
+}
+
+function inspectWindowsPath(opts: InstallOptions): InstallOutcome {
+  const check = windowsPathCheck(opts.launcher)
   const run = opts.runPowerShell ?? runPowerShell
-  const r = run(script)
-  if (!r.ok) return { status: 'unwritable', location: dir, manual }
-  return { status: r.stdout.trim() === 'present' ? 'present' : 'missing', location: dir, manual }
+  return check.outcome(run(check.script))
+}
+
+/**
+ * Non-blocking twin of `inspectCliLink` for the app's main process: on Windows
+ * the PATH check starts PowerShell, which takes seconds on a slow PC, and the
+ * synchronous version would freeze every window meanwhile.
+ */
+export async function inspectCliLinkAsync(opts: InstallOptions): Promise<InstallOutcome> {
+  const platform = opts.platform ?? process.platform
+  if (platform !== 'win32') return inspectCliLink(opts)
+  const check = windowsPathCheck(opts.launcher)
+  const run = opts.runPowerShellAsync ?? runPowerShellAsync
+  return check.outcome(await run(check.script))
+}
+
+function runPowerShellAsync(script: string): Promise<{ ok: boolean; stdout: string }> {
+  return new Promise((resolve) => {
+    execFile(
+      'powershell.exe',
+      ['-NoProfile', '-NonInteractive', '-Command', script],
+      { encoding: 'utf-8', windowsHide: true, timeout: 15_000 },
+      (error, stdout) => resolve({ ok: !error, stdout: stdout ?? '' }),
+    )
+  })
 }
 
 function runPowerShell(script: string): { ok: boolean; stdout: string } {
