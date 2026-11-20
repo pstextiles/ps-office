@@ -114,6 +114,25 @@ export const it = {
     'Excel non è riuscito ad aggiornare le query, quindi il file non è stato modificato. {error}',
   dlgQueriesRefreshReopenFailed:
     'Excel ha aggiornato il file, ma non è stato possibile riaprirlo qui. Riaprilo dalla Home.',
+  dlgQueriesNoteBuiltIn:
+    'Le righe mostrate sono gli ultimi risultati salvati. Aggiorna calcola le query qui, senza Excel, e salva il file. Se una query non può essere calcolata esattamente come in Excel, il file resta invariato e ne viene indicato il motivo.',
+  dlgQueriesBuiltIn: 'Aggiorna',
+  dlgQueriesBuiltInTip:
+    'Calcola le query qui, senza Excel. Le modifiche non salvate vengono salvate prima.',
+  dlgQueriesBuiltInRunning:
+    'Calcolo delle query… Le origini grandi o in rete possono richiedere alcuni minuti.',
+  dlgQueriesBuiltInDone:
+    "Tabelle delle query aggiornate ({count}). Le formule negli altri fogli mostrano ancora i risultati precedenti; Excel le ricalcola all'apertura del file.",
+  dlgQueriesBuiltInLimit:
+    'Non è possibile calcolarlo qui esattamente come in Excel, quindi il file non è stato modificato. Usa Aggiorna in Excel. {error}',
+  dlgQueriesBuiltInFailed:
+    'Non è stato possibile aggiornare le query, quindi il file non è stato modificato. {error}',
+  dlgQueriesBuiltInTimeout:
+    "L'aggiornamento non è terminato entro 15 minuti ed è stato interrotto. Il file non è stato modificato.",
+  dlgQueriesBuiltInNotFile:
+    'Solo un file .xlsx o .xlsm salvato può essere aggiornato. Salvalo prima come .xlsx.',
+  dlgQueriesBuiltInReopenFailed:
+    'Il file è stato aggiornato, ma non è stato possibile riaprirlo qui. Riaprilo dalla Home.',
   dlgPasteSpecialTitle: 'Incolla speciale',
   dlgPasteSpecialPaste: 'Incolla',
   dlgPasteSpecialAll: 'Tutto',

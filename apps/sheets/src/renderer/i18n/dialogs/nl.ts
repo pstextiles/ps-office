@@ -113,6 +113,25 @@ export const nl = {
     'Excel kon de query’s niet vernieuwen, dus het bestand is niet gewijzigd. {error}',
   dlgQueriesRefreshReopenFailed:
     'Excel heeft het bestand vernieuwd, maar het kon hier niet opnieuw worden geopend. Open het opnieuw via Start.',
+  dlgQueriesNoteBuiltIn:
+    "De getoonde rijen zijn de laatst opgeslagen resultaten. Vernieuwen berekent de query's hier, zonder Excel, en slaat het bestand op. Als een query niet precies zo kan worden berekend als in Excel, blijft het bestand ongewijzigd en ziet u waarom.",
+  dlgQueriesBuiltIn: 'Vernieuwen',
+  dlgQueriesBuiltInTip:
+    "Berekent de query's hier, zonder Excel. Niet-opgeslagen wijzigingen worden eerst opgeslagen.",
+  dlgQueriesBuiltInRunning:
+    "Query's worden berekend… Grote bronnen of netwerkbronnen kunnen enkele minuten duren.",
+  dlgQueriesBuiltInDone:
+    'Querytabellen vernieuwd ({count}). Formules op andere bladen tonen nog hun vorige resultaten; Excel berekent ze opnieuw wanneer het bestand wordt geopend.',
+  dlgQueriesBuiltInLimit:
+    'Dit kan hier niet precies zo worden berekend als in Excel, dus het bestand is niet gewijzigd. Gebruik Vernieuwen in Excel. {error}',
+  dlgQueriesBuiltInFailed:
+    "De query's konden niet worden vernieuwd, dus het bestand is niet gewijzigd. {error}",
+  dlgQueriesBuiltInTimeout:
+    'Het vernieuwen was niet binnen 15 minuten klaar en is gestopt. Het bestand is niet gewijzigd.',
+  dlgQueriesBuiltInNotFile:
+    'Alleen een opgeslagen .xlsx- of .xlsm-bestand kan worden vernieuwd. Sla het eerst op als .xlsx.',
+  dlgQueriesBuiltInReopenFailed:
+    'Het bestand is vernieuwd, maar kon hier niet opnieuw worden geopend. Open het opnieuw via Start.',
   dlgPasteSpecialTitle: 'Plakken speciaal',
   dlgPasteSpecialPaste: 'Plakken',
   dlgPasteSpecialAll: 'Alles',

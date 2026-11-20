@@ -108,6 +108,24 @@ export const hi = {
   dlgQueriesRefreshFailed: 'Excel क्वेरी रीफ़्रेश नहीं कर सका, इसलिए फ़ाइल नहीं बदली। {error}',
   dlgQueriesRefreshReopenFailed:
     'Excel ने फ़ाइल रीफ़्रेश कर दी, लेकिन उसे यहाँ दोबारा नहीं खोला जा सका। होम से उसे फिर से खोलें।',
+  dlgQueriesNoteBuiltIn:
+    'दिखाई गई पंक्तियाँ पिछली बार सहेजे गए परिणाम हैं। रीफ़्रेश करें क्वेरी की गणना यहीं, Excel के बिना करता है और फ़ाइल सहेजता है। अगर कोई क्वेरी ठीक Excel की तरह नहीं गिनी जा सकती, तो फ़ाइल नहीं बदली जाती और कारण बताया जाता है।',
+  dlgQueriesBuiltIn: 'रीफ़्रेश करें',
+  dlgQueriesBuiltInTip:
+    'क्वेरी की गणना यहीं, Excel के बिना करता है। बिना सहेजे बदलाव पहले सहेजे जाते हैं।',
+  dlgQueriesBuiltInRunning:
+    'क्वेरी की गणना हो रही है… बड़े या नेटवर्क स्रोतों में कुछ मिनट लग सकते हैं।',
+  dlgQueriesBuiltInDone:
+    'क्वेरी तालिकाएँ रीफ़्रेश हो गईं ({count})। दूसरी शीट के फ़ॉर्मूले अभी पिछले परिणाम दिखा रहे हैं; फ़ाइल खोलने पर Excel उन्हें फिर से गिनता है।',
+  dlgQueriesBuiltInLimit:
+    'इसे यहाँ ठीक Excel की तरह नहीं गिना जा सकता, इसलिए फ़ाइल नहीं बदली गई। Excel में रीफ़्रेश करें का उपयोग करें। {error}',
+  dlgQueriesBuiltInFailed: 'क्वेरी रीफ़्रेश नहीं हो सकीं, इसलिए फ़ाइल नहीं बदली गई। {error}',
+  dlgQueriesBuiltInTimeout:
+    'रीफ़्रेश 15 मिनट में पूरा नहीं हुआ और रोक दिया गया। फ़ाइल नहीं बदली गई।',
+  dlgQueriesBuiltInNotFile:
+    'केवल सहेजी गई .xlsx या .xlsm फ़ाइल रीफ़्रेश की जा सकती है। पहले इसे .xlsx के रूप में सहेजें।',
+  dlgQueriesBuiltInReopenFailed:
+    'फ़ाइल रीफ़्रेश हो गई, लेकिन उसे यहाँ दोबारा नहीं खोला जा सका। होम से उसे फिर से खोलें।',
   dlgPasteSpecialTitle: 'विशेष चिपकाएँ',
   dlgPasteSpecialPaste: 'चिपकाएँ',
   dlgPasteSpecialAll: 'सभी',

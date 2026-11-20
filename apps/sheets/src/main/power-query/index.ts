@@ -56,6 +56,29 @@ export function queryCulture(doc: QueryDocument, options: Omit<EngineOptions, 'h
   return cultureNamed(name)
 }
 
+/**
+ * Evaluates several queries in one section scope, so a query that others
+ * reference is computed once. Raises like evaluateQuery; `onQuery` names the
+ * query about to be computed (for reporting which one failed).
+ */
+export function evaluateQueries(
+  doc: QueryDocument,
+  names: readonly string[],
+  options: EngineOptions & { readonly onQuery?: (name: string) => void },
+): Map<string, MValue> {
+  const culture = queryCulture(doc, options)
+  const evaluator = new Evaluator(buildLibrary(options.host, culture))
+  const scope = evaluator.sectionScope(doc.members)
+  const out = new Map<string, MValue>()
+  for (const name of names) {
+    options.onQuery?.(name)
+    const query = scope.lookup(name)
+    if (!query) throw new MError('Expression.Error', `The query '${name}' was not found.`)
+    out.set(name, query())
+  }
+  return out
+}
+
 /** Evaluates one query of the document; raises an MError when it fails, EngineLimit when it can't be exact. */
 export function evaluateQuery(doc: QueryDocument, name: string, options: EngineOptions): MValue {
   const culture = queryCulture(doc, options)

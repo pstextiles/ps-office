@@ -65,8 +65,14 @@ export function readZip(bytes: Uint8Array): ZipEntries {
       const len = buf.readUInt16LE(e + 2)
       if (id === 1) {
         let q = e + 4
-        if (size === 0xffffffff) ((size = Number(buf.readBigUInt64LE(q))), (q += 8))
-        if (compressed === 0xffffffff) ((compressed = Number(buf.readBigUInt64LE(q))), (q += 8))
+        if (size === 0xffffffff) {
+          size = Number(buf.readBigUInt64LE(q))
+          q += 8
+        }
+        if (compressed === 0xffffffff) {
+          compressed = Number(buf.readBigUInt64LE(q))
+          q += 8
+        }
         if (local === 0xffffffff) local = Number(buf.readBigUInt64LE(q))
       }
       e += 4 + len

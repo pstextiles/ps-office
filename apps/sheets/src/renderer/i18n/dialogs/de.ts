@@ -115,6 +115,25 @@ export const de = {
     'Excel konnte die Abfragen nicht aktualisieren, die Datei wurde daher nicht geändert. {error}',
   dlgQueriesRefreshReopenFailed:
     'Excel hat die Datei aktualisiert, sie konnte hier aber nicht neu geöffnet werden. Öffnen Sie sie erneut über die Startseite.',
+  dlgQueriesNoteBuiltIn:
+    'Die angezeigten Zeilen sind die zuletzt gespeicherten Ergebnisse. „Aktualisieren“ berechnet die Abfragen hier, ohne Excel, und speichert die Datei. Lässt sich eine Abfrage nicht genau so berechnen wie in Excel, bleibt die Datei unverändert und Sie erfahren den Grund.',
+  dlgQueriesBuiltIn: 'Aktualisieren',
+  dlgQueriesBuiltInTip:
+    'Berechnet die Abfragen hier, ohne Excel. Nicht gespeicherte Änderungen werden zuerst gespeichert.',
+  dlgQueriesBuiltInRunning:
+    'Abfragen werden berechnet… Große Quellen oder Netzwerkquellen können einige Minuten dauern.',
+  dlgQueriesBuiltInDone:
+    'Abfragetabellen aktualisiert ({count}). Formeln auf anderen Blättern zeigen noch ihre vorherigen Ergebnisse; Excel berechnet sie beim Öffnen der Datei neu.',
+  dlgQueriesBuiltInLimit:
+    'Das lässt sich hier nicht genau so berechnen wie in Excel, daher wurde die Datei nicht geändert. Verwenden Sie „In Excel aktualisieren“. {error}',
+  dlgQueriesBuiltInFailed:
+    'Die Abfragen konnten nicht aktualisiert werden, daher wurde die Datei nicht geändert. {error}',
+  dlgQueriesBuiltInTimeout:
+    'Die Aktualisierung wurde nicht innerhalb von 15 Minuten fertig und wurde abgebrochen. Die Datei wurde nicht geändert.',
+  dlgQueriesBuiltInNotFile:
+    'Nur eine gespeicherte .xlsx- oder .xlsm-Datei kann aktualisiert werden. Speichern Sie sie zuerst als .xlsx.',
+  dlgQueriesBuiltInReopenFailed:
+    'Die Datei wurde aktualisiert, konnte hier aber nicht neu geöffnet werden. Öffnen Sie sie erneut über die Startseite.',
   dlgPasteSpecialTitle: 'Inhalte einfügen',
   dlgPasteSpecialPaste: 'Einfügen',
   dlgPasteSpecialAll: 'Alles',

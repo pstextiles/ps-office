@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 
 import type { WorkbookQueriesResult } from '../shared/desktop-api'
 import { useI18n } from './i18n/locale'
@@ -21,17 +21,23 @@ function qualifiedRange(destination: NonNullable<Query['destination']>): string 
 
 /// Data › Queries & Connections (genoffice#2051): the workbook's Power Query
 /// queries and data connections, and where each one's rows are loaded.
-/// Clicking a loaded query selects its rows. There is no query engine here:
-/// on Windows, Refresh in Excel has the installed Excel refresh and save the
-/// file, and the workbook is reopened (PS Office).
+/// Clicking a loaded query selects its rows. Refresh (PS Office) has the
+/// built-in engine compute the queries and write their tables; on Windows,
+/// Refresh in Excel has the installed Excel refresh and save the file. Either
+/// way the workbook is reopened.
 export function QueriesDialog({
   load,
+  onRefreshBuiltIn,
   onRefresh,
   onCancelRefresh,
   onGo,
   onClose,
 }: {
   readonly load: () => Promise<WorkbookQueriesResult>
+  /// Built-in refresh; absent in builds without it. What to tell the person once
+  /// the workbook is reopened (formulas elsewhere keep their previous results), or an error.
+  readonly onRefreshBuiltIn?:
+    (() => Promise<{ readonly done: string } | { readonly error: string }>) | undefined
   /// Refresh in Excel; absent where it cannot run. An error message, or null once reopened.
   readonly onRefresh?: (() => Promise<string | null>) | undefined
   /// Stops a running Refresh in Excel; its onRefresh then resolves with the cancelled message.
@@ -44,6 +50,12 @@ export function QueriesDialog({
   const [queries, setQueries] = useState<WorkbookQueriesResult | null>(null)
   const [error, setError] = useState<string | null>(null)
   const [refreshing, setRefreshing] = useState(false)
+  // which refresh is running: only the one in Excel can be cancelled
+  const [builtIn, setBuiltIn] = useState(false)
+  // the built-in refresh's result note, kept on screen: the status bar cuts long lines
+  const [done, setDone] = useState<string | null>(null)
+  const loadRef = useRef(load)
+  loadRef.current = load
   // seconds since Refresh in Excel started: a slow PC takes minutes, and a
   // ticking clock tells the person it is still working
   const [elapsed, setElapsed] = useState(0)
@@ -76,9 +88,32 @@ export function QueriesDialog({
     else setError(failure)
   }
 
+  const refreshBuiltIn = async (): Promise<void> => {
+    if (!onRefreshBuiltIn || refreshing) return
+    setError(null)
+    setDone(null)
+    setBuiltIn(true)
+    setRefreshing(true)
+    const result = await onRefreshBuiltIn().catch((err: unknown) => ({
+      error: t('dlgQueriesBuiltInFailed', {
+        error: err instanceof Error ? err.message : String(err),
+      }),
+    }))
+    setRefreshing(false)
+    setBuiltIn(false)
+    if ('error' in result) {
+      setError(result.error)
+      return
+    }
+    setDone(result.done)
+    // the workbook was reopened: show its tables' new row counts
+    setQueries(await loadRef.current().catch(() => null))
+  }
+
   const refresh = async (): Promise<void> => {
     if (!onRefresh || refreshing) return
     setError(null)
+    setDone(null)
     setCancelling(false)
     setRefreshing(true)
     const failure = await onRefresh().catch((err: unknown) =>
@@ -141,13 +176,24 @@ export function QueriesDialog({
           )}
           {queries && queries.length > 0 && (
             <p className="dialog-note">
-              {t(onRefresh ? 'dlgQueriesNoteRefresh' : 'dlgQueriesNote')}
+              {t(
+                onRefreshBuiltIn
+                  ? 'dlgQueriesNoteBuiltIn'
+                  : onRefresh
+                    ? 'dlgQueriesNoteRefresh'
+                    : 'dlgQueriesNote',
+              )}
+            </p>
+          )}
+          {done && !refreshing && (
+            <p className="dialog-note" role="status">
+              {done}
             </p>
           )}
           {refreshing && (
             <p className="dialog-note" role="status">
-              {t('dlgQueriesRefreshing')} {Math.floor(elapsed / 60)}:
-              {String(elapsed % 60).padStart(2, '0')}
+              {t(builtIn ? 'dlgQueriesBuiltInRunning' : 'dlgQueriesRefreshing')}{' '}
+              {Math.floor(elapsed / 60)}:{String(elapsed % 60).padStart(2, '0')}
             </p>
           )}
           {error && (
@@ -157,6 +203,16 @@ export function QueriesDialog({
           )}
         </section>
         <div className="dialog-actions">
+          {onRefreshBuiltIn && queries && queries.length > 0 && (
+            <button
+              type="button"
+              disabled={refreshing}
+              data-tip={t('dlgQueriesBuiltInTip')}
+              onClick={() => void refreshBuiltIn()}
+            >
+              {t('dlgQueriesBuiltIn')}
+            </button>
+          )}
           {onRefresh && queries && queries.length > 0 && (
             <button
               type="button"
@@ -167,7 +223,7 @@ export function QueriesDialog({
               {t('dlgQueriesRefreshExcel')}
             </button>
           )}
-          {refreshing && onCancelRefresh && (
+          {refreshing && !builtIn && onCancelRefresh && (
             <button
               type="button"
               disabled={cancelling}

@@ -5277,6 +5277,62 @@ export function App({
     }
   }
 
+  /// Data › Queries & Connections › Refresh (PS Office): save pending edits,
+  /// let the built-in engine compute the queries and write the file's query
+  /// tables, then reopen it. Resolves to the note for the dialog (formulas
+  /// elsewhere keep their previous results until Excel opens the file), or to
+  /// an error message; a failure leaves the file as it was.
+  async function refreshQueriesBuiltIn(): Promise<{ done: string } | { error: string }> {
+    const refresh = window.desktopApi?.refreshQueriesBuiltIn
+    const state = lazyWorkbookRef.current
+    if (!refresh || !state) return { error: t('dlgQueriesBuiltInNotFile') }
+    const file = state.file
+    if (
+      !file.path ||
+      file.needsSaveAs ||
+      file.unsavedNew ||
+      file.csvPath !== undefined ||
+      !/\.xls[xm]$/i.test(file.path)
+    ) {
+      return { error: t('dlgQueriesBuiltInNotFile') }
+    }
+    if (!(await commitActiveEditor())) return { error: t('dlgQueriesRefreshSaveFailed') }
+    // the engine reads the saved file, so edits made here must be in it first
+    if (journalSize(state.editJournal) > 0) {
+      const saved = await handleSave('save', true)
+      if (!saved.ok) return { error: t('dlgQueriesRefreshSaveFailed') }
+    }
+    // a save reopens the workbook under a new session id
+    const current = lazyWorkbookRef.current
+    const path = current?.file.path
+    if (!current || !path) return { error: t('dlgQueriesBuiltInNotFile') }
+    const result = await refresh({ sessionId: current.file.sessionId })
+    if (!result.ok) {
+      const detail = [result.query, result.detail].filter(Boolean).join(': ')
+      switch (result.code) {
+        case 'limit':
+          return { error: t('dlgQueriesBuiltInLimit', { error: detail }) }
+        case 'locked':
+          return { error: t('dlgQueriesRefreshLocked') }
+        case 'timeout':
+          return { error: t('dlgQueriesBuiltInTimeout') }
+        case 'busy':
+          return { error: t('dlgQueriesRefreshBusy') }
+        case 'not-file':
+          return { error: t('dlgQueriesBuiltInNotFile') }
+        default:
+          return { error: t('dlgQueriesBuiltInFailed', { error: detail }) }
+      }
+    }
+    const reopened = await window.desktopApi.reopenWorkbook(path)
+    if (!reopened || !(await openLazyWorkbook(reopened, { continueChat: true }))) {
+      return { error: t('dlgQueriesBuiltInReopenFailed') }
+    }
+    const done = t('dlgQueriesBuiltInDone', { count: result.tables.length })
+    setMessage(done)
+    return { done }
+  }
+
   /// Data › Queries & Connections › Refresh in Excel: save pending edits, let
   /// the installed Excel refresh the file on disk, then reopen it. Resolves
   /// to an error message for the dialog, or null once the refreshed workbook
@@ -5945,6 +6001,9 @@ export function App({
           workbookFile
             ? window.desktopApi.readWorkbookQueries({ sessionId: workbookFile.sessionId })
             : Promise.resolve([])
+        }
+        onRefreshQueriesBuiltIn={
+          window.desktopApi?.refreshQueriesBuiltIn ? refreshQueriesBuiltIn : undefined
         }
         onRefreshQueriesInExcel={
           window.desktopApi?.refreshQueriesInExcel ? refreshQueriesInExcel : undefined

@@ -111,6 +111,24 @@ export const id = {
   dlgQueriesRefreshFailed: 'Excel tidak dapat menyegarkan kueri, jadi file tidak berubah. {error}',
   dlgQueriesRefreshReopenFailed:
     'Excel sudah menyegarkan file, tetapi file tidak dapat dibuka kembali di sini. Buka lagi dari Beranda.',
+  dlgQueriesNoteBuiltIn:
+    'Baris yang ditampilkan adalah hasil terakhir yang disimpan. Segarkan menghitung kueri di sini, tanpa Excel, lalu menyimpan file. Jika kueri tidak dapat dihitung persis seperti di Excel, file tidak diubah dan alasannya diberitahukan.',
+  dlgQueriesBuiltIn: 'Segarkan',
+  dlgQueriesBuiltInTip:
+    'Menghitung kueri di sini, tanpa Excel. Perubahan yang belum disimpan akan disimpan dulu.',
+  dlgQueriesBuiltInRunning:
+    'Menghitung kueri… Sumber yang besar atau di jaringan dapat memakan waktu beberapa menit.',
+  dlgQueriesBuiltInDone:
+    'Tabel kueri disegarkan ({count}). Rumus di lembar lain masih menampilkan hasil sebelumnya; Excel menghitungnya ulang saat membuka file.',
+  dlgQueriesBuiltInLimit:
+    'Ini tidak dapat dihitung di sini persis seperti di Excel, jadi file tidak diubah. Gunakan Segarkan di Excel. {error}',
+  dlgQueriesBuiltInFailed: 'Kueri tidak dapat disegarkan, jadi file tidak diubah. {error}',
+  dlgQueriesBuiltInTimeout:
+    'Penyegaran tidak selesai dalam 15 menit dan dihentikan. File tidak diubah.',
+  dlgQueriesBuiltInNotFile:
+    'Hanya file .xlsx atau .xlsm yang sudah disimpan yang dapat disegarkan. Simpan dulu sebagai .xlsx.',
+  dlgQueriesBuiltInReopenFailed:
+    'File sudah disegarkan, tetapi tidak dapat dibuka kembali di sini. Buka lagi dari Beranda.',
   dlgPasteSpecialTitle: 'Tempel Spesial',
   dlgPasteSpecialPaste: 'Tempel',
   dlgPasteSpecialAll: 'Semua',

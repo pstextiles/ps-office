@@ -202,6 +202,7 @@ import {
   workbookQueriesRequestSchema,
   workbookQueriesResultSchema,
   workbookQueriesRefreshResultSchema,
+  workbookQueriesBuiltInRefreshResultSchema,
   localImageRequestSchema,
   localImageResultSchema,
   screenCaptureRequestSchema,
@@ -272,6 +273,7 @@ import {
   refreshWorkbookInExcel,
   stopExcelRefreshes,
 } from './excel-refresh'
+import { refreshWorkbookBuiltIn } from './builtin-refresh'
 import {
   appendSaveFailure,
   describeReopenFailure,
@@ -4641,6 +4643,37 @@ export function registerSheetsIpc(): void {
   ipcMain.handle(IPC_CHANNELS.cancelQueriesRefreshInExcel, (event) => {
     sessionFor(event)
     cancelExcelRefresh()
+  })
+  // Built-in refresh (PS Office): the same sessions as Refresh in Excel. The
+  // engine reads the session's snapshot (what is on screen, saved first by
+  // the renderer) and the result goes through the ordinary save path to the
+  // file; the renderer reopens it.
+  ipcMain.handle(IPC_CHANNELS.refreshQueriesBuiltIn, async (event, input: unknown) => {
+    const entry = sessionFor(event)
+    const request = workbookQueriesRequestSchema.parse(input)
+    const session = entry.sessions.get(request.sessionId)
+    if (!session) throw new Error('Unknown workbook session.')
+    const copy =
+      session.suggestSaveAs !== undefined ||
+      session.unsavedNew === true ||
+      session.csvSourcePath !== undefined ||
+      session.importTempDir !== undefined ||
+      session.restoreTarget !== undefined ||
+      session.password !== undefined ||
+      session.emptySource === true ||
+      session.odsConverted === true
+    if (copy || !refreshablePath(session.path) || !existsSync(session.path)) {
+      return workbookQueriesBuiltInRefreshResultSchema.parse({ ok: false, code: 'not-file' })
+    }
+    const result = await refreshWorkbookBuiltIn({
+      client: entry.client,
+      sourcePath: session.snapshotPath,
+      targetPath: session.path,
+      systemCulture: app.getSystemLocale(),
+    })
+    return workbookQueriesBuiltInRefreshResultSchema.parse(
+      result.ok ? { ok: true, tables: result.tables.slice(0, 500) } : result,
+    )
   })
 
   ipcMain.handle(IPC_CHANNELS.exportPdf, async (event, input: unknown) => {

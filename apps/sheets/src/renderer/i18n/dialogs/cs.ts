@@ -110,6 +110,23 @@ export const cs = {
   dlgQueriesRefreshFailed: 'Excel nedokázal aktualizovat dotazy, proto se soubor nezměnil. {error}',
   dlgQueriesRefreshReopenFailed:
     'Excel soubor aktualizoval, ale zde ho nebylo možné znovu otevřít. Otevřete ho znovu z domovské stránky.',
+  dlgQueriesNoteBuiltIn:
+    'Zobrazené řádky jsou naposledy uložené výsledky. Aktualizovat vypočítá dotazy zde, bez Excelu, a soubor uloží. Pokud dotaz nelze vypočítat přesně jako v Excelu, soubor zůstane beze změny a dozvíte se důvod.',
+  dlgQueriesBuiltIn: 'Aktualizovat',
+  dlgQueriesBuiltInTip: 'Vypočítá dotazy zde, bez Excelu. Neuložené změny se nejprve uloží.',
+  dlgQueriesBuiltInRunning:
+    'Počítají se dotazy… Velké nebo síťové zdroje mohou trvat několik minut.',
+  dlgQueriesBuiltInDone:
+    'Tabulky dotazů byly aktualizovány ({count}). Vzorce na ostatních listech zatím ukazují předchozí výsledky; Excel je přepočítá při otevření souboru.',
+  dlgQueriesBuiltInLimit:
+    'Tohle zde nelze vypočítat přesně jako v Excelu, proto soubor nebyl změněn. Použijte Aktualizovat v Excelu. {error}',
+  dlgQueriesBuiltInFailed: 'Dotazy se nepodařilo aktualizovat, proto soubor nebyl změněn. {error}',
+  dlgQueriesBuiltInTimeout:
+    'Aktualizace neskončila do 15 minut a byla zastavena. Soubor nebyl změněn.',
+  dlgQueriesBuiltInNotFile:
+    'Aktualizovat lze jen uložený soubor .xlsx nebo .xlsm. Nejprve ho uložte jako .xlsx.',
+  dlgQueriesBuiltInReopenFailed:
+    'Soubor byl aktualizován, ale zde ho nebylo možné znovu otevřít. Otevřete ho znovu z domovské stránky.',
   dlgPasteSpecialTitle: 'Vložit jinak',
   dlgPasteSpecialPaste: 'Vložit',
   dlgPasteSpecialAll: 'Vše',

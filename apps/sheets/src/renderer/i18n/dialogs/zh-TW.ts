@@ -101,6 +101,19 @@ export const zhTW = {
   dlgQueriesRefreshSaveFailed: '無法儲存變更，因此沒有開始重新整理。',
   dlgQueriesRefreshFailed: 'Excel 無法重新整理查詢，檔案沒有變更。{error}',
   dlgQueriesRefreshReopenFailed: 'Excel 已重新整理檔案，但無法在這裡重新開啟。請從首頁重新開啟。',
+  dlgQueriesNoteBuiltIn:
+    '顯示的列是上次儲存的結果。「重新整理」會在這裡計算查詢（不需要 Excel）並儲存檔案。如果某個查詢無法與 Excel 完全一致地計算，檔案會維持不變並告知原因。',
+  dlgQueriesBuiltIn: '重新整理',
+  dlgQueriesBuiltInTip: '在這裡計算查詢，不需要 Excel。未儲存的變更會先儲存。',
+  dlgQueriesBuiltInRunning: '正在計算查詢… 資料量大或位於網路上的來源可能需要幾分鐘。',
+  dlgQueriesBuiltInDone:
+    '已重新整理查詢表格（{count} 個）。其他工作表中的公式仍顯示先前的結果；Excel 開啟檔案時會重新計算。',
+  dlgQueriesBuiltInLimit:
+    '這裡無法與 Excel 完全一致地計算，因此未變更檔案。請使用「在 Excel 中重新整理」。{error}',
+  dlgQueriesBuiltInFailed: '無法重新整理查詢，因此未變更檔案。{error}',
+  dlgQueriesBuiltInTimeout: '重新整理未能在 15 分鐘內完成，已停止。檔案未變更。',
+  dlgQueriesBuiltInNotFile: '只有已儲存的 .xlsx 或 .xlsm 檔案能重新整理。請先另存為 .xlsx。',
+  dlgQueriesBuiltInReopenFailed: '檔案已重新整理，但無法在這裡重新開啟。請從首頁重新開啟。',
   dlgPasteSpecialTitle: '選擇性貼上',
   dlgPasteSpecialPaste: '貼上',
   dlgPasteSpecialAll: '全部',

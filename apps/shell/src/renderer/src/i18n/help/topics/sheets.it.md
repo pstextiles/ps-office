@@ -80,6 +80,7 @@ La scheda Formule, pulsante per pulsante:
 - Ordinamento e filtro.
 - Blocca finestre.
 - .csv / .tsv: si aprono direttamente come tabella (il tsv delimitato da tabulazioni viene letto come uno solo); il salvataggio scrive indietro nel formato originale.
+- Power Query: scheda Dati ▸ **Query e connessioni** ▸ **Aggiorna** calcola le query qui, senza Excel, e salva il file. Se una query non può essere calcolata esattamente come in Excel, il file non viene modificato e ne viene indicato il motivo. Le formule negli altri fogli mantengono i risultati precedenti finché Excel non apre il file.
 - Power Query (Windows): scheda Dati ▸ **Query e connessioni** ▸ **Aggiorna in Excel** fa aggiornare le query (comprese le origini in rete) all'Excel installato su questo PC e salva il file, che poi viene riaperto qui. Le modifiche non salvate vengono salvate prima; se un'origine non è raggiungibile, il file non viene modificato.
 
 ## Menu contestuali

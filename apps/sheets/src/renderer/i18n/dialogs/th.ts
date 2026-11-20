@@ -109,6 +109,23 @@ export const th = {
   dlgQueriesRefreshFailed: 'Excel รีเฟรชคิวรีไม่ได้ ไฟล์จึงไม่ได้เปลี่ยนแปลง {error}',
   dlgQueriesRefreshReopenFailed:
     'Excel รีเฟรชไฟล์แล้ว แต่เปิดไฟล์อีกครั้งที่นี่ไม่ได้ โปรดเปิดใหม่จากหน้าแรก',
+  dlgQueriesNoteBuiltIn:
+    'แถวที่แสดงคือผลลัพธ์ที่บันทึกไว้ล่าสุด รีเฟรชจะคำนวณคิวรีที่นี่โดยไม่ต้องใช้ Excel แล้วบันทึกไฟล์ หากคิวรีใดคำนวณให้ตรงกับ Excel ทุกประการไม่ได้ ไฟล์จะไม่ถูกเปลี่ยนและจะแจ้งเหตุผลให้ทราบ',
+  dlgQueriesBuiltIn: 'รีเฟรช',
+  dlgQueriesBuiltInTip:
+    'คำนวณคิวรีที่นี่โดยไม่ต้องใช้ Excel การเปลี่ยนแปลงที่ยังไม่ได้บันทึกจะถูกบันทึกก่อน',
+  dlgQueriesBuiltInRunning:
+    'กำลังคำนวณคิวรี… แหล่งข้อมูลขนาดใหญ่หรืออยู่บนเครือข่ายอาจใช้เวลาสองสามนาที',
+  dlgQueriesBuiltInDone:
+    'รีเฟรชตารางคิวรีแล้ว ({count}) สูตรในแผ่นงานอื่นยังแสดงผลลัพธ์เดิมอยู่ Excel จะคำนวณใหม่เมื่อเปิดไฟล์',
+  dlgQueriesBuiltInLimit:
+    'คำนวณที่นี่ให้ตรงกับ Excel ทุกประการไม่ได้ จึงไม่ได้เปลี่ยนไฟล์ โปรดใช้ รีเฟรชใน Excel {error}',
+  dlgQueriesBuiltInFailed: 'รีเฟรชคิวรีไม่ได้ จึงไม่ได้เปลี่ยนไฟล์ {error}',
+  dlgQueriesBuiltInTimeout: 'การรีเฟรชไม่เสร็จภายใน 15 นาทีจึงถูกหยุด ไฟล์ไม่ถูกเปลี่ยน',
+  dlgQueriesBuiltInNotFile:
+    'รีเฟรชได้เฉพาะไฟล์ .xlsx หรือ .xlsm ที่บันทึกแล้ว โปรดบันทึกเป็น .xlsx ก่อน',
+  dlgQueriesBuiltInReopenFailed:
+    'รีเฟรชไฟล์แล้ว แต่เปิดไฟล์อีกครั้งที่นี่ไม่ได้ โปรดเปิดใหม่จากหน้าแรก',
   dlgPasteSpecialTitle: 'วางแบบพิเศษ',
   dlgPasteSpecialPaste: 'วาง',
   dlgPasteSpecialAll: 'ทั้งหมด',

@@ -113,6 +113,25 @@ export const pt = {
     'O Excel não conseguiu atualizar as consultas, então o arquivo não foi alterado. {error}',
   dlgQueriesRefreshReopenFailed:
     'O Excel atualizou o arquivo, mas não foi possível reabri-lo aqui. Abra-o novamente pela página inicial.',
+  dlgQueriesNoteBuiltIn:
+    'As linhas mostradas são os últimos resultados salvos. Atualizar calcula as consultas aqui, sem o Excel, e salva o arquivo. Se uma consulta não puder ser calculada exatamente como no Excel, o arquivo fica inalterado e o motivo é informado.',
+  dlgQueriesBuiltIn: 'Atualizar',
+  dlgQueriesBuiltInTip:
+    'Calcula as consultas aqui, sem o Excel. As alterações não salvas são salvas primeiro.',
+  dlgQueriesBuiltInRunning:
+    'Calculando as consultas… Fontes grandes ou em rede podem levar alguns minutos.',
+  dlgQueriesBuiltInDone:
+    'Tabelas de consulta atualizadas ({count}). As fórmulas de outras planilhas ainda mostram os resultados anteriores; o Excel as recalcula ao abrir o arquivo.',
+  dlgQueriesBuiltInLimit:
+    'Isso não pode ser calculado aqui exatamente como no Excel, então o arquivo não foi alterado. Use Atualizar no Excel. {error}',
+  dlgQueriesBuiltInFailed:
+    'Não foi possível atualizar as consultas, então o arquivo não foi alterado. {error}',
+  dlgQueriesBuiltInTimeout:
+    'A atualização não terminou em 15 minutos e foi interrompida. O arquivo não foi alterado.',
+  dlgQueriesBuiltInNotFile:
+    'Só um arquivo .xlsx ou .xlsm salvo pode ser atualizado. Salve-o primeiro como .xlsx.',
+  dlgQueriesBuiltInReopenFailed:
+    'O arquivo foi atualizado, mas não foi possível reabri-lo aqui. Abra-o novamente pela página inicial.',
   dlgPasteSpecialTitle: 'Colar especial',
   dlgPasteSpecialPaste: 'Colar',
   dlgPasteSpecialAll: 'Tudo',

@@ -80,6 +80,7 @@ Formüller sekmesi, düğme düğme:
 - Sıralama ve filtreleme.
 - Sabitlenmiş bölmeler.
 - .csv / .tsv: doğrudan tablo olarak açılır (sekme ayırıcılı tsv tek parça olarak ayrıştırılır); kaydetmek özgün biçimi geri yazar.
+- Power Query: Veri sekmesi ▸ **Sorgular ve Bağlantılar** ▸ **Yenile**, sorguları Excel olmadan burada hesaplar ve dosyayı kaydeder. Bir sorgu Excel'deki gibi tam olarak hesaplanamıyorsa dosya değişmez ve nedeni bildirilir. Diğer sayfalardaki formüller, dosya Excel'de açılana kadar önceki sonuçlarını korur.
 - Power Query (Windows): Veri sekmesi ▸ **Sorgular ve Bağlantılar** ▸ **Excel'de Yenile**, bu bilgisayarda yüklü Excel'in sorguları (ağdaki kaynaklar dahil) yenilemesini ve dosyayı kaydetmesini sağlar; ardından dosya burada yeniden açılır. Kaydedilmemiş değişiklikler önce kaydedilir; bir kaynağa ulaşılamazsa dosya değişmez.
 
 ## Sağ tık menüleri

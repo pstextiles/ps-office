@@ -49,6 +49,7 @@ import type {
   WorkbookRangeResult,
   WorkbookRecalcRequest,
   WorkbookRecalcResult,
+  WorkbookQueriesBuiltInRefreshResult,
   WorkbookQueriesRefreshResult,
   WorkbookQueriesResult,
   WorkbookRichRun,
@@ -346,6 +347,23 @@ const desktopApi: DesktopApi = {
       }
     }
     return result as WorkbookQueriesResult
+  },
+  // the built-in refresh runs on every platform (src/main/builtin-refresh.ts)
+  async refreshQueriesBuiltIn(request: unknown): Promise<WorkbookQueriesBuiltInRefreshResult> {
+    if (!isRecord(request) || !isUuid(request.sessionId)) {
+      throw new Error('Invalid queries request.')
+    }
+    const result: unknown = await ipcRenderer.invoke(IPC_CHANNELS.refreshQueriesBuiltIn, {
+      sessionId: request.sessionId,
+    })
+    // structural check; the main process zod-validates the full shape
+    if (!isRecord(result) || typeof result.ok !== 'boolean') {
+      throw new Error('Invalid refresh response.')
+    }
+    if (result.ok ? !Array.isArray(result.tables) : typeof result.code !== 'string') {
+      throw new Error('Invalid refresh response.')
+    }
+    return result as WorkbookQueriesBuiltInRefreshResult
   },
   // Refresh in Excel drives the Excel installed on Windows; elsewhere the
   // method is absent and the dialog shows no button.

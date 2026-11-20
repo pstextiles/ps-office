@@ -115,6 +115,25 @@ export const fr = {
     "Excel n'a pas pu actualiser les requêtes, le fichier n'a donc pas été modifié. {error}",
   dlgQueriesRefreshReopenFailed:
     "Excel a actualisé le fichier, mais il n'a pas pu être rouvert ici. Rouvrez-le depuis l'accueil.",
+  dlgQueriesNoteBuiltIn:
+    'Les lignes affichées sont les derniers résultats enregistrés. Actualiser calcule les requêtes ici, sans Excel, puis enregistre le fichier. Si une requête ne peut pas être calculée exactement comme dans Excel, le fichier reste inchangé et la raison vous est indiquée.',
+  dlgQueriesBuiltIn: 'Actualiser',
+  dlgQueriesBuiltInTip:
+    "Calcule les requêtes ici, sans Excel. Les modifications non enregistrées sont d'abord enregistrées.",
+  dlgQueriesBuiltInRunning:
+    'Calcul des requêtes… Les sources volumineuses ou en réseau peuvent prendre quelques minutes.',
+  dlgQueriesBuiltInDone:
+    "Tables de requête actualisées ({count}). Les formules des autres feuilles affichent encore leurs résultats précédents ; Excel les recalcule à l'ouverture du fichier.",
+  dlgQueriesBuiltInLimit:
+    "Ce calcul ne peut pas être fait ici exactement comme dans Excel ; le fichier n'a donc pas été modifié. Utilisez Actualiser dans Excel. {error}",
+  dlgQueriesBuiltInFailed:
+    "Les requêtes n'ont pas pu être actualisées ; le fichier n'a donc pas été modifié. {error}",
+  dlgQueriesBuiltInTimeout:
+    "L'actualisation ne s'est pas terminée en 15 minutes et a été arrêtée. Le fichier n'a pas été modifié.",
+  dlgQueriesBuiltInNotFile:
+    "Seul un fichier .xlsx ou .xlsm enregistré peut être actualisé. Enregistrez-le d'abord au format .xlsx.",
+  dlgQueriesBuiltInReopenFailed:
+    "Le fichier a été actualisé, mais il n'a pas pu être rouvert ici. Rouvrez-le depuis l'accueil.",
   dlgPasteSpecialTitle: 'Collage spécial',
   dlgPasteSpecialPaste: 'Coller',
   dlgPasteSpecialAll: 'Tout',

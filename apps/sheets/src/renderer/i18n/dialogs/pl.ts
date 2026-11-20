@@ -111,6 +111,25 @@ export const pl = {
     'Excel nie mógł odświeżyć zapytań, więc plik nie został zmieniony. {error}',
   dlgQueriesRefreshReopenFailed:
     'Excel odświeżył plik, ale nie udało się go tu ponownie otworzyć. Otwórz go jeszcze raz ze strony głównej.',
+  dlgQueriesNoteBuiltIn:
+    'Pokazane wiersze to ostatnio zapisane wyniki. Odśwież oblicza zapytania tutaj, bez programu Excel, i zapisuje plik. Jeśli zapytania nie da się obliczyć dokładnie tak jak w programie Excel, plik pozostaje bez zmian i podawany jest powód.',
+  dlgQueriesBuiltIn: 'Odśwież',
+  dlgQueriesBuiltInTip:
+    'Oblicza zapytania tutaj, bez programu Excel. Niezapisane zmiany są najpierw zapisywane.',
+  dlgQueriesBuiltInRunning:
+    'Obliczanie zapytań… Duże źródła lub źródła sieciowe mogą zająć kilka minut.',
+  dlgQueriesBuiltInDone:
+    'Odświeżono tabele zapytań ({count}). Formuły w innych arkuszach nadal pokazują poprzednie wyniki; Excel przeliczy je po otwarciu pliku.',
+  dlgQueriesBuiltInLimit:
+    'Nie da się tego obliczyć tutaj dokładnie tak jak w programie Excel, więc plik nie został zmieniony. Użyj polecenia Odśwież w programie Excel. {error}',
+  dlgQueriesBuiltInFailed:
+    'Nie udało się odświeżyć zapytań, więc plik nie został zmieniony. {error}',
+  dlgQueriesBuiltInTimeout:
+    'Odświeżanie nie zakończyło się w ciągu 15 minut i zostało zatrzymane. Plik nie został zmieniony.',
+  dlgQueriesBuiltInNotFile:
+    'Odświeżyć można tylko zapisany plik .xlsx lub .xlsm. Najpierw zapisz go jako .xlsx.',
+  dlgQueriesBuiltInReopenFailed:
+    'Plik został odświeżony, ale nie udało się go tu ponownie otworzyć. Otwórz go jeszcze raz ze strony głównej.',
   dlgPasteSpecialTitle: 'Wklej specjalnie',
   dlgPasteSpecialPaste: 'Wklej',
   dlgPasteSpecialAll: 'Wszystko',

@@ -109,6 +109,24 @@ export const vi = {
   dlgQueriesRefreshFailed: 'Excel không làm mới được truy vấn nên tệp không bị thay đổi. {error}',
   dlgQueriesRefreshReopenFailed:
     'Excel đã làm mới tệp nhưng không mở lại được ở đây. Hãy mở lại từ Trang chủ.',
+  dlgQueriesNoteBuiltIn:
+    'Các hàng đang hiển thị là kết quả được lưu gần nhất. Làm mới tính các truy vấn ngay tại đây, không cần Excel, rồi lưu tệp. Nếu một truy vấn không thể tính chính xác như Excel, tệp được giữ nguyên và bạn sẽ được cho biết lý do.',
+  dlgQueriesBuiltIn: 'Làm mới',
+  dlgQueriesBuiltInTip:
+    'Tính các truy vấn ngay tại đây, không cần Excel. Các thay đổi chưa lưu sẽ được lưu trước.',
+  dlgQueriesBuiltInRunning:
+    'Đang tính các truy vấn… Nguồn lớn hoặc nằm trên mạng có thể mất vài phút.',
+  dlgQueriesBuiltInDone:
+    'Đã làm mới các bảng truy vấn ({count}). Công thức ở các trang tính khác vẫn hiển thị kết quả cũ; Excel sẽ tính lại khi mở tệp.',
+  dlgQueriesBuiltInLimit:
+    'Không thể tính ở đây chính xác như Excel nên tệp không bị thay đổi. Hãy dùng Làm mới trong Excel. {error}',
+  dlgQueriesBuiltInFailed: 'Không làm mới được các truy vấn nên tệp không bị thay đổi. {error}',
+  dlgQueriesBuiltInTimeout:
+    'Việc làm mới không xong trong 15 phút nên đã dừng. Tệp không bị thay đổi.',
+  dlgQueriesBuiltInNotFile:
+    'Chỉ tệp .xlsx hoặc .xlsm đã lưu mới làm mới được. Hãy lưu thành .xlsx trước.',
+  dlgQueriesBuiltInReopenFailed:
+    'Tệp đã được làm mới nhưng không mở lại được ở đây. Hãy mở lại từ Trang chủ.',
   dlgPasteSpecialTitle: 'Dán đặc biệt',
   dlgPasteSpecialPaste: 'Dán',
   dlgPasteSpecialAll: 'Tất cả',

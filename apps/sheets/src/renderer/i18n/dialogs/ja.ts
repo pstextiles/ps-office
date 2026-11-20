@@ -111,6 +111,24 @@ export const ja = {
     'Excel がクエリを更新できなかったため、ファイルは変更されていません。{error}',
   dlgQueriesRefreshReopenFailed:
     'Excel はファイルを更新しましたが、ここで開き直せませんでした。ホームから開き直してください。',
+  dlgQueriesNoteBuiltIn:
+    '表示されている行は最後に保存された結果です。［更新］は Excel を使わずにここでクエリを計算し、ファイルを保存します。Excel とまったく同じように計算できないクエリがある場合は、ファイルを変更せずに理由をお知らせします。',
+  dlgQueriesBuiltIn: '更新',
+  dlgQueriesBuiltInTip:
+    'Excel を使わずにここでクエリを計算します。未保存の変更は先に保存されます。',
+  dlgQueriesBuiltInRunning:
+    'クエリを計算しています… データが大きい場合やネットワーク上にある場合は数分かかることがあります。',
+  dlgQueriesBuiltInDone:
+    'クエリのテーブルを更新しました（{count} 件）。ほかのシートの数式は以前の結果のままです。Excel でファイルを開くと再計算されます。',
+  dlgQueriesBuiltInLimit:
+    'Excel とまったく同じようにはここで計算できないため、ファイルは変更していません。［Excel で更新］を使ってください。{error}',
+  dlgQueriesBuiltInFailed: 'クエリを更新できなかったため、ファイルは変更していません。{error}',
+  dlgQueriesBuiltInTimeout:
+    '更新が 15 分以内に終わらなかったため中止しました。ファイルは変更していません。',
+  dlgQueriesBuiltInNotFile:
+    '更新できるのは保存済みの .xlsx または .xlsm ファイルだけです。先に .xlsx として保存してください。',
+  dlgQueriesBuiltInReopenFailed:
+    'ファイルは更新しましたが、ここで開き直せませんでした。ホームから開き直してください。',
   dlgPasteSpecialTitle: '形式を選択して貼り付け',
   dlgPasteSpecialPaste: '貼り付け',
   dlgPasteSpecialAll: 'すべて',

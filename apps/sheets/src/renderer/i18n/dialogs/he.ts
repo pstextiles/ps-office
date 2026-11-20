@@ -104,6 +104,21 @@ export const he = {
   dlgQueriesRefreshFailed: 'Excel לא הצליח לרענן את השאילתות, ולכן הקובץ לא השתנה. {error}',
   dlgQueriesRefreshReopenFailed:
     'Excel רענן את הקובץ, אך לא ניתן היה לפתוח אותו כאן מחדש. פתחו אותו שוב מדף הבית.',
+  dlgQueriesNoteBuiltIn:
+    'השורות המוצגות הן התוצאות האחרונות שנשמרו. ״רענון״ מחשב את השאילתות כאן, ללא Excel, ושומר את הקובץ. אם אי אפשר לחשב שאילתה בדיוק כמו ב-Excel, הקובץ נשאר ללא שינוי ומוצגת הסיבה.',
+  dlgQueriesBuiltIn: 'רענון',
+  dlgQueriesBuiltInTip: 'מחשב את השאילתות כאן, ללא Excel. שינויים שלא נשמרו נשמרים קודם.',
+  dlgQueriesBuiltInRunning:
+    'מחשב את השאילתות… מקורות גדולים או מקורות ברשת עשויים להימשך כמה דקות.',
+  dlgQueriesBuiltInDone:
+    'טבלאות השאילתות רועננו ({count}). נוסחאות בגיליונות אחרים עדיין מציגות את התוצאות הקודמות; Excel מחשב אותן מחדש כשהוא פותח את הקובץ.',
+  dlgQueriesBuiltInLimit:
+    'אי אפשר לחשב זאת כאן בדיוק כמו ב-Excel, ולכן הקובץ לא שונה. השתמשו ב״רענון ב-Excel״. {error}',
+  dlgQueriesBuiltInFailed: 'לא ניתן היה לרענן את השאילתות, ולכן הקובץ לא שונה. {error}',
+  dlgQueriesBuiltInTimeout: 'הרענון לא הסתיים בתוך 15 דקות ונעצר. הקובץ לא שונה.',
+  dlgQueriesBuiltInNotFile: 'אפשר לרענן רק קובץ ‎.xlsx או ‎.xlsm שמור. שמרו אותו קודם כ-‎.xlsx.',
+  dlgQueriesBuiltInReopenFailed:
+    'הקובץ רוענן, אך לא ניתן היה לפתוח אותו כאן מחדש. פתחו אותו שוב מדף הבית.',
   dlgPasteSpecialTitle: 'הדבקה מיוחדת',
   dlgPasteSpecialPaste: 'הדבק',
   dlgPasteSpecialAll: 'הכל',

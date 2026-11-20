@@ -80,6 +80,8 @@ export const IPC_CHANNELS = {
   refreshQueriesInExcel: 'workbook:refresh-queries-in-excel',
   /** Cancel a Refresh in Excel still running */
   cancelQueriesRefreshInExcel: 'workbook:cancel-queries-refresh-in-excel',
+  /** Data › Queries & Connections › Refresh: the built-in engine computes the queries and saves the file (PS Office) */
+  refreshQueriesBuiltIn: 'workbook:refresh-queries-builtin',
   readLocalImage: 'shell:read-local-image',
   closeWorkbook: 'workbook:close',
   saveWorkbook: 'workbook:save',

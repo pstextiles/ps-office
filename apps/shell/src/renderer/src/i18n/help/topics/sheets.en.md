@@ -80,6 +80,7 @@ The Formulas tab, button by button:
 - Sort and filter.
 - Frozen panes.
 - .csv / .tsv: open directly as a table (tab-delimited tsv parsed as one); saving writes the original format back.
+- Power Query: Data tab ▸ **Queries & Connections** ▸ **Refresh** computes the queries here, without Excel, and saves the file. If a query cannot be computed exactly as Excel would, the file is left unchanged and you are told why. Formulas on other sheets keep their previous results until Excel opens the file.
 - Power Query (Windows): Data tab ▸ **Queries & Connections** ▸ **Refresh in Excel** has the Excel installed on this PC refresh the queries (network sources included) and save the file, then reopens it here. Unsaved changes are saved first; if a source cannot be reached, the file is left unchanged.
 
 ## Right-click menus

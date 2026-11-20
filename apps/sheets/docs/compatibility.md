@@ -32,7 +32,11 @@ Any save operation that cannot preserve these parts must fail closed. It must no
 - Editing or executing VBA.
 - Refreshing Power Query or external data in the app. (PS Office: on Windows, Data › Queries &
   Connections › Refresh in Excel hands the refresh to the installed Excel, which saves the file; the
-  app then reopens it. See `src/main/excel-refresh.ts`.)
+  app then reopens it. See `src/main/excel-refresh.ts`. Data › Queries & Connections › Refresh, on
+  every platform, has the built-in engine compute the queries that load into query tables and write
+  them, but only when it can match Excel exactly; otherwise the file is left unchanged. Formulas
+  elsewhere keep their previous results until Excel opens the file. See `src/main/builtin-refresh.ts`
+  and `src/main/power-query/`.)
 - Editing Power Pivot models, ActiveX, OLE, and form controls.
 - Pixel-identical print layout on every font and printer configuration.
 - Guaranteed compatibility with every Excel private extension.

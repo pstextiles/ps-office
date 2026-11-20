@@ -114,6 +114,24 @@ export const ms = {
     'Excel tidak dapat menyegarkan pertanyaan, jadi fail tidak berubah. {error}',
   dlgQueriesRefreshReopenFailed:
     'Excel telah menyegarkan fail, tetapi fail itu tidak dapat dibuka semula di sini. Bukanya semula dari Laman Utama.',
+  dlgQueriesNoteBuiltIn:
+    'Baris yang ditunjukkan ialah hasil terakhir yang disimpan. Segar Semula mengira pertanyaan di sini, tanpa Excel, dan menyimpan fail. Jika pertanyaan tidak dapat dikira tepat seperti dalam Excel, fail tidak diubah dan sebabnya diberitahu.',
+  dlgQueriesBuiltIn: 'Segar Semula',
+  dlgQueriesBuiltInTip:
+    'Mengira pertanyaan di sini, tanpa Excel. Perubahan yang belum disimpan akan disimpan dahulu.',
+  dlgQueriesBuiltInRunning:
+    'Mengira pertanyaan… Sumber yang besar atau dalam rangkaian boleh mengambil masa beberapa minit.',
+  dlgQueriesBuiltInDone:
+    'Jadual pertanyaan disegarkan ({count}). Formula pada helaian lain masih menunjukkan hasil sebelumnya; Excel mengiranya semula apabila membuka fail.',
+  dlgQueriesBuiltInLimit:
+    'Ini tidak dapat dikira di sini tepat seperti dalam Excel, jadi fail tidak diubah. Gunakan Segar Semula dalam Excel. {error}',
+  dlgQueriesBuiltInFailed: 'Pertanyaan tidak dapat disegarkan, jadi fail tidak diubah. {error}',
+  dlgQueriesBuiltInTimeout:
+    'Penyegaran tidak selesai dalam masa 15 minit dan dihentikan. Fail tidak diubah.',
+  dlgQueriesBuiltInNotFile:
+    'Hanya fail .xlsx atau .xlsm yang telah disimpan boleh disegarkan. Simpan sebagai .xlsx dahulu.',
+  dlgQueriesBuiltInReopenFailed:
+    'Fail telah disegarkan, tetapi tidak dapat dibuka semula di sini. Bukanya semula dari Laman Utama.',
   dlgPasteSpecialTitle: 'Tampal Khas',
   dlgPasteSpecialPaste: 'Tampal',
   dlgPasteSpecialAll: 'Semua',

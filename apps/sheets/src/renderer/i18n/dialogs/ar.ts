@@ -107,6 +107,22 @@ export const ar = {
   dlgQueriesRefreshFailed: 'تعذّر على Excel تحديث الاستعلامات، لذا لم يتغيّر الملف. {error}',
   dlgQueriesRefreshReopenFailed:
     'حدّث Excel الملف، لكن تعذّر إعادة فتحه هنا. افتحه مجددًا من الصفحة الرئيسية.',
+  dlgQueriesNoteBuiltIn:
+    'الصفوف المعروضة هي آخر النتائج المحفوظة. «تحديث» يحسب الاستعلامات هنا، دون Excel، ثم يحفظ الملف. إذا تعذّر حساب استعلام تمامًا كما يفعل Excel، يبقى الملف دون تغيير ويُذكر لك السبب.',
+  dlgQueriesBuiltIn: 'تحديث',
+  dlgQueriesBuiltInTip: 'يحسب الاستعلامات هنا، دون Excel. تُحفظ التغييرات غير المحفوظة أولاً.',
+  dlgQueriesBuiltInRunning:
+    'جارٍ حساب الاستعلامات… قد تستغرق المصادر الكبيرة أو الشبكية بضع دقائق.',
+  dlgQueriesBuiltInDone:
+    'تم تحديث جداول الاستعلامات ({count}). الصيغ في الأوراق الأخرى ما زالت تعرض نتائجها السابقة؛ يعيد Excel حسابها عند فتح الملف.',
+  dlgQueriesBuiltInLimit:
+    'يتعذّر حساب هذا هنا تمامًا كما يفعل Excel، لذلك لم يتغيّر الملف. استخدم «التحديث في Excel». {error}',
+  dlgQueriesBuiltInFailed: 'تعذّر تحديث الاستعلامات، لذلك لم يتغيّر الملف. {error}',
+  dlgQueriesBuiltInTimeout: 'لم ينتهِ التحديث خلال 15 دقيقة فتم إيقافه. لم يتغيّر الملف.',
+  dlgQueriesBuiltInNotFile:
+    'لا يمكن تحديث إلا ملف ‎.xlsx أو ‎.xlsm محفوظ. احفظه أولاً بصيغة ‎.xlsx.',
+  dlgQueriesBuiltInReopenFailed:
+    'تم تحديث الملف، لكن تعذّر إعادة فتحه هنا. افتحه مجددًا من الصفحة الرئيسية.',
   dlgPasteSpecialTitle: 'لصق خاص',
   dlgPasteSpecialPaste: 'لصق',
   dlgPasteSpecialAll: 'الكل',

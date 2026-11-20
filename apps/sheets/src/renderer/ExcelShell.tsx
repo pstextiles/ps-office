@@ -455,6 +455,9 @@ interface ExcelShellProps {
   readonly onListDefinedNames: () => readonly { name: string; ref: string }[]
   /// Data › Queries & Connections: the open workbook's connections (read-only).
   readonly onReadWorkbookQueries: () => Promise<WorkbookQueriesResult>
+  /// Built-in refresh (PS Office): the note to show once reopened, or an error message.
+  readonly onRefreshQueriesBuiltIn?:
+    (() => Promise<{ readonly done: string } | { readonly error: string }>) | undefined
   /// Refresh in Excel (Windows only; absent elsewhere): an error message, or null once reopened.
   readonly onRefreshQueriesInExcel?: (() => Promise<string | null>) | undefined
   readonly onCancelRefreshQueriesInExcel?: (() => void) | undefined
@@ -591,6 +594,7 @@ export function ExcelShell({
   onGoToReference,
   onListDefinedNames,
   onReadWorkbookQueries,
+  onRefreshQueriesBuiltIn,
   onRefreshQueriesInExcel,
   onCancelRefreshQueriesInExcel,
   onReadPasteSpecialSource,
@@ -1518,6 +1522,7 @@ export function ExcelShell({
       {showQueries && (
         <QueriesDialog
           load={onReadWorkbookQueries}
+          onRefreshBuiltIn={onRefreshQueriesBuiltIn}
           onRefresh={onRefreshQueriesInExcel}
           onCancelRefresh={onCancelRefreshQueriesInExcel}
           onGo={onGoToReference}

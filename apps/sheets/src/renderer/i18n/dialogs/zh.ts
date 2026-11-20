@@ -100,6 +100,19 @@ export const zh = {
   dlgQueriesRefreshSaveFailed: '无法保存更改，因此未开始刷新。',
   dlgQueriesRefreshFailed: 'Excel 未能刷新查询，文件未被更改。{error}',
   dlgQueriesRefreshReopenFailed: 'Excel 已刷新文件，但无法在此重新打开。请从主页重新打开。',
+  dlgQueriesNoteBuiltIn:
+    '显示的行是上次保存的结果。“刷新”会在此处计算查询（无需 Excel）并保存文件。如果某个查询无法与 Excel 完全一致地计算，文件将保持不变并告知原因。',
+  dlgQueriesBuiltIn: '刷新',
+  dlgQueriesBuiltInTip: '在此处计算查询，无需 Excel。未保存的更改会先保存。',
+  dlgQueriesBuiltInRunning: '正在计算查询… 数据量大或位于网络上的数据源可能需要几分钟。',
+  dlgQueriesBuiltInDone:
+    '已刷新查询表（{count} 个）。其他工作表中的公式仍显示之前的结果；Excel 打开文件时会重新计算。',
+  dlgQueriesBuiltInLimit:
+    '此处无法与 Excel 完全一致地计算，因此未更改文件。请使用“在 Excel 中刷新”。{error}',
+  dlgQueriesBuiltInFailed: '无法刷新查询，因此未更改文件。{error}',
+  dlgQueriesBuiltInTimeout: '刷新未能在 15 分钟内完成，已停止。文件未更改。',
+  dlgQueriesBuiltInNotFile: '只有已保存的 .xlsx 或 .xlsm 文件才能刷新。请先另存为 .xlsx。',
+  dlgQueriesBuiltInReopenFailed: '文件已刷新，但无法在此重新打开。请从主页重新打开。',
   dlgPasteSpecialTitle: '选择性粘贴',
   dlgPasteSpecialPaste: '粘贴',
   dlgPasteSpecialAll: '全部',

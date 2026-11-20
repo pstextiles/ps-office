@@ -109,6 +109,25 @@ export const en = {
     'Excel could not refresh the queries, so the file was not changed. {error}',
   dlgQueriesRefreshReopenFailed:
     'Excel refreshed the file, but it could not be reopened here. Open it again from Home.',
+  dlgQueriesNoteBuiltIn:
+    'The rows shown are the last saved results. Refresh computes the queries here, without Excel, and saves the file. If a query cannot be computed exactly as Excel would, the file is left unchanged and you are told why.',
+  dlgQueriesBuiltIn: 'Refresh',
+  dlgQueriesBuiltInTip:
+    'Computes the queries here, without Excel. Unsaved changes are saved first.',
+  dlgQueriesBuiltInRunning:
+    'Computing the queries… Large or network sources can take a few minutes.',
+  dlgQueriesBuiltInDone:
+    'Query tables refreshed ({count}). Formulas on other sheets still show their previous results; Excel recalculates them when it opens the file.',
+  dlgQueriesBuiltInLimit:
+    'This cannot be computed here exactly as Excel would, so the file was not changed. Use Refresh in Excel. {error}',
+  dlgQueriesBuiltInFailed:
+    'The queries could not be refreshed, so the file was not changed. {error}',
+  dlgQueriesBuiltInTimeout:
+    'The refresh did not finish within 15 minutes and was stopped. The file was not changed.',
+  dlgQueriesBuiltInNotFile:
+    'Only a saved .xlsx or .xlsm file can be refreshed. Save it as .xlsx first.',
+  dlgQueriesBuiltInReopenFailed:
+    'The file was refreshed, but it could not be reopened here. Open it again from Home.',
   dlgPasteSpecialTitle: 'Paste Special',
   dlgPasteSpecialPaste: 'Paste',
   dlgPasteSpecialAll: 'All',

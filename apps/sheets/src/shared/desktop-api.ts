@@ -2419,6 +2419,41 @@ export const workbookQueriesRefreshResultSchema = z.union([
     .strict(),
 ])
 
+/**
+ * Data › Queries & Connections › Refresh (PS Office, built-in engine): the
+ * query tables that were rewritten, or why nothing was written. `limit`
+ * means the engine can't do this exactly as Excel does (Refresh in Excel
+ * can); `failed` carries the query's or the save's own message.
+ */
+export const workbookQueriesBuiltInRefreshResultSchema = z.union([
+  z
+    .object({
+      ok: z.literal(true),
+      tables: z
+        .array(
+          z
+            .object({
+              query: z.string().max(1000),
+              sheet: z.string().max(255),
+              table: z.string().max(255),
+              rowsBefore: z.number().int().nonnegative(),
+              rowsAfter: z.number().int().nonnegative(),
+            })
+            .strict(),
+        )
+        .max(500),
+    })
+    .strict(),
+  z
+    .object({
+      ok: z.literal(false),
+      code: z.enum(['busy', 'limit', 'failed', 'locked', 'timeout', 'not-file']),
+      query: z.string().max(1000).optional(),
+      detail: z.string().max(400).optional(),
+    })
+    .strict(),
+])
+
 /** Data › Queries & Connections (read-only): one entry per connection in xl/connections.xml */
 export const workbookQueriesResultSchema = z
   .array(
@@ -2656,6 +2691,9 @@ export type WorkbookPivotDefinition = z.infer<typeof workbookPivotDefinitionSche
 export type WorkbookQueriesRequest = z.infer<typeof workbookQueriesRequestSchema>
 export type WorkbookQueriesResult = z.infer<typeof workbookQueriesResultSchema>
 export type WorkbookQueriesRefreshResult = z.infer<typeof workbookQueriesRefreshResultSchema>
+export type WorkbookQueriesBuiltInRefreshResult = z.infer<
+  typeof workbookQueriesBuiltInRefreshResultSchema
+>
 export type LocalImageRequest = z.infer<typeof localImageRequestSchema>
 export type LocalImageResult = z.infer<typeof localImageResultSchema>
 export type ScreenSourcesResult = z.infer<typeof screenSourcesResultSchema>
@@ -3199,6 +3237,14 @@ export interface DesktopApi {
   refreshQueriesInExcel?(request: WorkbookQueriesRequest): Promise<WorkbookQueriesRefreshResult>
   /** Cancel the Refresh in Excel still running; it then resolves with `cancelled`. */
   cancelQueriesRefreshInExcel?(): Promise<void>
+  /**
+   * Data › Queries & Connections › Refresh (PS Office): the built-in engine
+   * computes the queries and writes the saved file's query tables; the
+   * renderer reopens it. Absent in builds without it.
+   */
+  refreshQueriesBuiltIn?(
+    request: WorkbookQueriesRequest,
+  ): Promise<WorkbookQueriesBuiltInRefreshResult>
   readLocalImage(request: LocalImageRequest): Promise<LocalImageResult>
   captureScreenSources(): Promise<ScreenSourcesResult>
   /// null when the source vanished between listing and capture.

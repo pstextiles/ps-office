@@ -80,6 +80,7 @@ Karta Vzorce, tlačítko po tlačítku:
 - Řazení a filtrování.
 - Ukotvení oblastí.
 - .csv / .tsv: otevírají se přímo jako tabulka (tsv s oddělovačem tabulátorem se zpracuje jako jeden); uložením se zapíše původní formát.
+- Power Query: karta Data ▸ **Dotazy a připojení** ▸ **Aktualizovat** vypočítá dotazy zde, bez Excelu, a soubor uloží. Pokud dotaz nelze vypočítat přesně jako v Excelu, soubor se nezmění a dozvíte se důvod. Vzorce na ostatních listech si ponechají předchozí výsledky, dokud soubor neotevře Excel.
 - Power Query (Windows): karta Data ▸ **Dotazy a připojení** ▸ **Aktualizovat v Excelu** nechá Excel nainstalovaný v tomto počítači aktualizovat dotazy (i ze síťových zdrojů) a uložit soubor, který se pak znovu otevře zde. Neuložené změny se nejprve uloží; pokud zdroj není dostupný, soubor se nezmění.
 
 ## Kontextové nabídky

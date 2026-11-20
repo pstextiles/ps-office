@@ -114,6 +114,25 @@ export const es = {
     'Excel no pudo actualizar las consultas, así que el archivo no cambió. {error}',
   dlgQueriesRefreshReopenFailed:
     'Excel actualizó el archivo, pero no se pudo volver a abrir aquí. Ábralo de nuevo desde Inicio.',
+  dlgQueriesNoteBuiltIn:
+    'Las filas mostradas son los últimos resultados guardados. Actualizar calcula las consultas aquí, sin Excel, y guarda el archivo. Si una consulta no se puede calcular exactamente como lo haría Excel, el archivo no se modifica y se le indica el motivo.',
+  dlgQueriesBuiltIn: 'Actualizar',
+  dlgQueriesBuiltInTip:
+    'Calcula las consultas aquí, sin Excel. Los cambios sin guardar se guardan primero.',
+  dlgQueriesBuiltInRunning:
+    'Calculando las consultas… Los orígenes grandes o en red pueden tardar unos minutos.',
+  dlgQueriesBuiltInDone:
+    'Tablas de consulta actualizadas ({count}). Las fórmulas de otras hojas aún muestran sus resultados anteriores; Excel las recalcula al abrir el archivo.',
+  dlgQueriesBuiltInLimit:
+    'Esto no se puede calcular aquí exactamente como lo haría Excel, por lo que el archivo no se modificó. Use Actualizar en Excel. {error}',
+  dlgQueriesBuiltInFailed:
+    'No se pudieron actualizar las consultas, por lo que el archivo no se modificó. {error}',
+  dlgQueriesBuiltInTimeout:
+    'La actualización no terminó en 15 minutos y se detuvo. El archivo no se modificó.',
+  dlgQueriesBuiltInNotFile:
+    'Solo se puede actualizar un archivo .xlsx o .xlsm guardado. Guárdelo primero como .xlsx.',
+  dlgQueriesBuiltInReopenFailed:
+    'El archivo se actualizó, pero no se pudo volver a abrir aquí. Ábralo de nuevo desde Inicio.',
   dlgPasteSpecialTitle: 'Pegado especial',
   dlgPasteSpecialPaste: 'Pegar',
   dlgPasteSpecialAll: 'Todo',

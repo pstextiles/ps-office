@@ -108,6 +108,24 @@ export const ko = {
   dlgQueriesRefreshFailed: 'Excel이 쿼리를 새로 고치지 못해 파일은 바뀌지 않았습니다. {error}',
   dlgQueriesRefreshReopenFailed:
     'Excel이 파일을 새로 고쳤지만 여기서 다시 열지 못했습니다. 홈에서 다시 열어 주세요.',
+  dlgQueriesNoteBuiltIn:
+    '표시되는 행은 마지막으로 저장된 결과입니다. [새로 고침]을 누르면 Excel 없이 여기서 쿼리를 계산해 파일을 저장합니다. Excel과 똑같이 계산할 수 없는 쿼리이면 파일을 바꾸지 않고 까닭을 알려 줍니다.',
+  dlgQueriesBuiltIn: '새로 고침',
+  dlgQueriesBuiltInTip:
+    'Excel 없이 여기서 쿼리를 계산합니다. 저장하지 않은 변경은 먼저 저장합니다.',
+  dlgQueriesBuiltInRunning:
+    '쿼리를 계산하는 중… 데이터가 많거나 네트워크에 있으면 몇 분 걸릴 수 있습니다.',
+  dlgQueriesBuiltInDone:
+    '쿼리 표를 새로 고쳤습니다({count}개). 다른 시트의 수식은 아직 이전 결과를 보여 주며, Excel에서 파일을 열면 다시 계산됩니다.',
+  dlgQueriesBuiltInLimit:
+    'Excel과 똑같이 계산할 수 없어 파일을 바꾸지 않았습니다. [Excel에서 새로 고침]을 사용하세요. {error}',
+  dlgQueriesBuiltInFailed: '쿼리를 새로 고치지 못해 파일은 바뀌지 않았습니다. {error}',
+  dlgQueriesBuiltInTimeout:
+    '15분 안에 끝나지 않아 새로 고침을 멈췄습니다. 파일은 바뀌지 않았습니다.',
+  dlgQueriesBuiltInNotFile:
+    '저장된 .xlsx 또는 .xlsm 파일만 새로 고칠 수 있습니다. 먼저 .xlsx로 저장하세요.',
+  dlgQueriesBuiltInReopenFailed:
+    '파일을 새로 고쳤지만 여기서 다시 열지 못했습니다. 홈에서 다시 열어 주세요.',
   dlgPasteSpecialTitle: '선택하여 붙여넣기',
   dlgPasteSpecialPaste: '붙여넣기',
   dlgPasteSpecialAll: '모두',

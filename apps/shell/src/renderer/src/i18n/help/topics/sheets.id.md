@@ -80,6 +80,7 @@ Tab Rumus, tombol demi tombol:
 - Urutkan dan filter.
 - Bekukan panel.
 - .csv / .tsv: terbuka langsung sebagai tabel (tsv ber-tab diurai sebagai satu tabel); penyimpanan menulis kembali format aslinya.
+- Power Query: tab Data ▸ **Kueri & Koneksi** ▸ **Segarkan** menghitung kueri di sini, tanpa Excel, lalu menyimpan file. Jika kueri tidak dapat dihitung persis seperti di Excel, file tidak berubah dan alasannya diberitahukan. Rumus di lembar lain tetap menampilkan hasil sebelumnya sampai Excel membuka file.
 - Power Query (Windows): tab Data ▸ **Kueri & Koneksi** ▸ **Segarkan di Excel** membuat Excel yang terpasang di PC ini menyegarkan kueri (termasuk sumber di jaringan) dan menyimpan file, lalu membukanya kembali di sini. Perubahan yang belum disimpan disimpan terlebih dahulu; jika sumber tidak dapat dijangkau, file tidak berubah.
 
 ## Menu klik kanan

@@ -111,6 +111,24 @@ export const tr = {
   dlgQueriesRefreshFailed: 'Excel sorguları yenileyemediği için dosya değişmedi. {error}',
   dlgQueriesRefreshReopenFailed:
     'Excel dosyayı yeniledi ancak dosya burada yeniden açılamadı. Ana sayfadan yeniden açın.',
+  dlgQueriesNoteBuiltIn:
+    "Gösterilen satırlar son kaydedilen sonuçlardır. Yenile, sorguları Excel olmadan burada hesaplar ve dosyayı kaydeder. Bir sorgu Excel'deki gibi tam olarak hesaplanamıyorsa dosya değiştirilmez ve nedeni bildirilir.",
+  dlgQueriesBuiltIn: 'Yenile',
+  dlgQueriesBuiltInTip:
+    'Sorguları Excel olmadan burada hesaplar. Kaydedilmemiş değişiklikler önce kaydedilir.',
+  dlgQueriesBuiltInRunning:
+    'Sorgular hesaplanıyor… Büyük kaynaklar veya ağ kaynakları birkaç dakika sürebilir.',
+  dlgQueriesBuiltInDone:
+    'Sorgu tabloları yenilendi ({count}). Diğer sayfalardaki formüller hâlâ önceki sonuçlarını gösteriyor; Excel dosyayı açtığında bunları yeniden hesaplar.',
+  dlgQueriesBuiltInLimit:
+    "Bu, burada Excel'deki gibi tam olarak hesaplanamıyor; bu yüzden dosya değiştirilmedi. Excel'de Yenile'yi kullanın. {error}",
+  dlgQueriesBuiltInFailed: 'Sorgular yenilenemedi; bu yüzden dosya değiştirilmedi. {error}',
+  dlgQueriesBuiltInTimeout:
+    'Yenileme 15 dakika içinde bitmedi ve durduruldu. Dosya değiştirilmedi.',
+  dlgQueriesBuiltInNotFile:
+    'Yalnızca kaydedilmiş bir .xlsx veya .xlsm dosyası yenilenebilir. Önce .xlsx olarak kaydedin.',
+  dlgQueriesBuiltInReopenFailed:
+    'Dosya yenilendi ancak burada yeniden açılamadı. Ana sayfadan yeniden açın.',
   dlgPasteSpecialTitle: 'Özel yapıştır',
   dlgPasteSpecialPaste: 'Yapıştır',
   dlgPasteSpecialAll: 'Tümü',
