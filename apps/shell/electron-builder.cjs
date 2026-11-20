@@ -946,7 +946,11 @@ const config = {
   },
   nsis: {
     oneClick: false,
-    allowToChangeInstallationDirectory: true,
+    // PS Office: no folder page. A first install goes to the default folder; an
+    // installer run over an existing install writes into the folder Windows has
+    // on record for it (InstallLocation), so running a newer Setup.exe updates
+    // the app in place without questions (see customInstallMode in installer.nsh).
+    allowToChangeInstallationDirectory: false,
     // no spaces: GitHub Releases rewrites them in asset names, and the update
     // feed must name the file exactly as it is downloaded
     artifactName: winArm64

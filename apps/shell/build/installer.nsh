@@ -200,6 +200,10 @@
 ; update makes, so "who should this be installed for" is not asked again (an
 ; "all users" install still gets its administrator prompt from that page's
 ; elevation). A first install still asks.
+; PS Office: a Setup.exe the person runs by hand over an existing install is an
+; update too. With exactly one install on record (per-user or all-users), keep
+; its mode instead of asking; with no folder page (allowToChangeInstallationDirectory
+; is off) it then installs into that install's own folder.
 !macro customInstallMode
   ${if} ${isUpdated}
     ${if} $installMode == "all"
@@ -207,6 +211,12 @@
     ${else}
       StrCpy $isForceCurrentInstall "1"
     ${endIf}
+  ${elseIf} $hasPerUserInstallation == "1"
+  ${andIf} $hasPerMachineInstallation == "0"
+    StrCpy $isForceCurrentInstall "1"
+  ${elseIf} $hasPerMachineInstallation == "1"
+  ${andIf} $hasPerUserInstallation == "0"
+    StrCpy $isForceMachineInstall "1"
   ${endIf}
 !macroend
 

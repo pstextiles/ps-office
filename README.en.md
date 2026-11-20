@@ -31,6 +31,8 @@ Spanish; change it any time under **Settings → General → Language**.
 2. The installer is not code-signed, so Windows shows an "unknown publisher" warning. Press
    **More info → Run anyway**.
 3. When a new version is out, the app offers it and updates itself.
+4. Running a newer installer on a PC that already has PS Office works too: it updates the existing
+   install in place without asking anything, and settings and recent files stay.
 
 ## Connecting AI (Claude)
 
