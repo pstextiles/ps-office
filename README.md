@@ -76,8 +76,8 @@ Apache-2.0 라이선스입니다. PS Textiles, S.A.는 제품 이름, 아이콘�
 > 본 제품은 한글과컴퓨터의 한글 문서 파일(.hwp) 공개 문서를 참고하여 개발하였습니다.
 
 다이어그램 편집기는 [draw.io](https://github.com/jgraph/drawio)(Apache-2.0 라이선스)의 웹 편집기를
-바탕으로 합니다. PS 오피스의 아이콘과 로고 글자는 Liberation Sans(SIL Open Font License 1.1)를 윤곽선으로
-바꿔 그렸습니다. 그 밖의 고지와 글꼴 목록은 [NOTICE](NOTICE)와 설치 폴더의 `THIRD-PARTY-NOTICES.txt`에
+바탕으로 합니다. PS 오피스의 아이콘과 로고는 PS Textiles, S.A.의 PS TEXTILES 로고이며, 이 로고와
+이름은 Apache License 2.0으로 배포하는 대상이 아닙니다. 그 밖의 고지와 글꼴 목록은 [NOTICE](NOTICE)와 설치 폴더의 `THIRD-PARTY-NOTICES.txt`에
 있습니다.
 
 PS 오피스는 이음오피스 기여자, Genspark / Mainfunc, Inc., Anthropic, OpenAI, Microsoft,

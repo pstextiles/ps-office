@@ -75,8 +75,9 @@ all under the SIL Open Font License 1.1. The HWP/HWPX editor is built on
 [rhwp](https://github.com/edwardkim/rhwp) (MIT License). As required by Hancom Inc. for software
 developed with its published HWP format document: this product was developed with reference to
 Hancom's published document on the Hangul document file format (.hwp). The diagram editor is built on
-the web editor of [draw.io](https://github.com/jgraph/drawio) (Apache-2.0). The letters of the PS
-Office icon and logo are Liberation Sans (SIL Open Font License 1.1) converted to outlines. Other
+the web editor of [draw.io](https://github.com/jgraph/drawio) (Apache-2.0). The PS Office icon and
+logo are the PS TEXTILES logo of PS Textiles, S.A.; that name and logo are not licensed under the
+Apache License 2.0. Other
 notices and the font list are in [NOTICE](NOTICE) and in `THIRD-PARTY-NOTICES.txt` in the install
 folder.
 

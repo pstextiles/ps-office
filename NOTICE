@@ -195,9 +195,10 @@ contributors or Mainfunc, Inc. The names IeumOffice, 이음오피스, GenOffice
 and Genspark and their logos belong to their owners and are used here only to
 identify the works PS Office is based on.
 
-The PS Office icon and logo draw their letters from Liberation Sans Bold and
-Bold Italic (SIL Open Font License 1.1, shipped in
-apps/docs/src/renderer/fonts), converted to outlines.
+The PS Office icon and sidebar logo are the PS TEXTILES logo of PS Textiles,
+S.A., redrawn as vector outlines. The PS TEXTILES name and logo are PS
+Textiles' own marks: they are not licensed under the Apache License 2.0, and a
+redistributed modified version must not use them as its own name or logo.
 
 Hangul (HWP) document format
 
