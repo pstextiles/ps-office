@@ -29,6 +29,41 @@ export interface TableEdit extends TableStyleOptions {
   readonly style?: string | undefined
   readonly bandedRows?: boolean | undefined
   readonly remove?: true | undefined
+  /// PS Office (query table refresh): with `area`, the table's sort state
+  /// follows the new rows as Excel's refresh leaves it — sortState spans the
+  /// data rows, and a sortCondition that ended on the last row still does.
+  readonly sortFollowsRows?: true | undefined
+  /// PS Office (query table refresh): a sheet-local defined name that holds
+  /// the table's range (a query table's hidden ExternalData_N), moved to the
+  /// new `area` with it. Excel won't open a file where the two disagree.
+  readonly localName?: { readonly name: string; readonly sheetIndex: number } | undefined
+}
+
+/// The workbook XML with a sheet-local defined name moved to `area`. The
+/// name must exist and hold one absolute range (`'Sheet'!$A$1:$D$9`);
+/// anything else is refused.
+export function moveLocalDefinedName(
+  workbookXml: string,
+  name: string,
+  sheetIndex: number,
+  area: TableArea,
+): string {
+  let found = false
+  const out = workbookXml.replace(
+    /<definedName\b([^>]*)>([^<]*)<\/definedName>/g,
+    (whole, attributes: string, text: string) => {
+      const attrs = parseAttributes(`<definedName${attributes}>`)
+      if (attrs.get('name') !== name || attrs.get('localSheetId') !== String(sheetIndex))
+        return whole
+      const m = /^(.*!)\$[A-Z]{1,3}\$\d+:\$[A-Z]{1,3}\$\d+$/.exec(text)
+      if (!m) throw new TableEditError(`The defined name ${name} does not hold a single range.`)
+      found = true
+      const ref = areaToRef(area).replace(/([A-Z]+)(\d+)/g, '$$$1$$$2')
+      return whole.replace(`>${text}<`, () => `>${m[1]}${ref}<`)
+    },
+  )
+  if (!found) throw new TableEditError(`The defined name ${name} of the table was not found.`)
+  return out
 }
 
 const CONTENT_TYPES_PATH = '[Content_Types].xml'
@@ -222,8 +257,43 @@ async function rewriteTable(
       existingFilter.replace(/(<autoFilter\b[^>]*?\bref=")[^"]*(")/, `$1${filterRef}$2`),
     )
   }
+  if (edit.sortFollowsRows && edit.area) xml = moveSortWithRows(xml, area, previousArea, headerRows)
 
   return rewriteStyleInfo(xml, edit)
+}
+
+/// The sort state of a table whose rows changed (a query table refresh):
+/// sortState spans the data rows, a sortCondition ending on the old last row
+/// ends on the new one. Others are refused: where Excel would move them was
+/// not checked.
+function moveSortWithRows(
+  xml: string,
+  area: TableArea,
+  previousArea: TableArea,
+  headerRows: number,
+): string {
+  const previousEnd = previousArea.endRow + 1
+  const newEnd = area.endRow + 1
+  let moved = xml.replace(/<sortState\b[^>]*>/, (open) =>
+    open.replace(
+      /(\bref=")[^"]*(")/,
+      (_m, before: string, after: string) =>
+        `${before}${areaToRef({ ...area, startRow: area.startRow + headerRows })}${after}`,
+    ),
+  )
+  moved = moved.replace(/<sortCondition\b[^>]*>/g, (condition) =>
+    condition.replace(
+      /(\bref="\$?[A-Z]{1,3}\$?\d+:\$?[A-Z]{1,3}\$?)(\d+)(")/,
+      (match, before: string, end: string, after: string) => {
+        if (Number(end) === previousEnd) return `${before}${newEnd}${after}`
+        if (newEnd === previousEnd) return match
+        throw new TableEditError(
+          'A sort condition that does not end on the last table row cannot follow new rows.',
+        )
+      },
+    ),
+  )
+  return moved
 }
 
 async function assertRenameAllowed(

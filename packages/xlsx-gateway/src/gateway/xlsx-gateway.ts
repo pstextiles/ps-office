@@ -52,6 +52,7 @@ import {
 } from './xlsx-table-add'
 import {
   applyTableEdits,
+  moveLocalDefinedName,
   sheetTableParts,
   type LocatedTable,
   type TableEdit,
@@ -258,6 +259,10 @@ export interface CellEdit {
   readonly rich?: readonly WorkbookRichRun[] | undefined
   /// Reset the cell to the default style (xf 0) before applying `style`.
   readonly styleReset?: boolean | undefined
+  /// PS Office: give the cell this existing cellXfs index as is (a query
+  /// table's new row takes the style of the row above, as Excel's refresh
+  /// does). Ignored when `style` or `styleReset` is set.
+  readonly styleIndex?: number | undefined
 }
 
 export interface BulkConstantFill {
@@ -1652,6 +1657,16 @@ export async function planCellEditsToXlsx(
       })
     }
     await applyTableEdits(pkg, resolvedEdits, touchedEntries)
+    for (const edit of tableEdits) {
+      if (edit.localName && edit.area) {
+        workbookXml = moveLocalDefinedName(
+          workbookXml,
+          edit.localName.name,
+          edit.localName.sheetIndex,
+          edit.area,
+        )
+      }
+    }
   }
   // New tables also run on the flushed worksheet XML: the <tableParts>
   // element and overlap checks see the final sheet content.
@@ -2772,6 +2787,8 @@ function applyEditToCellXml(
   } else if (edit.style && stylesheet) {
     const baseIndex = (cellXml === '' ? undefined : readCellStyleIndex(cellXml, address)) ?? 0
     styleOverride = stylesheet.resolveStyle(baseIndex, edit.style)
+  } else if (edit.styleIndex !== undefined) {
+    styleOverride = edit.styleIndex
   }
   if (edit.writeValue) {
     if (cellXml !== '') {
