@@ -456,7 +456,7 @@ interface ExcelShellProps {
   /// Data › Queries & Connections: the open workbook's connections (read-only).
   readonly onReadWorkbookQueries: () => Promise<WorkbookQueriesResult>
   /// Refresh in Excel (Windows only; absent elsewhere): an error message, or null once reopened.
-  readonly onRefreshQueriesInExcel?: () => Promise<string | null>
+  readonly onRefreshQueriesInExcel?: (() => Promise<string | null>) | undefined
   readonly onReadPasteSpecialSource: () => Promise<PasteSpecialSource>
   /// Resolves to an error message, or null on success.
   readonly onPasteSpecial: (

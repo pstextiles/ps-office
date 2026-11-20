@@ -227,7 +227,7 @@ export function refreshWorkbookInExcel(
   if (platform !== 'win32') return Promise.resolve({ ok: false, code: 'unsupported' })
   if (!refreshablePath(path)) return Promise.resolve({ ok: false, code: 'unsupported' })
   if (running.size > 0) return Promise.resolve({ ok: false, code: 'busy' })
-  const spawn = deps.spawn ?? (nodeSpawn as SpawnLike)
+  const spawn = deps.spawn ?? (nodeSpawn as unknown as SpawnLike)
   const isAlive = deps.isAlive ?? defaultIsAlive
   const kill = deps.kill ?? defaultKill
   const timeoutMs = deps.timeoutMs ?? EXCEL_REFRESH_TIMEOUT_MS

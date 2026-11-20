@@ -32,7 +32,7 @@ export function QueriesDialog({
 }: {
   readonly load: () => Promise<WorkbookQueriesResult>
   /// Refresh in Excel; absent where it cannot run. An error message, or null once reopened.
-  readonly onRefresh?: () => Promise<string | null>
+  readonly onRefresh?: (() => Promise<string | null>) | undefined
   /// Returns an error message, or null on success (Go To's resolver).
   readonly onGo: (ref: string) => string | null
   readonly onClose: () => void
