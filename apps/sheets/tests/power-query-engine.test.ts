@@ -199,19 +199,34 @@ describe('evaluating a query', () => {
     ])
   })
 
-  it('reads text in the culture the workbook stores', () => {
+  it('reads text in the locale the workbook stores, even on a PC set to another', () => {
     const book = mashupWorkbook(QUERY, 'es-GT')
     const doc = workbookQueries(book)!
     expect(doc.culture).toBe('es-GT')
     expect(doc.names).toEqual(['Cut'])
-    const out = evaluateQuery(doc, 'Cut', { host: host(files) }) as MTable
+    const out = evaluateQuery(doc, 'Cut', { host: host(files), systemCulture: 'ko-KR' }) as MTable
     // "05/11/2026" is 5 November in es-GT
     expect(plain(out)[1]).toEqual(['', 5, serial(2026, 11, 5)])
   })
 
+  it('falls back to the PC locale when the workbook stores none, as Excel does', () => {
+    const doc = parseQueries(QUERY)
+    expect(doc.culture).toBeNull()
+    const gt = evaluateQuery(doc, 'Cut', { host: host(files), systemCulture: 'es-GT' }) as MTable
+    expect(plain(gt)[1]).toEqual(['', 5, serial(2026, 11, 5)])
+    const ko = evaluateQuery(doc, 'Cut', { host: host(files), systemCulture: 'ko-KR' }) as MTable
+    expect(plain(ko)[1]).toEqual(['', 5, serial(2026, 5, 11)])
+    // no locale anywhere: no guess
+    expect(() => evaluateQuery(doc, 'Cut', { host: host(files) })).toThrow(EngineLimit)
+    // a PC locale the engine doesn't know: no guess either
+    expect(() => evaluateQuery(doc, 'Cut', { host: host(files), systemCulture: 'fr-FR' })).toThrow(
+      EngineLimit,
+    )
+  })
+
   it('reports a missing source file as an M error', () => {
     const doc = parseQueries(QUERY)
-    expect(() => evaluateQuery(doc, 'Cut', { host: host({}) })).toThrow(MError)
+    expect(() => evaluateQuery(doc, 'Cut', { host: host({}), culture: 'en-US' })).toThrow(MError)
   })
 })
 
