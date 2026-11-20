@@ -2412,6 +2412,7 @@ export const workbookQueriesRefreshResultSchema = z.union([
         'failed',
         'timeout',
         'not-file',
+        'cancelled',
       ]),
       detail: z.string().max(400).optional(),
     })
@@ -3196,6 +3197,8 @@ export interface DesktopApi {
    * Absent where the platform cannot do it.
    */
   refreshQueriesInExcel?(request: WorkbookQueriesRequest): Promise<WorkbookQueriesRefreshResult>
+  /** Cancel the Refresh in Excel still running; it then resolves with `cancelled`. */
+  cancelQueriesRefreshInExcel?(): Promise<void>
   readLocalImage(request: LocalImageRequest): Promise<LocalImageResult>
   captureScreenSources(): Promise<ScreenSourcesResult>
   /// null when the source vanished between listing and capture.

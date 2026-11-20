@@ -103,7 +103,8 @@ export const de = {
   dlgQueriesRefreshLocked:
     'Die Datei ist in einem anderen Programm geöffnet (meist Excel). Schließen Sie sie dort und versuchen Sie es erneut.',
   dlgQueriesRefreshTimeout:
-    'Excel ist nicht innerhalb von 10 Minuten fertig geworden, deshalb wurde die Aktualisierung abgebrochen. Die Datei wurde nicht geändert.',
+    'Excel ist nicht innerhalb von 30 Minuten fertig geworden, deshalb wurde die Aktualisierung abgebrochen. Die Datei wurde nicht geändert.',
+  dlgQueriesRefreshCancelled: 'Die Aktualisierung in Excel wurde abgebrochen.',
   dlgQueriesRefreshBusy:
     'Es läuft bereits eine Aktualisierung. Warten Sie, bis sie abgeschlossen ist.',
   dlgQueriesRefreshNotFile:

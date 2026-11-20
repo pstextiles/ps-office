@@ -78,6 +78,8 @@ export const IPC_CHANNELS = {
   readWorkbookQueries: 'workbook:read-queries',
   /** Data › Queries & Connections › Refresh in Excel: the installed Excel refreshes and saves the file (Windows) */
   refreshQueriesInExcel: 'workbook:refresh-queries-in-excel',
+  /** Cancel a Refresh in Excel still running */
+  cancelQueriesRefreshInExcel: 'workbook:cancel-queries-refresh-in-excel',
   readLocalImage: 'shell:read-local-image',
   closeWorkbook: 'workbook:close',
   saveWorkbook: 'workbook:save',

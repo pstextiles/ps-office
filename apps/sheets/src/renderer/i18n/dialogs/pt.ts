@@ -102,7 +102,8 @@ export const pt = {
   dlgQueriesRefreshLocked:
     'O arquivo está aberto em outro programa (geralmente o Excel). Feche-o lá e tente novamente.',
   dlgQueriesRefreshTimeout:
-    'O Excel não terminou em 10 minutos, então a atualização foi interrompida. O arquivo não foi alterado.',
+    'O Excel não terminou em 30 minutos, então a atualização foi interrompida. O arquivo não foi alterado.',
+  dlgQueriesRefreshCancelled: 'A atualização no Excel foi cancelada.',
   dlgQueriesRefreshBusy: 'Já há uma atualização em andamento. Aguarde até que termine.',
   dlgQueriesRefreshNotFile:
     'Só um arquivo .xlsx ou .xlsm salvo pode ser atualizado no Excel. Salve-o primeiro como .xlsx.',

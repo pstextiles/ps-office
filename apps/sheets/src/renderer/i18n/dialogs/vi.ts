@@ -100,7 +100,8 @@ export const vi = {
   dlgQueriesRefreshLocked:
     'Tệp đang mở trong chương trình khác (thường là Excel). Hãy đóng ở đó rồi thử lại.',
   dlgQueriesRefreshTimeout:
-    'Excel không hoàn tất trong 10 phút nên đã dừng làm mới. Tệp không bị thay đổi.',
+    'Excel không hoàn tất trong 30 phút nên đã dừng làm mới. Tệp không bị thay đổi.',
+  dlgQueriesRefreshCancelled: 'Đã hủy làm mới trong Excel.',
   dlgQueriesRefreshBusy: 'Đang có một lần làm mới chạy. Hãy chờ đến khi xong.',
   dlgQueriesRefreshNotFile:
     'Chỉ tệp .xlsx hoặc .xlsm đã lưu mới làm mới được trong Excel. Hãy lưu thành .xlsx trước.',

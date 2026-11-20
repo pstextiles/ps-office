@@ -457,6 +457,7 @@ interface ExcelShellProps {
   readonly onReadWorkbookQueries: () => Promise<WorkbookQueriesResult>
   /// Refresh in Excel (Windows only; absent elsewhere): an error message, or null once reopened.
   readonly onRefreshQueriesInExcel?: (() => Promise<string | null>) | undefined
+  readonly onCancelRefreshQueriesInExcel?: (() => void) | undefined
   readonly onReadPasteSpecialSource: () => Promise<PasteSpecialSource>
   /// Resolves to an error message, or null on success.
   readonly onPasteSpecial: (
@@ -591,6 +592,7 @@ export function ExcelShell({
   onListDefinedNames,
   onReadWorkbookQueries,
   onRefreshQueriesInExcel,
+  onCancelRefreshQueriesInExcel,
   onReadPasteSpecialSource,
   onPasteSpecial,
   functionArguments,
@@ -1517,6 +1519,7 @@ export function ExcelShell({
         <QueriesDialog
           load={onReadWorkbookQueries}
           onRefresh={onRefreshQueriesInExcel}
+          onCancelRefresh={onCancelRefreshQueriesInExcel}
           onGo={onGoToReference}
           onClose={() => setShowQueries(false)}
         />

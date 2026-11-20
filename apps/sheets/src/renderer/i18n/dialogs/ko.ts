@@ -99,7 +99,8 @@ export const ko = {
   dlgQueriesRefreshLocked:
     '파일이 다른 프로그램(보통 Excel)에서 열려 있습니다. 그쪽에서 닫은 뒤 다시 시도하세요.',
   dlgQueriesRefreshTimeout:
-    'Excel이 10분 안에 끝내지 못해 새로 고침을 멈췄습니다. 파일은 바뀌지 않았습니다.',
+    'Excel이 30분 안에 끝내지 못해 새로 고침을 멈췄습니다. 파일은 바뀌지 않았습니다.',
+  dlgQueriesRefreshCancelled: 'Excel 새로 고침을 취소했습니다.',
   dlgQueriesRefreshBusy: '이미 새로 고치는 중입니다. 끝날 때까지 기다려 주세요.',
   dlgQueriesRefreshNotFile:
     '저장된 .xlsx 또는 .xlsm 파일만 Excel에서 새로 고칠 수 있습니다. 먼저 .xlsx로 저장하세요.',

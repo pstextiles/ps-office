@@ -95,7 +95,8 @@ export const he = {
   dlgQueriesRefreshNoExcel:
     'Microsoft Excel לא נמצא במחשב זה. "רענון ב-Excel" דורש ש-Excel יהיה מותקן.',
   dlgQueriesRefreshLocked: 'הקובץ פתוח בתוכנה אחרת (בדרך כלל Excel). סגרו אותו שם ונסו שוב.',
-  dlgQueriesRefreshTimeout: 'Excel לא סיים בתוך 10 דקות, ולכן הרענון הופסק. הקובץ לא השתנה.',
+  dlgQueriesRefreshTimeout: 'Excel לא סיים בתוך 30 דקות, ולכן הרענון הופסק. הקובץ לא השתנה.',
+  dlgQueriesRefreshCancelled: 'הרענון ב-Excel בוטל.',
   dlgQueriesRefreshBusy: 'כבר מתבצע רענון. המתינו לסיומו.',
   dlgQueriesRefreshNotFile:
     'אפשר לרענן ב-Excel רק קובץ ‎.xlsx או ‎.xlsm שמור. שמרו אותו קודם כ-‎.xlsx.',

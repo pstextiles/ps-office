@@ -369,6 +369,9 @@ const desktopApi: DesktopApi = {
           if (typeof result.code !== 'string') throw new Error('Invalid refresh response.')
           return result as WorkbookQueriesRefreshResult
         },
+        async cancelQueriesRefreshInExcel(): Promise<void> {
+          await ipcRenderer.invoke(IPC_CHANNELS.cancelQueriesRefreshInExcel)
+        },
       }
     : {}),
   async saveWorkbookEdits(request) {

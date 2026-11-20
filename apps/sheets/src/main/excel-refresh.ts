@@ -29,10 +29,13 @@ export type ExcelRefreshResult =
     }
 
 export type ExcelRefreshFailure =
-  'unsupported' | 'busy' | 'no-excel' | 'locked' | 'readonly' | 'failed' | 'timeout'
+  'unsupported' | 'busy' | 'no-excel' | 'locked' | 'readonly' | 'failed' | 'timeout' | 'cancelled'
 
-/** Ten minutes: large network sources are slow, a hung prompt is not worth waiting longer for. */
-export const EXCEL_REFRESH_TIMEOUT_MS = 10 * 60 * 1000
+/**
+ * Thirty minutes: a low-end PC refreshing large network sources is slow, and
+ * the person can cancel sooner; a hung prompt is not worth waiting longer for.
+ */
+export const EXCEL_REFRESH_TIMEOUT_MS = 30 * 60 * 1000
 /** How long Excel gets to exit on its own after the script quit it. */
 const EXCEL_EXIT_GRACE_MS = 8000
 const MAX_DETAIL = 400
@@ -204,11 +207,17 @@ function defaultKill(pid: number): void {
 }
 
 /** Runs in flight, so a second click waits and the app can end them on quit. */
-const running = new Set<{ stop: () => void }>()
+type StopReason = 'timeout' | 'cancelled'
+const running = new Set<{ stop: (reason: StopReason) => void }>()
 
 /** Ends every refresh still running (the app is quitting). */
 export function stopExcelRefreshes(): void {
-  for (const run of [...running]) run.stop()
+  for (const run of [...running]) run.stop('cancelled')
+}
+
+/** The person pressed Cancel: end the running refresh; the file stays as it was. */
+export function cancelExcelRefresh(): void {
+  for (const run of [...running]) run.stop('cancelled')
 }
 
 export function excelRefreshRunning(): boolean {
@@ -236,7 +245,7 @@ export function refreshWorkbookInExcel(
   return new Promise((resolve) => {
     let stdout = ''
     let settled = false
-    let timedOut = false
+    let stoppedFor: StopReason | null = null
     let child: ChildProcess
     // a second before the start, so an Excel launched in the same second is not missed
     const since = new Date(Date.now() - 1000).toISOString()
@@ -276,8 +285,9 @@ export function refreshWorkbookInExcel(
       }, wait).unref?.()
     }
     const run = {
-      stop: () => {
-        timedOut = true
+      stop: (reason: StopReason) => {
+        if (stoppedFor) return
+        stoppedFor = reason
         if (child.pid !== undefined) kill(child.pid)
         const excelPid = parseRefreshOutput(stdout).excelPid
         if (excelPid !== undefined) endExcel(excelPid, 0)
@@ -320,7 +330,7 @@ export function refreshWorkbookInExcel(
     }
     running.add(run)
     const timer = setTimeout(() => {
-      run.stop()
+      run.stop('timeout')
       finish({ ok: false, code: 'timeout' })
     }, timeoutMs)
     child.stdout?.setEncoding('utf8')
@@ -335,7 +345,7 @@ export function refreshWorkbookInExcel(
       const parsed = parseRefreshOutput(stdout)
       // Excel lingers a few seconds after Quit; end it if it outstays that
       endExcel(parsed.excelPid, graceMs)
-      if (timedOut) return finish({ ok: false, code: 'timeout' })
+      if (stoppedFor) return finish({ ok: false, code: stoppedFor })
       finish(parsed.result ?? { ok: false, code: 'failed', detail: 'no result from Excel' })
     })
   })

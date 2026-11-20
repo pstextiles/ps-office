@@ -267,7 +267,12 @@ import { XlsxSidecarClient } from './xlsx-sidecar-client'
 import { convertLegacyWorkbook } from './legacy-import'
 import { sessionAfterRename } from './session-rename'
 import { continuedOpenOptions, sessionToContinue } from './session-reopen'
-import { refreshablePath, refreshWorkbookInExcel, stopExcelRefreshes } from './excel-refresh'
+import {
+  cancelExcelRefresh,
+  refreshablePath,
+  refreshWorkbookInExcel,
+  stopExcelRefreshes,
+} from './excel-refresh'
 import {
   appendSaveFailure,
   describeReopenFailure,
@@ -4629,6 +4634,10 @@ export function registerSheetsIpc(): void {
       app.once('will-quit', stopExcelRefreshes)
     }
     return workbookQueriesRefreshResultSchema.parse(await refreshWorkbookInExcel(session.path))
+  })
+  ipcMain.handle(IPC_CHANNELS.cancelQueriesRefreshInExcel, (event) => {
+    sessionFor(event)
+    cancelExcelRefresh()
   })
 
   ipcMain.handle(IPC_CHANNELS.exportPdf, async (event, input: unknown) => {

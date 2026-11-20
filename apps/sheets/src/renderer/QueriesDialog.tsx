@@ -27,12 +27,15 @@ function qualifiedRange(destination: NonNullable<Query['destination']>): string 
 export function QueriesDialog({
   load,
   onRefresh,
+  onCancelRefresh,
   onGo,
   onClose,
 }: {
   readonly load: () => Promise<WorkbookQueriesResult>
   /// Refresh in Excel; absent where it cannot run. An error message, or null once reopened.
   readonly onRefresh?: (() => Promise<string | null>) | undefined
+  /// Stops a running Refresh in Excel; its onRefresh then resolves with the cancelled message.
+  readonly onCancelRefresh?: (() => void) | undefined
   /// Returns an error message, or null on success (Go To's resolver).
   readonly onGo: (ref: string) => string | null
   readonly onClose: () => void
@@ -41,6 +44,18 @@ export function QueriesDialog({
   const [queries, setQueries] = useState<WorkbookQueriesResult | null>(null)
   const [error, setError] = useState<string | null>(null)
   const [refreshing, setRefreshing] = useState(false)
+  // seconds since Refresh in Excel started: a slow PC takes minutes, and a
+  // ticking clock tells the person it is still working
+  const [elapsed, setElapsed] = useState(0)
+  const [cancelling, setCancelling] = useState(false)
+
+  useEffect(() => {
+    if (!refreshing) return
+    const started = Date.now()
+    setElapsed(0)
+    const timer = setInterval(() => setElapsed(Math.floor((Date.now() - started) / 1000)), 1000)
+    return () => clearInterval(timer)
+  }, [refreshing])
 
   useEffect(() => {
     let alive = true
@@ -64,6 +79,7 @@ export function QueriesDialog({
   const refresh = async (): Promise<void> => {
     if (!onRefresh || refreshing) return
     setError(null)
+    setCancelling(false)
     setRefreshing(true)
     const failure = await onRefresh().catch((err: unknown) =>
       t('dlgQueriesRefreshFailed', { error: err instanceof Error ? err.message : String(err) }),
@@ -130,7 +146,8 @@ export function QueriesDialog({
           )}
           {refreshing && (
             <p className="dialog-note" role="status">
-              {t('dlgQueriesRefreshing')}
+              {t('dlgQueriesRefreshing')} {Math.floor(elapsed / 60)}:
+              {String(elapsed % 60).padStart(2, '0')}
             </p>
           )}
           {error && (
@@ -148,6 +165,18 @@ export function QueriesDialog({
               onClick={() => void refresh()}
             >
               {t('dlgQueriesRefreshExcel')}
+            </button>
+          )}
+          {refreshing && onCancelRefresh && (
+            <button
+              type="button"
+              disabled={cancelling}
+              onClick={() => {
+                setCancelling(true)
+                onCancelRefresh()
+              }}
+            >
+              {t('dlgCancel')}
             </button>
           )}
           <button className="primary-action" autoFocus disabled={refreshing} onClick={onClose}>

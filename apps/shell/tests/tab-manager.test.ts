@@ -1,5 +1,10 @@
 import { beforeEach, describe, expect, it, vi } from 'vitest'
 
+const memory = vi.hoisted(() => ({ roomy: true }))
+vi.mock('../src/main/machine-memory', () => ({
+  roomForSpareRenderer: () => memory.roomy,
+}))
+
 vi.mock('node:fs', () => {
   const realpathSync = ((path?: string) => {
     if (path === undefined) return undefined
@@ -504,6 +509,19 @@ describe('spare sheets view', () => {
       vi.advanceTimersByTime(5000)
       expect(createSheetsView).not.toHaveBeenCalled()
     } finally {
+      vi.useRealTimers()
+    }
+  })
+
+  it('does not warm a spare on a low-memory PC', () => {
+    vi.useFakeTimers()
+    memory.roomy = false
+    try {
+      manager.openSheetsTab('/tmp/first.xlsx')
+      vi.advanceTimersByTime(5000)
+      expect(createSheetsView).toHaveBeenCalledTimes(1)
+    } finally {
+      memory.roomy = true
       vi.useRealTimers()
     }
   })

@@ -100,7 +100,8 @@ export const th = {
   dlgQueriesRefreshLocked:
     'ไฟล์เปิดอยู่ในโปรแกรมอื่น (มักเป็น Excel) โปรดปิดไฟล์ที่นั่นแล้วลองอีกครั้ง',
   dlgQueriesRefreshTimeout:
-    'Excel ทำงานไม่เสร็จภายใน 10 นาที จึงหยุดการรีเฟรช ไฟล์ไม่ได้เปลี่ยนแปลง',
+    'Excel ทำงานไม่เสร็จภายใน 30 นาที จึงหยุดการรีเฟรช ไฟล์ไม่ได้เปลี่ยนแปลง',
+  dlgQueriesRefreshCancelled: 'ยกเลิกการรีเฟรชใน Excel แล้ว',
   dlgQueriesRefreshBusy: 'มีการรีเฟรชกำลังทำงานอยู่ โปรดรอให้เสร็จ',
   dlgQueriesRefreshNotFile:
     'รีเฟรชใน Excel ได้เฉพาะไฟล์ .xlsx หรือ .xlsm ที่บันทึกแล้ว โปรดบันทึกเป็น .xlsx ก่อน',

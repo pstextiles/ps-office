@@ -102,7 +102,8 @@ export const nl = {
   dlgQueriesRefreshLocked:
     'Het bestand is geopend in een ander programma (meestal Excel). Sluit het daar en probeer het opnieuw.',
   dlgQueriesRefreshTimeout:
-    'Excel was niet binnen 10 minuten klaar, dus het vernieuwen is gestopt. Het bestand is niet gewijzigd.',
+    'Excel was niet binnen 30 minuten klaar, dus het vernieuwen is gestopt. Het bestand is niet gewijzigd.',
+  dlgQueriesRefreshCancelled: 'Het vernieuwen in Excel is geannuleerd.',
   dlgQueriesRefreshBusy: 'Er loopt al een vernieuwing. Wacht tot die klaar is.',
   dlgQueriesRefreshNotFile:
     'Alleen een opgeslagen .xlsx- of .xlsm-bestand kan in Excel worden vernieuwd. Sla het eerst op als .xlsx.',

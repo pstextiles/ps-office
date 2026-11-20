@@ -102,7 +102,8 @@ export const tr = {
   dlgQueriesRefreshLocked:
     'Dosya başka bir programda (genellikle Excel) açık. Orada kapatıp yeniden deneyin.',
   dlgQueriesRefreshTimeout:
-    'Excel 10 dakika içinde bitirmediği için yenileme durduruldu. Dosya değişmedi.',
+    'Excel 30 dakika içinde bitirmediği için yenileme durduruldu. Dosya değişmedi.',
+  dlgQueriesRefreshCancelled: "Excel'de yenileme iptal edildi.",
   dlgQueriesRefreshBusy: 'Zaten bir yenileme sürüyor. Bitmesini bekleyin.',
   dlgQueriesRefreshNotFile:
     "Excel'de yalnızca kaydedilmiş bir .xlsx veya .xlsm dosyası yenilenebilir. Önce .xlsx olarak kaydedin.",

@@ -93,7 +93,8 @@ export const zhTW = {
   dlgQueriesRefreshNoExcel:
     '這台電腦上找不到 Microsoft Excel。「在 Excel 中重新整理」需要安裝 Excel。',
   dlgQueriesRefreshLocked: '檔案已在其他程式（通常是 Excel）中開啟。請在那裡關閉後再試一次。',
-  dlgQueriesRefreshTimeout: 'Excel 未能在 10 分鐘內完成，已停止重新整理。檔案沒有變更。',
+  dlgQueriesRefreshTimeout: 'Excel 未能在 30 分鐘內完成，已停止重新整理。檔案沒有變更。',
+  dlgQueriesRefreshCancelled: '已取消在 Excel 中重新整理。',
   dlgQueriesRefreshBusy: '已有重新整理正在進行，請等待完成。',
   dlgQueriesRefreshNotFile:
     '只有已儲存的 .xlsx 或 .xlsm 檔案能在 Excel 中重新整理。請先另存為 .xlsx。',

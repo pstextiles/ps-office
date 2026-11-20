@@ -92,7 +92,8 @@ export const zh = {
   dlgQueriesRefreshDone: '已在 Excel 中刷新查询（{count} 个）。',
   dlgQueriesRefreshNoExcel: '本机未找到 Microsoft Excel。“在 Excel 中刷新”需要安装 Excel。',
   dlgQueriesRefreshLocked: '文件已在其他程序（通常是 Excel）中打开。请在那里关闭后重试。',
-  dlgQueriesRefreshTimeout: 'Excel 未能在 10 分钟内完成，刷新已停止。文件未被更改。',
+  dlgQueriesRefreshTimeout: 'Excel 未能在 30 分钟内完成，刷新已停止。文件未被更改。',
+  dlgQueriesRefreshCancelled: '已取消在 Excel 中的刷新。',
   dlgQueriesRefreshBusy: '已有刷新正在进行，请等待其完成。',
   dlgQueriesRefreshNotFile:
     '只有已保存的 .xlsx 或 .xlsm 文件才能在 Excel 中刷新。请先另存为 .xlsx。',

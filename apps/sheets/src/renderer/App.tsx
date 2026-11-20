@@ -5317,6 +5317,8 @@ export function App({
           return t('dlgQueriesRefreshTimeout')
         case 'busy':
           return t('dlgQueriesRefreshBusy')
+        case 'cancelled':
+          return t('dlgQueriesRefreshCancelled')
         case 'not-file':
         case 'unsupported':
           return t('dlgQueriesRefreshNotFile')
@@ -5946,6 +5948,11 @@ export function App({
         }
         onRefreshQueriesInExcel={
           window.desktopApi?.refreshQueriesInExcel ? refreshQueriesInExcel : undefined
+        }
+        onCancelRefreshQueriesInExcel={
+          window.desktopApi?.cancelQueriesRefreshInExcel
+            ? () => void window.desktopApi.cancelQueriesRefreshInExcel?.()
+            : undefined
         }
         onReadPasteSpecialSource={readPasteSpecialSourceFromRuntime}
         onPasteSpecial={handlePasteSpecial}

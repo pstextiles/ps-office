@@ -99,7 +99,8 @@ export const hi = {
   dlgQueriesRefreshLocked:
     'फ़ाइल किसी दूसरे प्रोग्राम (अक्सर Excel) में खुली है। उसे वहाँ बंद करके फिर कोशिश करें।',
   dlgQueriesRefreshTimeout:
-    'Excel 10 मिनट में पूरा नहीं हुआ, इसलिए रीफ़्रेश रोक दिया गया। फ़ाइल नहीं बदली।',
+    'Excel 30 मिनट में पूरा नहीं हुआ, इसलिए रीफ़्रेश रोक दिया गया। फ़ाइल नहीं बदली।',
+  dlgQueriesRefreshCancelled: 'Excel में रीफ़्रेश रद्द कर दिया गया।',
   dlgQueriesRefreshBusy: 'एक रीफ़्रेश पहले से चल रहा है। उसके पूरा होने तक प्रतीक्षा करें।',
   dlgQueriesRefreshNotFile:
     'Excel में केवल सहेजी गई .xlsx या .xlsm फ़ाइल रीफ़्रेश की जा सकती है। पहले इसे .xlsx के रूप में सहेजें।',

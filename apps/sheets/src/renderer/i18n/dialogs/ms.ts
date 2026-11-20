@@ -103,7 +103,8 @@ export const ms = {
   dlgQueriesRefreshLocked:
     'Fail sedang dibuka dalam program lain (biasanya Excel). Tutupnya di sana, kemudian cuba lagi.',
   dlgQueriesRefreshTimeout:
-    'Excel tidak selesai dalam 10 minit, jadi penyegaran dihentikan. Fail tidak berubah.',
+    'Excel tidak selesai dalam 30 minit, jadi penyegaran dihentikan. Fail tidak berubah.',
+  dlgQueriesRefreshCancelled: 'Penyegaran semula dalam Excel dibatalkan.',
   dlgQueriesRefreshBusy: 'Penyegaran sedang berjalan. Tunggu sehingga selesai.',
   dlgQueriesRefreshNotFile:
     'Hanya fail .xlsx atau .xlsm yang telah disimpan boleh disegarkan dalam Excel. Simpan sebagai .xlsx dahulu.',

@@ -101,7 +101,8 @@ export const ru = {
   dlgQueriesRefreshLocked:
     'Файл открыт в другой программе (обычно в Excel). Закройте его там и повторите попытку.',
   dlgQueriesRefreshTimeout:
-    'Excel не завершил работу за 10 минут, поэтому обновление остановлено. Файл не изменён.',
+    'Excel не завершил работу за 30 минут, поэтому обновление остановлено. Файл не изменён.',
+  dlgQueriesRefreshCancelled: 'Обновление в Excel отменено.',
   dlgQueriesRefreshBusy: 'Обновление уже выполняется. Дождитесь его завершения.',
   dlgQueriesRefreshNotFile:
     'Обновить в Excel можно только сохранённый файл .xlsx или .xlsm. Сначала сохраните его как .xlsx.',

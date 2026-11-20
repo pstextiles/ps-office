@@ -99,7 +99,8 @@ export const en = {
   dlgQueriesRefreshLocked:
     'The file is open in another program (often Excel). Close it there and try again.',
   dlgQueriesRefreshTimeout:
-    'Excel did not finish within 10 minutes, so the refresh was stopped. The file was not changed.',
+    'Excel did not finish within 30 minutes, so the refresh was stopped. The file was not changed.',
+  dlgQueriesRefreshCancelled: 'The refresh in Excel was cancelled.',
   dlgQueriesRefreshBusy: 'A refresh is already running. Wait for it to finish.',
   dlgQueriesRefreshNotFile:
     'Only a saved .xlsx or .xlsm file can be refreshed in Excel. Save it as .xlsx first.',

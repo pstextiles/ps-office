@@ -3,6 +3,7 @@ import { realpathSync } from 'node:fs'
 import { BrowserWindow, shell, WebContentsView } from 'electron'
 import type { Rectangle, WebContents } from 'electron'
 import { PRODUCT_NAME } from '@genoffice/i18n'
+import { roomForSpareRenderer } from './machine-memory'
 
 import {
   createDocsView,
@@ -284,10 +285,13 @@ export class TabManager {
     // a spare sheets view belongs to the single-pane shell; it must never
     // shadow a pane while a split is live
     if (this.split) return
+    // on a low-memory PC the next workbook mounts its own renderer instead
+    if (!roomForSpareRenderer()) return
     if (this.tabs.find((t) => t.id === this.activeId)?.kind !== 'sheets') return
     this.spareSheetsTimer = setTimeout(() => {
       this.spareSheetsTimer = null
       if (this.spareSheetsView || this.shellWindow.isDestroyed() || this.split) return
+      if (!roomForSpareRenderer()) return
       const active = this.tabs.find((t) => t.id === this.activeId)
       if (active?.kind !== 'sheets') return
       const view = createSheetsView({ includeAiHandlers: false })

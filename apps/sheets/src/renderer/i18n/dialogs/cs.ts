@@ -101,7 +101,8 @@ export const cs = {
   dlgQueriesRefreshLocked:
     'Soubor je otevřený v jiném programu (obvykle v Excelu). Zavřete ho tam a zkuste to znovu.',
   dlgQueriesRefreshTimeout:
-    'Excel nedokončil práci do 10 minut, proto byla aktualizace zastavena. Soubor se nezměnil.',
+    'Excel nedokončil práci do 30 minut, proto byla aktualizace zastavena. Soubor se nezměnil.',
+  dlgQueriesRefreshCancelled: 'Aktualizace v Excelu byla zrušena.',
   dlgQueriesRefreshBusy: 'Aktualizace už probíhá. Počkejte, až skončí.',
   dlgQueriesRefreshNotFile:
     'V Excelu lze aktualizovat jen uložený soubor .xlsx nebo .xlsm. Nejprve ho uložte jako .xlsx.',

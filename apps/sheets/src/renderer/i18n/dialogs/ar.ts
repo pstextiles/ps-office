@@ -98,7 +98,8 @@ export const ar = {
   dlgQueriesRefreshNoExcel:
     'لم يُعثر على Microsoft Excel على هذا الكمبيوتر. يتطلب «التحديث في Excel» تثبيت Excel.',
   dlgQueriesRefreshLocked: 'الملف مفتوح في برنامج آخر (غالبًا Excel). أغلقه هناك ثم أعد المحاولة.',
-  dlgQueriesRefreshTimeout: 'لم ينتهِ Excel خلال 10 دقائق، لذا أُوقف التحديث. لم يتغيّر الملف.',
+  dlgQueriesRefreshTimeout: 'لم ينتهِ Excel خلال 30 دقيقة، لذا أُوقف التحديث. لم يتغيّر الملف.',
+  dlgQueriesRefreshCancelled: 'أُلغي التحديث في Excel.',
   dlgQueriesRefreshBusy: 'هناك تحديث قيد التشغيل بالفعل. انتظر حتى ينتهي.',
   dlgQueriesRefreshNotFile:
     'لا يمكن التحديث في Excel إلا لملف ‎.xlsx أو ‎.xlsm محفوظ. احفظه أولاً بصيغة ‎.xlsx.',

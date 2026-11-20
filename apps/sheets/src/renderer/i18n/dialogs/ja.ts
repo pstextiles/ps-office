@@ -101,7 +101,8 @@ export const ja = {
   dlgQueriesRefreshLocked:
     'ファイルが別のプログラム（多くは Excel）で開かれています。そちらで閉じてからもう一度お試しください。',
   dlgQueriesRefreshTimeout:
-    'Excel が 10 分以内に終わらなかったため、更新を中止しました。ファイルは変更されていません。',
+    'Excel が 30 分以内に終わらなかったため、更新を中止しました。ファイルは変更されていません。',
+  dlgQueriesRefreshCancelled: 'Excel での更新を取り消しました。',
   dlgQueriesRefreshBusy: 'すでに更新中です。終わるまでお待ちください。',
   dlgQueriesRefreshNotFile:
     'Excel で更新できるのは保存済みの .xlsx または .xlsm ファイルだけです。先に .xlsx として保存してください。',

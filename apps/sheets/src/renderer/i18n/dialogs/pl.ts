@@ -101,7 +101,8 @@ export const pl = {
   dlgQueriesRefreshLocked:
     'Plik jest otwarty w innym programie (zwykle w Excelu). Zamknij go tam i spróbuj ponownie.',
   dlgQueriesRefreshTimeout:
-    'Excel nie skończył w ciągu 10 minut, więc odświeżanie zostało zatrzymane. Plik nie został zmieniony.',
+    'Excel nie skończył w ciągu 30 minut, więc odświeżanie zostało zatrzymane. Plik nie został zmieniony.',
+  dlgQueriesRefreshCancelled: 'Odświeżanie w programie Excel zostało anulowane.',
   dlgQueriesRefreshBusy: 'Odświeżanie już trwa. Poczekaj, aż się zakończy.',
   dlgQueriesRefreshNotFile:
     'W programie Excel można odświeżyć tylko zapisany plik .xlsx lub .xlsm. Najpierw zapisz go jako .xlsx.',

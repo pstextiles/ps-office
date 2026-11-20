@@ -12,6 +12,8 @@ import {
   refreshablePath,
   refreshWorkbookInExcel,
   stopExcelRefreshes,
+  cancelExcelRefresh,
+  EXCEL_REFRESH_TIMEOUT_MS,
 } from '../src/main/excel-refresh'
 
 interface FakeChild {
@@ -257,6 +259,32 @@ describe('refreshWorkbookInExcel', () => {
     stopExcelRefreshes()
     expect(kill).toHaveBeenCalledWith(888)
     children[0]!.close(1)
-    await expect(pending).resolves.toEqual({ ok: false, code: 'timeout' })
+    await expect(pending).resolves.toEqual({ ok: false, code: 'cancelled' })
+  })
+
+  it('ends the run and its Excel when the person cancels', async () => {
+    const { spawn, children } = fakeSpawn()
+    const kill = vi.fn()
+    const pending = refreshWorkbookInExcel('C:\\a.xlsx', {
+      ...WIN,
+      spawn,
+      kill,
+      isAlive: () => true,
+    })
+    children[0]!.print('PID 999\n')
+    await new Promise((resolve) => setTimeout(resolve, 5))
+    cancelExcelRefresh()
+    expect(kill).toHaveBeenCalledWith(children[0]!.child.pid)
+    expect(kill).toHaveBeenCalledWith(999)
+    // a second press while it winds down does nothing more
+    cancelExcelRefresh()
+    expect(kill).toHaveBeenCalledTimes(2)
+    children[0]!.close(1)
+    await expect(pending).resolves.toEqual({ ok: false, code: 'cancelled' })
+    expect(excelRefreshRunning()).toBe(false)
+  })
+
+  it('allows up to thirty minutes by default', () => {
+    expect(EXCEL_REFRESH_TIMEOUT_MS).toBe(30 * 60 * 1000)
   })
 })
