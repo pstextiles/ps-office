@@ -7,6 +7,7 @@ import {
   createBufferEntrySource,
   planCellEditsToXlsx,
   type CellEdit,
+  type SheetFormulaValues,
   type SheetTableEdit,
 } from '../src/gateway/xlsx-gateway'
 
@@ -97,10 +98,12 @@ async function save(
   source: Buffer,
   edits: readonly CellEdit[],
   tableEdits: readonly SheetTableEdit[],
+  formulaValues: readonly SheetFormulaValues[] = [],
 ): Promise<JSZip> {
   const args: unknown[] = [await createBufferEntrySource(source), edits]
-  // tableEdits is the 27th parameter of planCellEditsToXlsx
+  // formulaValues is the 21st and tableEdits the 27th parameter of planCellEditsToXlsx
   while (args.length < 26) args.push(undefined)
+  args[20] = formulaValues
   args[26] = tableEdits
   const plan = await (
     planCellEditsToXlsx as (...a: unknown[]) => ReturnType<typeof planCellEditsToXlsx>
@@ -219,5 +222,93 @@ describe('a query table refresh through the save path', () => {
     expect(table).toContain('ref="A1:B5" tableType="queryTable"')
     expect(table).toContain('<sortState ref="A2:B4"><sortCondition ref="B1:B4"/></sortState>')
     expect(await text(zip, 'xl/workbook.xml')).toContain("'Raw data'!$A$1:$B$4<")
+  })
+})
+
+/**
+ * PS Office: what the built-in recalculation writes besides a formula cell's
+ * cached value — the new range of a dynamic array formula, the values in
+ * the cells it fills (errors included, cells created or emptied as the array
+ * grows or shrinks), and no stale "newer error" mark on a value.
+ */
+describe('recalculated array formulas through the save path', () => {
+  const INFO = 'xl/worksheets/sheet1.xml'
+  async function arrayWorkbook(): Promise<Buffer> {
+    const zip = await JSZip.loadAsync(await workbook())
+    zip.file(
+      INFO,
+      `<worksheet ${NS}><sheetData>` +
+        '<row r="1"><c r="A1" t="str" cm="1"><f t="array" ref="A1:A2">_xlfn._xlws.FILTER(E:E,F:F)</f><v>b</v></c>' +
+        '<c r="C1" t="e" vm="1"><f>SUM(A1:A9)</f><v>#VALUE!</v></c></row>' +
+        '<row r="2"><c r="A2" s="1" t="str"><f ca="1"/><v>c</v></c><c r="B2" s="2"><v>9</v></c></row>' +
+        '</sheetData></worksheet>',
+    )
+    return zip.generateAsync({ type: 'nodebuffer' })
+  }
+  const values = (cells: SheetFormulaValues['cells']): SheetFormulaValues[] => [
+    { sheetName: 'Info', cells },
+  ]
+
+  it('moves the array range, writes the filled cells and clears the mark of a newer error', async () => {
+    const zip = await save(
+      await arrayWorkbook(),
+      [],
+      [],
+      values([
+        { row: 0, column: 0, value: 'x', arrayRef: 'A1:A3' },
+        { row: 1, column: 0, value: 5, spill: true },
+        { row: 2, column: 0, value: { error: '#N/A' }, spill: true },
+        { row: 1, column: 1, value: null, spill: true },
+        { row: 0, column: 2, value: 7, clearValueMeta: true },
+      ]),
+    )
+    const sheet = await text(zip, INFO)
+    expect(sheet).toContain(
+      '<c r="A1" cm="1" t="str"><f t="array" ref="A1:A3">_xlfn._xlws.FILTER(E:E,F:F)</f><v>x</v></c>',
+    )
+    // the filled cell keeps its style and loses the spill marker; a cell the array left keeps only its style
+    expect(sheet).toContain('<c r="A2" s="1"><v>5</v></c>')
+    expect(sheet).toContain('<c r="B2" s="2"/>')
+    // a cell the array now reaches is created, an error value included
+    expect(sheet).toContain('<row r="3"><c r="A3" t="e"><v>#N/A</v></c></row>')
+    expect(sheet).toContain('<c r="C1"><f>SUM(A1:A9)</f><v>7</v></c>')
+  })
+
+  it('keeps the mark while the value is still an error, and leaves other cells alone without the fields', async () => {
+    const zip = await save(
+      await arrayWorkbook(),
+      [],
+      [],
+      values([
+        { row: 0, column: 2, value: { error: '#VALUE!' }, clearValueMeta: true },
+        { row: 0, column: 0, value: 'y' },
+      ]),
+    )
+    const sheet = await text(zip, INFO)
+    expect(sheet).toContain('<c r="C1" vm="1" t="e"><f>SUM(A1:A9)</f><v>#VALUE!</v></c>')
+    expect(sheet).toContain('<f t="array" ref="A1:A2">_xlfn._xlws.FILTER(E:E,F:F)</f><v>y</v>')
+    expect(sheet).toContain('<c r="A2" s="1" t="str"><f ca="1"/><v>c</v></c>')
+  })
+
+  it('refuses a spilled value on a formula cell and a range that does not start at the cell', async () => {
+    await expect(
+      save(await arrayWorkbook(), [], [], values([{ row: 0, column: 2, value: 1, spill: true }])),
+    ).rejects.toThrow(/holds a formula/)
+    await expect(
+      save(
+        await arrayWorkbook(),
+        [],
+        [],
+        values([{ row: 0, column: 0, value: 'x', arrayRef: 'B1:B3' }]),
+      ),
+    ).rejects.toThrow(/does not start/)
+    await expect(
+      save(
+        await arrayWorkbook(),
+        [],
+        [],
+        values([{ row: 0, column: 2, value: 1, arrayRef: 'C1:C3' }]),
+      ),
+    ).rejects.toThrow(/no array formula/)
   })
 })

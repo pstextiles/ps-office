@@ -239,6 +239,19 @@ export interface SheetFormulaValues {
     readonly row: number
     readonly column: number
     readonly value: FormulaCachedValue
+    /// PS Office (built-in recalculation): the range the array formula in
+    /// this cell fills now, written to its `<f t="array" ref>`. Excel reads a
+    /// value outside a dynamic array's range as a cell in its way (#SPILL!).
+    readonly arrayRef?: string | undefined
+    /// PS Office (built-in recalculation): the cell holds a value an array
+    /// formula fills, not a formula of its own. The value becomes the cell's
+    /// content (the cell is created when missing, its style kept); null
+    /// empties it.
+    readonly spill?: true | undefined
+    /// PS Office (built-in recalculation): drop the cell's value metadata
+    /// (vm), which marks a stored #VALUE! as a newer error such as #SPILL!,
+    /// when the new value is not an error.
+    readonly clearValueMeta?: true | undefined
   }[]
 }
 
@@ -1423,16 +1436,24 @@ export async function planCellEditsToXlsx(
     if (sheet.cells.length === 0) continue
     const worksheetXml = worksheetXmls.get(sheet.sheetName)
     if (worksheetXml === undefined) continue
-    worksheetXmls.set(
-      sheet.sheetName,
-      transformWorksheetCells(
-        worksheetXml,
-        groupFormulaValuesByCell(sheet.cells),
-        (cellXml, rowNumber, column, value) =>
-          patchFormulaCachedValue(cellXml, toA1Address(rowNumber - 1, column), value),
-        false,
-      ),
+    const spills = sheet.cells.some((cell) => cell.spill)
+    const patched = transformWorksheetCells(
+      worksheetXml,
+      groupFormulaValuesByCell(sheet.cells),
+      (cellXml, rowNumber, column, item) => {
+        const address = toA1Address(rowNumber - 1, column)
+        if (item.spill) return writeSpilledCell(cellXml, address, item.value)
+        let result = patchFormulaCachedValue(cellXml, address, item.value)
+        if (item.arrayRef !== undefined) result = setArrayFormulaRef(result, address, item.arrayRef)
+        if (item.clearValueMeta && (typeof item.value !== 'object' || item.value === null)) {
+          result = result.replace(/^(<c\b[^>]*?)\svm="[^"]*"/, '$1')
+        }
+        return result
+      },
+      spills,
     )
+    // spilled cells can lie beyond the sheet's recorded extent
+    worksheetXmls.set(sheet.sheetName, spills ? expandWorksheetDimensionToCells(patched) : patched)
   }
   // Columns inserted inside a table got generated names during the structural
   // pass. Excel requires each header cell to spell its column's name, so
@@ -2911,8 +2932,8 @@ function applyCellEdits(
 
 function groupFormulaValuesByCell(
   cells: SheetFormulaValues['cells'],
-): SheetCellItems<SheetFormulaValues['cells'][number]['value']> {
-  const valuesByCell: SheetCellItems<SheetFormulaValues['cells'][number]['value']> = new Map()
+): SheetCellItems<SheetFormulaValues['cells'][number]> {
+  const valuesByCell: SheetCellItems<SheetFormulaValues['cells'][number]> = new Map()
   for (const cell of cells) {
     const rowNumber = cell.row + 1
     let columns = valuesByCell.get(rowNumber)
@@ -2920,9 +2941,49 @@ function groupFormulaValuesByCell(
       columns = new Map()
       valuesByCell.set(rowNumber, columns)
     }
-    columns.set(cell.column, cell.value)
+    columns.set(cell.column, cell)
   }
   return valuesByCell
+}
+
+/// PS Office (built-in recalculation): the content of a cell an array
+/// formula fills. The cell keeps its style and loses any `<f ca="1"/>` spill
+/// marker; a cell with a formula of its own is in the array's way and is
+/// never a spill target.
+function writeSpilledCell(cellXml: string, address: string, value: FormulaCachedValue): string {
+  if (/<f\b[^>]*>[^<]/.test(cellXml)) {
+    throw new Error(`Cell ${address} holds a formula and cannot take a spilled value.`)
+  }
+  const styleIndex = cellXml === '' ? undefined : readCellStyleIndex(cellXml, address)
+  const style = styleIndex === undefined ? '' : ` s="${styleIndex}"`
+  if (value === null) return styleIndex === undefined ? '' : `<c r="${address}"${style}/>`
+  if (typeof value === 'object') {
+    return `<c r="${address}"${style} t="e"><v>${escapeCellText(value.error)}</v></c>`
+  }
+  if (typeof value === 'boolean')
+    return `<c r="${address}"${style} t="b"><v>${value ? 1 : 0}</v></c>`
+  if (typeof value === 'number' && Number.isFinite(value)) {
+    return `<c r="${address}"${style}><v>${value}</v></c>`
+  }
+  return `<c r="${address}"${style} t="inlineStr"><is><t xml:space="preserve">${escapeCellText(String(value))}</t></is></c>`
+}
+
+/// PS Office (built-in recalculation): the new range of an array formula.
+function setArrayFormulaRef(cellXml: string, address: string, ref: string): string {
+  const [start, end] = ref.split(':')
+  if (start !== address || (end !== undefined && !isGridCellAddress(end))) {
+    throw new Error(`Array formula range ${ref} does not start at its cell ${address}.`)
+  }
+  let found = false
+  const result = cellXml.replace(
+    /(<f\b[^>]*\bt="array"[^>]*\bref=")[^"]*(")/,
+    (_whole, before: string, after: string) => {
+      found = true
+      return `${before}${ref}${after}`
+    },
+  )
+  if (!found) throw new Error(`Cell ${address} holds no array formula.`)
+  return result
 }
 
 /// Applies all cell transforms to a worksheet in one pass over <sheetData>,
