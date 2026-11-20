@@ -17,7 +17,7 @@
  * The channels are this editor's own (`epub:`); the shared `ai:*` and
  * subscription channels belong to the docs main and are never registered here.
  */
-import { mkdirSync, readFileSync, readdirSync, statSync, unlinkSync, writeFileSync } from 'node:fs'
+import { mkdirSync, readdirSync, statSync, unlinkSync, writeFileSync } from 'node:fs'
 import { basename, join, extname } from 'node:path'
 import { BrowserWindow, app, dialog, ipcMain } from 'electron'
 import { assertFileSaved, showOpenDialogWithMemory } from '@genoffice/electron-utils'
@@ -39,6 +39,7 @@ import type {
   AttachmentMeta,
   AttachmentReadResult,
 } from '../shared/ipc'
+import { readImageForModel } from '@genoffice/electron-utils/model-image'
 
 const ATTACH_STRINGS = {
   zh: {
@@ -410,8 +411,11 @@ function statAttachment(filePath: string): { meta?: AttachmentMeta; error?: stri
         error: `${name}: ${tm('errTooLarge', { mb: Math.round(ATTACHABLE_MAX_BYTES / 1024 / 1024) })}`,
       }
     }
-    if (ATTACHABLE_IMAGE_EXTS.has(ext) && stat.size > ATTACHABLE_IMAGE_MAX_BYTES) {
-      return { error: `${name}: ${tm('errImageTooLarge')}` }
+    // a picture over the message limit is shrunk when it is sent (readImageForModel)
+    if (ATTACHABLE_IMAGE_EXTS.has(ext) && stat.size > ATTACHABLE_MAX_BYTES) {
+      return {
+        error: `${name}: ${tm('errTooLarge', { mb: Math.round(ATTACHABLE_MAX_BYTES / 1024 / 1024) })}`,
+      }
     }
     return { meta: { path: filePath, name, ext, sizeBytes: stat.size } }
   } catch {
@@ -537,11 +541,13 @@ export function readAttachmentImage(filePath: unknown): AttachmentImageResult {
   const mime = ATTACHMENT_IMAGE_MIME[extOf(name)]
   if (!path || !mime) return { ok: false, error: `${name}: ${tm('errNotImage')}` }
   try {
-    const stat = statSync(path)
-    if (stat.size > ATTACHABLE_IMAGE_MAX_BYTES) {
-      return { ok: false, error: `${name}: ${tm('errImageTooLarge')}` }
+    // a heavy photo is shrunk to what the model looks at instead of being refused
+    const picture = readImageForModel(path, mime)
+    if (!picture.ok) {
+      const reason = picture.reason === 'too-large' ? 'errImageTooLarge' : 'errUnreadable'
+      return { ok: false, error: `${name}: ${tm(reason)}` }
     }
-    return { ok: true, base64: readFileSync(path).toString('base64'), mime }
+    return { ok: true, base64: picture.base64, mime: picture.mime }
   } catch {
     return { ok: false, error: `${name}: ${tm('errUnreadable')}` }
   }

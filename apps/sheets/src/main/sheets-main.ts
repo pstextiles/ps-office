@@ -164,7 +164,6 @@ import {
   ATTACHABLE_IMAGE_EXTS,
   ATTACHABLE_MAX_BYTES,
   attachableMaxBytes,
-  ATTACHABLE_IMAGE_MAX_BYTES,
   diagramPictureExtOf,
   diagramPictureExtOfName,
 } from '@genoffice/file-parse'
@@ -280,6 +279,7 @@ import {
   SAVE_FAILURE_LOG_FILE,
   sessionSourceFormat,
 } from './save-failure-log'
+import { readImageForModel } from '@genoffice/electron-utils/model-image'
 
 /**
  * Sheets main-process logic as an embeddable module: no top-level lifecycle.
@@ -3827,8 +3827,11 @@ function statAttachment(filePath: string): { meta?: AttachmentMeta; error?: stri
         error: `${name}: ${tm('errTooLarge', { mb: Math.round(ATTACHABLE_MAX_BYTES / 1024 / 1024) })}`,
       }
     }
-    if (ATTACHABLE_IMAGE_EXTS.has(ext) && stat.size > ATTACHABLE_IMAGE_MAX_BYTES) {
-      return { error: `${name}: ${tm('errImageTooLarge')}` }
+    // a picture over the message limit is shrunk when it is sent (readImageForModel)
+    if (ATTACHABLE_IMAGE_EXTS.has(ext) && stat.size > ATTACHABLE_MAX_BYTES) {
+      return {
+        error: `${name}: ${tm('errTooLarge', { mb: Math.round(ATTACHABLE_MAX_BYTES / 1024 / 1024) })}`,
+      }
     }
     return { meta: { path: filePath, name, ext, sizeBytes: stat.size } }
   } catch {
@@ -5462,11 +5465,13 @@ export function registerSheetsIpc(): void {
     const mime = ATTACHMENT_IMAGE_MIME[ext]
     if (!mime) return { ok: false, error: `${name}: ${tm('errNotImage')}` }
     try {
-      const stat = statSync(validatedPath)
-      if (stat.size > ATTACHABLE_IMAGE_MAX_BYTES) {
-        return { ok: false, error: `${name}: ${tm('errImageTooLarge')}` }
+      // a heavy photo is shrunk to what the model looks at instead of being refused
+      const picture = readImageForModel(validatedPath, mime)
+      if (!picture.ok) {
+        const reason = picture.reason === 'too-large' ? 'errImageTooLarge' : 'errUnreadable'
+        return { ok: false, error: `${name}: ${tm(reason)}` }
       }
-      return { ok: true, base64: readFileSync(validatedPath).toString('base64'), mime }
+      return { ok: true, base64: picture.base64, mime: picture.mime }
     } catch {
       return { ok: false, error: `${name}: ${tm('errUnreadable')}` }
     }

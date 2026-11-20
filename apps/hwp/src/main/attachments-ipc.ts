@@ -29,6 +29,7 @@ import type {
 } from '../shared/ipc'
 import { HWP_CHANNELS } from '../shared/ipc'
 import { tm } from './dialog-strings'
+import { readImageForModel } from '@genoffice/electron-utils/model-image'
 
 const ATTACHMENT_IMAGE_MIME: Record<string, string> = {
   png: 'image/png',
@@ -57,8 +58,11 @@ function statAttachment(filePath: string): { meta?: AttachmentMeta; error?: stri
         error: `${name}: ${tm('errTooLarge', { mb: Math.round(ATTACHABLE_MAX_BYTES / 1024 / 1024) })}`,
       }
     }
-    if (ATTACHABLE_IMAGE_EXTS.has(ext) && stat.size > ATTACHABLE_IMAGE_MAX_BYTES) {
-      return { error: `${name}: ${tm('errImageTooLarge')}` }
+    // a picture over the message limit is shrunk when it is sent (readImageForModel)
+    if (ATTACHABLE_IMAGE_EXTS.has(ext) && stat.size > ATTACHABLE_MAX_BYTES) {
+      return {
+        error: `${name}: ${tm('errTooLarge', { mb: Math.round(ATTACHABLE_MAX_BYTES / 1024 / 1024) })}`,
+      }
     }
     return { meta: { path: filePath, name, ext, sizeBytes: stat.size } }
   } catch {
@@ -222,11 +226,13 @@ export function registerHwpAttachmentIpc(host: () => HwpAttachmentHost = () => (
     const mime = ATTACHMENT_IMAGE_MIME[ext]
     if (!mime) return { ok: false, error: `${name}: ${tm('errNotImage')}` }
     try {
-      const stat = statSync(filePath)
-      if (stat.size > ATTACHABLE_IMAGE_MAX_BYTES) {
-        return { ok: false, error: `${name}: ${tm('errImageTooLarge')}` }
+      // a heavy photo is shrunk to what the model looks at instead of being refused
+      const picture = readImageForModel(filePath, mime)
+      if (!picture.ok) {
+        const reason = picture.reason === 'too-large' ? 'errImageTooLarge' : 'errUnreadable'
+        return { ok: false, error: `${name}: ${tm(reason)}` }
       }
-      return { ok: true, base64: readFileSync(filePath).toString('base64'), mime }
+      return { ok: true, base64: picture.base64, mime: picture.mime }
     } catch {
       return { ok: false, error: `${name}: ${tm('errUnreadable')}` }
     }
