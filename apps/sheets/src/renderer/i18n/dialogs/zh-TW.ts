@@ -84,6 +84,22 @@ export const zhTW = {
     '尚不支援重新整理查詢。查詢保存在檔案中，Excel 仍可重新整理；這裡顯示的是上次儲存的結果。',
   dlgQueriesGoHint: '按一下以選取載入的列',
   dlgQueriesError: '無法讀取活頁簿的連線：{error}',
+  dlgQueriesNoteRefresh:
+    '顯示的列是上次儲存的結果。「在 Excel 中重新整理」會讓這台電腦安裝的 Excel 重新整理查詢並儲存檔案，然後在這裡重新開啟。',
+  dlgQueriesRefreshExcel: '在 Excel 中重新整理',
+  dlgQueriesRefreshTip: '使用這台電腦安裝的 Excel。尚未儲存的變更會先儲存。',
+  dlgQueriesRefreshing: '正在 Excel 中重新整理… 資料量大或來源在網路上時可能需要幾分鐘。',
+  dlgQueriesRefreshDone: '已在 Excel 中重新整理查詢（{count} 個）。',
+  dlgQueriesRefreshNoExcel:
+    '這台電腦上找不到 Microsoft Excel。「在 Excel 中重新整理」需要安裝 Excel。',
+  dlgQueriesRefreshLocked: '檔案已在其他程式（通常是 Excel）中開啟。請在那裡關閉後再試一次。',
+  dlgQueriesRefreshTimeout: 'Excel 未能在 10 分鐘內完成，已停止重新整理。檔案沒有變更。',
+  dlgQueriesRefreshBusy: '已有重新整理正在進行，請等待完成。',
+  dlgQueriesRefreshNotFile:
+    '只有已儲存的 .xlsx 或 .xlsm 檔案能在 Excel 中重新整理。請先另存為 .xlsx。',
+  dlgQueriesRefreshSaveFailed: '無法儲存變更，因此沒有開始重新整理。',
+  dlgQueriesRefreshFailed: 'Excel 無法重新整理查詢，檔案沒有變更。{error}',
+  dlgQueriesRefreshReopenFailed: 'Excel 已重新整理檔案，但無法在這裡重新開啟。請從首頁重新開啟。',
   dlgPasteSpecialTitle: '選擇性貼上',
   dlgPasteSpecialPaste: '貼上',
   dlgPasteSpecialAll: '全部',

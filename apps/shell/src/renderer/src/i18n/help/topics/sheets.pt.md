@@ -80,6 +80,7 @@ O separador Fórmulas, botão a botão:
 - Classificar e filtrar.
 - Congelar painéis.
 - .csv / .tsv: abrem-se de imediato como tabela (um tsv separado por tabulações é analisado como uma só tabela); ao guardar, o formato original é reescrito.
+- Power Query (Windows): guia Dados ▸ **Consultas e conexões** ▸ **Atualizar no Excel** faz o Excel instalado neste PC atualizar as consultas (incluindo fontes na rede) e salvar o arquivo; depois ele é reaberto aqui. As alterações não salvas são salvas primeiro; se uma fonte não puder ser acessada, o arquivo não é alterado.
 
 ## Menus de contexto
 

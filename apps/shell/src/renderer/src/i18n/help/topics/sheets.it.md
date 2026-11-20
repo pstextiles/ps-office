@@ -80,6 +80,7 @@ La scheda Formule, pulsante per pulsante:
 - Ordinamento e filtro.
 - Blocca finestre.
 - .csv / .tsv: si aprono direttamente come tabella (il tsv delimitato da tabulazioni viene letto come uno solo); il salvataggio scrive indietro nel formato originale.
+- Power Query (Windows): scheda Dati ▸ **Query e connessioni** ▸ **Aggiorna in Excel** fa aggiornare le query (comprese le origini in rete) all'Excel installato su questo PC e salva il file, che poi viene riaperto qui. Le modifiche non salvate vengono salvate prima; se un'origine non è raggiungibile, il file non viene modificato.
 
 ## Menu contestuali
 

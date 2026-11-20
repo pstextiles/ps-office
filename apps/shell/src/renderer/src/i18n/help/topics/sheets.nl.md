@@ -80,6 +80,7 @@ Het tabblad Formules, knop voor knop:
 - Sorteren en filteren.
 - Vensters bevriezen.
 - .csv / .tsv: worden direct als tabel geopend (een door tabs gescheiden tsv wordt als één tabel gelezen); bij opslaan wordt het oorspronkelijke formaat teruggeschreven.
+- Power Query (Windows): tabblad Gegevens ▸ **Query’s en verbindingen** ▸ **Vernieuwen in Excel** laat de op deze pc geïnstalleerde Excel de query’s vernieuwen (ook netwerkbronnen) en het bestand opslaan; daarna wordt het hier opnieuw geopend. Niet-opgeslagen wijzigingen worden eerst opgeslagen; is een bron niet bereikbaar, dan blijft het bestand ongewijzigd.
 
 ## Contextmenu's
 

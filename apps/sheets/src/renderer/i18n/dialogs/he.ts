@@ -86,6 +86,23 @@ export const he = {
     'רענון שאילתות עדיין אינו נתמך. הן נשמרות בקובץ, כך ש-Excel עדיין יכול לרענן אותן; השורות המוצגות הן התוצאות שנשמרו לאחרונה.',
   dlgQueriesGoHint: 'לחצו כדי לבחור את השורות שנטענו',
   dlgQueriesError: 'לא ניתן לקרוא את החיבורים של חוברת העבודה: {error}',
+  dlgQueriesNoteRefresh:
+    'השורות המוצגות הן התוצאות האחרונות שנשמרו. "רענון ב-Excel" גורם ל-Excel המותקן במחשב זה לרענן את השאילתות ולשמור את הקובץ, ואז הקובץ נפתח כאן מחדש.',
+  dlgQueriesRefreshExcel: 'רענון ב-Excel',
+  dlgQueriesRefreshTip: 'משתמש ב-Excel המותקן במחשב זה. שינויים שלא נשמרו נשמרים קודם.',
+  dlgQueriesRefreshing: 'מרענן ב-Excel… עם הרבה נתונים או מקורות ברשת זה עשוי לקחת כמה דקות.',
+  dlgQueriesRefreshDone: 'השאילתות רועננו ב-Excel ‏({count}).',
+  dlgQueriesRefreshNoExcel:
+    'Microsoft Excel לא נמצא במחשב זה. "רענון ב-Excel" דורש ש-Excel יהיה מותקן.',
+  dlgQueriesRefreshLocked: 'הקובץ פתוח בתוכנה אחרת (בדרך כלל Excel). סגרו אותו שם ונסו שוב.',
+  dlgQueriesRefreshTimeout: 'Excel לא סיים בתוך 10 דקות, ולכן הרענון הופסק. הקובץ לא השתנה.',
+  dlgQueriesRefreshBusy: 'כבר מתבצע רענון. המתינו לסיומו.',
+  dlgQueriesRefreshNotFile:
+    'אפשר לרענן ב-Excel רק קובץ ‎.xlsx או ‎.xlsm שמור. שמרו אותו קודם כ-‎.xlsx.',
+  dlgQueriesRefreshSaveFailed: 'לא ניתן היה לשמור את השינויים, ולכן הרענון לא התחיל.',
+  dlgQueriesRefreshFailed: 'Excel לא הצליח לרענן את השאילתות, ולכן הקובץ לא השתנה. {error}',
+  dlgQueriesRefreshReopenFailed:
+    'Excel רענן את הקובץ, אך לא ניתן היה לפתוח אותו כאן מחדש. פתחו אותו שוב מדף הבית.',
   dlgPasteSpecialTitle: 'הדבקה מיוחדת',
   dlgPasteSpecialPaste: 'הדבק',
   dlgPasteSpecialAll: 'הכל',

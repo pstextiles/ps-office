@@ -80,6 +80,7 @@ La pestaña Fórmulas, botón por botón:
 - Ordenar y filtrar.
 - Inmovilizar paneles.
 - .csv / .tsv: se abren directamente como tabla (un tsv separado por tabulaciones se analiza como una sola tabla); al guardar se vuelve a escribir el formato original.
+- Power Query (Windows): pestaña Datos ▸ **Consultas y conexiones** ▸ **Actualizar en Excel** hace que el Excel instalado en este PC actualice las consultas (incluidos los orígenes en red) y guarde el archivo; después se vuelve a abrir aquí. Los cambios sin guardar se guardan primero; si no se puede llegar a un origen, el archivo no cambia.
 
 ## Menús contextuales
 

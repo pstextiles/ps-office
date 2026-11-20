@@ -86,6 +86,27 @@ export const hi = {
     'क्वेरी रीफ़्रेश करना अभी समर्थित नहीं है। वे फ़ाइल में बनी रहती हैं, इसलिए Excel उन्हें अब भी रीफ़्रेश कर सकता है; दिखाई गई पंक्तियाँ आख़िरी बार सहेजे गए परिणाम हैं।',
   dlgQueriesGoHint: 'लोड की गई पंक्तियाँ चुनने के लिए क्लिक करें',
   dlgQueriesError: 'वर्कबुक के कनेक्शन नहीं पढ़े जा सके: {error}',
+  dlgQueriesNoteRefresh:
+    'दिखाई गई पंक्तियाँ आखिरी बार सहेजे गए परिणाम हैं। "Excel में रीफ़्रेश करें" इस PC पर इंस्टॉल Excel से क्वेरी रीफ़्रेश करवाकर फ़ाइल सहेजता है, फिर उसे यहाँ दोबारा खोलता है।',
+  dlgQueriesRefreshExcel: 'Excel में रीफ़्रेश करें',
+  dlgQueriesRefreshTip:
+    'इस PC पर इंस्टॉल Excel का उपयोग करता है। बिना सहेजे गए बदलाव पहले सहेजे जाते हैं।',
+  dlgQueriesRefreshing:
+    'Excel में रीफ़्रेश हो रहा है… ज़्यादा डेटा या नेटवर्क पर मौजूद स्रोतों में कुछ मिनट लग सकते हैं।',
+  dlgQueriesRefreshDone: 'Excel में क्वेरी रीफ़्रेश हो गईं ({count})।',
+  dlgQueriesRefreshNoExcel:
+    'इस PC पर Microsoft Excel नहीं मिला। "Excel में रीफ़्रेश करें" के लिए Excel इंस्टॉल होना चाहिए।',
+  dlgQueriesRefreshLocked:
+    'फ़ाइल किसी दूसरे प्रोग्राम (अक्सर Excel) में खुली है। उसे वहाँ बंद करके फिर कोशिश करें।',
+  dlgQueriesRefreshTimeout:
+    'Excel 10 मिनट में पूरा नहीं हुआ, इसलिए रीफ़्रेश रोक दिया गया। फ़ाइल नहीं बदली।',
+  dlgQueriesRefreshBusy: 'एक रीफ़्रेश पहले से चल रहा है। उसके पूरा होने तक प्रतीक्षा करें।',
+  dlgQueriesRefreshNotFile:
+    'Excel में केवल सहेजी गई .xlsx या .xlsm फ़ाइल रीफ़्रेश की जा सकती है। पहले इसे .xlsx के रूप में सहेजें।',
+  dlgQueriesRefreshSaveFailed: 'आपके बदलाव सहेजे नहीं जा सके, इसलिए रीफ़्रेश शुरू नहीं हुआ।',
+  dlgQueriesRefreshFailed: 'Excel क्वेरी रीफ़्रेश नहीं कर सका, इसलिए फ़ाइल नहीं बदली। {error}',
+  dlgQueriesRefreshReopenFailed:
+    'Excel ने फ़ाइल रीफ़्रेश कर दी, लेकिन उसे यहाँ दोबारा नहीं खोला जा सका। होम से उसे फिर से खोलें।',
   dlgPasteSpecialTitle: 'विशेष चिपकाएँ',
   dlgPasteSpecialPaste: 'चिपकाएँ',
   dlgPasteSpecialAll: 'सभी',

@@ -89,6 +89,27 @@ export const tr = {
     'Sorguları yenileme henüz desteklenmiyor. Dosyada korundukları için Excel bunları yine de yenileyebilir; gösterilen satırlar son kaydedilen sonuçlardır.',
   dlgQueriesGoHint: 'Yüklenen satırları seçmek için tıklayın',
   dlgQueriesError: 'Çalışma kitabının bağlantıları okunamadı: {error}',
+  dlgQueriesNoteRefresh:
+    "Gösterilen satırlar en son kaydedilen sonuçlardır. Excel'de Yenile, bu bilgisayarda yüklü Excel'in sorguları yenilemesini ve dosyayı kaydetmesini sağlar; ardından dosya burada yeniden açılır.",
+  dlgQueriesRefreshExcel: "Excel'de Yenile",
+  dlgQueriesRefreshTip:
+    "Bu bilgisayarda yüklü Excel'i kullanır. Kaydedilmemiş değişiklikler önce kaydedilir.",
+  dlgQueriesRefreshing:
+    "Excel'de yenileniyor… Büyük veriler veya ağdaki kaynaklar birkaç dakika sürebilir.",
+  dlgQueriesRefreshDone: "Sorgular Excel'de yenilendi ({count}).",
+  dlgQueriesRefreshNoExcel:
+    "Bu bilgisayarda Microsoft Excel bulunamadı. Excel'de Yenile için Excel'in yüklü olması gerekir.",
+  dlgQueriesRefreshLocked:
+    'Dosya başka bir programda (genellikle Excel) açık. Orada kapatıp yeniden deneyin.',
+  dlgQueriesRefreshTimeout:
+    'Excel 10 dakika içinde bitirmediği için yenileme durduruldu. Dosya değişmedi.',
+  dlgQueriesRefreshBusy: 'Zaten bir yenileme sürüyor. Bitmesini bekleyin.',
+  dlgQueriesRefreshNotFile:
+    "Excel'de yalnızca kaydedilmiş bir .xlsx veya .xlsm dosyası yenilenebilir. Önce .xlsx olarak kaydedin.",
+  dlgQueriesRefreshSaveFailed: 'Değişiklikleriniz kaydedilemediği için yenileme başlamadı.',
+  dlgQueriesRefreshFailed: 'Excel sorguları yenileyemediği için dosya değişmedi. {error}',
+  dlgQueriesRefreshReopenFailed:
+    'Excel dosyayı yeniledi ancak dosya burada yeniden açılamadı. Ana sayfadan yeniden açın.',
   dlgPasteSpecialTitle: 'Özel yapıştır',
   dlgPasteSpecialPaste: 'Yapıştır',
   dlgPasteSpecialAll: 'Tümü',

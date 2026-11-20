@@ -202,6 +202,7 @@ import {
   workbookPivotRequestSchema,
   workbookQueriesRequestSchema,
   workbookQueriesResultSchema,
+  workbookQueriesRefreshResultSchema,
   localImageRequestSchema,
   localImageResultSchema,
   screenCaptureRequestSchema,
@@ -266,6 +267,7 @@ import { XlsxSidecarClient } from './xlsx-sidecar-client'
 import { convertLegacyWorkbook } from './legacy-import'
 import { sessionAfterRename } from './session-rename'
 import { continuedOpenOptions, sessionToContinue } from './session-reopen'
+import { refreshablePath, refreshWorkbookInExcel, stopExcelRefreshes } from './excel-refresh'
 import {
   appendSaveFailure,
   describeReopenFailure,
@@ -4597,6 +4599,36 @@ export function registerSheetsIpc(): void {
           : Promise.resolve(undefined),
       ),
     )
+  })
+
+  // Refresh in Excel (Windows): only a workbook opened as itself — not a
+  // converted, restored, decrypted, CSV or new-workbook copy, whose path is
+  // not the file the user means — and only its saved state on disk (the
+  // renderer saves pending edits first and reopens the file afterwards).
+  let excelRefreshQuitHooked = false
+  ipcMain.handle(IPC_CHANNELS.refreshQueriesInExcel, async (event, input: unknown) => {
+    const entry = sessionFor(event)
+    const request = workbookQueriesRequestSchema.parse(input)
+    const session = entry.sessions.get(request.sessionId)
+    if (!session) throw new Error('Unknown workbook session.')
+    const copy =
+      session.suggestSaveAs !== undefined ||
+      session.unsavedNew === true ||
+      session.csvSourcePath !== undefined ||
+      session.importTempDir !== undefined ||
+      session.restoreTarget !== undefined ||
+      session.password !== undefined ||
+      session.emptySource === true ||
+      session.odsConverted === true
+    if (copy || !refreshablePath(session.path) || !existsSync(session.path)) {
+      return workbookQueriesRefreshResultSchema.parse({ ok: false, code: 'not-file' })
+    }
+    if (!excelRefreshQuitHooked) {
+      excelRefreshQuitHooked = true
+      // a refresh still running must not leave a hidden Excel behind the app
+      app.once('will-quit', stopExcelRefreshes)
+    }
+    return workbookQueriesRefreshResultSchema.parse(await refreshWorkbookInExcel(session.path))
   })
 
   ipcMain.handle(IPC_CHANNELS.exportPdf, async (event, input: unknown) => {

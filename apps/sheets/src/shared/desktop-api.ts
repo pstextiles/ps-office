@@ -2394,6 +2394,30 @@ export const workbookQueriesRequestSchema = z
   })
   .strict()
 
+/**
+ * Data › Queries & Connections › Refresh in Excel: what the installed Excel
+ * reported. `failed` carries Excel's or the data source's own message.
+ */
+export const workbookQueriesRefreshResultSchema = z.union([
+  z.object({ ok: z.literal(true), refreshed: z.number().int().nonnegative() }).strict(),
+  z
+    .object({
+      ok: z.literal(false),
+      code: z.enum([
+        'unsupported',
+        'busy',
+        'no-excel',
+        'locked',
+        'readonly',
+        'failed',
+        'timeout',
+        'not-file',
+      ]),
+      detail: z.string().max(400).optional(),
+    })
+    .strict(),
+])
+
 /** Data › Queries & Connections (read-only): one entry per connection in xl/connections.xml */
 export const workbookQueriesResultSchema = z
   .array(
@@ -2630,6 +2654,7 @@ export type WorkbookPivotRequest = z.infer<typeof workbookPivotRequestSchema>
 export type WorkbookPivotDefinition = z.infer<typeof workbookPivotDefinitionSchema>
 export type WorkbookQueriesRequest = z.infer<typeof workbookQueriesRequestSchema>
 export type WorkbookQueriesResult = z.infer<typeof workbookQueriesResultSchema>
+export type WorkbookQueriesRefreshResult = z.infer<typeof workbookQueriesRefreshResultSchema>
 export type LocalImageRequest = z.infer<typeof localImageRequestSchema>
 export type LocalImageResult = z.infer<typeof localImageResultSchema>
 export type ScreenSourcesResult = z.infer<typeof screenSourcesResultSchema>
@@ -3165,6 +3190,12 @@ export interface DesktopApi {
   readPivotDefinition(request: WorkbookPivotRequest): Promise<WorkbookPivotDefinition>
   /** Data › Queries & Connections: the workbook's connections and where each loads (read-only) */
   readWorkbookQueries(request: WorkbookQueriesRequest): Promise<WorkbookQueriesResult>
+  /**
+   * Data › Queries & Connections › Refresh in Excel (Windows): the installed
+   * Excel refreshes the saved file and writes it back; the renderer reopens it.
+   * Absent where the platform cannot do it.
+   */
+  refreshQueriesInExcel?(request: WorkbookQueriesRequest): Promise<WorkbookQueriesRefreshResult>
   readLocalImage(request: LocalImageRequest): Promise<LocalImageResult>
   captureScreenSources(): Promise<ScreenSourcesResult>
   /// null when the source vanished between listing and capture.

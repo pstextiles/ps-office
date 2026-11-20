@@ -80,6 +80,7 @@ L’onglet Formules, bouton par bouton :
 - Trier et filtrer.
 - Figer les volets.
 - .csv / .tsv : s’ouvrent directement comme une table (un tsv séparé par des tabulations est analysé comme une seule table) ; l’enregistrement réécrit au format d’origine.
+- Power Query (Windows) : onglet Données ▸ **Requêtes et connexions** ▸ **Actualiser dans Excel** fait actualiser les requêtes (sources réseau comprises) par l'Excel installé sur ce PC, enregistre le fichier, puis le rouvre ici. Les modifications non enregistrées sont enregistrées d'abord ; si une source est inaccessible, le fichier n'est pas modifié.
 
 ## Menus contextuels
 

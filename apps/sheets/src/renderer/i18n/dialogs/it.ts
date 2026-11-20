@@ -90,6 +90,29 @@ export const it = {
     "L'aggiornamento delle query non è ancora supportato. Restano nel file, quindi Excel può ancora aggiornarle; le righe mostrate sono gli ultimi risultati salvati.",
   dlgQueriesGoHint: 'Fai clic per selezionare le righe caricate',
   dlgQueriesError: 'Impossibile leggere le connessioni della cartella di lavoro: {error}',
+  dlgQueriesNoteRefresh:
+    "Le righe mostrate sono gli ultimi risultati salvati. Aggiorna in Excel fa aggiornare le query all'Excel installato su questo PC e salva il file, che poi viene riaperto qui.",
+  dlgQueriesRefreshExcel: 'Aggiorna in Excel',
+  dlgQueriesRefreshTip:
+    "Usa l'Excel installato su questo PC. Le modifiche non salvate vengono salvate prima.",
+  dlgQueriesRefreshing:
+    'Aggiornamento in Excel… Con molti dati o origini in rete può richiedere qualche minuto.',
+  dlgQueriesRefreshDone: 'Query aggiornate in Excel ({count}).',
+  dlgQueriesRefreshNoExcel:
+    'Microsoft Excel non è stato trovato su questo PC. Aggiorna in Excel richiede Excel installato.',
+  dlgQueriesRefreshLocked:
+    'Il file è aperto in un altro programma (di solito Excel). Chiudilo lì e riprova.',
+  dlgQueriesRefreshTimeout:
+    "Excel non ha finito entro 10 minuti, quindi l'aggiornamento è stato interrotto. Il file non è stato modificato.",
+  dlgQueriesRefreshBusy: 'È già in corso un aggiornamento. Attendi che finisca.',
+  dlgQueriesRefreshNotFile:
+    'Solo un file .xlsx o .xlsm salvato può essere aggiornato in Excel. Salvalo prima come .xlsx.',
+  dlgQueriesRefreshSaveFailed:
+    "Non è stato possibile salvare le modifiche, quindi l'aggiornamento non è partito.",
+  dlgQueriesRefreshFailed:
+    'Excel non è riuscito ad aggiornare le query, quindi il file non è stato modificato. {error}',
+  dlgQueriesRefreshReopenFailed:
+    'Excel ha aggiornato il file, ma non è stato possibile riaprirlo qui. Riaprilo dalla Home.',
   dlgPasteSpecialTitle: 'Incolla speciale',
   dlgPasteSpecialPaste: 'Incolla',
   dlgPasteSpecialAll: 'Tutto',

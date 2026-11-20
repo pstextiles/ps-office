@@ -88,6 +88,28 @@ export const pl = {
     'Odświeżanie zapytań nie jest jeszcze obsługiwane. Pozostają w pliku, więc Excel nadal może je odświeżyć; widoczne wiersze to ostatnio zapisane wyniki.',
   dlgQueriesGoHint: 'Kliknij, aby zaznaczyć załadowane wiersze',
   dlgQueriesError: 'Nie można odczytać połączeń skoroszytu: {error}',
+  dlgQueriesNoteRefresh:
+    'Wyświetlane wiersze to ostatnio zapisane wyniki. „Odśwież w programie Excel” zleca zainstalowanemu na tym komputerze Excelowi odświeżenie zapytań i zapisanie pliku, a potem otwiera go tu ponownie.',
+  dlgQueriesRefreshExcel: 'Odśwież w programie Excel',
+  dlgQueriesRefreshTip:
+    'Używa programu Excel zainstalowanego na tym komputerze. Niezapisane zmiany są najpierw zapisywane.',
+  dlgQueriesRefreshing:
+    'Odświeżanie w programie Excel… Przy dużej ilości danych lub źródłach sieciowych może to potrwać kilka minut.',
+  dlgQueriesRefreshDone: 'Zapytania odświeżone w programie Excel ({count}).',
+  dlgQueriesRefreshNoExcel:
+    'Nie znaleziono programu Microsoft Excel na tym komputerze. „Odśwież w programie Excel” wymaga zainstalowanego Excela.',
+  dlgQueriesRefreshLocked:
+    'Plik jest otwarty w innym programie (zwykle w Excelu). Zamknij go tam i spróbuj ponownie.',
+  dlgQueriesRefreshTimeout:
+    'Excel nie skończył w ciągu 10 minut, więc odświeżanie zostało zatrzymane. Plik nie został zmieniony.',
+  dlgQueriesRefreshBusy: 'Odświeżanie już trwa. Poczekaj, aż się zakończy.',
+  dlgQueriesRefreshNotFile:
+    'W programie Excel można odświeżyć tylko zapisany plik .xlsx lub .xlsm. Najpierw zapisz go jako .xlsx.',
+  dlgQueriesRefreshSaveFailed: 'Nie udało się zapisać zmian, więc odświeżanie się nie rozpoczęło.',
+  dlgQueriesRefreshFailed:
+    'Excel nie mógł odświeżyć zapytań, więc plik nie został zmieniony. {error}',
+  dlgQueriesRefreshReopenFailed:
+    'Excel odświeżył plik, ale nie udało się go tu ponownie otworzyć. Otwórz go jeszcze raz ze strony głównej.',
   dlgPasteSpecialTitle: 'Wklej specjalnie',
   dlgPasteSpecialPaste: 'Wklej',
   dlgPasteSpecialAll: 'Wszystko',

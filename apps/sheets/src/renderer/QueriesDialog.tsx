@@ -19,16 +19,20 @@ function qualifiedRange(destination: NonNullable<Query['destination']>): string 
   return `'${destination.sheet.replaceAll("'", "''")}'!${destination.range}`
 }
 
-/// Data › Queries & Connections, read-only (genoffice#2051): the workbook's
-/// Power Query queries and data connections, and where each one's rows are
-/// loaded. Clicking a loaded query selects its rows. Refresh is not offered:
-/// there is no query engine yet, and the parts stay in the file for Excel.
+/// Data › Queries & Connections (genoffice#2051): the workbook's Power Query
+/// queries and data connections, and where each one's rows are loaded.
+/// Clicking a loaded query selects its rows. There is no query engine here:
+/// on Windows, Refresh in Excel has the installed Excel refresh and save the
+/// file, and the workbook is reopened (PS Office).
 export function QueriesDialog({
   load,
+  onRefresh,
   onGo,
   onClose,
 }: {
   readonly load: () => Promise<WorkbookQueriesResult>
+  /// Refresh in Excel; absent where it cannot run. An error message, or null once reopened.
+  readonly onRefresh?: () => Promise<string | null>
   /// Returns an error message, or null on success (Go To's resolver).
   readonly onGo: (ref: string) => string | null
   readonly onClose: () => void
@@ -36,6 +40,7 @@ export function QueriesDialog({
   const { t } = useI18n()
   const [queries, setQueries] = useState<WorkbookQueriesResult | null>(null)
   const [error, setError] = useState<string | null>(null)
+  const [refreshing, setRefreshing] = useState(false)
 
   useEffect(() => {
     let alive = true
@@ -56,9 +61,26 @@ export function QueriesDialog({
     else setError(failure)
   }
 
-  const modal = useModalDialog(onClose)
+  const refresh = async (): Promise<void> => {
+    if (!onRefresh || refreshing) return
+    setError(null)
+    setRefreshing(true)
+    const failure = await onRefresh().catch((err: unknown) =>
+      t('dlgQueriesRefreshFailed', { error: err instanceof Error ? err.message : String(err) }),
+    )
+    setRefreshing(false)
+    // success reopened the workbook: the list on screen belongs to the old file
+    if (failure === null) onClose()
+    else setError(failure)
+  }
+
+  // closing mid-refresh would hide the progress; the run ends on its own (timeout included)
+  const close = (): void => {
+    if (!refreshing) onClose()
+  }
+  const modal = useModalDialog(close)
   return (
-    <div className="dialog-backdrop" onClick={onClose}>
+    <div className="dialog-backdrop" onClick={close}>
       <div
         className="format-cells-dialog"
         role="dialog"
@@ -101,7 +123,16 @@ export function QueriesDialog({
               })}
             </ul>
           )}
-          {queries && queries.length > 0 && <p className="dialog-note">{t('dlgQueriesNote')}</p>}
+          {queries && queries.length > 0 && (
+            <p className="dialog-note">
+              {t(onRefresh ? 'dlgQueriesNoteRefresh' : 'dlgQueriesNote')}
+            </p>
+          )}
+          {refreshing && (
+            <p className="dialog-note" role="status">
+              {t('dlgQueriesRefreshing')}
+            </p>
+          )}
           {error && (
             <p className="dialog-note dialog-error" role="alert">
               {t('dlgQueriesError', { error })}
@@ -109,7 +140,17 @@ export function QueriesDialog({
           )}
         </section>
         <div className="dialog-actions">
-          <button className="primary-action" autoFocus onClick={onClose}>
+          {onRefresh && queries && queries.length > 0 && (
+            <button
+              type="button"
+              disabled={refreshing}
+              data-tip={t('dlgQueriesRefreshTip')}
+              onClick={() => void refresh()}
+            >
+              {t('dlgQueriesRefreshExcel')}
+            </button>
+          )}
+          <button className="primary-action" autoFocus disabled={refreshing} onClick={onClose}>
             {t('dlgClose')}
           </button>
         </div>

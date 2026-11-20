@@ -90,6 +90,30 @@ export const de = {
     'Das Aktualisieren von Abfragen wird noch nicht unterstützt. Sie bleiben in der Datei erhalten, sodass Excel sie weiterhin aktualisieren kann; angezeigt werden die zuletzt gespeicherten Ergebnisse.',
   dlgQueriesGoHint: 'Klicken, um die geladenen Zeilen auszuwählen',
   dlgQueriesError: 'Die Verbindungen der Arbeitsmappe konnten nicht gelesen werden: {error}',
+  dlgQueriesNoteRefresh:
+    'Die angezeigten Zeilen sind die zuletzt gespeicherten Ergebnisse. „In Excel aktualisieren“ lässt das auf diesem PC installierte Excel die Abfragen aktualisieren und die Datei speichern; danach wird sie hier neu geöffnet.',
+  dlgQueriesRefreshExcel: 'In Excel aktualisieren',
+  dlgQueriesRefreshTip:
+    'Verwendet das auf diesem PC installierte Excel. Nicht gespeicherte Änderungen werden zuerst gespeichert.',
+  dlgQueriesRefreshing:
+    'Wird in Excel aktualisiert… Bei großen Datenmengen oder Netzwerkquellen kann das einige Minuten dauern.',
+  dlgQueriesRefreshDone: 'Abfragen in Excel aktualisiert ({count}).',
+  dlgQueriesRefreshNoExcel:
+    'Microsoft Excel wurde auf diesem PC nicht gefunden. „In Excel aktualisieren“ setzt ein installiertes Excel voraus.',
+  dlgQueriesRefreshLocked:
+    'Die Datei ist in einem anderen Programm geöffnet (meist Excel). Schließen Sie sie dort und versuchen Sie es erneut.',
+  dlgQueriesRefreshTimeout:
+    'Excel ist nicht innerhalb von 10 Minuten fertig geworden, deshalb wurde die Aktualisierung abgebrochen. Die Datei wurde nicht geändert.',
+  dlgQueriesRefreshBusy:
+    'Es läuft bereits eine Aktualisierung. Warten Sie, bis sie abgeschlossen ist.',
+  dlgQueriesRefreshNotFile:
+    'Nur eine gespeicherte .xlsx- oder .xlsm-Datei kann in Excel aktualisiert werden. Speichern Sie sie zuerst als .xlsx.',
+  dlgQueriesRefreshSaveFailed:
+    'Ihre Änderungen konnten nicht gespeichert werden, daher wurde die Aktualisierung nicht gestartet.',
+  dlgQueriesRefreshFailed:
+    'Excel konnte die Abfragen nicht aktualisieren, die Datei wurde daher nicht geändert. {error}',
+  dlgQueriesRefreshReopenFailed:
+    'Excel hat die Datei aktualisiert, sie konnte hier aber nicht neu geöffnet werden. Öffnen Sie sie erneut über die Startseite.',
   dlgPasteSpecialTitle: 'Inhalte einfügen',
   dlgPasteSpecialPaste: 'Einfügen',
   dlgPasteSpecialAll: 'Alles',

@@ -90,6 +90,29 @@ export const es = {
     'Aún no se pueden actualizar las consultas. Se conservan en el archivo, así que Excel puede actualizarlas; las filas mostradas son los últimos resultados guardados.',
   dlgQueriesGoHint: 'Haga clic para seleccionar las filas cargadas',
   dlgQueriesError: 'No se pudieron leer las conexiones del libro: {error}',
+  dlgQueriesNoteRefresh:
+    'Las filas mostradas son los últimos resultados guardados. Actualizar en Excel hace que el Excel instalado en este PC actualice las consultas y guarde el archivo; después se vuelve a abrir aquí.',
+  dlgQueriesRefreshExcel: 'Actualizar en Excel',
+  dlgQueriesRefreshTip:
+    'Usa el Excel instalado en este PC. Los cambios sin guardar se guardan primero.',
+  dlgQueriesRefreshing:
+    'Actualizando en Excel… Con muchos datos u orígenes en red puede tardar unos minutos.',
+  dlgQueriesRefreshDone: 'Consultas actualizadas en Excel ({count}).',
+  dlgQueriesRefreshNoExcel:
+    'No se encontró Microsoft Excel en este PC. Actualizar en Excel necesita Excel instalado.',
+  dlgQueriesRefreshLocked:
+    'El archivo está abierto en otro programa (normalmente Excel). Ciérrelo allí y vuelva a intentarlo.',
+  dlgQueriesRefreshTimeout:
+    'Excel no terminó en 10 minutos, así que se detuvo la actualización. El archivo no cambió.',
+  dlgQueriesRefreshBusy: 'Ya hay una actualización en curso. Espere a que termine.',
+  dlgQueriesRefreshNotFile:
+    'Solo se puede actualizar en Excel un archivo .xlsx o .xlsm guardado. Guárdelo primero como .xlsx.',
+  dlgQueriesRefreshSaveFailed:
+    'No se pudieron guardar sus cambios, así que la actualización no empezó.',
+  dlgQueriesRefreshFailed:
+    'Excel no pudo actualizar las consultas, así que el archivo no cambió. {error}',
+  dlgQueriesRefreshReopenFailed:
+    'Excel actualizó el archivo, pero no se pudo volver a abrir aquí. Ábralo de nuevo desde Inicio.',
   dlgPasteSpecialTitle: 'Pegado especial',
   dlgPasteSpecialPaste: 'Pegar',
   dlgPasteSpecialAll: 'Todo',

@@ -30,7 +30,9 @@ Any save operation that cannot preserve these parts must fail closed. It must no
 ## Explicitly unsupported in V1
 
 - Editing or executing VBA.
-- Refreshing Power Query or external data.
+- Refreshing Power Query or external data in the app. (PS Office: on Windows, Data › Queries &
+  Connections › Refresh in Excel hands the refresh to the installed Excel, which saves the file; the
+  app then reopens it. See `src/main/excel-refresh.ts`.)
 - Editing Power Pivot models, ActiveX, OLE, and form controls.
 - Pixel-identical print layout on every font and printer configuration.
 - Guaranteed compatibility with every Excel private extension.

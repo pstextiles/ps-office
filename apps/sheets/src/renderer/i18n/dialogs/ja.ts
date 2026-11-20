@@ -88,6 +88,28 @@ export const ja = {
     'クエリの更新にはまだ対応していません。クエリはファイルに保持されるため Excel で更新できます。表示される行は最後に保存された結果です。',
   dlgQueriesGoHint: 'クリックすると読み込まれた行を選択します',
   dlgQueriesError: 'ブックの接続を読み取れませんでした: {error}',
+  dlgQueriesNoteRefresh:
+    '表示されている行は最後に保存された結果です。［Excel で更新］を押すと、この PC にインストールされた Excel がクエリを更新してファイルを保存し、ここで開き直します。',
+  dlgQueriesRefreshExcel: 'Excel で更新',
+  dlgQueriesRefreshTip:
+    'この PC にインストールされた Excel を使います。未保存の変更は先に保存されます。',
+  dlgQueriesRefreshing:
+    'Excel で更新しています… データが多い場合やネットワーク上のソースでは数分かかることがあります。',
+  dlgQueriesRefreshDone: 'Excel でクエリを更新しました（{count} 件）。',
+  dlgQueriesRefreshNoExcel:
+    'この PC に Microsoft Excel が見つかりません。Excel で更新するには Excel のインストールが必要です。',
+  dlgQueriesRefreshLocked:
+    'ファイルが別のプログラム（多くは Excel）で開かれています。そちらで閉じてからもう一度お試しください。',
+  dlgQueriesRefreshTimeout:
+    'Excel が 10 分以内に終わらなかったため、更新を中止しました。ファイルは変更されていません。',
+  dlgQueriesRefreshBusy: 'すでに更新中です。終わるまでお待ちください。',
+  dlgQueriesRefreshNotFile:
+    'Excel で更新できるのは保存済みの .xlsx または .xlsm ファイルだけです。先に .xlsx として保存してください。',
+  dlgQueriesRefreshSaveFailed: '変更を保存できなかったため、更新を開始しませんでした。',
+  dlgQueriesRefreshFailed:
+    'Excel がクエリを更新できなかったため、ファイルは変更されていません。{error}',
+  dlgQueriesRefreshReopenFailed:
+    'Excel はファイルを更新しましたが、ここで開き直せませんでした。ホームから開き直してください。',
   dlgPasteSpecialTitle: '形式を選択して貼り付け',
   dlgPasteSpecialPaste: '貼り付け',
   dlgPasteSpecialAll: 'すべて',

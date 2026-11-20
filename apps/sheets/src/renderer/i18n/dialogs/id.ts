@@ -88,6 +88,28 @@ export const id = {
     'Penyegaran kueri belum didukung. Kueri tetap tersimpan di file sehingga Excel masih bisa menyegarkannya; baris yang ditampilkan adalah hasil simpanan terakhir.',
   dlgQueriesGoHint: 'Klik untuk memilih baris yang dimuat',
   dlgQueriesError: 'Koneksi buku kerja tidak dapat dibaca: {error}',
+  dlgQueriesNoteRefresh:
+    'Baris yang ditampilkan adalah hasil terakhir yang disimpan. Segarkan di Excel membuat Excel yang terpasang di PC ini menyegarkan kueri dan menyimpan file, lalu membukanya kembali di sini.',
+  dlgQueriesRefreshExcel: 'Segarkan di Excel',
+  dlgQueriesRefreshTip:
+    'Menggunakan Excel yang terpasang di PC ini. Perubahan yang belum disimpan akan disimpan terlebih dahulu.',
+  dlgQueriesRefreshing:
+    'Menyegarkan di Excel… Data besar atau sumber di jaringan bisa memakan waktu beberapa menit.',
+  dlgQueriesRefreshDone: 'Kueri disegarkan di Excel ({count}).',
+  dlgQueriesRefreshNoExcel:
+    'Microsoft Excel tidak ditemukan di PC ini. Segarkan di Excel memerlukan Excel yang terpasang.',
+  dlgQueriesRefreshLocked:
+    'File sedang terbuka di program lain (biasanya Excel). Tutup di sana, lalu coba lagi.',
+  dlgQueriesRefreshTimeout:
+    'Excel tidak selesai dalam 10 menit, jadi penyegaran dihentikan. File tidak berubah.',
+  dlgQueriesRefreshBusy: 'Penyegaran sedang berjalan. Tunggu hingga selesai.',
+  dlgQueriesRefreshNotFile:
+    'Hanya file .xlsx atau .xlsm yang sudah disimpan yang dapat disegarkan di Excel. Simpan dulu sebagai .xlsx.',
+  dlgQueriesRefreshSaveFailed:
+    'Perubahan Anda tidak dapat disimpan, jadi penyegaran tidak dimulai.',
+  dlgQueriesRefreshFailed: 'Excel tidak dapat menyegarkan kueri, jadi file tidak berubah. {error}',
+  dlgQueriesRefreshReopenFailed:
+    'Excel sudah menyegarkan file, tetapi file tidak dapat dibuka kembali di sini. Buka lagi dari Beranda.',
   dlgPasteSpecialTitle: 'Tempel Spesial',
   dlgPasteSpecialPaste: 'Tempel',
   dlgPasteSpecialAll: 'Semua',

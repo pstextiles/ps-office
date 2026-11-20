@@ -88,6 +88,27 @@ export const ru = {
     'Обновление запросов пока не поддерживается. Они сохраняются в файле, поэтому Excel по-прежнему может их обновить; показаны последние сохранённые результаты.',
   dlgQueriesGoHint: 'Щёлкните, чтобы выделить загруженные строки',
   dlgQueriesError: 'Не удалось прочитать подключения книги: {error}',
+  dlgQueriesNoteRefresh:
+    'Показаны строки из последнего сохранённого результата. «Обновить в Excel» поручает установленному на этом ПК Excel обновить запросы и сохранить файл, после чего он снова открывается здесь.',
+  dlgQueriesRefreshExcel: 'Обновить в Excel',
+  dlgQueriesRefreshTip:
+    'Используется Excel, установленный на этом ПК. Несохранённые изменения сначала сохраняются.',
+  dlgQueriesRefreshing:
+    'Обновление в Excel… При большом объёме данных или сетевых источниках это может занять несколько минут.',
+  dlgQueriesRefreshDone: 'Запросы обновлены в Excel ({count}).',
+  dlgQueriesRefreshNoExcel:
+    'Microsoft Excel не найден на этом ПК. Для «Обновить в Excel» нужен установленный Excel.',
+  dlgQueriesRefreshLocked:
+    'Файл открыт в другой программе (обычно в Excel). Закройте его там и повторите попытку.',
+  dlgQueriesRefreshTimeout:
+    'Excel не завершил работу за 10 минут, поэтому обновление остановлено. Файл не изменён.',
+  dlgQueriesRefreshBusy: 'Обновление уже выполняется. Дождитесь его завершения.',
+  dlgQueriesRefreshNotFile:
+    'Обновить в Excel можно только сохранённый файл .xlsx или .xlsm. Сначала сохраните его как .xlsx.',
+  dlgQueriesRefreshSaveFailed: 'Не удалось сохранить изменения, поэтому обновление не началось.',
+  dlgQueriesRefreshFailed: 'Excel не смог обновить запросы, поэтому файл не изменён. {error}',
+  dlgQueriesRefreshReopenFailed:
+    'Excel обновил файл, но открыть его здесь снова не удалось. Откройте его заново с главной страницы.',
   dlgPasteSpecialTitle: 'Специальная вставка',
   dlgPasteSpecialPaste: 'Вставить',
   dlgPasteSpecialAll: 'Все',

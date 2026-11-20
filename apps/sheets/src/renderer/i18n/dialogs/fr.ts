@@ -91,6 +91,29 @@ export const fr = {
     "L'actualisation des requêtes n'est pas encore prise en charge. Elles restent dans le fichier, donc Excel peut toujours les actualiser ; les lignes affichées sont les derniers résultats enregistrés.",
   dlgQueriesGoHint: 'Cliquer pour sélectionner les lignes chargées',
   dlgQueriesError: 'Impossible de lire les connexions du classeur : {error}',
+  dlgQueriesNoteRefresh:
+    "Les lignes affichées sont les derniers résultats enregistrés. Actualiser dans Excel fait actualiser les requêtes par l'Excel installé sur ce PC, enregistre le fichier, puis le rouvre ici.",
+  dlgQueriesRefreshExcel: 'Actualiser dans Excel',
+  dlgQueriesRefreshTip:
+    "Utilise l'Excel installé sur ce PC. Les modifications non enregistrées sont enregistrées d'abord.",
+  dlgQueriesRefreshing:
+    'Actualisation dans Excel… Avec beaucoup de données ou des sources réseau, cela peut prendre quelques minutes.',
+  dlgQueriesRefreshDone: 'Requêtes actualisées dans Excel ({count}).',
+  dlgQueriesRefreshNoExcel:
+    "Microsoft Excel est introuvable sur ce PC. Actualiser dans Excel nécessite qu'Excel soit installé.",
+  dlgQueriesRefreshLocked:
+    'Le fichier est ouvert dans un autre programme (souvent Excel). Fermez-le là-bas, puis réessayez.',
+  dlgQueriesRefreshTimeout:
+    "Excel n'a pas terminé en 10 minutes, l'actualisation a donc été arrêtée. Le fichier n'a pas été modifié.",
+  dlgQueriesRefreshBusy: "Une actualisation est déjà en cours. Attendez qu'elle se termine.",
+  dlgQueriesRefreshNotFile:
+    "Seul un fichier .xlsx ou .xlsm enregistré peut être actualisé dans Excel. Enregistrez-le d'abord au format .xlsx.",
+  dlgQueriesRefreshSaveFailed:
+    "Vos modifications n'ont pas pu être enregistrées, l'actualisation n'a donc pas démarré.",
+  dlgQueriesRefreshFailed:
+    "Excel n'a pas pu actualiser les requêtes, le fichier n'a donc pas été modifié. {error}",
+  dlgQueriesRefreshReopenFailed:
+    "Excel a actualisé le fichier, mais il n'a pas pu être rouvert ici. Rouvrez-le depuis l'accueil.",
   dlgPasteSpecialTitle: 'Collage spécial',
   dlgPasteSpecialPaste: 'Coller',
   dlgPasteSpecialAll: 'Tout',

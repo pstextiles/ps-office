@@ -89,6 +89,29 @@ export const nl = {
     'Query’s vernieuwen wordt nog niet ondersteund. Ze blijven in het bestand, dus Excel kan ze nog steeds vernieuwen; de getoonde rijen zijn de laatst opgeslagen resultaten.',
   dlgQueriesGoHint: 'Klik om de geladen rijen te selecteren',
   dlgQueriesError: 'De verbindingen van de werkmap kunnen niet worden gelezen: {error}',
+  dlgQueriesNoteRefresh:
+    'De getoonde rijen zijn de laatst opgeslagen resultaten. Vernieuwen in Excel laat de op deze pc geïnstalleerde Excel de query’s vernieuwen en het bestand opslaan; daarna wordt het hier opnieuw geopend.',
+  dlgQueriesRefreshExcel: 'Vernieuwen in Excel',
+  dlgQueriesRefreshTip:
+    'Gebruikt de Excel die op deze pc is geïnstalleerd. Niet-opgeslagen wijzigingen worden eerst opgeslagen.',
+  dlgQueriesRefreshing:
+    'Bezig met vernieuwen in Excel… Bij veel gegevens of netwerkbronnen kan dit enkele minuten duren.',
+  dlgQueriesRefreshDone: 'Query’s vernieuwd in Excel ({count}).',
+  dlgQueriesRefreshNoExcel:
+    'Microsoft Excel is niet gevonden op deze pc. Vernieuwen in Excel vereist dat Excel is geïnstalleerd.',
+  dlgQueriesRefreshLocked:
+    'Het bestand is geopend in een ander programma (meestal Excel). Sluit het daar en probeer het opnieuw.',
+  dlgQueriesRefreshTimeout:
+    'Excel was niet binnen 10 minuten klaar, dus het vernieuwen is gestopt. Het bestand is niet gewijzigd.',
+  dlgQueriesRefreshBusy: 'Er loopt al een vernieuwing. Wacht tot die klaar is.',
+  dlgQueriesRefreshNotFile:
+    'Alleen een opgeslagen .xlsx- of .xlsm-bestand kan in Excel worden vernieuwd. Sla het eerst op als .xlsx.',
+  dlgQueriesRefreshSaveFailed:
+    'Je wijzigingen konden niet worden opgeslagen, dus het vernieuwen is niet gestart.',
+  dlgQueriesRefreshFailed:
+    'Excel kon de query’s niet vernieuwen, dus het bestand is niet gewijzigd. {error}',
+  dlgQueriesRefreshReopenFailed:
+    'Excel heeft het bestand vernieuwd, maar het kon hier niet opnieuw worden geopend. Open het opnieuw via Start.',
   dlgPasteSpecialTitle: 'Plakken speciaal',
   dlgPasteSpecialPaste: 'Plakken',
   dlgPasteSpecialAll: 'Alles',

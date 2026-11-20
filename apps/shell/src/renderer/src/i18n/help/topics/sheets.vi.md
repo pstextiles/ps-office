@@ -80,6 +80,7 @@ Thẻ "Công thức", từng nút:
 - Sắp xếp và lọc.
 - Cố định ngăn.
 - .csv / .tsv: mở thẳng dưới dạng bảng (tsv phân tách bằng tab được phân tích thành một bảng); khi lưu sẽ ghi lại đúng định dạng gốc.
+- Power Query (Windows): tab Dữ liệu ▸ **Truy vấn & Kết nối** ▸ **Làm mới trong Excel** để Excel cài trên máy này làm mới truy vấn (kể cả nguồn trên mạng) và lưu tệp, rồi mở lại tệp ở đây. Thay đổi chưa lưu sẽ được lưu trước; nếu không truy cập được nguồn, tệp giữ nguyên.
 
 ## Menu chuột phải
 

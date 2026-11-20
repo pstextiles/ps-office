@@ -87,6 +87,25 @@ export const ar = {
     'تحديث الاستعلامات غير مدعوم بعد. تبقى الاستعلامات في الملف ليتمكن Excel من تحديثها؛ والصفوف المعروضة هي آخر نتائج محفوظة.',
   dlgQueriesGoHint: 'انقر لتحديد الصفوف المحمّلة',
   dlgQueriesError: 'تعذّرت قراءة اتصالات المصنف: {error}',
+  dlgQueriesNoteRefresh:
+    'الصفوف المعروضة هي آخر نتائج محفوظة. يجعل «التحديث في Excel» برنامج Excel المثبّت على هذا الكمبيوتر يحدّث الاستعلامات ويحفظ الملف، ثم يُعاد فتحه هنا.',
+  dlgQueriesRefreshExcel: 'التحديث في Excel',
+  dlgQueriesRefreshTip:
+    'يستخدم Excel المثبّت على هذا الكمبيوتر. تُحفظ التغييرات غير المحفوظة أولاً.',
+  dlgQueriesRefreshing:
+    'جارٍ التحديث في Excel… قد يستغرق ذلك بضع دقائق مع البيانات الكبيرة أو المصادر على الشبكة.',
+  dlgQueriesRefreshDone: 'تم تحديث الاستعلامات في Excel ‏({count}).',
+  dlgQueriesRefreshNoExcel:
+    'لم يُعثر على Microsoft Excel على هذا الكمبيوتر. يتطلب «التحديث في Excel» تثبيت Excel.',
+  dlgQueriesRefreshLocked: 'الملف مفتوح في برنامج آخر (غالبًا Excel). أغلقه هناك ثم أعد المحاولة.',
+  dlgQueriesRefreshTimeout: 'لم ينتهِ Excel خلال 10 دقائق، لذا أُوقف التحديث. لم يتغيّر الملف.',
+  dlgQueriesRefreshBusy: 'هناك تحديث قيد التشغيل بالفعل. انتظر حتى ينتهي.',
+  dlgQueriesRefreshNotFile:
+    'لا يمكن التحديث في Excel إلا لملف ‎.xlsx أو ‎.xlsm محفوظ. احفظه أولاً بصيغة ‎.xlsx.',
+  dlgQueriesRefreshSaveFailed: 'تعذّر حفظ تغييراتك، لذا لم يبدأ التحديث.',
+  dlgQueriesRefreshFailed: 'تعذّر على Excel تحديث الاستعلامات، لذا لم يتغيّر الملف. {error}',
+  dlgQueriesRefreshReopenFailed:
+    'حدّث Excel الملف، لكن تعذّر إعادة فتحه هنا. افتحه مجددًا من الصفحة الرئيسية.',
   dlgPasteSpecialTitle: 'لصق خاص',
   dlgPasteSpecialPaste: 'لصق',
   dlgPasteSpecialAll: 'الكل',

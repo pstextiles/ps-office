@@ -87,6 +87,27 @@ export const th = {
     'ยังไม่รองรับการรีเฟรชคิวรี คิวรียังเก็บอยู่ในไฟล์ Excel จึงยังรีเฟรชได้ แถวที่แสดงคือผลลัพธ์ที่บันทึกล่าสุด',
   dlgQueriesGoHint: 'คลิกเพื่อเลือกแถวที่โหลด',
   dlgQueriesError: 'ไม่สามารถอ่านการเชื่อมต่อของเวิร์กบุ๊ก: {error}',
+  dlgQueriesNoteRefresh:
+    'แถวที่แสดงคือผลลัพธ์ที่บันทึกไว้ล่าสุด "รีเฟรชใน Excel" จะให้ Excel ที่ติดตั้งในพีซีเครื่องนี้รีเฟรชคิวรีและบันทึกไฟล์ แล้วเปิดไฟล์อีกครั้งที่นี่',
+  dlgQueriesRefreshExcel: 'รีเฟรชใน Excel',
+  dlgQueriesRefreshTip:
+    'ใช้ Excel ที่ติดตั้งในพีซีเครื่องนี้ การเปลี่ยนแปลงที่ยังไม่ได้บันทึกจะถูกบันทึกก่อน',
+  dlgQueriesRefreshing:
+    'กำลังรีเฟรชใน Excel… ถ้าข้อมูลมากหรือแหล่งข้อมูลอยู่บนเครือข่าย อาจใช้เวลาสองสามนาที',
+  dlgQueriesRefreshDone: 'รีเฟรชคิวรีใน Excel แล้ว ({count})',
+  dlgQueriesRefreshNoExcel:
+    'ไม่พบ Microsoft Excel ในพีซีเครื่องนี้ การรีเฟรชใน Excel ต้องติดตั้ง Excel',
+  dlgQueriesRefreshLocked:
+    'ไฟล์เปิดอยู่ในโปรแกรมอื่น (มักเป็น Excel) โปรดปิดไฟล์ที่นั่นแล้วลองอีกครั้ง',
+  dlgQueriesRefreshTimeout:
+    'Excel ทำงานไม่เสร็จภายใน 10 นาที จึงหยุดการรีเฟรช ไฟล์ไม่ได้เปลี่ยนแปลง',
+  dlgQueriesRefreshBusy: 'มีการรีเฟรชกำลังทำงานอยู่ โปรดรอให้เสร็จ',
+  dlgQueriesRefreshNotFile:
+    'รีเฟรชใน Excel ได้เฉพาะไฟล์ .xlsx หรือ .xlsm ที่บันทึกแล้ว โปรดบันทึกเป็น .xlsx ก่อน',
+  dlgQueriesRefreshSaveFailed: 'บันทึกการเปลี่ยนแปลงไม่ได้ จึงไม่ได้เริ่มรีเฟรช',
+  dlgQueriesRefreshFailed: 'Excel รีเฟรชคิวรีไม่ได้ ไฟล์จึงไม่ได้เปลี่ยนแปลง {error}',
+  dlgQueriesRefreshReopenFailed:
+    'Excel รีเฟรชไฟล์แล้ว แต่เปิดไฟล์อีกครั้งที่นี่ไม่ได้ โปรดเปิดใหม่จากหน้าแรก',
   dlgPasteSpecialTitle: 'วางแบบพิเศษ',
   dlgPasteSpecialPaste: 'วาง',
   dlgPasteSpecialAll: 'ทั้งหมด',

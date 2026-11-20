@@ -87,6 +87,27 @@ export const vi = {
     'Chưa hỗ trợ làm mới truy vấn. Truy vấn vẫn được giữ trong tệp nên Excel vẫn làm mới được; các hàng hiển thị là kết quả lưu gần nhất.',
   dlgQueriesGoHint: 'Bấm để chọn các hàng đã tải',
   dlgQueriesError: 'Không đọc được các kết nối của sổ làm việc: {error}',
+  dlgQueriesNoteRefresh:
+    'Các hàng hiển thị là kết quả đã lưu gần nhất. Làm mới trong Excel sẽ để Excel cài trên máy này làm mới truy vấn và lưu tệp, rồi mở lại tệp ở đây.',
+  dlgQueriesRefreshExcel: 'Làm mới trong Excel',
+  dlgQueriesRefreshTip:
+    'Dùng Excel được cài trên máy này. Các thay đổi chưa lưu sẽ được lưu trước.',
+  dlgQueriesRefreshing:
+    'Đang làm mới trong Excel… Dữ liệu lớn hoặc nguồn trên mạng có thể mất vài phút.',
+  dlgQueriesRefreshDone: 'Đã làm mới truy vấn trong Excel ({count}).',
+  dlgQueriesRefreshNoExcel:
+    'Không tìm thấy Microsoft Excel trên máy này. Làm mới trong Excel cần cài Excel.',
+  dlgQueriesRefreshLocked:
+    'Tệp đang mở trong chương trình khác (thường là Excel). Hãy đóng ở đó rồi thử lại.',
+  dlgQueriesRefreshTimeout:
+    'Excel không hoàn tất trong 10 phút nên đã dừng làm mới. Tệp không bị thay đổi.',
+  dlgQueriesRefreshBusy: 'Đang có một lần làm mới chạy. Hãy chờ đến khi xong.',
+  dlgQueriesRefreshNotFile:
+    'Chỉ tệp .xlsx hoặc .xlsm đã lưu mới làm mới được trong Excel. Hãy lưu thành .xlsx trước.',
+  dlgQueriesRefreshSaveFailed: 'Không lưu được thay đổi của bạn nên chưa bắt đầu làm mới.',
+  dlgQueriesRefreshFailed: 'Excel không làm mới được truy vấn nên tệp không bị thay đổi. {error}',
+  dlgQueriesRefreshReopenFailed:
+    'Excel đã làm mới tệp nhưng không mở lại được ở đây. Hãy mở lại từ Trang chủ.',
   dlgPasteSpecialTitle: 'Dán đặc biệt',
   dlgPasteSpecialPaste: 'Dán',
   dlgPasteSpecialAll: 'Tất cả',

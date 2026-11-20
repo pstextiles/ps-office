@@ -5277,6 +5277,61 @@ export function App({
     }
   }
 
+  /// Data › Queries & Connections › Refresh in Excel: save pending edits, let
+  /// the installed Excel refresh the file on disk, then reopen it. Resolves
+  /// to an error message for the dialog, or null once the refreshed workbook
+  /// is open.
+  async function refreshQueriesInExcel(): Promise<string | null> {
+    const refresh = window.desktopApi?.refreshQueriesInExcel
+    const state = lazyWorkbookRef.current
+    if (!refresh || !state) return t('dlgQueriesRefreshNotFile')
+    const file = state.file
+    if (
+      !file.path ||
+      file.needsSaveAs ||
+      file.unsavedNew ||
+      file.csvPath !== undefined ||
+      !/\.xls[xm]$/i.test(file.path)
+    ) {
+      return t('dlgQueriesRefreshNotFile')
+    }
+    if (!(await commitActiveEditor())) return t('dlgQueriesRefreshSaveFailed')
+    // Excel refreshes the file on disk, so edits made here must be in it first
+    if (journalSize(state.editJournal) > 0) {
+      const saved = await handleSave('save', true)
+      if (!saved.ok) return t('dlgQueriesRefreshSaveFailed')
+    }
+    // a save reopens the workbook under a new session id
+    const current = lazyWorkbookRef.current
+    const path = current?.file.path
+    if (!current || !path) return t('dlgQueriesRefreshNotFile')
+    const result = await refresh({ sessionId: current.file.sessionId })
+    if (!result.ok) {
+      switch (result.code) {
+        case 'no-excel':
+          return t('dlgQueriesRefreshNoExcel')
+        case 'locked':
+        case 'readonly':
+          return t('dlgQueriesRefreshLocked')
+        case 'timeout':
+          return t('dlgQueriesRefreshTimeout')
+        case 'busy':
+          return t('dlgQueriesRefreshBusy')
+        case 'not-file':
+        case 'unsupported':
+          return t('dlgQueriesRefreshNotFile')
+        default:
+          return t('dlgQueriesRefreshFailed', { error: result.detail ?? '' })
+      }
+    }
+    const reopened = await window.desktopApi.reopenWorkbook(path)
+    if (!reopened || !(await openLazyWorkbook(reopened, { continueChat: true }))) {
+      return t('dlgQueriesRefreshReopenFailed')
+    }
+    setMessage(t('dlgQueriesRefreshDone', { count: result.refreshed }))
+    return null
+  }
+
   async function handleSave(
     mode: 'save' | 'save-as' | 'recovery' | 'template' | 'ods',
     quiet = false,
@@ -5888,6 +5943,9 @@ export function App({
           workbookFile
             ? window.desktopApi.readWorkbookQueries({ sessionId: workbookFile.sessionId })
             : Promise.resolve([])
+        }
+        onRefreshQueriesInExcel={
+          window.desktopApi?.refreshQueriesInExcel ? refreshQueriesInExcel : undefined
         }
         onReadPasteSpecialSource={readPasteSpecialSourceFromRuntime}
         onPasteSpecial={handlePasteSpecial}

@@ -49,6 +49,7 @@ import type {
   WorkbookRangeResult,
   WorkbookRecalcRequest,
   WorkbookRecalcResult,
+  WorkbookQueriesRefreshResult,
   WorkbookQueriesResult,
   WorkbookRichRun,
   WorkbookSaveRequest,
@@ -346,6 +347,30 @@ const desktopApi: DesktopApi = {
     }
     return result as WorkbookQueriesResult
   },
+  // Refresh in Excel drives the Excel installed on Windows; elsewhere the
+  // method is absent and the dialog shows no button.
+  ...(process.platform === 'win32'
+    ? {
+        async refreshQueriesInExcel(request: unknown): Promise<WorkbookQueriesRefreshResult> {
+          if (!isRecord(request) || !isUuid(request.sessionId)) {
+            throw new Error('Invalid queries request.')
+          }
+          const result: unknown = await ipcRenderer.invoke(IPC_CHANNELS.refreshQueriesInExcel, {
+            sessionId: request.sessionId,
+          })
+          // structural check; the main process zod-validates the full shape
+          if (!isRecord(result) || typeof result.ok !== 'boolean') {
+            throw new Error('Invalid refresh response.')
+          }
+          if (result.ok) {
+            if (typeof result.refreshed !== 'number') throw new Error('Invalid refresh response.')
+            return { ok: true, refreshed: result.refreshed }
+          }
+          if (typeof result.code !== 'string') throw new Error('Invalid refresh response.')
+          return result as WorkbookQueriesRefreshResult
+        },
+      }
+    : {}),
   async saveWorkbookEdits(request) {
     const validatedRequest = parseSaveRequest(request)
     const result: unknown = await ipcRenderer.invoke(IPC_CHANNELS.saveWorkbook, validatedRequest)

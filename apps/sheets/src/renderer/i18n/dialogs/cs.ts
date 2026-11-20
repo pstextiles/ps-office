@@ -88,6 +88,27 @@ export const cs = {
     'Aktualizace dotazů zatím není podporována. Dotazy zůstávají v souboru, takže je Excel stále může aktualizovat; zobrazené řádky jsou poslední uložené výsledky.',
   dlgQueriesGoHint: 'Kliknutím vyberete načtené řádky',
   dlgQueriesError: 'Připojení sešitu nelze přečíst: {error}',
+  dlgQueriesNoteRefresh:
+    'Zobrazené řádky jsou naposledy uložené výsledky. „Aktualizovat v Excelu“ nechá Excel nainstalovaný v tomto počítači aktualizovat dotazy a uložit soubor, který se pak znovu otevře zde.',
+  dlgQueriesRefreshExcel: 'Aktualizovat v Excelu',
+  dlgQueriesRefreshTip:
+    'Používá Excel nainstalovaný v tomto počítači. Neuložené změny se nejprve uloží.',
+  dlgQueriesRefreshing:
+    'Aktualizace v Excelu… U velkých dat nebo síťových zdrojů to může trvat několik minut.',
+  dlgQueriesRefreshDone: 'Dotazy aktualizovány v Excelu ({count}).',
+  dlgQueriesRefreshNoExcel:
+    'V tomto počítači nebyl nalezen Microsoft Excel. „Aktualizovat v Excelu“ vyžaduje nainstalovaný Excel.',
+  dlgQueriesRefreshLocked:
+    'Soubor je otevřený v jiném programu (obvykle v Excelu). Zavřete ho tam a zkuste to znovu.',
+  dlgQueriesRefreshTimeout:
+    'Excel nedokončil práci do 10 minut, proto byla aktualizace zastavena. Soubor se nezměnil.',
+  dlgQueriesRefreshBusy: 'Aktualizace už probíhá. Počkejte, až skončí.',
+  dlgQueriesRefreshNotFile:
+    'V Excelu lze aktualizovat jen uložený soubor .xlsx nebo .xlsm. Nejprve ho uložte jako .xlsx.',
+  dlgQueriesRefreshSaveFailed: 'Změny se nepodařilo uložit, proto se aktualizace nespustila.',
+  dlgQueriesRefreshFailed: 'Excel nedokázal aktualizovat dotazy, proto se soubor nezměnil. {error}',
+  dlgQueriesRefreshReopenFailed:
+    'Excel soubor aktualizoval, ale zde ho nebylo možné znovu otevřít. Otevřete ho znovu z domovské stránky.',
   dlgPasteSpecialTitle: 'Vložit jinak',
   dlgPasteSpecialPaste: 'Vložit',
   dlgPasteSpecialAll: 'Vše',

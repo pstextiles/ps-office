@@ -455,6 +455,8 @@ interface ExcelShellProps {
   readonly onListDefinedNames: () => readonly { name: string; ref: string }[]
   /// Data › Queries & Connections: the open workbook's connections (read-only).
   readonly onReadWorkbookQueries: () => Promise<WorkbookQueriesResult>
+  /// Refresh in Excel (Windows only; absent elsewhere): an error message, or null once reopened.
+  readonly onRefreshQueriesInExcel?: () => Promise<string | null>
   readonly onReadPasteSpecialSource: () => Promise<PasteSpecialSource>
   /// Resolves to an error message, or null on success.
   readonly onPasteSpecial: (
@@ -588,6 +590,7 @@ export function ExcelShell({
   onGoToReference,
   onListDefinedNames,
   onReadWorkbookQueries,
+  onRefreshQueriesInExcel,
   onReadPasteSpecialSource,
   onPasteSpecial,
   functionArguments,
@@ -1513,6 +1516,7 @@ export function ExcelShell({
       {showQueries && (
         <QueriesDialog
           load={onReadWorkbookQueries}
+          onRefresh={onRefreshQueriesInExcel}
           onGo={onGoToReference}
           onClose={() => setShowQueries(false)}
         />

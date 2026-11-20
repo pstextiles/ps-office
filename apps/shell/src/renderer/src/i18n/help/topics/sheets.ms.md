@@ -80,6 +80,7 @@ Tab Formula, butiran demi butiran:
 - Isih dan tapis.
 - Bekalkan beku.
 - .csv / .tsv: dibuka terus sebagai jadual, dan fail tsv yang dipisah dengan tab dibaca sebagai satu. Menyimpan menulis semula format asal.
+- Power Query (Windows): tab Data ▸ **Pertanyaan & Sambungan** ▸ **Segar Semula dalam Excel** menyuruh Excel yang dipasang pada PC ini menyegarkan pertanyaan (termasuk sumber rangkaian) dan menyimpan fail, kemudian membukanya semula di sini. Perubahan yang belum disimpan disimpan dahulu; jika sumber tidak dapat dicapai, fail tidak berubah.
 
 ## Menu konteks
 

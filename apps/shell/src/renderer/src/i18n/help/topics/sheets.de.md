@@ -80,6 +80,7 @@ Der Tab „Formeln“, Knopf für Knopf:
 - Sortieren und Filtern.
 - Fenster fixieren.
 - .csv / .tsv: öffnet direkt als Tabelle (tabulatorgetrenntes tsv wird als eine Tabelle gelesen); beim Speichern wird im Originalformat zurückgeschrieben.
+- Power Query (Windows): Registerkarte Daten ▸ **Abfragen und Verbindungen** ▸ **In Excel aktualisieren** lässt das auf diesem PC installierte Excel die Abfragen aktualisieren (auch Netzwerkquellen) und die Datei speichern; danach wird sie hier neu geöffnet. Nicht gespeicherte Änderungen werden zuerst gespeichert; ist eine Quelle nicht erreichbar, bleibt die Datei unverändert.
 
 ## Rechtsklick-Menüs
 

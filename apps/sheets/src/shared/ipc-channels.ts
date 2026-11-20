@@ -76,6 +76,8 @@ export const IPC_CHANNELS = {
   readPivotDefinition: 'workbook:read-pivot-definition',
   /** Data › Queries & Connections: the workbook's connections, read-only (xl/connections.xml) */
   readWorkbookQueries: 'workbook:read-queries',
+  /** Data › Queries & Connections › Refresh in Excel: the installed Excel refreshes and saves the file (Windows) */
+  refreshQueriesInExcel: 'workbook:refresh-queries-in-excel',
   readLocalImage: 'shell:read-local-image',
   closeWorkbook: 'workbook:close',
   saveWorkbook: 'workbook:save',

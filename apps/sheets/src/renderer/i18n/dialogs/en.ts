@@ -88,6 +88,26 @@ export const en = {
     "Refreshing queries isn't supported yet. They are kept in the file, so Excel can still refresh them; the rows shown are the last saved results.",
   dlgQueriesGoHint: 'Click to select the loaded rows',
   dlgQueriesError: "The workbook's connections could not be read: {error}",
+  dlgQueriesNoteRefresh:
+    'The rows shown are the last saved results. Refresh in Excel has the Excel installed on this PC refresh the queries and save the file, then reopens it here.',
+  dlgQueriesRefreshExcel: 'Refresh in Excel',
+  dlgQueriesRefreshTip: 'Uses the Excel installed on this PC. Unsaved changes are saved first.',
+  dlgQueriesRefreshing: 'Refreshing in Excel… Large or network sources can take a few minutes.',
+  dlgQueriesRefreshDone: 'Queries refreshed in Excel ({count}).',
+  dlgQueriesRefreshNoExcel:
+    'Microsoft Excel was not found on this PC. Refresh in Excel needs Excel installed.',
+  dlgQueriesRefreshLocked:
+    'The file is open in another program (often Excel). Close it there and try again.',
+  dlgQueriesRefreshTimeout:
+    'Excel did not finish within 10 minutes, so the refresh was stopped. The file was not changed.',
+  dlgQueriesRefreshBusy: 'A refresh is already running. Wait for it to finish.',
+  dlgQueriesRefreshNotFile:
+    'Only a saved .xlsx or .xlsm file can be refreshed in Excel. Save it as .xlsx first.',
+  dlgQueriesRefreshSaveFailed: 'Your changes could not be saved, so the refresh did not start.',
+  dlgQueriesRefreshFailed:
+    'Excel could not refresh the queries, so the file was not changed. {error}',
+  dlgQueriesRefreshReopenFailed:
+    'Excel refreshed the file, but it could not be reopened here. Open it again from Home.',
   dlgPasteSpecialTitle: 'Paste Special',
   dlgPasteSpecialPaste: 'Paste',
   dlgPasteSpecialAll: 'All',

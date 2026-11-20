@@ -90,6 +90,29 @@ export const ms = {
     'Penyegaran pertanyaan belum disokong. Ia kekal dalam fail, jadi Excel masih boleh menyegarkannya; baris yang ditunjukkan ialah hasil simpanan terakhir.',
   dlgQueriesGoHint: 'Klik untuk memilih baris yang dimuatkan',
   dlgQueriesError: 'Sambungan buku kerja tidak dapat dibaca: {error}',
+  dlgQueriesNoteRefresh:
+    'Baris yang dipaparkan ialah hasil terakhir yang disimpan. Segar Semula dalam Excel menyuruh Excel yang dipasang pada PC ini menyegarkan pertanyaan dan menyimpan fail, kemudian membukanya semula di sini.',
+  dlgQueriesRefreshExcel: 'Segar Semula dalam Excel',
+  dlgQueriesRefreshTip:
+    'Menggunakan Excel yang dipasang pada PC ini. Perubahan yang belum disimpan akan disimpan dahulu.',
+  dlgQueriesRefreshing:
+    'Menyegar semula dalam Excel… Data yang besar atau sumber rangkaian mungkin mengambil masa beberapa minit.',
+  dlgQueriesRefreshDone: 'Pertanyaan disegarkan semula dalam Excel ({count}).',
+  dlgQueriesRefreshNoExcel:
+    'Microsoft Excel tidak ditemui pada PC ini. Segar Semula dalam Excel memerlukan Excel dipasang.',
+  dlgQueriesRefreshLocked:
+    'Fail sedang dibuka dalam program lain (biasanya Excel). Tutupnya di sana, kemudian cuba lagi.',
+  dlgQueriesRefreshTimeout:
+    'Excel tidak selesai dalam 10 minit, jadi penyegaran dihentikan. Fail tidak berubah.',
+  dlgQueriesRefreshBusy: 'Penyegaran sedang berjalan. Tunggu sehingga selesai.',
+  dlgQueriesRefreshNotFile:
+    'Hanya fail .xlsx atau .xlsm yang telah disimpan boleh disegarkan dalam Excel. Simpan sebagai .xlsx dahulu.',
+  dlgQueriesRefreshSaveFailed:
+    'Perubahan anda tidak dapat disimpan, jadi penyegaran tidak dimulakan.',
+  dlgQueriesRefreshFailed:
+    'Excel tidak dapat menyegarkan pertanyaan, jadi fail tidak berubah. {error}',
+  dlgQueriesRefreshReopenFailed:
+    'Excel telah menyegarkan fail, tetapi fail itu tidak dapat dibuka semula di sini. Bukanya semula dari Laman Utama.',
   dlgPasteSpecialTitle: 'Tampal Khas',
   dlgPasteSpecialPaste: 'Tampal',
   dlgPasteSpecialAll: 'Semua',

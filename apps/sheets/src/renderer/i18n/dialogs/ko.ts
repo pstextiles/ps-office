@@ -87,6 +87,26 @@ export const ko = {
     '쿼리 새로 고침은 아직 지원되지 않습니다. 쿼리는 파일에 그대로 남아 Excel에서 새로 고칠 수 있으며, 표시되는 행은 마지막으로 저장된 결과입니다.',
   dlgQueriesGoHint: '클릭하면 불러온 행을 선택합니다',
   dlgQueriesError: '통합 문서의 연결을 읽을 수 없습니다: {error}',
+  dlgQueriesNoteRefresh:
+    '표시되는 행은 마지막으로 저장된 결과입니다. [Excel에서 새로 고침]을 누르면 이 PC에 설치된 Excel이 쿼리를 새로 고치고 파일을 저장한 뒤, 여기서 다시 엽니다.',
+  dlgQueriesRefreshExcel: 'Excel에서 새로 고침',
+  dlgQueriesRefreshTip: '이 PC에 설치된 Excel을 사용합니다. 저장하지 않은 변경은 먼저 저장합니다.',
+  dlgQueriesRefreshing:
+    'Excel에서 새로 고치는 중… 데이터가 많거나 네트워크에 있으면 몇 분 걸릴 수 있습니다.',
+  dlgQueriesRefreshDone: 'Excel에서 쿼리를 새로 고쳤습니다({count}개).',
+  dlgQueriesRefreshNoExcel:
+    '이 PC에서 Microsoft Excel을 찾지 못했습니다. Excel에서 새로 고침은 Excel이 설치되어 있어야 합니다.',
+  dlgQueriesRefreshLocked:
+    '파일이 다른 프로그램(보통 Excel)에서 열려 있습니다. 그쪽에서 닫은 뒤 다시 시도하세요.',
+  dlgQueriesRefreshTimeout:
+    'Excel이 10분 안에 끝내지 못해 새로 고침을 멈췄습니다. 파일은 바뀌지 않았습니다.',
+  dlgQueriesRefreshBusy: '이미 새로 고치는 중입니다. 끝날 때까지 기다려 주세요.',
+  dlgQueriesRefreshNotFile:
+    '저장된 .xlsx 또는 .xlsm 파일만 Excel에서 새로 고칠 수 있습니다. 먼저 .xlsx로 저장하세요.',
+  dlgQueriesRefreshSaveFailed: '변경 내용을 저장하지 못해 새로 고침을 시작하지 않았습니다.',
+  dlgQueriesRefreshFailed: 'Excel이 쿼리를 새로 고치지 못해 파일은 바뀌지 않았습니다. {error}',
+  dlgQueriesRefreshReopenFailed:
+    'Excel이 파일을 새로 고쳤지만 여기서 다시 열지 못했습니다. 홈에서 다시 열어 주세요.',
   dlgPasteSpecialTitle: '선택하여 붙여넣기',
   dlgPasteSpecialPaste: '붙여넣기',
   dlgPasteSpecialAll: '모두',
