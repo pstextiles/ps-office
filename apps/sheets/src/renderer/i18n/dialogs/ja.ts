@@ -120,6 +120,8 @@ export const ja = {
     'クエリを計算しています… データが大きい場合やネットワーク上にある場合は数分かかることがあります。',
   dlgQueriesBuiltInDone:
     'クエリのテーブルを更新しました（{count} 件）。ほかのシートの数式は以前の結果のままです。Excel でファイルを開くと再計算されます。',
+  dlgQueriesBuiltInDoneRecalc:
+    'クエリのテーブルを更新し（{count} 件）、それを使う数式も再計算しました。',
   dlgQueriesBuiltInLimit:
     'Excel とまったく同じようにはここで計算できないため、ファイルは変更していません。［Excel で更新］を使ってください。{error}',
   dlgQueriesBuiltInFailed: 'クエリを更新できなかったため、ファイルは変更していません。{error}',

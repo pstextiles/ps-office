@@ -120,6 +120,8 @@ export const id = {
     'Menghitung kueri… Sumber yang besar atau di jaringan dapat memakan waktu beberapa menit.',
   dlgQueriesBuiltInDone:
     'Tabel kueri disegarkan ({count}). Rumus di lembar lain masih menampilkan hasil sebelumnya; Excel menghitungnya ulang saat membuka file.',
+  dlgQueriesBuiltInDoneRecalc:
+    'Tabel kueri disegarkan ({count}); rumus yang menggunakannya telah dihitung ulang.',
   dlgQueriesBuiltInLimit:
     'Ini tidak dapat dihitung di sini persis seperti di Excel, jadi file tidak diubah. Gunakan Segarkan di Excel. {error}',
   dlgQueriesBuiltInFailed: 'Kueri tidak dapat disegarkan, jadi file tidak diubah. {error}',

@@ -118,6 +118,8 @@ export const vi = {
     'Đang tính các truy vấn… Nguồn lớn hoặc nằm trên mạng có thể mất vài phút.',
   dlgQueriesBuiltInDone:
     'Đã làm mới các bảng truy vấn ({count}). Công thức ở các trang tính khác vẫn hiển thị kết quả cũ; Excel sẽ tính lại khi mở tệp.',
+  dlgQueriesBuiltInDoneRecalc:
+    'Đã làm mới các bảng truy vấn ({count}); các công thức dùng chúng đã được tính lại.',
   dlgQueriesBuiltInLimit:
     'Không thể tính ở đây chính xác như Excel nên tệp không bị thay đổi. Hãy dùng Làm mới trong Excel. {error}',
   dlgQueriesBuiltInFailed: 'Không làm mới được các truy vấn nên tệp không bị thay đổi. {error}',

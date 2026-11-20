@@ -107,6 +107,7 @@ export const zh = {
   dlgQueriesBuiltInRunning: '正在计算查询… 数据量大或位于网络上的数据源可能需要几分钟。',
   dlgQueriesBuiltInDone:
     '已刷新查询表（{count} 个）。其他工作表中的公式仍显示之前的结果；Excel 打开文件时会重新计算。',
+  dlgQueriesBuiltInDoneRecalc: '已刷新查询表（{count} 个），并重新计算了使用它们的公式。',
   dlgQueriesBuiltInLimit:
     '此处无法与 Excel 完全一致地计算，因此未更改文件。请使用“在 Excel 中刷新”。{error}',
   dlgQueriesBuiltInFailed: '无法刷新查询，因此未更改文件。{error}',

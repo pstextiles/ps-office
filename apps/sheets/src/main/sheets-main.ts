@@ -4672,7 +4672,7 @@ export function registerSheetsIpc(): void {
       systemCulture: app.getSystemLocale(),
     })
     return workbookQueriesBuiltInRefreshResultSchema.parse(
-      result.ok ? { ok: true, tables: result.tables.slice(0, 500) } : result,
+      result.ok ? { ...result, tables: result.tables.slice(0, 500) } : result,
     )
   })
 

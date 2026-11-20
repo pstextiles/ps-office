@@ -117,6 +117,8 @@ export const ko = {
     '쿼리를 계산하는 중… 데이터가 많거나 네트워크에 있으면 몇 분 걸릴 수 있습니다.',
   dlgQueriesBuiltInDone:
     '쿼리 표를 새로 고쳤습니다({count}개). 다른 시트의 수식은 아직 이전 결과를 보여 주며, Excel에서 파일을 열면 다시 계산됩니다.',
+  dlgQueriesBuiltInDoneRecalc:
+    '쿼리 표를 새로 고치고({count}개), 그 표를 쓰는 수식도 다시 계산했습니다.',
   dlgQueriesBuiltInLimit:
     'Excel과 똑같이 계산할 수 없어 파일을 바꾸지 않았습니다. [Excel에서 새로 고침]을 사용하세요. {error}',
   dlgQueriesBuiltInFailed: '쿼리를 새로 고치지 못해 파일은 바뀌지 않았습니다. {error}',

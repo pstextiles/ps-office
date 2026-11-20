@@ -120,6 +120,8 @@ export const pl = {
     'Obliczanie zapytań… Duże źródła lub źródła sieciowe mogą zająć kilka minut.',
   dlgQueriesBuiltInDone:
     'Odświeżono tabele zapytań ({count}). Formuły w innych arkuszach nadal pokazują poprzednie wyniki; Excel przeliczy je po otwarciu pliku.',
+  dlgQueriesBuiltInDoneRecalc:
+    'Odświeżono tabele zapytań ({count}); formuły, które z nich korzystają, zostały przeliczone.',
   dlgQueriesBuiltInLimit:
     'Nie da się tego obliczyć tutaj dokładnie tak jak w programie Excel, więc plik nie został zmieniony. Użyj polecenia Odśwież w programie Excel. {error}',
   dlgQueriesBuiltInFailed:

@@ -5328,7 +5328,13 @@ export function App({
     if (!reopened || !(await openLazyWorkbook(reopened, { continueChat: true }))) {
       return { error: t('dlgQueriesBuiltInReopenFailed') }
     }
-    const done = t('dlgQueriesBuiltInDone', { count: result.tables.length })
+    // the formulas that use the tables were recalculated too, unless one of
+    // them is beyond the built-in calculation: then say they are as before
+    const done =
+      result.formulas === 'recalculated'
+        ? t('dlgQueriesBuiltInDoneRecalc', { count: result.tables.length })
+        : t('dlgQueriesBuiltInDone', { count: result.tables.length }) +
+          (result.formulasDetail ? ` [${result.formulasDetail}]` : '')
     setMessage(done)
     return { done }
   }

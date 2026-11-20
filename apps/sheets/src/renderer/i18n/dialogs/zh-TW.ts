@@ -108,6 +108,7 @@ export const zhTW = {
   dlgQueriesBuiltInRunning: '正在計算查詢… 資料量大或位於網路上的來源可能需要幾分鐘。',
   dlgQueriesBuiltInDone:
     '已重新整理查詢表格（{count} 個）。其他工作表中的公式仍顯示先前的結果；Excel 開啟檔案時會重新計算。',
+  dlgQueriesBuiltInDoneRecalc: '已重新整理查詢表格（{count} 個），並重新計算了使用它們的公式。',
   dlgQueriesBuiltInLimit:
     '這裡無法與 Excel 完全一致地計算，因此未變更檔案。請使用「在 Excel 中重新整理」。{error}',
   dlgQueriesBuiltInFailed: '無法重新整理查詢，因此未變更檔案。{error}',

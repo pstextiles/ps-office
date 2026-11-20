@@ -60,11 +60,11 @@ export interface CellModel {
 export interface TableModel {
   readonly name: string
   readonly sheet: SheetModel
-  /** 0-based, inclusive, header and totals rows included */
-  readonly r1: number
-  readonly c1: number
-  readonly r2: number
-  readonly c2: number
+  /** 0-based, inclusive, header and totals rows included; a pending resize moves it */
+  r1: number
+  c1: number
+  r2: number
+  c2: number
   readonly headerRows: number
   readonly totalsRows: number
   readonly columns: readonly string[]
@@ -190,6 +190,9 @@ export function readWorkbookModel(bytes: Uint8Array): WorkbookModel {
   if (!workbookXml) throw new FormulaLimit('a file that is not a workbook')
   const date1904 = /<workbookPr\b[^>]*\bdate1904="(?:1|true)"/.test(workbookXml)
   if (date1904) throw new FormulaLimit('the 1904 date system')
+  const calcPr = /<calcPr\b([^>]*)\/?>/.exec(workbookXml)?.[1] ?? ''
+  if (/\biterate="(?:1|true)"/.test(calcPr)) throw new FormulaLimit('iterative calculation')
+  if (/\bfullPrecision="(?:0|false)"/.test(calcPr)) throw new FormulaLimit('precision as displayed')
 
   const shared: string[] = []
   const sstXml = read('xl/sharedStrings.xml')

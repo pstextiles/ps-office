@@ -122,6 +122,8 @@ export const nl = {
     "Query's worden berekend… Grote bronnen of netwerkbronnen kunnen enkele minuten duren.",
   dlgQueriesBuiltInDone:
     'Querytabellen vernieuwd ({count}). Formules op andere bladen tonen nog hun vorige resultaten; Excel berekent ze opnieuw wanneer het bestand wordt geopend.',
+  dlgQueriesBuiltInDoneRecalc:
+    'Querytabellen vernieuwd ({count}); de formules die ze gebruiken zijn opnieuw berekend.',
   dlgQueriesBuiltInLimit:
     'Dit kan hier niet precies zo worden berekend als in Excel, dus het bestand is niet gewijzigd. Gebruik Vernieuwen in Excel. {error}',
   dlgQueriesBuiltInFailed:

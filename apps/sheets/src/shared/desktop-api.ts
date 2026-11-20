@@ -2442,6 +2442,9 @@ export const workbookQueriesBuiltInRefreshResultSchema = z.union([
             .strict(),
         )
         .max(500),
+      /** recalculated: the formulas' new results were saved too; stale: they keep their previous results until Excel opens the file */
+      formulas: z.enum(['recalculated', 'stale']),
+      formulasDetail: z.string().max(400).optional(),
     })
     .strict(),
   z

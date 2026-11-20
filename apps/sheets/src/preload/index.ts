@@ -360,7 +360,11 @@ const desktopApi: DesktopApi = {
     if (!isRecord(result) || typeof result.ok !== 'boolean') {
       throw new Error('Invalid refresh response.')
     }
-    if (result.ok ? !Array.isArray(result.tables) : typeof result.code !== 'string') {
+    if (
+      result.ok
+        ? !Array.isArray(result.tables) || typeof result.formulas !== 'string'
+        : typeof result.code !== 'string'
+    ) {
       throw new Error('Invalid refresh response.')
     }
     return result as WorkbookQueriesBuiltInRefreshResult

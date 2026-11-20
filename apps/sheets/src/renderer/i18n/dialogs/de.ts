@@ -124,6 +124,8 @@ export const de = {
     'Abfragen werden berechnet… Große Quellen oder Netzwerkquellen können einige Minuten dauern.',
   dlgQueriesBuiltInDone:
     'Abfragetabellen aktualisiert ({count}). Formeln auf anderen Blättern zeigen noch ihre vorherigen Ergebnisse; Excel berechnet sie beim Öffnen der Datei neu.',
+  dlgQueriesBuiltInDoneRecalc:
+    'Abfragetabellen aktualisiert ({count}); die Formeln, die sie verwenden, wurden neu berechnet.',
   dlgQueriesBuiltInLimit:
     'Das lässt sich hier nicht genau so berechnen wie in Excel, daher wurde die Datei nicht geändert. Verwenden Sie „In Excel aktualisieren“. {error}',
   dlgQueriesBuiltInFailed:

@@ -6,8 +6,11 @@
  * table can be refreshed exactly as Excel would; otherwise the reason is
  * returned and the file is left as it was.
  *
- * Formulas elsewhere in the workbook keep their previous results until
- * Excel opens the file (every save asks Excel to recalculate on open).
+ * The formulas of the workbook are then recalculated by the built-in
+ * calculation (src/main/formula-calc/) and their new results saved with the
+ * tables — but only when every one of them can be computed exactly as Excel
+ * would. Otherwise they keep their stored results (`formulas: 'stale'`) until
+ * Excel opens the file; every save asks Excel to recalculate on open.
  */
 import { existsSync } from 'node:fs'
 import { Worker } from 'node:worker_threads'
@@ -15,11 +18,12 @@ import {
   saveWorkbookViaSidecar,
   type ArchiveClient,
 } from '@genoffice/xlsx-gateway/gateway/xlsx-package-io'
-import type { RefreshOutcome, RefreshedTable } from './power-query/refresh'
+import type { RefreshedTable } from './power-query/refresh'
 import queryRefreshWorkerPath from './query-refresh-worker?modulePath'
 import {
   QUERY_REFRESH_WORKER_DATA,
   runQueryRefreshJob,
+  type QueryRefreshAnswer,
   type QueryRefreshJob,
 } from './query-refresh-worker'
 
@@ -27,7 +31,14 @@ import {
 export const BUILTIN_REFRESH_TIMEOUT_MS = 15 * 60_000
 
 export type BuiltInRefreshResult =
-  | { readonly ok: true; readonly tables: readonly RefreshedTable[] }
+  | {
+      readonly ok: true
+      readonly tables: readonly RefreshedTable[]
+      /** recalculated: the formulas' new results were saved too; stale: they keep their previous results */
+      readonly formulas: 'recalculated' | 'stale'
+      /** why the formulas were left as they were */
+      readonly formulasDetail?: string
+    }
   | {
       readonly ok: false
       /** limit: the engine can't do this exactly (Excel can); failed: the query or the save failed */
@@ -37,18 +48,22 @@ export type BuiltInRefreshResult =
     }
 
 export interface BuiltInRefreshDeps {
-  readonly plan: (job: QueryRefreshJob) => Promise<RefreshOutcome>
+  readonly plan: (job: QueryRefreshJob) => Promise<QueryRefreshAnswer>
   readonly save: typeof saveWorkbookViaSidecar
 }
 
 /** The worker chunk when the build bundled one; otherwise (the test runner) the calling thread. */
-export function planInWorker(job: QueryRefreshJob): Promise<RefreshOutcome> {
+export function planInWorker(job: QueryRefreshJob): Promise<QueryRefreshAnswer> {
   const path: unknown = queryRefreshWorkerPath
   if (typeof path !== 'string' || path === '' || !existsSync(path)) {
     return Promise.resolve(runQueryRefreshJob(job))
   }
   return new Promise((resolve, reject) => {
-    const worker = new Worker(path, { workerData: QUERY_REFRESH_WORKER_DATA })
+    const worker = new Worker(path, {
+      workerData: QUERY_REFRESH_WORKER_DATA,
+      // formulas that depend on one another row after row recurse deeply
+      resourceLimits: { stackSizeMb: 64 },
+    })
     const timer = setTimeout(() => {
       void worker.terminate()
       reject(new RefreshTimeout())
@@ -57,9 +72,9 @@ export function planInWorker(job: QueryRefreshJob): Promise<RefreshOutcome> {
       clearTimeout(timer)
       void worker.terminate()
     }
-    worker.once('message', (outcome: RefreshOutcome) => {
+    worker.once('message', (answer: QueryRefreshAnswer) => {
       finish()
-      resolve(outcome)
+      resolve(answer)
     })
     worker.once('error', (error) => {
       finish()
@@ -105,9 +120,9 @@ export async function refreshWorkbookBuiltIn(
   if (running) return { ok: false, code: 'busy' }
   running = true
   try {
-    let outcome: RefreshOutcome
+    let answer: QueryRefreshAnswer
     try {
-      outcome = await deps.plan({
+      answer = await deps.plan({
         path: input.sourcePath,
         ...(input.systemCulture === undefined ? {} : { systemCulture: input.systemCulture }),
       })
@@ -119,6 +134,7 @@ export async function refreshWorkbookBuiltIn(
         detail: short(error instanceof Error ? error.message : String(error)),
       }
     }
+    const { outcome, formulas } = answer
     if (!outcome.ok) {
       const { kind, query, message } = outcome.failure
       return {
@@ -135,6 +151,7 @@ export async function refreshWorkbookBuiltIn(
         targetPath: input.targetPath,
         edits: outcome.plan.edits,
         tableEdits: outcome.plan.tableEdits,
+        ...(formulas?.ok ? { formulaValues: formulas.values } : {}),
       })
     } catch (error) {
       if (isLockedError(error)) return { ok: false, code: 'locked' }
@@ -144,7 +161,13 @@ export async function refreshWorkbookBuiltIn(
         detail: short(error instanceof Error ? error.message : String(error)),
       }
     }
-    return { ok: true, tables: outcome.plan.tables }
+    if (formulas?.ok) return { ok: true, tables: outcome.plan.tables, formulas: 'recalculated' }
+    return {
+      ok: true,
+      tables: outcome.plan.tables,
+      formulas: 'stale',
+      ...(formulas ? { formulasDetail: short(formulas.reason) } : {}),
+    }
   } finally {
     running = false
   }

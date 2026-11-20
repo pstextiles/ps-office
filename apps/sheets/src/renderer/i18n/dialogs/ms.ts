@@ -123,6 +123,8 @@ export const ms = {
     'Mengira pertanyaan… Sumber yang besar atau dalam rangkaian boleh mengambil masa beberapa minit.',
   dlgQueriesBuiltInDone:
     'Jadual pertanyaan disegarkan ({count}). Formula pada helaian lain masih menunjukkan hasil sebelumnya; Excel mengiranya semula apabila membuka fail.',
+  dlgQueriesBuiltInDoneRecalc:
+    'Jadual pertanyaan disegarkan ({count}); formula yang menggunakannya telah dikira semula.',
   dlgQueriesBuiltInLimit:
     'Ini tidak dapat dikira di sini tepat seperti dalam Excel, jadi fail tidak diubah. Gunakan Segar Semula dalam Excel. {error}',
   dlgQueriesBuiltInFailed: 'Pertanyaan tidak dapat disegarkan, jadi fail tidak diubah. {error}',

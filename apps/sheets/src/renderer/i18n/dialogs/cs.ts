@@ -118,6 +118,8 @@ export const cs = {
     'Počítají se dotazy… Velké nebo síťové zdroje mohou trvat několik minut.',
   dlgQueriesBuiltInDone:
     'Tabulky dotazů byly aktualizovány ({count}). Vzorce na ostatních listech zatím ukazují předchozí výsledky; Excel je přepočítá při otevření souboru.',
+  dlgQueriesBuiltInDoneRecalc:
+    'Tabulky dotazů byly aktualizovány ({count}); vzorce, které je používají, byly přepočítány.',
   dlgQueriesBuiltInLimit:
     'Tohle zde nelze vypočítat přesně jako v Excelu, proto soubor nebyl změněn. Použijte Aktualizovat v Excelu. {error}',
   dlgQueriesBuiltInFailed: 'Dotazy se nepodařilo aktualizovat, proto soubor nebyl změněn. {error}',

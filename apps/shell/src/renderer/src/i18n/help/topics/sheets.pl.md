@@ -80,7 +80,7 @@ Karta Formuły, przycisk po przycisku:
 - Sortowanie i filtrowanie.
 - Zablokowanie okien.
 - .csv / .tsv: otwierają się od razu jako tabela (tsv rozdzielony tabulatorami jest parsowany jako jeden); zapisywanie zapisuje plik w oryginalnym formacie.
-- Power Query: karta Dane ▸ **Zapytania i połączenia** ▸ **Odśwież** oblicza zapytania tutaj, bez programu Excel, i zapisuje plik. Jeśli zapytania nie da się obliczyć dokładnie tak jak w programie Excel, plik się nie zmienia i podawany jest powód. Formuły w innych arkuszach zachowują poprzednie wyniki, dopóki plik nie zostanie otwarty w programie Excel.
+- Power Query: karta Dane ▸ **Zapytania i połączenia** ▸ **Odśwież** oblicza zapytania tutaj, bez programu Excel, i zapisuje plik. Jeśli zapytania nie da się obliczyć dokładnie tak jak w programie Excel, plik się nie zmienia i podawany jest powód. Formuły korzystające z tabel też są przeliczane; jeśli którejś nie da się obliczyć dokładnie tak jak w programie Excel, zachowują poprzednie wyniki, dopóki plik nie zostanie otwarty w programie Excel, i pojawia się o tym informacja.
 - Power Query (Windows): karta Dane ▸ **Zapytania i połączenia** ▸ **Odśwież w programie Excel** zleca zainstalowanemu na tym komputerze Excelowi odświeżenie zapytań (także ze źródeł sieciowych) i zapisanie pliku, a potem otwiera go tu ponownie. Niezapisane zmiany są najpierw zapisywane; jeśli źródło jest niedostępne, plik się nie zmienia.
 
 ## Menu kontekstowe

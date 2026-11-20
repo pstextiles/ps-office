@@ -120,6 +120,8 @@ export const tr = {
     'Sorgular hesaplanıyor… Büyük kaynaklar veya ağ kaynakları birkaç dakika sürebilir.',
   dlgQueriesBuiltInDone:
     'Sorgu tabloları yenilendi ({count}). Diğer sayfalardaki formüller hâlâ önceki sonuçlarını gösteriyor; Excel dosyayı açtığında bunları yeniden hesaplar.',
+  dlgQueriesBuiltInDoneRecalc:
+    'Sorgu tabloları yenilendi ({count}); bunları kullanan formüller yeniden hesaplandı.',
   dlgQueriesBuiltInLimit:
     "Bu, burada Excel'deki gibi tam olarak hesaplanamıyor; bu yüzden dosya değiştirilmedi. Excel'de Yenile'yi kullanın. {error}",
   dlgQueriesBuiltInFailed: 'Sorgular yenilenemedi; bu yüzden dosya değiştirilmedi. {error}',

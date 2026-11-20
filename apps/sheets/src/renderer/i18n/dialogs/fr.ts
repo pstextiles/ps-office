@@ -124,6 +124,8 @@ export const fr = {
     'Calcul des requêtes… Les sources volumineuses ou en réseau peuvent prendre quelques minutes.',
   dlgQueriesBuiltInDone:
     "Tables de requête actualisées ({count}). Les formules des autres feuilles affichent encore leurs résultats précédents ; Excel les recalcule à l'ouverture du fichier.",
+  dlgQueriesBuiltInDoneRecalc:
+    'Tables de requête actualisées ({count}) ; les formules qui les utilisent ont été recalculées.',
   dlgQueriesBuiltInLimit:
     "Ce calcul ne peut pas être fait ici exactement comme dans Excel ; le fichier n'a donc pas été modifié. Utilisez Actualiser dans Excel. {error}",
   dlgQueriesBuiltInFailed:

@@ -118,6 +118,8 @@ export const en = {
     'Computing the queries… Large or network sources can take a few minutes.',
   dlgQueriesBuiltInDone:
     'Query tables refreshed ({count}). Formulas on other sheets still show their previous results; Excel recalculates them when it opens the file.',
+  dlgQueriesBuiltInDoneRecalc:
+    'Query tables refreshed ({count}), and the formulas that use them were recalculated.',
   dlgQueriesBuiltInLimit:
     'This cannot be computed here exactly as Excel would, so the file was not changed. Use Refresh in Excel. {error}',
   dlgQueriesBuiltInFailed:

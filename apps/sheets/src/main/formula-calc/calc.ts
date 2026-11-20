@@ -68,8 +68,12 @@ export interface CalcOptions {
   readonly today: number
   /** the date separator TEXT writes for `/` in a date format ("/" or "-") */
   readonly dateSeparator: string
-  /** text like "8/12" read as a date has the day first (d/M), as in Spanish locales; else the month (M/d) */
-  readonly dayFirst: boolean
+  /**
+   * Text like "8/12" read as a date has the day first (d/M) or the month
+   * (M/d); null where Excel's reading in the PC's locale was not checked,
+   * and such text is then a limit.
+   */
+  readonly dayFirst: boolean | null
 }
 
 /**
@@ -122,6 +126,10 @@ function textDate(s: string): number | null {
   } else if ((match = /^(\d{1,2})\/(\d{1,2})(?:\/(\d{4}))?$/.exec(s))) {
     const a = Number(match[1])
     const b = Number(match[2])
+    if (ACTIVE.dayFirst === null)
+      throw new FormulaLimit(
+        `text that Excel reads as a date by the PC's locale (${JSON.stringify(s)})`,
+      )
     m = ACTIVE.dayFirst ? b : a
     d = ACTIVE.dayFirst ? a : b
     y = match[3] === undefined ? dateParts(ACTIVE.today).y : Number(match[3])

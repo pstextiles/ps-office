@@ -122,6 +122,8 @@ export const pt = {
     'Calculando as consultas… Fontes grandes ou em rede podem levar alguns minutos.',
   dlgQueriesBuiltInDone:
     'Tabelas de consulta atualizadas ({count}). As fórmulas de outras planilhas ainda mostram os resultados anteriores; o Excel as recalcula ao abrir o arquivo.',
+  dlgQueriesBuiltInDoneRecalc:
+    'Tabelas de consulta atualizadas ({count}); as fórmulas que as usam foram recalculadas.',
   dlgQueriesBuiltInLimit:
     'Isso não pode ser calculado aqui exatamente como no Excel, então o arquivo não foi alterado. Use Atualizar no Excel. {error}',
   dlgQueriesBuiltInFailed:

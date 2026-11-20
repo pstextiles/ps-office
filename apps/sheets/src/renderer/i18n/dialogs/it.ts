@@ -123,6 +123,8 @@ export const it = {
     'Calcolo delle query… Le origini grandi o in rete possono richiedere alcuni minuti.',
   dlgQueriesBuiltInDone:
     "Tabelle delle query aggiornate ({count}). Le formule negli altri fogli mostrano ancora i risultati precedenti; Excel le ricalcola all'apertura del file.",
+  dlgQueriesBuiltInDoneRecalc:
+    'Tabelle delle query aggiornate ({count}); le formule che le usano sono state ricalcolate.',
   dlgQueriesBuiltInLimit:
     'Non è possibile calcolarlo qui esattamente come in Excel, quindi il file non è stato modificato. Usa Aggiorna in Excel. {error}',
   dlgQueriesBuiltInFailed:
