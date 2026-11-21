@@ -274,6 +274,7 @@ import {
   stopExcelRefreshes,
 } from './excel-refresh'
 import { refreshWorkbookBuiltIn } from './builtin-refresh'
+import { checkboxStyleIndexes, featurePropertyBagPart } from './cell-checkbox'
 import {
   appendSaveFailure,
   describeReopenFailure,
@@ -6361,8 +6362,10 @@ async function openWorkbookSession(
       ...(diskState === null ? {} : { diskState: { path: diskStatePath, state: diskState } }),
     })
     unsavedNewWorkbooks.delete(path)
+    const styles = await withCheckboxStyles(client, snapshotPath, opened.styles)
     return workbookFileSchema.parse({
       ...opened,
+      styles,
       // The renderer-facing path is what the user opened: for a restored
       // recovery copy that is the original file, not the copy under userData.
       path: restoreTarget ?? path,
@@ -6387,6 +6390,33 @@ async function openWorkbookSession(
       await cleanupImportTempDirectory(app.getPath('temp'), importTempDir)
     }
     throw error
+  }
+}
+
+/// Excel's in-cell checkboxes (PS Office, src/main/cell-checkbox.ts): the
+/// cell formats that are checkboxes get `checkbox: true`, so the screen draws
+/// them as boxes. Display only, never in the way of opening: a workbook
+/// without the parts, or one that can't be read, opens as before.
+async function withCheckboxStyles<T extends object>(
+  client: XlsxSidecarClient,
+  snapshotPath: string,
+  styles: readonly T[],
+): Promise<readonly (T | (T & { checkbox: true }))[]> {
+  try {
+    const rels = await readArchiveEntryText(client, snapshotPath, 'xl/_rels/workbook.xml.rels')
+    const bagPart = featurePropertyBagPart(rels)
+    if (bagPart === null) return styles
+    const [bags, stylesXml] = await Promise.all([
+      readArchiveEntryText(client, snapshotPath, bagPart),
+      readArchiveEntryText(client, snapshotPath, 'xl/styles.xml'),
+    ])
+    const boxes = new Set(checkboxStyleIndexes(stylesXml, bags))
+    if (boxes.size === 0) return styles
+    return styles.map((style, index) =>
+      boxes.has(index) ? { ...style, checkbox: true as const } : style,
+    )
+  } catch {
+    return styles
   }
 }
 

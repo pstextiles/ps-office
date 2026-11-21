@@ -457,6 +457,7 @@ import { installCellFilenameFunction } from './cell-function'
 import { installRightToLeftCommand, refreshSheetRender, sheetIsRightToLeft } from './sheet-rtl-view'
 import { installFormulaLexerFix } from './formula-lexer-fix'
 import { installErrorValueAlignment } from './error-value-align'
+import { installCellCheckboxes } from './cell-checkbox'
 import { installFormulaNewlineDisplay } from './formula-newline-display'
 import { installCfDisplayKeyCompare } from './cf-duplicate-key'
 import { installCfFormulaFold } from './cf-formula-fold'
@@ -2475,6 +2476,8 @@ export function App({
       () => lazyWorkbookRef.current?.file.date1904 === true,
     )
     const errorAlignDisposable = installErrorValueAlignment(runtime)
+    // Excel in-cell checkboxes draw as boxes; a click flips TRUE/FALSE.
+    const cellCheckboxDisposable = installCellCheckboxes(runtime)
     // CELL("filename") resolves the session's on-disk path; converted
     // imports (needsSaveAs) count as never-saved, like Excel.
     const cellFilenameDisposable = installCellFilenameFunction(runtime, () => {
@@ -3800,6 +3803,7 @@ export function App({
       koreanDateInputDisposable.dispose()
       numberFormatFixDisposable.dispose()
       errorAlignDisposable.dispose()
+      cellCheckboxDisposable.dispose()
       cellFilenameDisposable.dispose()
       rateFallbackDisposable.dispose()
       ifsEmptySetDisposable.dispose()

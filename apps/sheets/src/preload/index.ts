@@ -3429,6 +3429,7 @@ function parseCellStyle(input: unknown): WorkbookCellStyle {
     (input.shrinkToFit !== undefined && typeof input.shrinkToFit !== 'boolean') ||
     (input.locked !== undefined && typeof input.locked !== 'boolean') ||
     (input.hidden !== undefined && typeof input.hidden !== 'boolean') ||
+    (input.checkbox !== undefined && input.checkbox !== true) ||
     (input.vertAlign !== undefined &&
       input.vertAlign !== 'superscript' &&
       input.vertAlign !== 'subscript') ||
@@ -3474,6 +3475,7 @@ function parseCellStyle(input: unknown): WorkbookCellStyle {
     ...(input.shrinkToFit === undefined ? {} : { shrinkToFit: input.shrinkToFit }),
     ...(input.locked === undefined ? {} : { locked: input.locked }),
     ...(input.hidden === undefined ? {} : { hidden: input.hidden }),
+    ...(input.checkbox === true ? { checkbox: true as const } : {}),
     ...(input.vertAlign === undefined ? {} : { vertAlign: input.vertAlign }),
     ...(input.fontFamily === undefined ? {} : { fontFamily: input.fontFamily }),
     ...(input.fontSize === undefined ? {} : { fontSize: input.fontSize }),

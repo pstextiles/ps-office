@@ -435,6 +435,9 @@ const cellStyleSchema = z
     locked: z.boolean().optional(),
     /// protection/@hidden; sent only when the xf hides the formula.
     hidden: z.boolean().optional(),
+    /// PS Office: the xf is an Excel in-cell checkbox (src/main/cell-checkbox.ts);
+    /// the screen draws its TRUE/FALSE as a box. Set by the main process.
+    checkbox: z.literal(true).optional(),
   })
   .strict()
 const sheetProtectionAllowSchema = z

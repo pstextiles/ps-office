@@ -143,6 +143,7 @@ import {
   effectiveSheetProtection,
   fileSheetProtection,
 } from './sheet-protection'
+import { CELL_CHECKBOX_KEY } from './cell-checkbox'
 import { INDENT_STEP_PX } from './selection-format'
 import {
   fileRangeToScreenRange,
@@ -7737,6 +7738,8 @@ function installCustom(
   const custom = {
     ...(shrink ? { [SHRINK_TO_FIT_KEY]: true } : {}),
     ...protectionCustom(style).custom,
+    // an Excel in-cell checkbox (cell-checkbox.ts draws it); a cell's own format only
+    ...(style?.checkbox ? { [CELL_CHECKBOX_KEY]: true } : {}),
   }
   return Object.keys(custom).length > 0 ? { custom } : {}
 }
