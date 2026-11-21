@@ -98,21 +98,22 @@ import './settings.css'
 // Two-pane dialog: section nav on the left, fields on the right.
 // All values go through the existing home IPC; nothing is stored locally.
 
-// sorted by ISO 639 language code — native-script labels have no natural
-// shared alphabet, so the code is the ordering key
+// PS Office: the three languages PS Textiles works in come first (Korean,
+// Spanish for the Guatemala plant, English); the rest stay sorted by ISO 639
+// language code — native-script labels have no natural shared alphabet
 const LANG_OPTIONS = [
+  { value: 'ko', label: '한국어' },
+  { value: 'es', label: 'Español' },
+  { value: 'en', label: 'English' },
   { value: 'ar', label: 'العربية' },
   { value: 'cs', label: 'Čeština' },
   { value: 'de', label: 'Deutsch' },
-  { value: 'en', label: 'English' },
-  { value: 'es', label: 'Español' },
   { value: 'fr', label: 'Français' },
   { value: 'he', label: 'עברית' },
   { value: 'hi', label: 'हिन्दी' },
   { value: 'id', label: 'Bahasa Indonesia' },
   { value: 'it', label: 'Italiano' },
   { value: 'ja', label: '日本語' },
-  { value: 'ko', label: '한국어' },
   { value: 'ms', label: 'Bahasa Melayu' },
   { value: 'nl', label: 'Nederlands' },
   { value: 'pl', label: 'Polski' },
