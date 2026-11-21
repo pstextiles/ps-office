@@ -395,7 +395,7 @@ export async function handleSave(
     const failed = message || t('appSaveFailed')
     ctx.setMessage(failed)
     if (!quiet) showToast(failed, 'error')
-    return { ok: false }
+    return { ok: false, ...(message ? { error: message } : {}) }
   }
   const payload = {
     sessionId: state.file.sessionId,

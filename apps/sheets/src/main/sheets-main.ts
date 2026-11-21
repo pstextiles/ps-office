@@ -1,3 +1,4 @@
+import { execFileSync } from 'node:child_process'
 import { createHash, randomUUID } from 'node:crypto'
 import {
   createReadStream,
@@ -257,6 +258,7 @@ import {
 import {
   setSystemShortDate,
   shortDatePatternForSystemLocale,
+  shortDatePatternFromWindows,
 } from '@genoffice/xlsx-gateway/shared/short-date'
 import {
   cleanupExpiredPastedFiles,
@@ -6232,13 +6234,33 @@ async function placeStagedSave(stagedPath: string, targetPath: string): Promise<
 let cachedShortDate: string | undefined
 
 /// Derived from the OS region (not the UI language) and shared with the
-/// gateway's save-side numFmtId mapping via setSystemShortDate.
+/// gateway's save-side numFmtId mapping via setSystemShortDate. On Windows
+/// the person's own short-date setting wins, as it does in Excel (PS Office).
 function systemShortDate(): string {
   if (cachedShortDate === undefined) {
-    cachedShortDate = shortDatePatternForSystemLocale(app.getSystemLocale())
+    cachedShortDate = windowsShortDate() ?? shortDatePatternForSystemLocale(app.getSystemLocale())
     setSystemShortDate(cachedShortDate)
   }
   return cachedShortDate
+}
+
+/// Control Panel › Region › Short date (HKCU\Control Panel\International
+/// sShortDate) as a number format pattern; null off Windows, when it cannot
+/// be read, or when it is not plain day/month/year fields.
+function windowsShortDate(): string | null {
+  if (process.platform !== 'win32') return null
+  try {
+    const reg = join(process.env['SystemRoot'] ?? 'C:\\Windows', 'System32', 'reg.exe')
+    const out = execFileSync(
+      reg,
+      ['query', 'HKCU\\Control Panel\\International', '/v', 'sShortDate'],
+      { encoding: 'utf8', timeout: 3000, windowsHide: true },
+    )
+    const value = /sShortDate\s+REG_SZ\s+(.+)/.exec(out)?.[1]?.trim()
+    return value ? shortDatePatternFromWindows(value) : null
+  } catch {
+    return null
+  }
 }
 
 /** the tab died between prepare and open: release the temp copy and any name reserved for it */

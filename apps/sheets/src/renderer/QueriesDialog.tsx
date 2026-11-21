@@ -73,7 +73,9 @@ export function QueriesDialog({
     let alive = true
     load().then(
       (result) => alive && setQueries(result),
-      (err: unknown) => alive && setError(err instanceof Error ? err.message : String(err)),
+      (err: unknown) =>
+        alive &&
+        setError(t('dlgQueriesError', { error: err instanceof Error ? err.message : String(err) })),
     )
     return () => {
       alive = false
@@ -198,7 +200,7 @@ export function QueriesDialog({
           )}
           {error && (
             <p className="dialog-note dialog-error" role="alert">
-              {t('dlgQueriesError', { error })}
+              {error}
             </p>
           )}
         </section>

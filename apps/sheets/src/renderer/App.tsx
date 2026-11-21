@@ -565,6 +565,7 @@ import { effectivePageBreaks, installPageBreakPreview } from './page-break-previ
 import { mapProtectedRanges } from './protected-ranges'
 import {
   handleSave as handleSaveImpl,
+  localizeSaveError,
   stripIpcErrorWrapper,
   type SaveContext,
   type SaveOutcome,
@@ -5281,6 +5282,15 @@ export function App({
     }
   }
 
+  /// The refresh's own save failed: say so, with the save's reason when it
+  /// has one (a file open in Excel, a read-only folder), since the quiet save
+  /// shows no toast and the status bar sits behind the dialog.
+  function saveFailedNote(reason: string | undefined): string {
+    const note = t('dlgQueriesRefreshSaveFailed')
+    const why = reason ? (localizeSaveError(reason) ?? reason) : ''
+    return why ? `${note} (${why})` : note
+  }
+
   /// Data › Queries & Connections › Refresh (PS Office): save pending edits,
   /// let the built-in engine compute the queries and write the file's query
   /// tables, then reopen it. Resolves to the note for the dialog (formulas
@@ -5304,7 +5314,7 @@ export function App({
     // the engine reads the saved file, so edits made here must be in it first
     if (journalSize(state.editJournal) > 0) {
       const saved = await handleSave('save', true)
-      if (!saved.ok) return { error: t('dlgQueriesRefreshSaveFailed') }
+      if (!saved.ok) return { error: saveFailedNote(saved.error) }
     }
     // a save reopens the workbook under a new session id
     const current = lazyWorkbookRef.current
@@ -5365,7 +5375,7 @@ export function App({
     // Excel refreshes the file on disk, so edits made here must be in it first
     if (journalSize(state.editJournal) > 0) {
       const saved = await handleSave('save', true)
-      if (!saved.ok) return t('dlgQueriesRefreshSaveFailed')
+      if (!saved.ok) return saveFailedNote(saved.error)
     }
     // a save reopens the workbook under a new session id
     const current = lazyWorkbookRef.current

@@ -470,8 +470,13 @@ export function installOutlineGutter(deps: OutlineGutterDeps): OutlineGutterHand
     if (!shown || host.style.getPropertyValue('--outline-gutter-w') !== `${width}px`) {
       setShown(true, width)
     }
-    const headerReady = ensureHeaderHeight(worksheet, skeleton, unitId, height)
-    const band = headerReady ? height : 0
+    // The header is sized in sheet units and drawn at the sheet's zoom, while
+    // the gutter canvas is `height` screen pixels: at 55% a band of `height`
+    // units shrank under the canvas and the column letters below it were
+    // covered (PS Office). Size the band so it spans the canvas at this zoom.
+    const bandUnits = Math.ceil(height / (scaleY > 0 ? scaleY : 1))
+    const headerReady = ensureHeaderHeight(worksheet, skeleton, unitId, bandUnits)
+    const band = headerReady ? bandUnits : 0
     if (columnGutterBand.get(sheetId) !== band) {
       columnGutterBand.set(sheetId, band)
       render.scene.makeDirty(true)

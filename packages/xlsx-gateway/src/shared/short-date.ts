@@ -32,6 +32,42 @@ export function shortDatePatternForSystemLocale(systemLocale: string): string {
   }
 }
 
+const WINDOWS_TOKENS: Record<string, string | undefined> = {
+  yyyy: 'yyyy',
+  yy: 'yy',
+  MM: 'mm',
+  M: 'm',
+  dd: 'dd',
+  d: 'd',
+}
+
+/// PS Office: Excel on Windows draws 14/22 with the user's own short-date
+/// setting (Control Panel › Region › Short date, the registry value
+/// sShortDate), which a person can change from the region's default — a
+/// ko-KR PC set to yyyy-MM-dd shows 2026-06-24 in Excel, not 2026. 6. 24.
+/// This turns that setting into the same number format pattern. Only plain
+/// day/month/year fields with . / - , or space between them are read; a
+/// setting with month names, weekdays, eras or quoted text returns null and
+/// the caller keeps the region-derived pattern.
+export function shortDatePatternFromWindows(sShortDate: string): string | null {
+  // whole runs of a letter: MMM is a month name, not MM then M
+  const fields = sShortDate.trim().match(/y+|M+|d+|[./\- ,]+|./g)
+  if (!fields) return null
+  let pattern = ''
+  for (const field of fields) {
+    const token = WINDOWS_TOKENS[field]
+    if (token !== undefined) pattern += token
+    else if (/^[./\- ,]+$/.test(field)) pattern += field
+    else return null
+  }
+  // one year, one month and one day field, nothing else
+  const counts = ['y', 'm', 'd'].map((letter) =>
+    pattern.split(/[./\- ,]+/).filter((part) => part.startsWith(letter)),
+  )
+  if (counts.some((parts) => parts.length !== 1)) return null
+  return /^(?=.*y)(?=.*m)(?=.*d)[ymd./\- ,]+$/.test(pattern) ? pattern : null
+}
+
 let systemShortDate = DEFAULT_SHORT_DATE
 
 export function setSystemShortDate(pattern: string): void {
