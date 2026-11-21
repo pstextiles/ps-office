@@ -23,7 +23,7 @@ import {
   type IStyleData,
   type Nullable,
 } from '@univerjs/core'
-import { CheckboxShape, Transform, fixLineWidthByScale } from '@univerjs/engine-render'
+import { Transform, fixLineWidthByScale } from '@univerjs/engine-render'
 import { INTERCEPTOR_POINT, SetRangeValuesCommand, SheetInterceptorService } from '@univerjs/sheets'
 
 import type { UniverRuntime } from './univer-state'
@@ -32,8 +32,48 @@ import type { UniverRuntime } from './univer-state'
 export const CELL_CHECKBOX_KEY = 'xlsxCheckbox'
 
 const MARGIN = 2
-/** Excel's checkbox green */
-const CHECKED_FILL = '#217346'
+/** an unset font color: Excel's automatic text color */
+const AUTOMATIC = '#000000'
+
+/** the box's color: Excel paints a checkbox in the cell's font color (a "Good" cell's dark green, a plain cell's black) */
+export function boxColor(style: Nullable<IStyleData>): string {
+  const rgb = (style?.cl as { rgb?: unknown } | null | undefined)?.rgb
+  return typeof rgb === 'string' && rgb !== '' ? rgb : AUTOMATIC
+}
+
+/**
+ * Excel's box, drawn at the origin `size` wide: square corners; unchecked a
+ * white square with a thin border, checked filled with a white tick, both in
+ * the font color.
+ */
+function drawBox(
+  ctx: CanvasRenderingContext2D,
+  size: number,
+  checked: boolean,
+  color: string,
+  pixel: number,
+): void {
+  const line = Math.max(pixel, size / 14)
+  if (checked) {
+    ctx.fillStyle = color
+    ctx.fillRect(0, 0, size, size)
+    ctx.strokeStyle = '#ffffff'
+    ctx.lineWidth = Math.max(pixel, size / 8)
+    ctx.lineCap = 'square'
+    ctx.lineJoin = 'miter'
+    ctx.beginPath()
+    ctx.moveTo(size * 0.24, size * 0.52)
+    ctx.lineTo(size * 0.42, size * 0.7)
+    ctx.lineTo(size * 0.77, size * 0.3)
+    ctx.stroke()
+    return
+  }
+  ctx.fillStyle = '#ffffff'
+  ctx.fillRect(0, 0, size, size)
+  ctx.strokeStyle = color
+  ctx.lineWidth = line
+  ctx.strokeRect(line / 2, line / 2, size - line, size - line)
+}
 
 /** the cell's value as a checkbox: checked, unchecked, or null when it is something else */
 export function checkboxState(cell: Nullable<ICellData>): boolean | null {
@@ -136,12 +176,7 @@ export function installCellCheckboxes(runtime: UniverRuntime): { dispose(): void
       )
       ctx.clip()
       ctx.transform(m[0]!, m[1]!, m[2]!, m[3]!, m[4]!, m[5]!)
-      CheckboxShape.drawWith(ctx as never, {
-        checked: state,
-        width: size,
-        height: size,
-        fill: CHECKED_FILL,
-      })
+      drawBox(ctx, size, state, boxColor(info.style), 1 / Math.max(scaleX, 0.01))
       ctx.restore()
     },
     isHit(evt: { x: number; y: number }, info: RenderInfo): boolean {

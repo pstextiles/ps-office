@@ -14,6 +14,7 @@ import {
 } from '../src/main/cell-checkbox'
 import {
   CELL_CHECKBOX_KEY,
+  boxColor,
   boxLayout,
   checkboxState,
   isCheckboxCell,
@@ -115,5 +116,12 @@ describe('a checkbox cell on screen', () => {
     expect(boxLayout({ startX: 10, startY: 40, endX: 114, endY: 60 }, { fs: 10 })).toMatchObject({
       top: 40 + 20 - 13 - 2,
     })
+  })
+
+  it('takes the cell font color, as Excel does, and black when the font has none', () => {
+    // a "Good" cell: dark green text, dark green box
+    expect(boxColor({ cl: { rgb: '#006100' } })).toBe('#006100')
+    expect(boxColor({ fs: 11 })).toBe('#000000')
+    expect(boxColor(null)).toBe('#000000')
   })
 })
