@@ -9,6 +9,10 @@
 import { Scene } from '@univerjs/engine-render'
 
 const VIEWPORT = 16
+/// PS Office: Excel keeps its filter button about this many screen pixels
+/// when the sheet is zoomed out (17px at 55% in a live Excel), where Univer's
+/// 16-unit button shrank with the zoom to a hard-to-hit 9px.
+const MIN_SCREEN_SIZE = 16
 
 export interface FilterButtonColors {
   readonly fill: string
@@ -32,6 +36,38 @@ interface FilterButtonShapeLike {
   _filterParams: { hasCriteria: boolean }
   _themeService: ThemeServiceLike
   _draw(ctx: CanvasRenderingContext2D): void
+  isHit?(coord: unknown): boolean
+  getInverseCoord?(coord: unknown): { x: number; y: number }
+  getScene?(): { getAncestorScale?(): { scaleX: number } } | null | undefined
+}
+
+/// The button's side in sheet units at a zoom: Univer's 16 at 100% and
+/// above, larger when zoomed out so it stays MIN_SCREEN_SIZE pixels on screen.
+export function filterButtonUnits(zoom: number): number {
+  if (!(zoom > 0)) return VIEWPORT
+  return Math.max(VIEWPORT, MIN_SCREEN_SIZE / zoom)
+}
+
+function shapeZoom(shape: FilterButtonShapeLike): number {
+  try {
+    return shape.getScene?.()?.getAncestorScale?.().scaleX ?? 1
+  } catch {
+    return 1
+  }
+}
+
+/// The button's area in its own coordinates: anchored, like Univer's, at the
+/// bottom-right of its 16-unit box and grown up and left, inside the cell.
+export function filterButtonArea(
+  units: number,
+  cellWidth: number,
+  cellHeight: number,
+): { left: number; top: number; size: number } {
+  return {
+    left: Math.max(VIEWPORT - units, VIEWPORT - cellWidth),
+    top: Math.max(VIEWPORT - units, VIEWPORT - cellHeight),
+    size: units,
+  }
 }
 
 export function filterButtonColors(theme: ThemeServiceLike, hovered: boolean): FilterButtonColors {
@@ -127,13 +163,31 @@ export function patchFilterButtonShapes(objects: readonly unknown[]): boolean {
         this._cellHeight,
       )
       ctx.clip(region)
+      const units = filterButtonUnits(shapeZoom(this))
+      ctx.translate(VIEWPORT - units, VIEWPORT - units)
       drawExcelFilterButton(
         ctx,
-        VIEWPORT,
+        units,
         { hasCriteria: this._filterParams.hasCriteria, hovered: this._hovered },
         filterButtonColors(this._themeService, this._hovered),
       )
       ctx.restore()
+    }
+    // a click lands on the button as drawn, not only on its 16-unit box
+    const baseHit = proto.isHit
+    if (typeof baseHit === 'function' && typeof proto.getInverseCoord === 'function') {
+      proto.isHit = function excelFilterButtonHit(this: FilterButtonShapeLike, coord: unknown) {
+        const local = this.getInverseCoord?.(coord)
+        if (!local) return baseHit.call(this, coord)
+        const area = filterButtonArea(
+          filterButtonUnits(shapeZoom(this)),
+          this._cellWidth,
+          this._cellHeight,
+        )
+        return (
+          local.x >= area.left && local.x <= VIEWPORT && local.y >= area.top && local.y <= VIEWPORT
+        )
+      }
     }
     return true
   }
