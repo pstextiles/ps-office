@@ -5365,8 +5365,16 @@ export function App({
         chatContinuesRef.current = true
         setWorkbookFile(adopted.file)
       }
-    } else if (!(await openLazyWorkbook(reopened, { continueChat: true }))) {
-      return { error: t('dlgQueriesBuiltInReopenFailed') }
+    } else {
+      // A failure after the switch left the screen on `reopened`'s session,
+      // which the reopen would close as the previous one: open a fresh one.
+      const fallback =
+        lazyWorkbookRef.current?.file.sessionId === reopened.sessionId
+          ? await window.desktopApi.reopenWorkbook(path)
+          : reopened
+      if (!fallback || !(await openLazyWorkbook(fallback, { continueChat: true }))) {
+        return { error: t('dlgQueriesBuiltInReopenFailed') }
+      }
     }
     // the formulas that use the tables were recalculated too, unless one of
     // them is beyond the built-in calculation: then say they are as before
