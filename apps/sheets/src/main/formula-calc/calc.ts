@@ -14,7 +14,6 @@ import {
   ERR,
   XlError,
   cellKey,
-  formulaTree,
   keyColumn,
   keyRow,
   type CellModel,
@@ -22,7 +21,7 @@ import {
   type SheetModel,
   type WorkbookModel,
 } from './model'
-import { FormulaLimit, MAX_COLUMN, MAX_ROW, type Node } from './parser'
+import { FormulaLimit, MAX_COLUMN, MAX_ROW, parseFormula, type Node } from './parser'
 
 export interface ArrayValue {
   readonly kind: 'array'
@@ -273,6 +272,16 @@ export class Calculator {
   private readonly lookups = new Map<string, Map<string, number>>()
   /** per sheet: the last row and column in use, spills included */
   private readonly extent = new Map<SheetModel, { row: number; column: number }>()
+  /**
+   * Parsed formulas by text, kept only while a cell still needs one: shared
+   * formulas' followers carry their master's text, so one tree serves them
+   * all, and it is let go once the last of them is computed. Holding every
+   * tree to the end took most of the ~360MB a large production plan needed
+   * (PS Office, for low-memory PCs).
+   */
+  private readonly trees = new Map<string, Node>()
+  /** formula cells per text not computed yet */
+  private readonly treeUses = new Map<string, number>()
 
   constructor(
     readonly book: WorkbookModel,
@@ -283,7 +292,31 @@ export class Calculator {
       this.pending.set(sheet, [...sheet.arrayMasters])
       this.spills.set(sheet, new Map())
       this.extent.set(sheet, { row: sheet.maxRow, column: sheet.maxColumn })
+      for (const cell of sheet.cells.values()) {
+        const text = cell.formula?.text
+        if (text !== undefined) this.treeUses.set(text, (this.treeUses.get(text) ?? 0) + 1)
+      }
     }
+  }
+
+  /** the formula's tree: parsed once per text, dropped after the last cell using it */
+  private treeFor(text: string): Node {
+    let tree = this.trees.get(text)
+    if (!tree) {
+      tree = parseFormula(text)
+      if ((this.treeUses.get(text) ?? 0) > 1) this.trees.set(text, tree)
+    }
+    return tree
+  }
+
+  private treeDone(text: string): void {
+    const left = (this.treeUses.get(text) ?? 1) - 1
+    if (left > 0) {
+      this.treeUses.set(text, left)
+      return
+    }
+    this.treeUses.delete(text)
+    this.trees.delete(text)
   }
 
   // ---- cells
@@ -347,7 +380,7 @@ export class Calculator {
       }
       let tree: Node
       try {
-        tree = formulaTree(formula)
+        tree = this.treeFor(formula.text)
       } catch (error) {
         if (error instanceof FormulaLimit)
           throw new FormulaLimit(
@@ -363,6 +396,7 @@ export class Calculator {
     } finally {
       this.computing.delete(cell)
     }
+    this.treeDone(formula.text)
     this.done.set(cell, result)
     return result
   }

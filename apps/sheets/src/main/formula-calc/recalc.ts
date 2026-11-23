@@ -77,7 +77,6 @@ export function applyEditsToModel(
           baseColumn: edit.column,
           array: null,
           dynamic: false,
-          ast: null,
         },
         inStoredSpill: false,
         rich: false,

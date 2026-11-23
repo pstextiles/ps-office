@@ -5,7 +5,7 @@
  * references point at.
  */
 import { readZip } from '../power-query/zip-read'
-import { FormulaLimit, MAX_COLUMN, parseFormula, type Node } from './parser'
+import { FormulaLimit, MAX_COLUMN } from './parser'
 
 /** an Excel error value; one instance per code, so `===` compares them */
 export class XlError {
@@ -41,7 +41,6 @@ export interface FormulaModel {
   readonly array: { r1: number; c1: number; r2: number; c2: number } | null
   /** a dynamic array formula (spills to the size of its result), or one flagged for array evaluation */
   readonly dynamic: boolean
-  ast: Node | null
 }
 
 export interface CellModel {
@@ -301,7 +300,6 @@ function readSheet(
             baseColumn: column,
             array: null,
             dynamic: false,
-            ast: null,
           }
         } else {
           followers.push({ key, si, stored })
@@ -315,7 +313,6 @@ function readSheet(
           baseColumn: column,
           array: area,
           dynamic: attr(attrs, 'cm') !== null,
-          ast: null,
         }
         arrayMasters.push(key)
       } else if (ft === 'dataTable') {
@@ -324,7 +321,7 @@ function readSheet(
         // <f ca="1"/>: a cell filled by a volatile array formula, not a formula of its own
         formula = null
       } else {
-        formula = { text, baseRow: row, baseColumn: column, array: null, dynamic: false, ast: null }
+        formula = { text, baseRow: row, baseColumn: column, array: null, dynamic: false }
       }
     }
     if (stored === null && formula === null) continue
@@ -350,7 +347,6 @@ function readSheet(
         baseColumn: master.column,
         array: null,
         dynamic: false,
-        ast: null,
       },
       inStoredSpill: false,
       rich: false,
@@ -371,18 +367,4 @@ function readSheet(
     }
   }
   return { name, index, cells, maxRow, maxColumn, arrayMasters }
-}
-
-/** The formula's syntax tree, parsed on first use. Shared followers share their master's tree. */
-const parsed = new Map<string, Node>()
-export function formulaTree(formula: FormulaModel): Node {
-  if (formula.ast) return formula.ast
-  let tree = parsed.get(formula.text)
-  if (!tree) {
-    tree = parseFormula(formula.text)
-    // keep the cache bounded: workbooks have hundreds of thousands of distinct texts
-    if (parsed.size < 400_000) parsed.set(formula.text, tree)
-  }
-  formula.ast = tree
-  return tree
 }
