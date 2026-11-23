@@ -104,7 +104,7 @@ describe('filter button size when zoomed out (PS Office)', () => {
       _filterParams = { hasCriteria: false }
       _themeService = theme
       _draw(): void {}
-      isHit(): boolean {
+      isHit(_coord: unknown): boolean {
         return false
       }
       getInverseCoord(coord: { x: number; y: number }): { x: number; y: number } {
