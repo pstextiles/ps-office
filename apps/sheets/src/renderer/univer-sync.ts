@@ -110,6 +110,15 @@ import {
   type VisualEditEntry,
 } from './edit-journal'
 import { sharedFormulaResolverFor } from './shared-formula-journal'
+import { planFileTableRegistrations } from './file-tables'
+import {
+  changedDefinedNames,
+  clampToExtent,
+  dropKeysInRanges,
+  rangeChunks,
+  refreshInPlaceRefusal,
+  type RefreshRegions,
+} from './refresh-in-place'
 import {
   containsUnresolvedNames,
   cellKey,
@@ -8253,5 +8262,282 @@ export function lazyCellEditable(
     row <= loaded.endRow &&
     column >= loaded.startColumn &&
     column <= loaded.endColumn
+  )
+}
+
+/// One sidecar read's worth of cells (see SIDECAR_RANGE_CELL_LIMIT).
+const REFRESH_READ_CELLS = 100_000
+
+/// Raw null-cell write, the eviction's own wipe (see patchWorksheetRangeInner):
+/// a refreshed region must lose what the file no longer holds there, and a
+/// range install only writes the cells the file has.
+function wipeWorksheetRange(worksheet: UniverWorksheet, range: IRange): void {
+  const rows = range.endRow - range.startRow + 1
+  const columns = range.endColumn - range.startColumn + 1
+  if (rows <= 0 || columns <= 0) return
+  const wipe: ICellData[][] = Array.from({ length: rows }, () =>
+    Array.from({ length: columns }, () => ({
+      v: null,
+      f: null,
+      si: null,
+      p: null,
+      s: null,
+      t: null,
+      custom: null,
+    })),
+  )
+  journalSuppression.active = true
+  try {
+    keepActiveSheet(worksheet, () => {
+      worksheet.getRange(range.startRow, range.startColumn, rows, columns).setValues(wipe)
+    })
+  } finally {
+    journalSuppression.active = false
+  }
+}
+
+/// Reads one region of the adopted session (waiting for its index to reach
+/// it) and installs it the way the full preload installs a block.
+async function installRefreshedRange(
+  runtime: UniverRuntime,
+  state: LazyWorkbookState,
+  worksheet: UniverWorksheet,
+  sheet: WorkbookFile['sheets'][number],
+  range: IRange,
+): Promise<boolean> {
+  const sheetId = sheet.id
+  let result = await window.desktopApi.readWorkbookRange({
+    sessionId: state.file.sessionId,
+    sheetId,
+    range,
+  })
+  for (
+    let guard = 0;
+    !result.indexingComplete &&
+    (result.indexedThroughRow === null || result.indexedThroughRow < range.endRow) &&
+    guard < 400;
+    guard += 1
+  ) {
+    await new Promise((resolve) => setTimeout(resolve, 150))
+    result = await window.desktopApi.readWorkbookRange({
+      sessionId: state.file.sessionId,
+      sheetId,
+      range,
+    })
+  }
+  if (
+    !result.indexingComplete &&
+    (result.indexedThroughRow === null || result.indexedThroughRow < range.endRow)
+  ) {
+    return false
+  }
+  recordRowStyleKeys(state, sheetId, result.rows)
+  recordHiddenFileRows(state, sheetId, result.rows, range)
+  wipeWorksheetRange(worksheet, range)
+  keepActiveSheet(worksheet, () => applyMerges(worksheet, state, sheetId, result.merges))
+  patchWorksheetRange(
+    worksheet,
+    undefined,
+    range,
+    result.cells,
+    state.file.styles,
+    result.hyperlinks,
+    sheet.tables,
+    sheet.pivotTables,
+    sheet.freeze,
+    false,
+    state.editJournal,
+    undefined,
+    undefined,
+    undefined,
+    sheetRowColStyleKeys(state, sheetId),
+    inheritedWrapLookup(state.file.styles, result.rows, sheet.columnWidths),
+    hiddenRowsInfo(state, sheetId),
+  )
+  storeFormulaText(state, sheetId, result.cells)
+  recordHyperlinks(state, sheetId, result.hyperlinks)
+  keepActiveSheet(worksheet, () =>
+    applyRowProperties(runtime, worksheet, state, sheetId, result.rows),
+  )
+  const qualifying = wrapAutoFitRows(
+    result.cells,
+    state.file.styles,
+    result.rows,
+    sheet.columnWidths,
+    sheet.defaultRowHeightFixed,
+    resolveDefaultRowHeightPt(state.file, sheet),
+    range,
+    result.merges,
+  )
+  measureWrapRowsFromCells(worksheet, qualifying, {
+    cells: result.cells,
+    styles: state.file.styles,
+    merges: result.merges,
+    inheritedWrap: inheritedWrapLookup(state.file.styles, result.rows, sheet.columnWidths),
+    defaultRowHeightPx: defaultRowHeightPx(state, sheetId),
+  })
+  return true
+}
+
+/**
+ * PS Office: after a built-in query refresh saved the file, adopt a session
+ * on the saved file without reopening the workbook — Excel's refresh leaves
+ * the window as it is and only the refreshed cells change. `reopened` is the
+ * saved file opened as a new session; `regions` are the cells the save
+ * changed (0-based, by sheet name). Returns false, having changed nothing on
+ * screen, when the workbook can't be updated in place
+ * (refreshInPlaceRefusal) or a step before the switch fails; the caller then
+ * reopens the workbook as before.
+ */
+export async function adoptRefreshedWorkbook(
+  runtime: UniverRuntime,
+  lazyWorkbookRef: { current: LazyWorkbookState | null },
+  reopened: WorkbookFile,
+  regions: readonly RefreshRegions[],
+  pendingEdits: number,
+  setMessage: (message: string) => void,
+): Promise<boolean> {
+  const state = lazyWorkbookRef.current
+  const workbook = runtime.univerAPI.getActiveWorkbook()
+  if (!state || !workbook) return false
+  if (refreshInPlaceRefusal(state, reopened, pendingEdits) !== null) return false
+  const before = state.file
+  const sheetsByName = new Map(reopened.sheets.map((sheet) => [sheet.name, sheet]))
+  for (const region of regions) if (!sheetsByName.has(region.sheet)) return false
+
+  // Steps that can fail come first, while the screen still shows the old file.
+  // Table ranges: Univer's tables carry the filter buttons and structured refs.
+  const oldTables = new Map(
+    planFileTableRegistrations(before.sheets).map((entry) => [entry.tableId, entry]),
+  )
+  journalSuppression.active = true
+  try {
+    for (const entry of planFileTableRegistrations(reopened.sheets)) {
+      const old = oldTables.get(entry.tableId)
+      if (!old || rangesEqual(old.range, entry.range)) continue
+      const worksheet = workbook.getSheetBySheetId(entry.sheetId)
+      if (!worksheet) return false
+      const needed = entry.range.endRow + 1
+      if (worksheet.getMaxRows() < needed) {
+        runtime.univerAPI.syncExecuteCommand('sheet.mutation.set-worksheet-row-count', {
+          unitId: workbook.getId(),
+          subUnitId: entry.sheetId,
+          rowCount: needed,
+        })
+      }
+      const moved = await (
+        worksheet as unknown as { setTableRange(id: string, range: IRange): Promise<boolean> }
+      )
+        .setTableRange(entry.tableId, entry.range)
+        .catch(() => false)
+      if (!moved) return false
+    }
+    // Hidden ExternalData_N names follow their tables; a later names save
+    // writes Univer's names, so they must not keep the old area.
+    const installed = new Map(
+      (
+        workbook as unknown as {
+          getDefinedNames(): {
+            getName(): string
+            getLocalSheetId(): string | undefined
+            setRef(ref: string): void
+          }[]
+        }
+      )
+        .getDefinedNames()
+        .map((name) => [`${name.getLocalSheetId() ?? ''}|${name.getName().toLowerCase()}`, name]),
+    )
+    for (const name of changedDefinedNames(before.definedNames, reopened.definedNames)) {
+      if (state.uninstalledDefinedNames.has(name.name)) continue
+      const scope =
+        name.sheetIndex === undefined ? 'AllDefaultWorkbook' : before.sheets[name.sheetIndex]?.id
+      const target =
+        installed.get(`${scope}|${name.name.toLowerCase()}`) ??
+        (name.sheetIndex === undefined ? installed.get(`|${name.name.toLowerCase()}`) : undefined)
+      if (!target) return false
+      target.setRef(name.formula)
+    }
+  } finally {
+    journalSuppression.active = false
+  }
+
+  // Switch: every read site reads state.file.sessionId at call time (see
+  // recoverSidecarSession). The unit keeps its id (`file-<sha>` of the file it
+  // was built from), which the edit journal matches on, so the sha stays too.
+  state.file = {
+    ...reopened,
+    sha256: before.sha256,
+    visuals: before.visuals,
+  }
+  for (const timer of state.retryTimers.values()) clearTimeout(timer)
+  state.retryTimers.clear()
+  state.loadingKeys.clear()
+  void window.desktopApi.closeWorkbook(before.sessionId).catch(() => undefined)
+
+  let complete = true
+  for (const region of regions) {
+    const sheet = sheetsByName.get(region.sheet)!
+    const worksheet = workbook.getSheetBySheetId(sheet.id)
+    if (!worksheet) continue
+    const ranges = region.ranges
+    const needed = Math.max(sheet.rowCount, ...ranges.map((range) => range.endRow + 1))
+    if (worksheet.getMaxRows() < needed) {
+      journalSuppression.active = true
+      try {
+        runtime.univerAPI.syncExecuteCommand('sheet.mutation.set-worksheet-row-count', {
+          unitId: workbook.getId(),
+          subUnitId: sheet.id,
+          rowCount: needed,
+        })
+      } finally {
+        journalSuppression.active = false
+      }
+    }
+    // Caches of the old cells in these regions; the formula index and shared
+    // groups are re-fetched from the new session when next needed.
+    const formulaText = state.formulaText.get(sheet.id)
+    if (formulaText) dropKeysInRanges(formulaText, ranges)
+    const cached = state.cachedFormulaValues.get(sheet.id)
+    if (cached) dropKeysInRanges(cached, ranges)
+    state.recalc.formulaCells.delete(sheet.id)
+    state.sharedFormulaGroups.delete(sheet.id)
+    if (state.flags.preloadComplete) {
+      for (const range of ranges) {
+        // Rows past the saved extent only lose their old content.
+        wipeWorksheetRange(worksheet, range)
+        const readable = clampToExtent(range, sheet.rowCount, sheet.columnCount)
+        if (!readable) continue
+        for (const chunk of rangeChunks(readable, REFRESH_READ_CELLS)) {
+          if (lazyWorkbookRef.current !== state) return true
+          if (!(await installRefreshedRange(runtime, state, worksheet, sheet, chunk))) {
+            complete = false
+          }
+        }
+      }
+    } else {
+      // Streaming: drop the resident window so the viewport streams it back
+      // from the new session (wiped first: an install only writes cells the
+      // file has).
+      const loaded = state.loadedRanges.get(sheet.id)
+      if (loaded) wipeWorksheetRange(worksheet, loaded)
+      state.loadedRanges.delete(sheet.id)
+      state.frozenStripKeys.delete(sheet.id)
+    }
+  }
+  clearUnitUndoHistory(runtime, workbook.getId())
+  if (!state.flags.preloadComplete) {
+    const active = workbook.getActiveSheet()
+    if (active) void loadVisibleRange(runtime, lazyWorkbookRef, active, setMessage)
+  }
+  if (!complete) setMessage(t('appLoadRangeFailed'))
+  return true
+}
+
+function rangesEqual(a: IRange, b: IRange): boolean {
+  return (
+    a.startRow === b.startRow &&
+    a.endRow === b.endRow &&
+    a.startColumn === b.startColumn &&
+    a.endColumn === b.endColumn
   )
 }

@@ -2445,6 +2445,29 @@ export const workbookQueriesBuiltInRefreshResultSchema = z.union([
             .strict(),
         )
         .max(500),
+      /** PS Office: the cells the save changed, by sheet, so the screen re-reads only these (0-based file coordinates) */
+      regions: z
+        .array(
+          z
+            .object({
+              sheet: z.string().max(255),
+              ranges: z
+                .array(
+                  z
+                    .object({
+                      startRow: z.number().int().nonnegative(),
+                      endRow: z.number().int().nonnegative(),
+                      startColumn: z.number().int().nonnegative(),
+                      endColumn: z.number().int().nonnegative(),
+                    })
+                    .strict(),
+                )
+                .max(200),
+            })
+            .strict(),
+        )
+        .max(1000)
+        .optional(),
       /** recalculated: the formulas' new results were saved too; stale: they keep their previous results until Excel opens the file */
       formulas: z.enum(['recalculated', 'stale']),
       formulasDetail: z.string().max(400).optional(),

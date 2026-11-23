@@ -19,6 +19,7 @@ import {
   type ArchiveClient,
 } from '@genoffice/xlsx-gateway/gateway/xlsx-package-io'
 import type { RefreshedTable } from './power-query/refresh'
+import { refreshRegions, type SheetRefreshRegions } from './refresh-regions'
 import queryRefreshWorkerPath from './query-refresh-worker?modulePath'
 import {
   QUERY_REFRESH_WORKER_DATA,
@@ -34,6 +35,8 @@ export type BuiltInRefreshResult =
   | {
       readonly ok: true
       readonly tables: readonly RefreshedTable[]
+      /** the cells the save changed, by sheet: the screen re-reads only these */
+      readonly regions: readonly SheetRefreshRegions[]
       /** recalculated: the formulas' new results were saved too; stale: they keep their previous results */
       readonly formulas: 'recalculated' | 'stale'
       /** why the formulas were left as they were */
@@ -161,10 +164,17 @@ export async function refreshWorkbookBuiltIn(
         detail: short(error instanceof Error ? error.message : String(error)),
       }
     }
-    if (formulas?.ok) return { ok: true, tables: outcome.plan.tables, formulas: 'recalculated' }
+    const regions = refreshRegions([
+      ...outcome.plan.edits.map((edit) => ({ sheetName: edit.sheetName, cells: [edit] })),
+      ...(formulas?.ok ? formulas.values : []),
+    ])
+    if (formulas?.ok) {
+      return { ok: true, tables: outcome.plan.tables, regions, formulas: 'recalculated' }
+    }
     return {
       ok: true,
       tables: outcome.plan.tables,
+      regions,
       formulas: 'stale',
       ...(formulas ? { formulasDetail: short(formulas.reason) } : {}),
     }

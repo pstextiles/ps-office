@@ -66,6 +66,11 @@ describe('refreshWorkbookBuiltIn', () => {
     expect(await refreshWorkbookBuiltIn(input, d)).toEqual({
       ok: true,
       tables: PLAN.tables,
+      // the screen re-reads these: the table's cell and the recalculated formula
+      regions: [
+        { sheet: 'Raw', ranges: [{ startRow: 1, endRow: 1, startColumn: 0, endColumn: 0 }] },
+        { sheet: 'Plan', ranges: [{ startRow: 0, endRow: 0, startColumn: 0, endColumn: 0 }] },
+      ],
       formulas: 'recalculated',
     })
     expect(d.plan).toHaveBeenCalledWith({ path: input.sourcePath, systemCulture: 'ko-KR' })
@@ -88,6 +93,10 @@ describe('refreshWorkbookBuiltIn', () => {
     expect(await refreshWorkbookBuiltIn(input, d)).toEqual({
       ok: true,
       tables: PLAN.tables,
+      // formulas kept their results: only the table's cells changed
+      regions: [
+        { sheet: 'Raw', ranges: [{ startRow: 1, endRow: 1, startColumn: 0, endColumn: 0 }] },
+      ],
       formulas: 'stale',
       formulasDetail: 'Formula limit: the function OFFSET',
     })

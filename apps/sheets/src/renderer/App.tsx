@@ -1,6 +1,7 @@
 import { focusWorksheet } from './sheet-focus'
 import {
   activateFormulaClosure,
+  adoptRefreshedWorkbook,
   applyDefinedNames,
   applyFormatPatchToRange,
   applyWorkbookNotes,
@@ -5339,7 +5340,32 @@ export function App({
       }
     }
     const reopened = await window.desktopApi.reopenWorkbook(path)
-    if (!reopened || !(await openLazyWorkbook(reopened, { continueChat: true }))) {
+    if (!reopened) return { error: t('dlgQueriesBuiltInReopenFailed') }
+    // Like Excel, update the open workbook in place: re-read only what the
+    // refresh changed, keeping the sheet, scroll and selection. Anything that
+    // can't be shown to match that way reopens the workbook, as before.
+    const runtime = univerRef.current
+    const live = lazyWorkbookRef.current
+    const inPlace =
+      runtime !== null &&
+      live !== null &&
+      result.regions !== undefined &&
+      (await adoptRefreshedWorkbook(
+        runtime,
+        lazyWorkbookRef,
+        reopened,
+        result.regions,
+        journalSize(live.editJournal),
+        setMessage,
+      ).catch(() => false))
+    if (inPlace) {
+      const adopted = lazyWorkbookRef.current
+      if (adopted) {
+        // the same conversation goes on under the new session, as after a save
+        chatContinuesRef.current = true
+        setWorkbookFile(adopted.file)
+      }
+    } else if (!(await openLazyWorkbook(reopened, { continueChat: true }))) {
       return { error: t('dlgQueriesBuiltInReopenFailed') }
     }
     // the formulas that use the tables were recalculated too, unless one of
