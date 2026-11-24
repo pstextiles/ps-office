@@ -24,6 +24,7 @@ import {
   RANGE_TYPE,
   VerticalAlign,
   WrapStrategy,
+  covertCellValues,
   type CustomData,
 } from '@univerjs/core'
 import { IFindReplaceService } from '@univerjs/preset-sheets-find-replace'
@@ -111,6 +112,7 @@ import {
 } from './edit-journal'
 import { sharedFormulaResolverFor } from './shared-formula-journal'
 import { planFileTableRegistrations } from './file-tables'
+import { throttleGridRendering } from './render-throttle'
 import {
   changedDefinedNames,
   clampToExtent,
@@ -5008,6 +5010,45 @@ function restoreTallerAutoHeights(worksheet: UniverWorksheet, before: Map<number
   }
 }
 
+/// PS Office: file content goes into the grid through the set-range-values
+/// mutation, not the command. The command also copies every overwritten cell
+/// for undo, tails a selection op that activates the written sheet, and runs
+/// the edit interceptors (permission, number-format editing) — none of which
+/// apply to loading a file. On the production plan workbook the undo copies
+/// alone took ~2s of a full load and kept an undo stack the size of the
+/// workbook. The cells written are the command's own (covertCellValues is
+/// what FRange.setValues hands it). Worksheet doubles without the facade's
+/// command service (unit tests) keep the facade call.
+function setCellsDirect(
+  worksheet: UniverWorksheet,
+  startRow: number,
+  startColumn: number,
+  matrix: ICellData[][],
+): void {
+  const rows = matrix.length
+  const columns = matrix[0]?.length ?? 0
+  if (rows === 0 || columns === 0) return
+  const facade = worksheet as unknown as {
+    _commandService?: { syncExecuteCommand(id: string, params: unknown): boolean }
+    getSheet?: () => { getUnitId(): string }
+  }
+  const unitId = facade.getSheet?.().getUnitId()
+  if (!facade._commandService || unitId === undefined) {
+    worksheet.getRange(startRow, startColumn, rows, columns).setValues(matrix)
+    return
+  }
+  facade._commandService.syncExecuteCommand('sheet.mutation.set-range-values', {
+    unitId,
+    subUnitId: worksheet.getSheetId(),
+    cellValue: covertCellValues(matrix, {
+      startRow,
+      startColumn,
+      endRow: startRow + rows - 1,
+      endColumn: startColumn + columns - 1,
+    }),
+  })
+}
+
 export function patchWorksheetRangeInner(
   worksheet: UniverWorksheet,
   previousRange: IRange | undefined,
@@ -5049,7 +5090,7 @@ export function patchWorksheetRangeInner(
             : { v: null, f: null, si: null, p: null, s: null, t: null, custom: null },
         ),
       )
-      worksheet.getRange(clearStartRow, clearStartColumn, clearRows, clearColumns).setValues(wipe)
+      setCellsDirect(worksheet, clearStartRow, clearStartColumn, wipe)
     }
   }
   const rows = range.endRow - range.startRow + 1
@@ -5253,7 +5294,7 @@ export function patchWorksheetRangeInner(
   // loadAutoHeightSuppression so the SetRangeValues interceptor stays quiet.
   // The one measure Excel really performs on open — auto rows with wrapped
   // text — runs afterwards via measureWrapAutoFitRows.
-  worksheet.getRange(range.startRow, range.startColumn, rows, columns).setValues(matrix)
+  setCellsDirect(worksheet, range.startRow, range.startColumn, matrix)
 }
 
 /// True only for a real fill: unfilled xfs carry the bg empty-rgb sentinel
@@ -5919,10 +5960,12 @@ export async function preloadEntireWorkbook(
   const workbook = runtime.univerAPI.getActiveWorkbook()
   if (!state || !workbook) return
   state.flags.preloadRunning = true
+  const restoreRendering = throttleGridRendering(runtime, workbook.getId())
   try {
     await preloadEntireWorkbookInner(runtime, state, workbook, lazyWorkbookRef, setMessage)
   } finally {
     state.flags.preloadRunning = false
+    restoreRendering()
   }
 }
 
@@ -8288,9 +8331,9 @@ function wipeWorksheetRange(worksheet: UniverWorksheet, range: IRange): void {
   )
   journalSuppression.active = true
   try {
-    keepActiveSheet(worksheet, () => {
-      worksheet.getRange(range.startRow, range.startColumn, rows, columns).setValues(wipe)
-    })
+    keepActiveSheet(worksheet, () =>
+      setCellsDirect(worksheet, range.startRow, range.startColumn, wipe),
+    )
   } finally {
     journalSuppression.active = false
   }
@@ -8475,54 +8518,59 @@ export async function adoptRefreshedWorkbook(
   void window.desktopApi.closeWorkbook(before.sessionId).catch(() => undefined)
 
   let complete = true
-  for (const region of regions) {
-    const sheet = sheetsByName.get(region.sheet)!
-    const worksheet = workbook.getSheetBySheetId(sheet.id)
-    if (!worksheet) continue
-    const ranges = region.ranges
-    const needed = Math.max(sheet.rowCount, ...ranges.map((range) => range.endRow + 1))
-    if (worksheet.getMaxRows() < needed) {
-      journalSuppression.active = true
-      try {
-        runtime.univerAPI.syncExecuteCommand('sheet.mutation.set-worksheet-row-count', {
-          unitId: workbook.getId(),
-          subUnitId: sheet.id,
-          rowCount: needed,
-        })
-      } finally {
-        journalSuppression.active = false
-      }
-    }
-    // Caches of the old cells in these regions; the formula index and shared
-    // groups are re-fetched from the new session when next needed.
-    const formulaText = state.formulaText.get(sheet.id)
-    if (formulaText) dropKeysInRanges(formulaText, ranges)
-    const cached = state.cachedFormulaValues.get(sheet.id)
-    if (cached) dropKeysInRanges(cached, ranges)
-    state.recalc.formulaCells.delete(sheet.id)
-    state.sharedFormulaGroups.delete(sheet.id)
-    if (state.flags.preloadComplete) {
-      for (const range of ranges) {
-        // Rows past the saved extent only lose their old content.
-        wipeWorksheetRange(worksheet, range)
-        const readable = clampToExtent(range, sheet.rowCount, sheet.columnCount)
-        if (!readable) continue
-        for (const chunk of rangeChunks(readable, REFRESH_READ_CELLS)) {
-          if (lazyWorkbookRef.current !== state) return true
-          if (!(await installRefreshedRange(runtime, state, worksheet, sheet, chunk))) {
-            complete = false
-          }
+  const restoreRendering = throttleGridRendering(runtime, workbook.getId())
+  try {
+    for (const region of regions) {
+      const sheet = sheetsByName.get(region.sheet)!
+      const worksheet = workbook.getSheetBySheetId(sheet.id)
+      if (!worksheet) continue
+      const ranges = region.ranges
+      const needed = Math.max(sheet.rowCount, ...ranges.map((range) => range.endRow + 1))
+      if (worksheet.getMaxRows() < needed) {
+        journalSuppression.active = true
+        try {
+          runtime.univerAPI.syncExecuteCommand('sheet.mutation.set-worksheet-row-count', {
+            unitId: workbook.getId(),
+            subUnitId: sheet.id,
+            rowCount: needed,
+          })
+        } finally {
+          journalSuppression.active = false
         }
       }
-    } else {
-      // Streaming: drop the resident window so the viewport streams it back
-      // from the new session (wiped first: an install only writes cells the
-      // file has).
-      const loaded = state.loadedRanges.get(sheet.id)
-      if (loaded) wipeWorksheetRange(worksheet, loaded)
-      state.loadedRanges.delete(sheet.id)
-      state.frozenStripKeys.delete(sheet.id)
+      // Caches of the old cells in these regions; the formula index and shared
+      // groups are re-fetched from the new session when next needed.
+      const formulaText = state.formulaText.get(sheet.id)
+      if (formulaText) dropKeysInRanges(formulaText, ranges)
+      const cached = state.cachedFormulaValues.get(sheet.id)
+      if (cached) dropKeysInRanges(cached, ranges)
+      state.recalc.formulaCells.delete(sheet.id)
+      state.sharedFormulaGroups.delete(sheet.id)
+      if (state.flags.preloadComplete) {
+        for (const range of ranges) {
+          // Rows past the saved extent only lose their old content.
+          wipeWorksheetRange(worksheet, range)
+          const readable = clampToExtent(range, sheet.rowCount, sheet.columnCount)
+          if (!readable) continue
+          for (const chunk of rangeChunks(readable, REFRESH_READ_CELLS)) {
+            if (lazyWorkbookRef.current !== state) return true
+            if (!(await installRefreshedRange(runtime, state, worksheet, sheet, chunk))) {
+              complete = false
+            }
+          }
+        }
+      } else {
+        // Streaming: drop the resident window so the viewport streams it back
+        // from the new session (wiped first: an install only writes cells the
+        // file has).
+        const loaded = state.loadedRanges.get(sheet.id)
+        if (loaded) wipeWorksheetRange(worksheet, loaded)
+        state.loadedRanges.delete(sheet.id)
+        state.frozenStripKeys.delete(sheet.id)
+      }
     }
+  } finally {
+    restoreRendering()
   }
   clearUnitUndoHistory(runtime, workbook.getId())
   if (!state.flags.preloadComplete) {

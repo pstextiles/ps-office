@@ -6388,6 +6388,10 @@ async function openWorkbookSession(
     return workbookFileSchema.parse({
       ...opened,
       styles,
+      // PS Office: the sidecar opened the snapshot, so its name is the
+      // snapshot's random file name; the status bar and the export dialogs
+      // (CSV, PDF) show the file the user opened instead.
+      name: basename(csvSourcePath ?? restoreTarget ?? path),
       // The renderer-facing path is what the user opened: for a restored
       // recovery copy that is the original file, not the copy under userData.
       path: restoreTarget ?? path,
