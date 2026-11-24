@@ -2616,14 +2616,26 @@ export const RECALC_MAX_FAILURES = 3
 /// formula index. 2M cells ≈ 1GB import.
 export const RECALC_MAX_FILE_BYTES = 64 * 1024 * 1024
 export const RECALC_MAX_GRID_CELLS = 2_000_000
+/// PS Office: every edit re-imports the whole file into IronCalc, and past
+/// this many value/formula cells it does not finish — the production plan
+/// workbook (~420k, 270k formulas) timed out at 3 minutes and kept the
+/// sidecar's formula worker busy for minutes after, retrying every 5s, while
+/// the screen kept Excel's cached values anyway. On a low-memory PC that is a
+/// core and up to a gigabyte for nothing, so such files keep cached values.
+export const RECALC_MAX_VALUE_CELLS = 250_000
 
 /// Decided once at open (engineOverBudget seed); the recalc queue re-checks
 /// nothing size-related after that.
 export function recalcOverBudgetAtOpen(
   fileBytes: number | undefined,
   gridCellCount: number,
+  valueCellCount = 0,
 ): boolean {
-  return (fileBytes ?? 0) > RECALC_MAX_FILE_BYTES || gridCellCount > RECALC_MAX_GRID_CELLS
+  return (
+    (fileBytes ?? 0) > RECALC_MAX_FILE_BYTES ||
+    gridCellCount > RECALC_MAX_GRID_CELLS ||
+    valueCellCount > RECALC_MAX_VALUE_CELLS
+  )
 }
 
 /// IronCalc fallback: when closure mode gave up on a streamed workbook, the
@@ -2842,6 +2854,14 @@ async function runFormulaRecalc(
     if (lazyWorkbookRef.current !== state || state.recalc.generation !== generation) return
     const busy = error instanceof Error && error.message.includes('busy with another recalculation')
     if (!busy) state.recalc.failures += 1
+    // PS Office: a run that did not finish in the sidecar's time limit will
+    // not finish next time either (each edit re-imports the whole file) —
+    // retire the engine for this workbook instead of retrying into a worker
+    // that is still busy with it.
+    if (error instanceof Error && error.message.includes('timed out')) {
+      state.recalc.engineOverBudget = true
+      return
+    }
     // The in-flight import that rejected this run may itself be superseded
     // (its success is discarded under the generation guard), so a busy pass
     // must re-queue or the workbook keeps cached values after the edit.

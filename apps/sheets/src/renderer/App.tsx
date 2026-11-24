@@ -4984,7 +4984,11 @@ export function App({
         timer: null,
         generation: 0,
         failures: 0,
-        engineOverBudget: recalcOverBudgetAtOpen(selected.fileBytes, cellCounts.gridCells),
+        engineOverBudget: recalcOverBudgetAtOpen(
+          selected.fileBytes,
+          cellCounts.gridCells,
+          cellCounts.valueCells,
+        ),
         formulaCells: new Map(),
         overlay: new Map(),
         follow: new Map(),
