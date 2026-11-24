@@ -15,7 +15,9 @@
 import { existsSync } from 'node:fs'
 import { Worker } from 'node:worker_threads'
 import {
+  PlannedSaveSourceMismatch,
   saveWorkbookViaSidecar,
+  writePlannedSaveViaSidecar,
   type ArchiveClient,
 } from '@genoffice/xlsx-gateway/gateway/xlsx-package-io'
 import type { RefreshedTable } from './power-query/refresh'
@@ -23,7 +25,7 @@ import { refreshRegions, type SheetRefreshRegions } from './refresh-regions'
 import queryRefreshWorkerPath from './query-refresh-worker?modulePath'
 import {
   QUERY_REFRESH_WORKER_DATA,
-  runQueryRefreshJob,
+  runQueryRefreshJobAndPlanSave,
   type QueryRefreshAnswer,
   type QueryRefreshJob,
 } from './query-refresh-worker'
@@ -53,13 +55,15 @@ export type BuiltInRefreshResult =
 export interface BuiltInRefreshDeps {
   readonly plan: (job: QueryRefreshJob) => Promise<QueryRefreshAnswer>
   readonly save: typeof saveWorkbookViaSidecar
+  /** writes a save the worker planned (the main thread then only writes) */
+  readonly write: typeof writePlannedSaveViaSidecar
 }
 
 /** The worker chunk when the build bundled one; otherwise (the test runner) the calling thread. */
 export function planInWorker(job: QueryRefreshJob): Promise<QueryRefreshAnswer> {
   const path: unknown = queryRefreshWorkerPath
   if (typeof path !== 'string' || path === '' || !existsSync(path)) {
-    return Promise.resolve(runQueryRefreshJob(job))
+    return runQueryRefreshJobAndPlanSave(job)
   }
   return new Promise((resolve, reject) => {
     const worker = new Worker(path, {
@@ -93,7 +97,11 @@ export function planInWorker(job: QueryRefreshJob): Promise<QueryRefreshAnswer> 
 
 class RefreshTimeout extends Error {}
 
-const defaultDeps: BuiltInRefreshDeps = { plan: planInWorker, save: saveWorkbookViaSidecar }
+const defaultDeps: BuiltInRefreshDeps = {
+  plan: planInWorker,
+  save: saveWorkbookViaSidecar,
+  write: writePlannedSaveViaSidecar,
+}
 
 let running = false
 
@@ -148,14 +156,29 @@ export async function refreshWorkbookBuiltIn(
       }
     }
     try {
-      await deps.save({
+      const target = {
         client: input.client,
         sourcePath: input.sourcePath,
         targetPath: input.targetPath,
-        edits: outcome.plan.edits,
-        tableEdits: outcome.plan.tableEdits,
-        ...(formulas?.ok ? { formulaValues: formulas.values } : {}),
-      })
+      }
+      let written = false
+      if (answer.save) {
+        try {
+          await deps.write(target, answer.save)
+          written = true
+        } catch (error) {
+          // the file is not what the worker read: plan here, from the file
+          if (!(error instanceof PlannedSaveSourceMismatch)) throw error
+        }
+      }
+      if (!written) {
+        await deps.save({
+          ...target,
+          edits: outcome.plan.edits,
+          tableEdits: outcome.plan.tableEdits,
+          ...(formulas?.ok ? { formulaValues: formulas.values } : {}),
+        })
+      }
     } catch (error) {
       if (isLockedError(error)) return { ok: false, code: 'locked' }
       return {

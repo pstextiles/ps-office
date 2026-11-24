@@ -8,7 +8,12 @@ import { tmpdir } from 'node:os'
 import { join } from 'node:path'
 import { describe, expect, it, vi } from 'vitest'
 
-import type { ArchiveClient } from '@genoffice/xlsx-gateway/gateway/xlsx-package-io'
+import {
+  PlannedSaveSourceMismatch,
+  readArchiveEntries,
+  type ArchiveClient,
+  type PlannedArchiveSave,
+} from '@genoffice/xlsx-gateway/gateway/xlsx-package-io'
 import {
   builtInRefreshRunning,
   refreshWorkbookBuiltIn,
@@ -17,6 +22,7 @@ import {
 import type { RefreshOutcome } from '../src/main/power-query/refresh'
 import {
   runQueryRefreshJob,
+  runQueryRefreshJobAndPlanSave,
   type QueryRefreshAnswer,
   type RefreshedFormulas,
 } from '../src/main/query-refresh-worker'
@@ -47,7 +53,8 @@ const RECALCULATED: RefreshedFormulas = { ok: true, values: VALUES, changed: 1 }
 function deps(
   answer: QueryRefreshAnswer | Error,
   saveError?: unknown,
-): BuiltInRefreshDeps & { save: ReturnType<typeof vi.fn> } {
+  writeError?: unknown,
+): BuiltInRefreshDeps & { save: ReturnType<typeof vi.fn>; write: ReturnType<typeof vi.fn> } {
   return {
     plan: vi.fn(async () => {
       if (answer instanceof Error) throw answer
@@ -57,7 +64,21 @@ function deps(
       if (saveError) throw saveError
       return { touchedEntries: [], removedEntries: [], addedEntries: [] }
     }),
+    write: vi.fn(async () => {
+      if (writeError) throw writeError
+      return { touchedEntries: [], removedEntries: [], addedEntries: [] }
+    }),
   }
+}
+
+const PLANNED_SAVE: PlannedArchiveSave = {
+  replaced: new Map([['xl/worksheets/sheet1.xml', '<worksheet/>']]),
+  added: new Map(),
+  addedBinary: new Map(),
+  removedEntries: [],
+  addedEntries: [],
+  touchedEntries: ['xl/worksheets/sheet1.xml'],
+  sourceEntries: [],
 }
 
 describe('refreshWorkbookBuiltIn', () => {
@@ -157,6 +178,7 @@ describe('refreshWorkbookBuiltIn', () => {
           (resolve) => (release = () => resolve({ outcome: PLANNED, formulas: RECALCULATED })),
         ),
       save: vi.fn(async () => ({ touchedEntries: [], removedEntries: [], addedEntries: [] })),
+      write: vi.fn(async () => ({ touchedEntries: [], removedEntries: [], addedEntries: [] })),
     }
     const first = refreshWorkbookBuiltIn(input, slow)
     expect(builtInRefreshRunning()).toBe(true)
@@ -172,7 +194,63 @@ describe('refreshWorkbookBuiltIn', () => {
   })
 })
 
+describe('the save planned in the worker', () => {
+  it('is only written by the main process, not planned again', async () => {
+    const d = deps({ outcome: PLANNED, formulas: RECALCULATED, save: PLANNED_SAVE })
+    expect((await refreshWorkbookBuiltIn(input, d)).ok).toBe(true)
+    expect(d.write).toHaveBeenCalledWith(
+      { client, sourcePath: input.sourcePath, targetPath: input.targetPath },
+      PLANNED_SAVE,
+    )
+    expect(d.save).not.toHaveBeenCalled()
+  })
+
+  it('falls back to planning from the file when the file is not what the worker read', async () => {
+    const d = deps(
+      { outcome: PLANNED, formulas: RECALCULATED, save: PLANNED_SAVE },
+      undefined,
+      new PlannedSaveSourceMismatch('changed'),
+    )
+    expect((await refreshWorkbookBuiltIn(input, d)).ok).toBe(true)
+    expect(d.save).toHaveBeenCalledTimes(1)
+    expect(d.save.mock.calls[0]![0]).toMatchObject({ edits: PLAN.edits, formulaValues: VALUES })
+  })
+
+  it('reports a locked file from the write as locked', async () => {
+    const locked = Object.assign(new Error('busy'), { code: 'EBUSY' })
+    const d = deps(
+      { outcome: PLANNED, formulas: RECALCULATED, save: PLANNED_SAVE },
+      undefined,
+      locked,
+    )
+    expect(await refreshWorkbookBuiltIn(input, d)).toEqual({ ok: false, code: 'locked' })
+    expect(d.save).not.toHaveBeenCalled()
+  })
+})
+
 describe('the worker job', () => {
+  it('plans the save too, from the same bytes, with the entries it was planned from', async () => {
+    const dir = mkdtempSync(join(tmpdir(), 'pso-refresh-'))
+    try {
+      const path = join(dir, 'book.xlsx')
+      const bytes = queryTableWorkbook({
+        query: '#table({"PO", "Qty", "Fecha"}, {{"a", 21, null}, {"b", 2, null}, {"c", 3, null}})',
+      })
+      writeFileSync(path, bytes)
+      const answer = await runQueryRefreshJobAndPlanSave({
+        path,
+        systemCulture: 'ko-KR',
+        today: 46346,
+      })
+      expect(answer.save?.sourceEntries).toEqual(readArchiveEntries(bytes))
+      expect(answer.save?.touchedEntries.some((name) => name.startsWith('xl/worksheets/'))).toBe(
+        true,
+      )
+    } finally {
+      rmSync(dir, { recursive: true, force: true })
+    }
+  })
+
   it('plans the refresh from a workbook file and recalculates its formulas', () => {
     const dir = mkdtempSync(join(tmpdir(), 'pso-refresh-'))
     try {

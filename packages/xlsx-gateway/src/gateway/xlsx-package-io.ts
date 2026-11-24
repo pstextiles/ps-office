@@ -157,72 +157,192 @@ export async function saveWorkbookViaSidecar(
       await request.client.archiveManifest(request.sourcePath),
     ).entries
     const source = createSidecarEntrySource(request.client, request.sourcePath, manifest, workDir)
-    const plan = await planCellEditsToXlsx(
-      source,
-      request.edits,
-      request.structuralOps ?? [],
-      request.chartEdits ?? [],
-      request.sheetPlan,
-      request.filterStates ?? [],
-      request.hyperlinkEdits ?? [],
-      request.cfStates ?? [],
-      request.dvStates ?? [],
-      request.sheetProtections ?? [],
-      request.definedNamesState ?? null,
-      request.visualAdditions ?? [],
-      request.pageSetupStates ?? [],
-      request.noteStates ?? [],
-      request.tableAdditions ?? [],
-      request.pivotAdditions ?? [],
-      request.pivotCacheRefreshPaths ?? [],
-      request.pivotRefreshUpdates ?? [],
-      request.visualEdits ?? [],
-      request.sparklineAdditions ?? [],
-      request.formulaValues ?? [],
-      request.themeState ?? null,
-      request.workbookProtectionState ?? null,
-      request.protectedRangeStates ?? [],
-      request.bulkConstantFills ?? [],
-      request.tabColorStates ?? [],
-      request.tableEdits ?? [],
-      request.cellImageAdditions ?? [],
-      request.externalLinkOps ?? null,
-    )
-
-    const replacements = await writePlanContents(workDir, 'replace', plan.replaced)
-    const additions = [
-      ...(await writePlanContents(workDir, 'add', plan.added)),
-      ...(await writePlanContents(workDir, 'add-bin', plan.addedBinary)),
-    ]
-    const result = saveArchiveResultSchema.parse(
-      await request.client.saveArchive({
-        sourcePath: request.sourcePath,
-        targetPath: temporaryTarget,
-        replacements,
-        removals: plan.removedEntries,
-        additions,
-      }),
-    )
-
-    // The source manifest was read before planning; if the file changed on
-    // disk in between, the save's own before-manifest exposes the drift.
-    if (!manifestsEqual(manifest, result.beforeEntries)) {
-      throw new Error('The workbook changed on disk while saving — aborted.')
-    }
-    assertManifestPreserved(plan, result.beforeEntries, result.afterEntries)
-
-    await promoteFileAtomically(temporaryTarget, request.targetPath)
-    return {
-      touchedEntries: plan.touchedEntries,
-      removedEntries: plan.removedEntries,
-      addedEntries: plan.addedEntries,
-    }
+    const plan = await planStreamingSave(source, request)
+    return await writePlanThroughSidecar(request, manifest, plan, workDir, temporaryTarget)
   } catch (error: unknown) {
     await rm(temporaryTarget, { force: true })
     throw error
   } finally {
     await rm(workDir, { recursive: true, force: true })
   }
+}
+
+/// The plan of a streaming save from its request, through any entry source:
+/// the sidecar's (saveWorkbookViaSidecar) or the workbook's bytes, which give
+/// the same plan (PS Office: a built-in refresh plans in its worker thread).
+export function planStreamingSave(
+  source: EntrySource,
+  request: Omit<StreamingSaveRequest, 'client' | 'sourcePath' | 'targetPath'>,
+): Promise<MutationPlan> {
+  return planCellEditsToXlsx(
+    source,
+    request.edits,
+    request.structuralOps ?? [],
+    request.chartEdits ?? [],
+    request.sheetPlan,
+    request.filterStates ?? [],
+    request.hyperlinkEdits ?? [],
+    request.cfStates ?? [],
+    request.dvStates ?? [],
+    request.sheetProtections ?? [],
+    request.definedNamesState ?? null,
+    request.visualAdditions ?? [],
+    request.pageSetupStates ?? [],
+    request.noteStates ?? [],
+    request.tableAdditions ?? [],
+    request.pivotAdditions ?? [],
+    request.pivotCacheRefreshPaths ?? [],
+    request.pivotRefreshUpdates ?? [],
+    request.visualEdits ?? [],
+    request.sparklineAdditions ?? [],
+    request.formulaValues ?? [],
+    request.themeState ?? null,
+    request.workbookProtectionState ?? null,
+    request.protectedRangeStates ?? [],
+    request.bulkConstantFills ?? [],
+    request.tabColorStates ?? [],
+    request.tableEdits ?? [],
+    request.cellImageAdditions ?? [],
+    request.externalLinkOps ?? null,
+  )
+}
+
+/// The write half of a streaming save: the planned contents go to disk, the
+/// sidecar reassembles the archive beside the target, the manifests are
+/// checked against `manifest` (the source the plan was made from) and the
+/// result replaces the target atomically.
+async function writePlanThroughSidecar(
+  request: Pick<StreamingSaveRequest, 'client' | 'sourcePath' | 'targetPath'>,
+  manifest: readonly ArchiveEntry[],
+  plan: MutationPlan,
+  workDir: string,
+  temporaryTarget: string,
+): Promise<StreamingSaveResult> {
+  const replacements = await writePlanContents(workDir, 'replace', plan.replaced)
+  const additions = [
+    ...(await writePlanContents(workDir, 'add', plan.added)),
+    ...(await writePlanContents(workDir, 'add-bin', plan.addedBinary)),
+  ]
+  const result = saveArchiveResultSchema.parse(
+    await request.client.saveArchive({
+      sourcePath: request.sourcePath,
+      targetPath: temporaryTarget,
+      replacements,
+      removals: plan.removedEntries,
+      additions,
+    }),
+  )
+
+  // The source manifest was read before planning; if the file changed on
+  // disk in between, the save's own before-manifest exposes the drift.
+  if (!manifestsEqual(manifest, result.beforeEntries)) {
+    throw new Error('The workbook changed on disk while saving — aborted.')
+  }
+  assertManifestPreserved(plan, result.beforeEntries, result.afterEntries)
+
+  await promoteFileAtomically(temporaryTarget, request.targetPath)
+  return {
+    touchedEntries: plan.touchedEntries,
+    removedEntries: plan.removedEntries,
+    addedEntries: plan.addedEntries,
+  }
+}
+
+/// PS Office: a save planned elsewhere — a built-in query refresh plans its
+/// save in its worker thread from the workbook's bytes, so the main process
+/// neither freezes nor grows by the planning's memory — together with the
+/// source entries it was planned from. Structured-clone safe.
+export interface PlannedArchiveSave extends MutationPlan {
+  readonly sourceEntries: readonly ArchiveEntry[]
+}
+
+/// The source on disk is not what the plan was made from; nothing was written.
+export class PlannedSaveSourceMismatch extends Error {}
+
+/// Writes a save planned from the source's bytes (see PlannedArchiveSave)
+/// through the streaming channel, after checking the source on disk is the
+/// one it was planned from — otherwise PlannedSaveSourceMismatch, before
+/// anything is written.
+export async function writePlannedSaveViaSidecar(
+  request: Pick<StreamingSaveRequest, 'client' | 'sourcePath' | 'targetPath'>,
+  planned: PlannedArchiveSave,
+): Promise<StreamingSaveResult> {
+  const manifest = manifestResultSchema.parse(
+    await request.client.archiveManifest(request.sourcePath),
+  ).entries
+  if (!manifestsEqual(manifest, planned.sourceEntries)) {
+    throw new PlannedSaveSourceMismatch('The workbook is not the one the save was planned from.')
+  }
+  const workDir = await mkdtemp(join(tmpdir(), 'ai-excel-save-'))
+  const temporaryTarget = join(dirname(request.targetPath), `.${randomUUID()}.tmp.xlsx`)
+  try {
+    return await writePlanThroughSidecar(request, manifest, planned, workDir, temporaryTarget)
+  } catch (error: unknown) {
+    await rm(temporaryTarget, { force: true })
+    throw error
+  } finally {
+    await rm(workDir, { recursive: true, force: true })
+  }
+}
+
+/// The entries of a zip archive as the sidecar's manifest lists them (name,
+/// CRC-32, compressed and uncompressed size), read from its central
+/// directory. Zip64 sizes are read from their extra field.
+export function readArchiveEntries(bytes: Uint8Array): ArchiveEntry[] {
+  const buf = Buffer.from(bytes.buffer, bytes.byteOffset, bytes.byteLength)
+  let eocd = -1
+  for (let i = buf.length - 22; i >= Math.max(0, buf.length - 65_557); i--) {
+    if (buf.readUInt32LE(i) === 0x06054b50) {
+      eocd = i
+      break
+    }
+  }
+  if (eocd < 0) throw new Error('Not a zip archive.')
+  let count = buf.readUInt16LE(eocd + 10)
+  let offset = buf.readUInt32LE(eocd + 16)
+  if (offset === 0xffffffff || count === 0xffff) {
+    const locator = eocd - 20
+    if (locator < 0 || buf.readUInt32LE(locator) !== 0x07064b50) {
+      throw new Error('Zip64 locator missing.')
+    }
+    const record = Number(buf.readBigUInt64LE(locator + 8))
+    if (buf.readUInt32LE(record) !== 0x06064b50) throw new Error('Zip64 record missing.')
+    count = Number(buf.readBigUInt64LE(record + 32))
+    offset = Number(buf.readBigUInt64LE(record + 48))
+  }
+  const entries: ArchiveEntry[] = []
+  for (let n = 0; n < count; n++) {
+    if (buf.readUInt32LE(offset) !== 0x02014b50) throw new Error('Bad central directory.')
+    const flags = buf.readUInt16LE(offset + 8)
+    const crc32 = buf.readUInt32LE(offset + 16)
+    let compressedSize = buf.readUInt32LE(offset + 20)
+    let uncompressedSize = buf.readUInt32LE(offset + 24)
+    const nameLength = buf.readUInt16LE(offset + 28)
+    const extraLength = buf.readUInt16LE(offset + 30)
+    const commentLength = buf.readUInt16LE(offset + 32)
+    const nameBytes = buf.subarray(offset + 46, offset + 46 + nameLength)
+    const name = nameBytes.toString(flags & 0x800 ? 'utf8' : 'latin1')
+    if (uncompressedSize === 0xffffffff || compressedSize === 0xffffffff) {
+      const extra = buf.subarray(offset + 46 + nameLength, offset + 46 + nameLength + extraLength)
+      for (let at = 0; at + 4 <= extra.length;) {
+        const id = extra.readUInt16LE(at)
+        const size = extra.readUInt16LE(at + 2)
+        if (id === 0x0001) {
+          let field = at + 4
+          if (uncompressedSize === 0xffffffff) {
+            uncompressedSize = Number(extra.readBigUInt64LE(field))
+            field += 8
+          }
+          if (compressedSize === 0xffffffff) compressedSize = Number(extra.readBigUInt64LE(field))
+          break
+        }
+        at += 4 + size
+      }
+    }
+    entries.push({ name, crc32, compressedSize, uncompressedSize })
+    offset += 46 + nameLength + extraLength + commentLength
+  }
+  return entries
 }
 
 function createSidecarEntrySource(
