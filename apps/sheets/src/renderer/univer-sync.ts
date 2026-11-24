@@ -5052,7 +5052,7 @@ function setCellsDirect(
     _commandService?: { syncExecuteCommand(id: string, params: unknown): boolean }
     getSheet?: () => { getUnitId(): string }
   }
-  const unitId = facade.getSheet?.().getUnitId()
+  const unitId = facade._commandService ? facade.getSheet?.().getUnitId() : undefined
   if (!facade._commandService || unitId === undefined) {
     worksheet.getRange(startRow, startColumn, rows, columns).setValues(matrix)
     return
