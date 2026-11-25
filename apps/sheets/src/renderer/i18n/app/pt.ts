@@ -686,6 +686,10 @@ export const pt = {
     '{count} fórmulas recalculam ao vivo (modo de fechamento); o restante da pasta de trabalho é carregado por streaming sob demanda.',
   appRecalcPartial:
     'Fórmulas recalculadas com base nas suas edições — {count} mantiveram valores em cache (funções ausentes no mecanismo de fallback).',
+  appBuiltInRecalcRunning: 'Recalculando os resultados das fórmulas…',
+  appBuiltInRecalcDone: 'Resultados das fórmulas recalculados ({count} células).',
+  appBuiltInRecalcFailed:
+    'Não foi possível recalcular os resultados das fórmulas: {reason}. O Excel recalcula o arquivo salvo ao abri-lo.',
   appRecalcDone:
     'Fórmulas recalculadas com base nas suas edições ({count} células, mecanismo de fallback).',
   appIndexing: 'Indexando {name}: {rows} linhas prontas.',

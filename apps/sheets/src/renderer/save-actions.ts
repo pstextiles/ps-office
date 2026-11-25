@@ -34,6 +34,8 @@ import { abortStagedEditsTransfer, stageEditsForSave, type StagedEdits } from '.
 import { showToast } from './toast-bus'
 import { captureUndoCarry, hasPendingUndoCarry, stashUndoCarry } from './undo-carry'
 import {
+  builtInRecalcCurrent,
+  builtInRecalcSettled,
   collectCfStates,
   getScrollAnchor,
   collectDefinedNamesState,
@@ -158,6 +160,14 @@ export async function handleSave(
     }
     return { ok: false }
   }
+  // PS Office: a value-mode sort's moved formulas are saved with the built-in
+  // engine's results, so a running recalculation finishes first
+  if (state.builtInRecalc && !builtInRecalcCurrent(state) && mode !== 'recovery') {
+    ctx.setMessage(t('appBuiltInRecalcRunning'))
+    await builtInRecalcSettled(state)
+    if (ctx.lazyWorkbookRef.current !== state) return { ok: false }
+  }
+  const builtInCurrent = builtInRecalcCurrent(state)
   const edits = toSaveEdits(state.editJournal)
   const cellsAtSave = snapshotJournalCells(state.editJournal)
   const bulkConstantFills = toSaveBulkConstantFills(state.editJournal)
@@ -241,7 +251,12 @@ export async function handleSave(
       : [...cells].flatMap(([key, cell]) => {
           // #ERROR! is IronCalc's own failure, never a value Excel would cache.
           if (cell.v === undefined || cell.v === '#ERROR!') return []
-          if (state.editJournal.cells.get(sheetId)?.get(key)?.formula !== undefined) return []
+          const journaled = state.editJournal.cells.get(sheetId)?.get(key)
+          // a sorted formula's value is the built-in engine's, computed for
+          // this very formula (PS Office); other journaled formulas may be stale
+          if (journaled?.formula !== undefined && !(journaled.valueModeFormula && builtInCurrent)) {
+            return []
+          }
           const [row, column] = key.split(':').map(Number)
           if (row === undefined || column === undefined) return []
           const value = cell.isError && typeof cell.v === 'string' ? { error: cell.v } : cell.v

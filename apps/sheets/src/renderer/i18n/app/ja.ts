@@ -685,6 +685,10 @@ export const ja = {
     '{count} 個の数式をライブ再計算しています（クロージャモード）。残りの部分は必要に応じてストリーミング読み込みされます。',
   appRecalcPartial:
     '編集に合わせて数式を再計算しました — {count} 個はキャッシュ値を保持しています（フォールバックエンジン未対応の関数）。',
+  appBuiltInRecalcRunning: '数式の結果を再計算しています…',
+  appBuiltInRecalcDone: '数式の結果を再計算しました（{count} セル）。',
+  appBuiltInRecalcFailed:
+    '数式の結果を再計算できませんでした: {reason}。保存したファイルは Excel で開くと再計算されます。',
   appRecalcDone: '編集に合わせて数式を再計算しました（{count} 個のセル、エンジンフォールバック）。',
   appIndexing: '{name} のインデックスを作成中：{rows} 行が準備できました。',
   appStreamingRows: '{name} をストリーミング読み込み中：{rows} 行が利用可能です。',

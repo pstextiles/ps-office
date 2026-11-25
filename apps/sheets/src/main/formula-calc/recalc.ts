@@ -32,6 +32,13 @@ export interface RecalcOptions {
   readonly today: number
   /** the PC's regional format: decides how text such as "8/12" is read as a date */
   readonly systemCulture?: string | undefined
+  /**
+   * PS Office: formula cells to report even when their result equals the
+   * file's stored value, by sheet name and 0-based row/column — after a sort
+   * the grid shows values moved from other rows, so every moved formula
+   * needs its own result, not only the ones that differ from the file.
+   */
+  readonly report?: ReadonlyMap<string, ReadonlySet<string>> | undefined
 }
 
 export type RecalcOutcome =
@@ -127,7 +134,7 @@ function unchanged(value: Scalar, stored: Scalar, rich: boolean): boolean {
 
 type Entry = SheetFormulaValues['cells'][number]
 
-function sheetValues(calc: Calculator, sheet: SheetModel): Entry[] {
+function sheetValues(calc: Calculator, sheet: SheetModel, report?: ReadonlySet<string>): Entry[] {
   const entries = new Map<number, Entry>()
   const keys = [...sheet.cells.keys()]
     .filter((k) => sheet.cells.get(k)!.formula)
@@ -157,7 +164,12 @@ function sheetValues(calc: Calculator, sheet: SheetModel): Entry[] {
       arrays.push({ key, result: isArrayValue(result) ? result : null })
     }
     const clearValueMeta = cell.rich && !(value instanceof XlError)
-    if (!unchanged(value, cell.stored, cell.rich) || arrayRef !== undefined || clearValueMeta) {
+    if (
+      !unchanged(value, cell.stored, cell.rich) ||
+      arrayRef !== undefined ||
+      clearValueMeta ||
+      report?.has(`${row}:${column}`)
+    ) {
       entries.set(key, {
         row,
         column,
@@ -217,7 +229,7 @@ export function recalculateAfterEdits(
     const formulaValues: SheetFormulaValues[] = []
     let changed = 0
     for (const sheet of book.sheets) {
-      const cells = sheetValues(calc, sheet)
+      const cells = sheetValues(calc, sheet, options.report?.get(sheet.name))
       if (cells.length === 0) continue
       changed += cells.length
       formulaValues.push({ sheetName: sheet.name, cells })

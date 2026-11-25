@@ -337,3 +337,41 @@ describe('future function markers', () => {
     )
   })
 })
+
+describe('offsetFormulaRefs for a sort (keepSheetQualified, PS Office)', () => {
+  // Each pair is a formula Excel moved from row 4 to row 2 when sorting A1:H6
+  // (checked with Excel through COM): same-sheet references move with the
+  // row, references written with a sheet name keep their address.
+  const sorted = (formula: string, rowDelta: number): string =>
+    offsetFormulaRefs(formula, rowDelta, 0, { keepSheetQualified: true })
+
+  it.each([
+    ['=A4*10', '=A2*10'],
+    ['=A5+0', '=A3+0'],
+    ['=$A$2+A4', '=$A$2+A2'],
+    ['=Other!A7', '=Other!A7'],
+    ['=Data!K7', '=Data!K7'],
+    ['=K7', '=K5'],
+    ['=SUM(A$2:A4)', '=SUM(A$2:A2)'],
+    ['=A3', '=A1'],
+    ['=SUM(4:4)-A4', '=SUM(2:2)-A2'],
+    ['=SUM($A:$A)+A4', '=SUM($A:$A)+A2'],
+  ])('moves %s to %s', (before, after) => {
+    expect(sorted(before, -2)).toBe(after)
+  })
+
+  it('moves the production plan lookups by their own row and keeps the other sheet', () => {
+    expect(
+      sorted(
+        `=IF($I6="","",XLOOKUP($I6,'Order Recap DATA (raw)'!$G:$G,'Order Recap DATA (raw)'!$B:$B,""))`,
+        4,
+      ),
+    ).toBe(
+      `=IF($I10="","",XLOOKUP($I10,'Order Recap DATA (raw)'!$G:$G,'Order Recap DATA (raw)'!$B:$B,""))`,
+    )
+  })
+
+  it('still shifts sheet-qualified references for a copy (the default)', () => {
+    expect(offsetFormulaRefs('=Other!A7+A4', -2, 0)).toBe('=Other!A5+A2')
+  })
+})

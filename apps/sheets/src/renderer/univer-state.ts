@@ -195,6 +195,20 @@ export interface LazyWorkbookState {
     running: boolean
     lastRunAt: number
   }
+  /// PS Office: the built-in engine's recalculation after a value-mode sort
+  /// (and later content edits); its results live in `recalc.overlay`.
+  builtInRecalc?: BuiltInRecalcState
+}
+
+export interface BuiltInRecalcState {
+  /// bumped by every queued run; the overlay is current when computedStamp equals it
+  stamp: number
+  computedStamp: number
+  /// the last run for `computedStamp` could not compute the formulas
+  failed: boolean
+  timer: ReturnType<typeof setTimeout> | null
+  /// resolved when the latest queued run has settled (saves wait for it)
+  readonly waiters: (() => void)[]
 }
 
 export interface PinnedClosureCell {

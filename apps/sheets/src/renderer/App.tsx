@@ -2,6 +2,7 @@ import { focusWorksheet } from './sheet-focus'
 import {
   activateFormulaClosure,
   adoptRefreshedWorkbook,
+  queueBuiltInRecalc,
   applyDefinedNames,
   applyFormatPatchToRange,
   applyWorkbookNotes,
@@ -219,6 +220,7 @@ import { InMemoryWorkbookAdapter } from '@genoffice/xlsx-gateway/domain/in-memor
 import { cfRuleUnsaveableReason, iconSetSaveable } from '@genoffice/xlsx-gateway/gateway/xlsx-cf'
 import { installLazyFindBridge } from './lazy-find'
 import { startFullLoad } from './full-load'
+import { canMoveFormulas, currentFormulaAt } from './sort-formulas'
 import { opensInFormulaMode, workbookCellCounts } from './load-budget'
 import { installReplaceAutoSearch } from './replace-autosearch'
 import { FindReplacePanel } from './FindReplacePanel'
@@ -3172,7 +3174,28 @@ export function App({
         }
         if (event.id === REORDER_RANGE_MUTATION) {
           if (params.range) {
-            journalRangeSnapshot(runtime, state, params.subUnitId, params.range, params.order)
+            // value mode (PS Office): the sort moves formulas the grid does not
+            // hold — journal them moved, and let the built-in engine compute them
+            const sortSheetId = params.subUnitId
+            const movesFormulas =
+              !state.formulaMode &&
+              params.order !== undefined &&
+              canMoveFormulas(
+                state,
+                sortSheetId,
+                typeof window.desktopApi?.recalcBuiltIn === 'function',
+              )
+            journalRangeSnapshot(
+              runtime,
+              state,
+              sortSheetId,
+              params.range,
+              params.order,
+              movesFormulas
+                ? (row, column) => currentFormulaAt(state, sortSheetId, row, column)
+                : undefined,
+            )
+            if (movesFormulas) queueBuiltInRecalc(runtime, lazyWorkbookRef, setMessage)
             // Sorted cells feed charts too, same as value mutations.
             queueChartDataSync(params.subUnitId, params.range)
             setPendingEdits(journalSize(state.editJournal))
@@ -3387,7 +3410,11 @@ export function App({
             )
           }
         }
-        if (
+        // after a value-mode sort the built-in engine keeps the results
+        // current (PS Office); the IronCalc fallback is retired then
+        if (!state.formulaMode && contentEdited && state.builtInRecalc) {
+          queueBuiltInRecalc(runtime, lazyWorkbookRef, setMessage)
+        } else if (
           !state.formulaMode &&
           contentEdited &&
           state.closure.status === 'unavailable' &&
@@ -3591,6 +3618,15 @@ export function App({
               rangeCells: largestRangeCells(ranges),
               rangeHasStreamedFormulas: () =>
                 subUnitId !== undefined && rangeHasStreamedFormulas(state, subUnitId, ranges),
+              // a sort moves the formulas with their rows, as Excel's does (PS Office)
+              canMoveFormulas:
+                /^sheet\.command\.(sort-range|reorder-range)$/.test(event.id) &&
+                subUnitId !== undefined &&
+                canMoveFormulas(
+                  state,
+                  subUnitId,
+                  typeof window.desktopApi?.recalcBuiltIn === 'function',
+                ),
             })
             if (verdict !== 'allow') {
               event.cancel = true

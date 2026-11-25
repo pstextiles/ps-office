@@ -641,6 +641,10 @@ export const vi = {
     '{count} công thức được tính toán lại trực tiếp (chế độ bao đóng); phần còn lại của sổ làm việc tải theo yêu cầu.',
   appRecalcPartial:
     'Các công thức được tính toán lại từ các chỉnh sửa của bạn — {count} công thức giữ lại giá trị đệm (các hàm mà công cụ dự phòng còn thiếu).',
+  appBuiltInRecalcRunning: 'Đang tính lại kết quả công thức…',
+  appBuiltInRecalcDone: 'Đã tính lại kết quả công thức ({count} ô).',
+  appBuiltInRecalcFailed:
+    'Không thể tính lại kết quả công thức: {reason}. Excel sẽ tính lại tệp đã lưu khi mở.',
   appRecalcDone:
     'Các công thức đã được tính toán lại từ các chỉnh sửa của bạn ({count} ô, công cụ dự phòng).',
   appIndexing: 'Đang lập chỉ mục {name}: {rows} hàng đã sẵn sàng.',

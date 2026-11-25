@@ -649,6 +649,10 @@ export const ms = {
     '{count} formula dikira semula secara langsung (mod penutupan); selebihnya buku kerja distrim atas permintaan.',
   appRecalcPartial:
     'Formula dikira semula daripada suntingan anda — {count} mengekalkan nilai cache (fungsi yang tiada pada enjin sandaran).',
+  appBuiltInRecalcRunning: 'Mengira semula hasil formula…',
+  appBuiltInRecalcDone: 'Hasil formula dikira semula ({count} sel).',
+  appBuiltInRecalcFailed:
+    'Tidak dapat mengira semula hasil formula: {reason}. Excel mengira semula fail yang disimpan apabila membukanya.',
   appRecalcDone: 'Formula dikira semula daripada suntingan anda ({count} sel, enjin sandaran).',
   appIndexing: 'Mengindeks {name}: {rows} baris sedia.',
   appStreamingRows: 'Menstrim {name}: {rows} baris tersedia.',

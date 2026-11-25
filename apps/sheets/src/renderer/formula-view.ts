@@ -56,7 +56,10 @@ export function indexedFormulaText(
 ): string | undefined {
   if (!state) return undefined
   if ((state.editJournal.structuralOps.get(sheetId)?.length ?? 0) > 0) return undefined
-  if (state.editJournal.cells.get(sheetId)?.has(`${row}:${column}`)) return undefined
+  const journaled = state.editJournal.cells.get(sheetId)?.get(`${row}:${column}`)
+  // a formula a value-mode sort moved here (PS Office): the grid holds only its value
+  if (journaled?.valueModeFormula) return journaled.formula
+  if (journaled) return undefined
   return (
     state.formulaText.get(sheetId)?.get(`${row}:${column}`) ??
     state.sharedFormulaGroups.get(sheetId)?.textAt(row, column)

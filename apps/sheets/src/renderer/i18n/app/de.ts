@@ -700,6 +700,10 @@ export const de = {
     '{count} Formeln werden live neu berechnet (Abschlussmodus); der Rest der Arbeitsmappe wird bei Bedarf per Streaming geladen.',
   appRecalcPartial:
     'Formeln anhand Ihrer Bearbeitungen neu berechnet — {count} behielten zwischengespeicherte Werte (Funktionen, die dem Ersatzmodul fehlen).',
+  appBuiltInRecalcRunning: 'Formelergebnisse werden neu berechnet…',
+  appBuiltInRecalcDone: 'Formelergebnisse neu berechnet ({count} Zellen).',
+  appBuiltInRecalcFailed:
+    'Die Formelergebnisse konnten nicht neu berechnet werden: {reason}. Excel berechnet die gespeicherte Datei beim Öffnen neu.',
   appRecalcDone: 'Formeln anhand Ihrer Bearbeitungen neu berechnet ({count} Zellen, Ersatzmodul).',
   appIndexing: '{name} wird indiziert: {rows} Zeilen bereit.',
   appStreamingRows: '{name} wird gestreamt: {rows} Zeilen verfügbar.',

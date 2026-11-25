@@ -710,6 +710,10 @@ export const fr = {
     '{count} formules se recalculent en direct (mode fermeture) ; le reste du classeur est chargé en flux à la demande.',
   appRecalcPartial:
     'Formules recalculées selon vos modifications — {count} ont conservé leurs valeurs en cache (fonctions absentes du moteur de secours).',
+  appBuiltInRecalcRunning: 'Recalcul des résultats des formules…',
+  appBuiltInRecalcDone: 'Résultats des formules recalculés ({count} cellules).',
+  appBuiltInRecalcFailed:
+    'Impossible de recalculer les résultats des formules : {reason}. Excel les recalcule à l’ouverture du fichier enregistré.',
   appRecalcDone:
     'Formules recalculées selon vos modifications ({count} cellules, moteur de secours).',
   appIndexing: 'Indexation de {name} : {rows} lignes prêtes.',

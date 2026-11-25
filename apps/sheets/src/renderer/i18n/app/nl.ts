@@ -684,6 +684,10 @@ export const nl = {
     '{count} formules worden live opnieuw berekend (afsluitingsmodus); de rest van de werkmap wordt op aanvraag streamend geladen.',
   appRecalcPartial:
     'Formules opnieuw berekend op basis van uw bewerkingen — {count} behielden waarden uit de cache (functies die de terugvalengine mist).',
+  appBuiltInRecalcRunning: 'Formuleresultaten opnieuw berekenen…',
+  appBuiltInRecalcDone: 'Formuleresultaten opnieuw berekend ({count} cellen).',
+  appBuiltInRecalcFailed:
+    'Kan de formuleresultaten niet opnieuw berekenen: {reason}. Excel berekent het opgeslagen bestand opnieuw bij het openen.',
   appRecalcDone:
     'Formules opnieuw berekend op basis van uw bewerkingen ({count} cellen, terugvalengine).',
   appIndexing: '{name} wordt geïndexeerd: {rows} rijen gereed.',

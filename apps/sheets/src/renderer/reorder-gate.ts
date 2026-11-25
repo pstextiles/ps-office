@@ -18,6 +18,9 @@ export interface ReorderGateInput {
   readonly cellCounts: WorkbookCellCounts
   readonly rangeCells: number
   readonly rangeHasStreamedFormulas: () => boolean
+  /// PS Office: a sort that moves the range's formulas with their rows (see
+  /// sort-formulas.ts) may touch formulas in value mode too
+  readonly canMoveFormulas?: boolean
 }
 
 export type FullLoadGateVerdict = 'loading' | 'offerFullLoad' | 'workbookTooLarge'
@@ -42,7 +45,9 @@ export function reorderGate(input: ReorderGateInput): ReorderGateVerdict {
   if (input.isAddedSheet) return 'allow'
   if (!input.preloadComplete) return fullLoadGate(input)
   if (input.rangeCells > REORDER_JOURNAL_MAX_CELLS) return 'rangeTooLarge'
-  if (!input.formulaMode && input.rangeHasStreamedFormulas()) return 'valueModeFormulas'
+  if (!input.formulaMode && !input.canMoveFormulas && input.rangeHasStreamedFormulas()) {
+    return 'valueModeFormulas'
+  }
   return 'allow'
 }
 

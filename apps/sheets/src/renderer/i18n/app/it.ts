@@ -685,6 +685,10 @@ export const it = {
     '{count} formule vengono ricalcolate in tempo reale (modalità chiusura); il resto della cartella di lavoro viene caricato in streaming su richiesta.',
   appRecalcPartial:
     'Formule ricalcolate in base alle tue modifiche — {count} hanno mantenuto i valori memorizzati nella cache (funzioni assenti nel motore di fallback).',
+  appBuiltInRecalcRunning: 'Ricalcolo dei risultati delle formule…',
+  appBuiltInRecalcDone: 'Risultati delle formule ricalcolati ({count} celle).',
+  appBuiltInRecalcFailed:
+    'Impossibile ricalcolare i risultati delle formule: {reason}. Excel li ricalcola all’apertura del file salvato.',
   appRecalcDone:
     'Formule ricalcolate in base alle tue modifiche ({count} celle, motore di fallback).',
   appIndexing: 'Indicizzazione di {name}: {rows} righe pronte.',

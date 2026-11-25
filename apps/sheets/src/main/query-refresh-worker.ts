@@ -11,6 +11,7 @@ import { readFileSync } from 'node:fs'
 import { parentPort, workerData } from 'node:worker_threads'
 import {
   createBufferEntrySource,
+  type CellEdit,
   type SheetFormulaValues,
 } from '@genoffice/xlsx-gateway/gateway/xlsx-gateway'
 import {
@@ -134,11 +135,50 @@ function computeRefresh(job: QueryRefreshJob): {
   }
 }
 
+/**
+ * PS Office: the workbook recalculated with the session's pending edits — a
+ * value-mode sort moves formulas the grid does not compute, and their results
+ * (and every formula that depends on them) come from the built-in engine.
+ */
+export interface RecalcJob {
+  readonly kind: 'recalc'
+  readonly path: string
+  readonly edits: readonly CellEdit[]
+  /** formula cells to report whatever their result, by sheet name and `row:column` */
+  readonly report?: readonly { readonly sheetName: string; readonly keys: readonly string[] }[]
+  readonly systemCulture?: string
+  readonly today?: number
+}
+
+export type RecalcAnswer =
+  | { readonly ok: true; readonly values: SheetFormulaValues[] }
+  | { readonly ok: false; readonly reason: string }
+
+export function runRecalcJob(job: RecalcJob): RecalcAnswer {
+  try {
+    const bytes = readFileSync(job.path)
+    const recalc = recalculateAfterEdits(bytes, job.edits, [], {
+      today: job.today ?? dateSerial(new Date()),
+      systemCulture: job.systemCulture,
+      report: new Map((job.report ?? []).map((entry) => [entry.sheetName, new Set(entry.keys)])),
+    })
+    return recalc.ok
+      ? { ok: true, values: recalc.formulaValues }
+      : { ok: false, reason: recalc.reason }
+  } catch (error) {
+    return { ok: false, reason: error instanceof Error ? error.message : String(error) }
+  }
+}
+
 /** set in workerData by the starter, so importing this module elsewhere (a test runner's worker) listens to nothing */
 export const QUERY_REFRESH_WORKER_DATA = { psOfficeQueryRefresh: true } as const
 
 if ((workerData as { psOfficeQueryRefresh?: unknown } | null)?.psOfficeQueryRefresh === true) {
-  parentPort?.once('message', (job: QueryRefreshJob) => {
+  parentPort?.once('message', (job: QueryRefreshJob | RecalcJob) => {
+    if ('kind' in job && job.kind === 'recalc') {
+      parentPort?.postMessage(runRecalcJob(job))
+      return
+    }
     void runQueryRefreshJobAndPlanSave(job).then((answer) => parentPort?.postMessage(answer))
   })
 }

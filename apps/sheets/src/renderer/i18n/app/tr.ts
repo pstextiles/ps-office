@@ -652,6 +652,10 @@ export const tr = {
     '{count} formül canlı hesaplanıyor (kapanış modu); çalışma kitabının geri kalanı istek üzerine akışla yüklenir.',
   appRecalcPartial:
     'Formüller düzenlemelerinizden yeniden hesaplandı — {count} tanesi önbellekteki değerleri korudu (yedek motorun eksik olduğu işlevler).',
+  appBuiltInRecalcRunning: 'Formül sonuçları yeniden hesaplanıyor…',
+  appBuiltInRecalcDone: 'Formül sonuçları yeniden hesaplandı ({count} hücre).',
+  appBuiltInRecalcFailed:
+    'Formül sonuçları yeniden hesaplanamadı: {reason}. Excel kaydedilen dosyayı açarken yeniden hesaplar.',
   appRecalcDone: 'Formüller düzenlemelerinizden yeniden hesaplandı ({count} hücre, motor yedeği).',
   appIndexing: '{name} dizinleniyor: {rows} satır hazır.',
   appStreamingRows: '{name} akışla yükleniyor: {rows} satır kullanılabilir.',

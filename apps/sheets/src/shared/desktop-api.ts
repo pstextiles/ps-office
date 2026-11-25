@@ -2391,6 +2391,82 @@ export const workbookPivotRequestSchema = z
   })
   .strict()
 
+/**
+ * PS Office: the workbook recalculated by the built-in engine with the
+ * session's pending content edits (src/main/formula-calc). A value-mode sort
+ * moves formulas the grid does not compute; their results, and those of every
+ * formula that depends on them, come back by sheet. `report` names formula
+ * cells to return whatever their result (the moved ones).
+ */
+const recalcCellValueSchema = z.union([
+  z.string().max(32_767),
+  z.number(),
+  z.boolean(),
+  z.null(),
+  z.object({ error: z.string().max(32) }).strict(),
+])
+export const workbookRecalcBuiltInRequestSchema = z
+  .object({
+    sessionId: z.string().uuid(),
+    edits: z
+      .array(
+        z
+          .object({
+            sheetId: z.string().min(1).max(255),
+            row: z.number().int().nonnegative().max(1_048_575),
+            column: z.number().int().nonnegative().max(16_383),
+            formula: z.string().max(8192).optional(),
+            value: z.union([z.string().max(32_767), z.number(), z.boolean(), z.null()]).optional(),
+          })
+          .strict(),
+      )
+      .max(1_000_000),
+    report: z
+      .array(
+        z
+          .object({
+            sheetId: z.string().min(1).max(255),
+            keys: z.array(z.string().max(32)).max(1_000_000),
+          })
+          .strict(),
+      )
+      .max(1000),
+  })
+  .strict()
+export const workbookRecalcBuiltInResultSchema = z.union([
+  z
+    .object({
+      ok: z.literal(true),
+      values: z
+        .array(
+          z
+            .object({
+              sheetId: z.string(),
+              cells: z.array(
+                z
+                  .object({
+                    row: z.number().int().nonnegative(),
+                    column: z.number().int().nonnegative(),
+                    value: recalcCellValueSchema,
+                  })
+                  .strict(),
+              ),
+            })
+            .strict(),
+        )
+        .max(1000),
+    })
+    .strict(),
+  z
+    .object({
+      ok: z.literal(false),
+      /** superseded: a newer recalculation took over (no message to show) */
+      superseded: z.boolean().optional(),
+      reason: z.string().max(400),
+    })
+    .strict(),
+])
+
 export const workbookQueriesRequestSchema = z
   .object({
     sessionId: z.string().uuid(),
@@ -2720,6 +2796,8 @@ export type WorkbookPivotDefinition = z.infer<typeof workbookPivotDefinitionSche
 export type WorkbookQueriesRequest = z.infer<typeof workbookQueriesRequestSchema>
 export type WorkbookQueriesResult = z.infer<typeof workbookQueriesResultSchema>
 export type WorkbookQueriesRefreshResult = z.infer<typeof workbookQueriesRefreshResultSchema>
+export type WorkbookRecalcBuiltInRequest = z.infer<typeof workbookRecalcBuiltInRequestSchema>
+export type WorkbookRecalcBuiltInResult = z.infer<typeof workbookRecalcBuiltInResultSchema>
 export type WorkbookQueriesBuiltInRefreshResult = z.infer<
   typeof workbookQueriesBuiltInRefreshResultSchema
 >
@@ -3274,6 +3352,12 @@ export interface DesktopApi {
   refreshQueriesBuiltIn?(
     request: WorkbookQueriesRequest,
   ): Promise<WorkbookQueriesBuiltInRefreshResult>
+  /**
+   * PS Office: the built-in engine's results for the session with its
+   * pending content edits (a value-mode sort's moved formulas and their
+   * dependents). Absent in builds without it.
+   */
+  recalcBuiltIn?(request: WorkbookRecalcBuiltInRequest): Promise<WorkbookRecalcBuiltInResult>
   readLocalImage(request: LocalImageRequest): Promise<LocalImageResult>
   captureScreenSources(): Promise<ScreenSourcesResult>
   /// null when the source vanished between listing and capture.

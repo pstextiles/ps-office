@@ -107,11 +107,13 @@ import {
   recordHyperlinkEdit,
   recordSetRangeValues,
   toRecalcUserInput,
+  VALUE_MODE_FORMULA_KEY,
   type EditJournal,
   type VisualEditEntry,
 } from './edit-journal'
 import { sharedFormulaResolverFor } from './shared-formula-journal'
 import { planFileTableRegistrations } from './file-tables'
+import { sortMovedFormula } from './sort-formulas'
 import { throttleGridRendering } from './render-throttle'
 import {
   changedDefinedNames,
@@ -4313,7 +4315,11 @@ export function applyJournalOverlay(
       // load path; the cell's composed style is already installed here.
       const baseFont = (): IStyleData =>
         fontTextStyleOf(worksheet.getSheet().getComposedCellStyle(entry.row, entry.column))
-      if (entry.formula) cellRange.setValues([[{ f: entry.formula }]])
+      // a value-mode sort's moved formula (PS Office) is never installed: the
+      // grid shows its computed value (the built-in overlay, applied before)
+      if (entry.valueModeFormula) {
+        // nothing to replay
+      } else if (entry.formula) cellRange.setValues([[{ f: entry.formula }]])
       else if (entry.value === null) cellRange.clearContent()
       else if (entry.rich && typeof entry.value === 'string') {
         cellRange.setValues([[{ p: toRichTextDocument(entry.value, [...entry.rich], baseFont()) }]])
@@ -6813,6 +6819,10 @@ export function journalRangeSnapshot(
   sheetId: string,
   range: IRange,
   order?: Readonly<Record<number, number>>,
+  /// PS Office, value-mode sort: the formula each source cell carries (see
+  /// sort-formulas.ts); the moved formula is journaled with its references
+  /// moved as Excel's sort moves them.
+  formulaAt?: (row: number, column: number) => string | undefined,
 ): void {
   const workbook = runtime.univerAPI.getActiveWorkbook()
   const worksheet = workbook?.getSheetBySheetId(sheetId)
@@ -6843,6 +6853,11 @@ export function journalRangeSnapshot(
       const style = cell?.s ? (styles.getStyleByCell(cell) ?? undefined) : undefined
       const priorRow = order ? (priorRowOf.get(row) ?? row) : row
       const priorCell = cellDatas[priorRow - range.startRow]?.[columnOffset]
+      // the formula that moved into this cell: from the row it came from
+      const sourceRow = order ? (order[row] ?? row) : row
+      const sourceFormula = formulaAt && order ? formulaAt(sourceRow, column) : undefined
+      const movedFormula =
+        sourceFormula === undefined ? undefined : sortMovedFormula(sourceFormula, sourceRow, row)
       // Without an order every cell counts as moved (move-range targets).
       const styleMoved = order === undefined || !sameStyleRef(cell?.s, priorCell?.s)
       const hasContent =
@@ -6853,7 +6868,7 @@ export function journalRangeSnapshot(
           (typeof cell.si === 'string' && cell.si.length > 0) ||
           cell.p !== undefined ||
           style !== undefined)
-      if (!hasContent) {
+      if (!hasContent && movedFormula === undefined) {
         rowValues[column] = null
         continue
       }
@@ -6862,17 +6877,24 @@ export function journalRangeSnapshot(
       if (styleMoved) (resets[row] ??= {})[column] = { s: null }
       const styleOut = styleMoved
         ? style
-        : typeof cell.s === 'object' && cell.s !== null
+        : typeof cell?.s === 'object' && cell.s !== null
           ? cell.s
           : undefined
       rowValues[column] = {
-        ...('v' in cell ? { v: cell.v } : {}),
-        ...(cell.t != null ? { t: cell.t } : {}),
-        ...(typeof cell.f === 'string' && cell.f.length > 0 ? { f: cell.f } : {}),
+        ...(cell && 'v' in cell ? { v: cell.v } : {}),
+        ...(cell?.t != null ? { t: cell.t } : {}),
+        ...(typeof cell?.f === 'string' && cell.f.length > 0 ? { f: cell.f } : {}),
+        // value-mode sort (PS Office): the moved formula, or none (a value
+        // moved in must not keep a formula journaled here before)
+        ...(formulaAt && order
+          ? movedFormula !== undefined
+            ? { f: movedFormula, [VALUE_MODE_FORMULA_KEY]: true }
+            : { f: null }
+          : {}),
         // shared-formula followers carry si without f; the journal's
         // resolver materializes the real formula from the group master
-        ...(typeof cell.si === 'string' && cell.si.length > 0 ? { si: cell.si } : {}),
-        ...(cell.p !== undefined ? { p: cell.p } : {}),
+        ...(typeof cell?.si === 'string' && cell.si.length > 0 ? { si: cell.si } : {}),
+        ...(cell?.p !== undefined ? { p: cell.p } : {}),
         ...(styleOut !== undefined ? { s: styleOut } : {}),
       }
     }
@@ -8608,4 +8630,187 @@ function rangesEqual(a: IRange, b: IRange): boolean {
     a.startColumn === b.startColumn &&
     a.endColumn === b.endColumn
   )
+}
+
+/// PS Office: after a value-mode sort, the moved formulas' results (and every
+/// formula depending on them) come from the built-in engine — the grid of a
+/// large workbook computes none of its formulas. Later content edits rerun it
+/// while it is active. Runs are debounced; only the latest one's results are
+/// applied (a newer request stops the running worker in the main process).
+const BUILTIN_RECALC_DEBOUNCE_MS = 600
+
+export function queueBuiltInRecalc(
+  runtime: UniverRuntime,
+  lazyWorkbookRef: { current: LazyWorkbookState | null },
+  setMessage: (message: string) => void,
+): void {
+  const state = lazyWorkbookRef.current
+  if (!state || typeof window.desktopApi?.recalcBuiltIn !== 'function') return
+  const run = (state.builtInRecalc ??= {
+    stamp: 0,
+    computedStamp: 0,
+    failed: false,
+    timer: null,
+    waiters: [],
+  })
+  // the IronCalc fallback would paint over this overlay with its own results
+  state.recalc.engineOverBudget = true
+  run.stamp += 1
+  const stamp = run.stamp
+  if (run.timer) clearTimeout(run.timer)
+  run.timer = setTimeout(() => {
+    run.timer = null
+    void runBuiltInRecalc(runtime, lazyWorkbookRef, state, stamp, setMessage)
+  }, BUILTIN_RECALC_DEBOUNCE_MS)
+}
+
+/** Resolves once the latest queued built-in recalculation has settled (at once when none is pending). */
+export function builtInRecalcSettled(state: LazyWorkbookState): Promise<void> {
+  const run = state.builtInRecalc
+  if (!run || run.computedStamp === run.stamp) return Promise.resolve()
+  return new Promise((resolve) => run.waiters.push(resolve))
+}
+
+/** Whether the overlay holds the built-in engine's results for the journal as it is now. */
+export function builtInRecalcCurrent(state: LazyWorkbookState): boolean {
+  const run = state.builtInRecalc
+  return run !== undefined && run.computedStamp === run.stamp && !run.failed
+}
+
+function settleBuiltInRecalc(run: NonNullable<LazyWorkbookState['builtInRecalc']>): void {
+  if (run.computedStamp !== run.stamp) return
+  for (const resolve of run.waiters.splice(0)) resolve()
+}
+
+async function runBuiltInRecalc(
+  runtime: UniverRuntime,
+  lazyWorkbookRef: { current: LazyWorkbookState | null },
+  state: LazyWorkbookState,
+  stamp: number,
+  setMessage: (message: string) => void,
+): Promise<void> {
+  const run = state.builtInRecalc
+  if (!run) return
+  const finish = (failed: boolean): void => {
+    run.computedStamp = stamp
+    run.failed = failed
+    settleBuiltInRecalc(run)
+  }
+  const fileSheets = new Set(state.file.sheets.map((sheet) => sheet.id))
+  // a bulk fill's cells are not single journal entries: the engine would
+  // miss them and compute from the file's old values
+  if (
+    [...(state.editJournal.bulkConstantFills?.values() ?? [])].some((fills) => fills.length > 0)
+  ) {
+    setMessage(t('appBuiltInRecalcFailed', { reason: 'bulk fill' }))
+    finish(true)
+    return
+  }
+  const edits: {
+    sheetId: string
+    row: number
+    column: number
+    formula?: string
+    value?: string | number | boolean | null
+  }[] = []
+  const report: { sheetId: string; keys: string[] }[] = []
+  const sheetIds = new Set([...state.editJournal.cells.keys(), ...state.recalc.overlay.keys()])
+  for (const sheetId of sheetIds) {
+    if (!fileSheets.has(sheetId) || isSheetRemoved(state.editJournal, sheetId)) continue
+    const keys = new Set<string>()
+    for (const entry of state.editJournal.cells.get(sheetId)?.values() ?? []) {
+      if (!entry.hasValue) continue
+      if (entry.formula !== undefined) {
+        edits.push({ sheetId, row: entry.row, column: entry.column, formula: entry.formula })
+        if (entry.valueModeFormula) keys.add(`${entry.row}:${entry.column}`)
+      } else {
+        edits.push({ sheetId, row: entry.row, column: entry.column, value: entry.value })
+      }
+    }
+    // cells showing an earlier result come back explicitly, even when they
+    // are back to the file's value
+    for (const key of state.recalc.overlay.get(sheetId)?.keys() ?? []) keys.add(key)
+    if (keys.size > 0) report.push({ sheetId, keys: [...keys] })
+  }
+  setMessage(t('appBuiltInRecalcRunning'))
+  let result: Awaited<ReturnType<NonNullable<typeof window.desktopApi.recalcBuiltIn>>>
+  try {
+    result = await window.desktopApi.recalcBuiltIn!({
+      sessionId: state.file.sessionId,
+      edits,
+      report,
+    })
+  } catch (error) {
+    result = { ok: false, reason: error instanceof Error ? error.message : String(error) }
+  }
+  // a newer run was queued: it settles the waiters
+  if (lazyWorkbookRef.current !== state || run.stamp !== stamp) return
+  if (!result.ok) {
+    if (result.superseded) return
+    setMessage(t('appBuiltInRecalcFailed', { reason: result.reason }))
+    finish(true)
+    return
+  }
+  const workbook = runtime.univerAPI.getActiveWorkbook()
+  let count = 0
+  for (const sheet of result.values) {
+    const overlay = new Map<string, PinnedClosureCell>()
+    for (const cell of sheet.cells) {
+      const value = cell.value
+      overlay.set(
+        `${cell.row}:${cell.column}`,
+        typeof value === 'object' && value !== null
+          ? { v: value.error, isError: true }
+          : { v: value },
+      )
+    }
+    count += overlay.size
+    state.recalc.overlay.set(sheet.sheetId, overlay)
+    const worksheet = workbook?.getSheetBySheetId(sheet.sheetId)
+    if (worksheet) applyOverlayDirect(worksheet, overlay)
+  }
+  setMessage(t('appBuiltInRecalcDone', { count: count.toLocaleString() }))
+  finish(false)
+}
+
+/// The overlay's values in one set-range-values mutation over their bounding
+/// box (cells outside it stay as they are): thousands of single-cell
+/// commands would each carry an undo copy and a selection op.
+function applyOverlayDirect(
+  worksheet: UniverWorksheet,
+  overlay: ReadonlyMap<string, PinnedClosureCell>,
+): void {
+  if (overlay.size === 0) return
+  let startRow = Infinity
+  let endRow = -1
+  let startColumn = Infinity
+  let endColumn = -1
+  const cells: [number, number, PinnedClosureCell][] = []
+  for (const [key, cell] of overlay) {
+    const separator = key.indexOf(':')
+    const row = Number(key.slice(0, separator))
+    const column = Number(key.slice(separator + 1))
+    cells.push([row, column, cell])
+    if (row < startRow) startRow = row
+    if (row > endRow) endRow = row
+    if (column < startColumn) startColumn = column
+    if (column > endColumn) endColumn = column
+  }
+  const matrix: ICellData[][] = Array.from({ length: endRow - startRow + 1 }, () =>
+    Array.from({ length: endColumn - startColumn + 1 }, () => ({})),
+  )
+  for (const [row, column, cell] of cells) {
+    matrix[row - startRow]![column - startColumn] =
+      typeof cell.v === 'string' && cell.v !== ''
+        ? { v: cell.v, t: CellValueType.STRING }
+        : { v: cell.v ?? null }
+  }
+  journalSuppression.active = true
+  loadAutoHeightSuppression.active = true
+  try {
+    setCellsDirect(worksheet, startRow, startColumn, matrix)
+  } finally {
+    journalSuppression.active = false
+    loadAutoHeightSuppression.active = false
+  }
 }

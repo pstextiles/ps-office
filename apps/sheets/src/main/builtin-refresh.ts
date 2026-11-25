@@ -26,7 +26,10 @@ import queryRefreshWorkerPath from './query-refresh-worker?modulePath'
 import {
   QUERY_REFRESH_WORKER_DATA,
   runQueryRefreshJobAndPlanSave,
+  runRecalcJob,
   type QueryRefreshAnswer,
+  type RecalcAnswer,
+  type RecalcJob,
   type QueryRefreshJob,
 } from './query-refresh-worker'
 
@@ -96,6 +99,60 @@ export function planInWorker(job: QueryRefreshJob): Promise<QueryRefreshAnswer> 
 }
 
 class RefreshTimeout extends Error {}
+
+/** A newer recalculation took over; this one's answer is not wanted. */
+export class RecalcSuperseded extends Error {}
+
+let runningRecalc: { readonly stop: () => void } | null = null
+
+/**
+ * PS Office: recalculates the workbook with the session's pending edits in a
+ * worker thread (the built-in engine, as the refresh uses). One at a time:
+ * a newer request stops the running one, whose promise rejects with
+ * RecalcSuperseded — the screen only wants the latest state's results.
+ */
+export function recalcInWorker(job: RecalcJob): Promise<RecalcAnswer> {
+  runningRecalc?.stop()
+  runningRecalc = null
+  const path: unknown = queryRefreshWorkerPath
+  if (typeof path !== 'string' || path === '' || !existsSync(path)) {
+    return Promise.resolve(runRecalcJob(job))
+  }
+  return new Promise((resolve, reject) => {
+    const worker = new Worker(path, {
+      workerData: QUERY_REFRESH_WORKER_DATA,
+      resourceLimits: { stackSizeMb: 64 },
+    })
+    let settled = false
+    const settle = (): boolean => {
+      if (settled) return false
+      settled = true
+      clearTimeout(timer)
+      if (runningRecalc === handle) runningRecalc = null
+      void worker.terminate()
+      return true
+    }
+    const handle = {
+      stop: () => {
+        if (settle()) reject(new RecalcSuperseded('A newer recalculation started.'))
+      },
+    }
+    runningRecalc = handle
+    const timer = setTimeout(() => {
+      if (settle()) resolve({ ok: false, reason: 'The recalculation took too long.' })
+    }, BUILTIN_REFRESH_TIMEOUT_MS)
+    worker.once('message', (answer: RecalcAnswer) => {
+      if (settle()) resolve(answer)
+    })
+    worker.once('error', (error) => {
+      if (settle()) reject(error)
+    })
+    worker.once('exit', (code) => {
+      if (settle()) reject(new Error(`The recalculation worker stopped (exit code ${code}).`))
+    })
+    worker.postMessage(job)
+  })
+}
 
 const defaultDeps: BuiltInRefreshDeps = {
   plan: planInWorker,

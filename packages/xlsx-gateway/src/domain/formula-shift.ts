@@ -153,14 +153,26 @@ const ROW_SPAN_RE =
  * and whole-row spans (3:5) shift on fill-down while whole-column spans
  * shift on fill-right ($ pins either axis; off-grid becomes #REF!).
  */
-export function offsetFormulaRefs(formula: string, rowDelta: number, columnDelta: number): string {
+export function offsetFormulaRefs(
+  formula: string,
+  rowDelta: number,
+  columnDelta: number,
+  options?: { readonly keepSheetQualified?: boolean },
+): string {
   if (rowDelta === 0 && columnDelta === 0) return formula
+  // PS Office: Excel's sort moves a formula with its row like a copy, except
+  // that references written with a sheet name (another sheet's, or this
+  // sheet's own 'Plan'!B2) keep their address — checked against Excel.
+  const keep = options?.keepSheetQualified === true
+  const kept = (quoted: unknown, bare: unknown): boolean =>
+    keep && (quoted !== undefined || bare !== undefined)
   const segments = formula.split(REWRITE_SKIP_RE)
   const rewritten = segments.map((segment, index) => {
     if (index % 2 === 1) return segment
     let out = segment.replace(
       REF_RE,
       (match, quoted, bare, aAbsC, aCol, aAbsR, aRow, bAbsC, bCol, bAbsR, bRow) => {
+        if (kept(quoted, bare)) return match as string
         const prefix = quoted !== undefined ? `'${quoted}'!` : bare !== undefined ? `${bare}!` : ''
         const first = offsetRefPart(
           {
@@ -191,6 +203,7 @@ export function offsetFormulaRefs(formula: string, rowDelta: number, columnDelta
     )
     if (columnDelta !== 0) {
       out = out.replace(COLUMN_SPAN_RE, (match, quoted, bare, aAbs, aCol, bAbs, bCol) => {
+        if (kept(quoted, bare)) return match as string
         const prefix = quoted !== undefined ? `'${quoted}'!` : bare !== undefined ? `${bare}!` : ''
         // Returns the full component including its anchor ("$B" stays "$B").
         const shift = (abs: string, letters: string): string | null => {
@@ -210,6 +223,7 @@ export function offsetFormulaRefs(formula: string, rowDelta: number, columnDelta
     // whole-row refs silently stay stale on copy/fill.
     if (rowDelta !== 0) {
       out = out.replace(ROW_SPAN_RE, (match, quoted, bare, aAbs, aRow, bAbs, bRow) => {
+        if (kept(quoted, bare)) return match as string
         const prefix = quoted !== undefined ? `'${quoted}'!` : bare !== undefined ? `${bare}!` : ''
         // Returns the full component including its anchor ("$2" stays "$2").
         const shift = (abs: string, digits: string): string | null => {

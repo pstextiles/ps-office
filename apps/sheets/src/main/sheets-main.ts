@@ -204,6 +204,8 @@ import {
   workbookQueriesResultSchema,
   workbookQueriesRefreshResultSchema,
   workbookQueriesBuiltInRefreshResultSchema,
+  workbookRecalcBuiltInRequestSchema,
+  workbookRecalcBuiltInResultSchema,
   localImageRequestSchema,
   localImageResultSchema,
   screenCaptureRequestSchema,
@@ -275,7 +277,7 @@ import {
   refreshWorkbookInExcel,
   stopExcelRefreshes,
 } from './excel-refresh'
-import { refreshWorkbookBuiltIn } from './builtin-refresh'
+import { RecalcSuperseded, recalcInWorker, refreshWorkbookBuiltIn } from './builtin-refresh'
 import { checkboxStyleIndexes, featurePropertyBagPart } from './cell-checkbox'
 import {
   appendSaveFailure,
@@ -4677,6 +4679,74 @@ export function registerSheetsIpc(): void {
     return workbookQueriesBuiltInRefreshResultSchema.parse(
       result.ok ? { ...result, tables: result.tables.slice(0, 500) } : result,
     )
+  })
+
+  // PS Office: the built-in engine's results with the session's pending edits
+  ipcMain.handle(IPC_CHANNELS.recalcBuiltIn, async (event, input: unknown) => {
+    const entry = sessionFor(event)
+    const request = workbookRecalcBuiltInRequestSchema.parse(input)
+    const session = entry.sessions.get(request.sessionId)
+    if (!session) throw new Error('Unknown workbook session.')
+    const nameOf = (sheetId: string): string => {
+      const name = session.sheetNames.get(sheetId)
+      if (name === undefined) throw new Error(`Unknown sheet for recalculation: ${sheetId}`)
+      return name
+    }
+    try {
+      const answer = await recalcInWorker({
+        kind: 'recalc',
+        // the session's own bytes, as the save and the refresh read them
+        path: session.snapshotPath,
+        edits: request.edits.map((edit) => ({
+          sheetName: nameOf(edit.sheetId),
+          row: edit.row,
+          column: edit.column,
+          writeValue: true,
+          cell:
+            edit.formula !== undefined
+              ? { value: null, formula: edit.formula }
+              : { value: edit.value ?? null },
+        })),
+        report: request.report.map((entry) => ({
+          sheetName: nameOf(entry.sheetId),
+          keys: entry.keys,
+        })),
+        systemCulture: app.getSystemLocale(),
+      })
+      if (!answer.ok) {
+        return workbookRecalcBuiltInResultSchema.parse({
+          ok: false,
+          reason: answer.reason.slice(0, 400),
+        })
+      }
+      const idsByName = new Map([...session.sheetNames].map(([id, name]) => [name, id]))
+      return workbookRecalcBuiltInResultSchema.parse({
+        ok: true,
+        values: answer.values.flatMap((sheet) => {
+          const sheetId = idsByName.get(sheet.sheetName)
+          if (sheetId === undefined) return []
+          return [
+            {
+              sheetId,
+              cells: sheet.cells.map((cell) => ({
+                row: cell.row,
+                column: cell.column,
+                value: cell.value,
+              })),
+            },
+          ]
+        }),
+      })
+    } catch (error) {
+      if (error instanceof RecalcSuperseded) {
+        return workbookRecalcBuiltInResultSchema.parse({
+          ok: false,
+          superseded: true,
+          reason: 'superseded',
+        })
+      }
+      throw error
+    }
   })
 
   ipcMain.handle(IPC_CHANNELS.exportPdf, async (event, input: unknown) => {

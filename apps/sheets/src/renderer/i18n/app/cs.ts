@@ -651,6 +651,10 @@ export const cs = {
     '{count} vzorců se přepočítává živě (režim uzávěru); zbytek sešitu se načítá na vyžádání.',
   appRecalcPartial:
     'Vzorce přepočítány podle vašich úprav — {count} si ponechalo hodnoty z mezipaměti (funkce, které záložní modul nezná).',
+  appBuiltInRecalcRunning: 'Přepočítávání výsledků vzorců…',
+  appBuiltInRecalcDone: 'Výsledky vzorců přepočítány ({count} buněk).',
+  appBuiltInRecalcFailed:
+    'Výsledky vzorců nelze přepočítat: {reason}. Excel uložený soubor přepočítá při otevření.',
   appRecalcDone: 'Vzorce přepočítány podle vašich úprav ({count} buněk, záložní modul).',
   appIndexing: 'Indexuje se {name}: {rows} řádků připraveno.',
   appStreamingRows: 'Načítá se {name}: {rows} řádků k dispozici.',

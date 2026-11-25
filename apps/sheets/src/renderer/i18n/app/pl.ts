@@ -671,6 +671,10 @@ export const pl = {
     '{count} formuł jest przeliczanych na żywo (tryb domknięcia); reszta skoroszytu jest ładowana strumieniowo na żądanie.',
   appRecalcPartial:
     'Formuły przeliczono na podstawie Twoich zmian — {count} zachowało wartości z pamięci podręcznej (funkcje nieobsługiwane przez silnik zastępczy).',
+  appBuiltInRecalcRunning: 'Przeliczanie wyników formuł…',
+  appBuiltInRecalcDone: 'Wyniki formuł przeliczone ({count} komórek).',
+  appBuiltInRecalcFailed:
+    'Nie można przeliczyć wyników formuł: {reason}. Excel przeliczy zapisany plik przy otwarciu.',
   appRecalcDone:
     'Formuły przeliczono na podstawie Twoich zmian ({count} komórek, silnik zastępczy).',
   appIndexing: 'Indeksowanie {name}: {rows} wierszy gotowych.',

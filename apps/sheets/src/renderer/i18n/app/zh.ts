@@ -577,6 +577,9 @@ export const zh = {
   // Loading / recalc status
   appClosureActive: '{count} 个公式实时重算（闭包模式）；其余部分按需流式加载。',
   appRecalcPartial: '公式已按你的编辑重算——{count} 个保留了缓存值（回退引擎不支持的函数）。',
+  appBuiltInRecalcRunning: '正在重新计算公式结果…',
+  appBuiltInRecalcDone: '已重新计算公式结果（{count} 个单元格）。',
+  appBuiltInRecalcFailed: '无法重新计算公式结果：{reason}。Excel 打开保存的文件时会重新计算。',
   appRecalcDone: '公式已按你的编辑重算（{count} 个单元格，引擎回退）。',
   appIndexing: '正在索引 {name}：{rows} 行就绪。',
   appStreamingRows: '正在流式加载 {name}：{rows} 行可用。',

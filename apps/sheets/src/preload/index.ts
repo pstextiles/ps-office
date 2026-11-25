@@ -51,6 +51,8 @@ import type {
   WorkbookRecalcResult,
   WorkbookQueriesBuiltInRefreshResult,
   WorkbookQueriesRefreshResult,
+  WorkbookRecalcBuiltInRequest,
+  WorkbookRecalcBuiltInResult,
   WorkbookQueriesResult,
   WorkbookRichRun,
   WorkbookSaveRequest,
@@ -368,6 +370,18 @@ const desktopApi: DesktopApi = {
       throw new Error('Invalid refresh response.')
     }
     return result as WorkbookQueriesBuiltInRefreshResult
+  },
+  // PS Office: the built-in engine recalculates with the pending edits
+  async recalcBuiltIn(request: WorkbookRecalcBuiltInRequest): Promise<WorkbookRecalcBuiltInResult> {
+    if (!isRecord(request) || !isUuid(request.sessionId) || !Array.isArray(request.edits)) {
+      throw new Error('Invalid recalculation request.')
+    }
+    const result: unknown = await ipcRenderer.invoke(IPC_CHANNELS.recalcBuiltIn, request)
+    // structural check; the main process zod-validates the full shape
+    if (!isRecord(result) || typeof result.ok !== 'boolean') {
+      throw new Error('Invalid recalculation response.')
+    }
+    return result as WorkbookRecalcBuiltInResult
   },
   // Refresh in Excel drives the Excel installed on Windows; elsewhere the
   // method is absent and the dialog shows no button.

@@ -41,7 +41,15 @@ export interface JournalEntry {
   /// Clear Formats / Clear All: the cell returns to the default style before
   /// any remaining `style` delta applies.
   readonly styleReset?: boolean
+  /// PS Office: a formula a value-mode sort moved with its row. The grid
+  /// keeps showing a value for it (the built-in engine's result) and never
+  /// installs the formula itself — the workbook's formulas are not live there.
+  readonly valueModeFormula?: true
 }
+
+/// The cell-data key a value-mode sort tags its moved formulas with (see
+/// JournalEntry.valueModeFormula); it never reaches the grid.
+export const VALUE_MODE_FORMULA_KEY = '__psValueModeFormula'
 
 interface JournalBulkConstantFill extends WorkbookBulkConstantFill {
   readonly journalId: number
@@ -2028,12 +2036,14 @@ function mergeCellIntoEntry(
         : `=${data.f}`
       : undefined
   let rich = previous?.rich
+  let valueModeFormula = previous?.valueModeFormula === true
   const richText = extractRichText(data.p)
   if (formulaText) {
     hasValue = true
     value = null
     formula = formulaText
     rich = undefined
+    valueModeFormula = data[VALUE_MODE_FORMULA_KEY] === true
   } else if (richText !== undefined) {
     hasValue = true
     value = richText.text
@@ -2074,6 +2084,7 @@ function mergeCellIntoEntry(
     ...(style === undefined ? {} : { style }),
     ...(rich === undefined ? {} : { rich }),
     ...(styleReset ? { styleReset: true } : {}),
+    ...(formula !== undefined && valueModeFormula ? { valueModeFormula: true as const } : {}),
   }
 }
 

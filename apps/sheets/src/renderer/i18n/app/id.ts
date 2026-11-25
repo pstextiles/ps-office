@@ -648,6 +648,10 @@ export const id = {
     '{count} rumus dihitung ulang secara langsung (mode klosur); sisa buku kerja dimuat secara streaming sesuai kebutuhan.',
   appRecalcPartial:
     'Rumus dihitung ulang dari pengeditan Anda — {count} mempertahankan nilai cache (fungsi yang tidak ada di mesin cadangan).',
+  appBuiltInRecalcRunning: 'Menghitung ulang hasil rumus…',
+  appBuiltInRecalcDone: 'Hasil rumus dihitung ulang ({count} sel).',
+  appBuiltInRecalcFailed:
+    'Tidak dapat menghitung ulang hasil rumus: {reason}. Excel menghitung ulang file yang disimpan saat membukanya.',
   appRecalcDone: 'Rumus dihitung ulang dari pengeditan Anda ({count} sel, mesin cadangan).',
   appIndexing: 'Mengindeks {name}: {rows} baris siap.',
   appStreamingRows: 'Memuat {name} secara streaming: {rows} baris tersedia.',

@@ -629,6 +629,10 @@ export const en = {
     '{count} formulas recalculate live (closure mode); the rest of the workbook streams on demand.',
   appRecalcPartial:
     'Formulas recalculated from your edits — {count} kept cached values (functions the fallback engine lacks).',
+  appBuiltInRecalcRunning: 'Recalculating formula results…',
+  appBuiltInRecalcDone: 'Formula results recalculated ({count} cells).',
+  appBuiltInRecalcFailed:
+    'Could not recalculate the formula results: {reason}. Excel recalculates the saved file when it opens it.',
   appRecalcDone: 'Formulas recalculated from your edits ({count} cells, engine fallback).',
   appIndexing: 'Indexing {name}: {rows} rows ready.',
   appStreamingRows: 'Streaming {name}: {rows} rows available.',

@@ -689,6 +689,10 @@ export const es = {
     '{count} fórmulas se recalculan en vivo (modo clausura); el resto del libro se carga por streaming bajo demanda.',
   appRecalcPartial:
     'Fórmulas recalculadas según sus ediciones — {count} conservaron valores en caché (funciones que faltan en el motor de reserva).',
+  appBuiltInRecalcRunning: 'Recalculando los resultados de las fórmulas…',
+  appBuiltInRecalcDone: 'Resultados de las fórmulas recalculados ({count} celdas).',
+  appBuiltInRecalcFailed:
+    'No se pudieron recalcular los resultados de las fórmulas: {reason}. Excel los recalcula al abrir el archivo guardado.',
   appRecalcDone: 'Fórmulas recalculadas según sus ediciones ({count} celdas, motor de reserva).',
   appIndexing: 'Indexando {name}: {rows} filas listas.',
   appStreamingRows: 'Cargando {name} por streaming: {rows} filas disponibles.',

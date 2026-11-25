@@ -653,6 +653,10 @@ export const ko = {
     '수식 {count}개를 실시간으로 다시 계산합니다(클로저 모드). 나머지는 필요할 때 스트리밍 방식으로 로드됩니다.',
   appRecalcPartial:
     '편집에 따라 수식을 다시 계산했습니다. {count}개는 캐시된 값을 유지했습니다(대체 엔진이 지원하지 않는 함수).',
+  appBuiltInRecalcRunning: '수식 결과를 다시 계산하는 중…',
+  appBuiltInRecalcDone: '수식 결과를 다시 계산했습니다({count}칸).',
+  appBuiltInRecalcFailed:
+    '수식 결과를 다시 계산하지 못했습니다: {reason}. 저장한 파일은 Excel에서 열 때 다시 계산됩니다.',
   appRecalcDone: '편집에 따라 수식을 다시 계산했습니다({count}개 셀, 엔진 대체).',
   appIndexing: '{name}의 인덱스를 만드는 중: {rows}행 준비됨.',
   appStreamingRows: '{name}을(를) 스트리밍하는 중: {rows}행 사용 가능.',
