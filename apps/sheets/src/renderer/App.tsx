@@ -6055,11 +6055,14 @@ export function App({
         activeCellA1={activeCellA1}
         onGoToReference={(ref) => goToReferenceImpl(dataToolsContext(), ref)}
         onListDefinedNames={() => listDefinedNamesImpl(dataToolsContext())}
-        onReadWorkbookQueries={() =>
-          workbookFile
-            ? window.desktopApi.readWorkbookQueries({ sessionId: workbookFile.sessionId })
-            : Promise.resolve([])
-        }
+        onReadWorkbookQueries={() => {
+          // the live session, read at call time: an in-place refresh swaps it
+          // before React re-renders this closure (PS Office)
+          const sessionId = lazyWorkbookRef.current?.file.sessionId ?? workbookFile?.sessionId
+          return sessionId === undefined
+            ? Promise.resolve([])
+            : window.desktopApi.readWorkbookQueries({ sessionId })
+        }}
         onRefreshQueriesBuiltIn={
           window.desktopApi?.refreshQueriesBuiltIn ? refreshQueriesBuiltIn : undefined
         }
