@@ -1176,7 +1176,7 @@ export const cs = {
   appFromTextCsv: 'Z textu/CSV',
   appRefreshAll: 'Aktualizovat vše',
   appWorkbookNoPivot: 'V tomto sešitu nejsou žádné kontingenční tabulky.',
-  appRefreshAllTitle: 'Aktualizovat všechny kontingenční tabulky',
+  appRefreshAllTitle: 'Aktualizovat všechny dotazy a kontingenční tabulky',
   appQueriesConnections: 'Dotazy a připojení',
   appQueriesConnectionsTitle: 'Zobrazit dotazy a datová připojení sešitu',
   appErrorCheckingDetail: 'Prohledat list na chybové hodnoty',

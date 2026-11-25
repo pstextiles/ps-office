@@ -1110,7 +1110,7 @@ export const zh = {
   appFromTextCsv: '从文本/CSV',
   appRefreshAll: '全部刷新',
   appWorkbookNoPivot: '工作簿中没有透视表。',
-  appRefreshAllTitle: '刷新全部透视表',
+  appRefreshAllTitle: '刷新全部查询和透视表',
   appQueriesConnections: '查询和连接',
   appQueriesConnectionsTitle: '查看工作簿中的查询和数据连接',
   appErrorCheckingDetail: '扫描当前表中的错误值',

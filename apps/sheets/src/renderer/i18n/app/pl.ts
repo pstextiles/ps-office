@@ -1201,7 +1201,7 @@ export const pl = {
   appFromTextCsv: 'Z pliku tekstowego/CSV',
   appRefreshAll: 'Odśwież wszystko',
   appWorkbookNoPivot: 'Brak tabel przestawnych w tym skoroszycie.',
-  appRefreshAllTitle: 'Odśwież wszystkie tabele przestawne',
+  appRefreshAllTitle: 'Odśwież wszystkie zapytania i tabele przestawne',
   appQueriesConnections: 'Zapytania i połączenia',
   appQueriesConnectionsTitle: 'Pokaż zapytania i połączenia danych skoroszytu',
   appErrorCheckingDetail: 'Skanuj arkusz w poszukiwaniu błędów',

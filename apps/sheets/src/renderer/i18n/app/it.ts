@@ -1215,7 +1215,7 @@ export const it = {
   appFromTextCsv: 'Da testo/CSV',
   appRefreshAll: 'Aggiorna tutti',
   appWorkbookNoPivot: 'Nessuna tabella pivot in questa cartella.',
-  appRefreshAllTitle: 'Aggiorna tutte le tabelle pivot',
+  appRefreshAllTitle: 'Aggiorna tutte le query e le tabelle pivot',
   appQueriesConnections: 'Query e connessioni',
   appQueriesConnectionsTitle: 'Elenca le query e le connessioni dati della cartella di lavoro',
   appErrorCheckingDetail: 'Cerca valori di errore nel foglio',

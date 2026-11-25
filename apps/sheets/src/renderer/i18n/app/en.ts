@@ -1152,7 +1152,7 @@ export const en = {
   appFromTextCsv: 'From Text/CSV',
   appRefreshAll: 'Refresh All',
   appWorkbookNoPivot: 'No pivot tables in this workbook.',
-  appRefreshAllTitle: 'Refresh every pivot table',
+  appRefreshAllTitle: 'Refresh every query and pivot table',
   appQueriesConnections: 'Queries & Connections',
   appQueriesConnectionsTitle: "List the workbook's queries and data connections",
   appErrorCheckingDetail: 'Scan the sheet for error values',

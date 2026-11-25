@@ -1174,7 +1174,7 @@ export const hi = {
   appFromTextCsv: 'पाठ/CSV से',
   appRefreshAll: 'सभी ताज़ा करें',
   appWorkbookNoPivot: 'इस वर्कबुक में कोई पिवट टेबल नहीं।',
-  appRefreshAllTitle: 'सभी पिवट टेबल रीफ़्रेश करें',
+  appRefreshAllTitle: 'सभी क्वेरी और पिवट टेबल रीफ़्रेश करें',
   appQueriesConnections: 'क्वेरी और कनेक्शन',
   appQueriesConnectionsTitle: 'वर्कबुक की क्वेरी और डेटा कनेक्शन दिखाएँ',
   appErrorCheckingDetail: 'शीट में त्रुटि मान खोजें',

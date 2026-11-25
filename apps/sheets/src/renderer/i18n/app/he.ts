@@ -1116,7 +1116,7 @@ export const he = {
   appFromTextCsv: 'מטקסט/CSV',
   appRefreshAll: 'רענן הכל',
   appWorkbookNoPivot: 'אין טבלאות ציר בחוברת זו.',
-  appRefreshAllTitle: 'רענון כל טבלאות הציר',
+  appRefreshAllTitle: 'רענון כל השאילתות וטבלאות הציר',
   appQueriesConnections: 'שאילתות וחיבורים',
   appQueriesConnectionsTitle: 'הצגת השאילתות וחיבורי הנתונים של חוברת העבודה',
   appErrorCheckingDetail: 'סריקת הגיליון לערכי שגיאה',

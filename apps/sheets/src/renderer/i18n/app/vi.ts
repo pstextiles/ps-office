@@ -1165,7 +1165,7 @@ export const vi = {
   appFromTextCsv: 'Từ Văn bản/CSV',
   appRefreshAll: 'Làm mới tất cả',
   appWorkbookNoPivot: 'Không có bảng PivotTable nào trong sổ làm việc này.',
-  appRefreshAllTitle: 'Làm mới mọi bảng PivotTable',
+  appRefreshAllTitle: 'Làm mới mọi truy vấn và bảng PivotTable',
   appQueriesConnections: 'Truy vấn & Kết nối',
   appQueriesConnectionsTitle: 'Liệt kê các truy vấn và kết nối dữ liệu của sổ làm việc',
   appErrorCheckingDetail: 'Quét trang tính để tìm các giá trị lỗi',

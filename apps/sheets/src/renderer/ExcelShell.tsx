@@ -765,7 +765,9 @@ export function ExcelShell({
   const [showFillSeries, setShowFillSeries] = useState(false)
   const [showConsolidateDialog, setShowConsolidateDialog] = useState(false)
   const [showGoTo, setShowGoTo] = useState(false)
-  const [showQueries, setShowQueries] = useState(false)
+  /// open: Data › Queries & Connections; refresh-all: Data › Refresh All, which
+  /// runs the built-in query refresh in that dialog and then the pivots
+  const [showQueries, setShowQueries] = useState<false | 'open' | 'refresh-all'>(false)
   const [pasteSpecialSource, setPasteSpecialSource] = useState<PasteSpecialSource | null>(null)
   const [showZoomDialog, setShowZoomDialog] = useState(false)
   const [statsMenuAt, setStatsMenuAt] = useState<{ x: number; y: number } | null>(null)
@@ -835,7 +837,9 @@ export function ExcelShell({
     else if (command === 'subtotal-open') setShowSubtotalDialog(true)
     else if (command === 'consolidate-open') setShowConsolidateDialog(true)
     else if (command === 'goto-open') setShowGoTo(true)
-    else if (command === 'queries-open') setShowQueries(true)
+    else if (command === 'queries-open') setShowQueries('open')
+    // PS Office: Refresh All is Excel's — the queries first, then the pivots
+    else if (command === 'refresh-all' && onRefreshQueriesBuiltIn) setShowQueries('refresh-all')
     else if (command === PASTE_SPECIAL_OPEN_SHELL_COMMAND) {
       void onReadPasteSpecialSource().then((source) => setPasteSpecialSource(source))
     } else if (command === 'header-footer-open') setShowHeaderFooter(true)
@@ -1522,6 +1526,11 @@ export function ExcelShell({
       {showQueries && (
         <QueriesDialog
           load={onReadWorkbookQueries}
+          autoRefresh={showQueries === 'refresh-all'}
+          onAutoRefreshEnd={(outcome) => {
+            if (outcome === 'refreshed') onCommand('refresh-all-pivots-after-queries')
+            else if (outcome === 'none') onCommand('refresh-all')
+          }}
           onRefreshBuiltIn={onRefreshQueriesBuiltIn}
           onRefresh={onRefreshQueriesInExcel}
           onCancelRefresh={onCancelRefreshQueriesInExcel}

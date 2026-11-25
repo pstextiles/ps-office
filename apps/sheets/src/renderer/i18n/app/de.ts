@@ -1229,7 +1229,7 @@ export const de = {
   appFromTextCsv: 'Aus Text/CSV',
   appRefreshAll: 'Alle aktualisieren',
   appWorkbookNoPivot: 'Keine Pivot-Tabellen in dieser Arbeitsmappe.',
-  appRefreshAllTitle: 'Alle Pivot-Tabellen aktualisieren',
+  appRefreshAllTitle: 'Alle Abfragen und Pivot-Tabellen aktualisieren',
   appQueriesConnections: 'Abfragen und Verbindungen',
   appQueriesConnectionsTitle: 'Abfragen und Datenverbindungen der Arbeitsmappe anzeigen',
   appErrorCheckingDetail: 'Blatt auf Fehlerwerte prüfen',

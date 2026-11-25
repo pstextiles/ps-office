@@ -27,6 +27,8 @@ function qualifiedRange(destination: NonNullable<Query['destination']>): string 
 /// way the workbook is reopened.
 export function QueriesDialog({
   load,
+  autoRefresh = false,
+  onAutoRefreshEnd,
   onRefreshBuiltIn,
   onRefresh,
   onCancelRefresh,
@@ -34,6 +36,13 @@ export function QueriesDialog({
   onClose,
 }: {
   readonly load: () => Promise<WorkbookQueriesResult>
+  /// PS Office (Data › Refresh All): start the built-in refresh as soon as the
+  /// list is in, like Excel's Refresh All, with this dialog showing its progress.
+  readonly autoRefresh?: boolean
+  /// After an automatic refresh: refreshed, failed (the dialog shows why), or
+  /// none (the workbook has no queries) — Refresh All goes on to the pivots
+  /// unless the refresh failed.
+  readonly onAutoRefreshEnd?: ((outcome: 'refreshed' | 'failed' | 'none') => void) | undefined
   /// Built-in refresh; absent in builds without it. What to tell the person once
   /// the workbook is reopened (formulas elsewhere keep their previous results), or an error.
   readonly onRefreshBuiltIn?:
@@ -69,6 +78,21 @@ export function QueriesDialog({
     return () => clearInterval(timer)
   }, [refreshing])
 
+  // Refresh All: run once, when the list has loaded
+  const autoStarted = useRef(false)
+  useEffect(() => {
+    if (!autoRefresh || autoStarted.current || queries === null) return
+    autoStarted.current = true
+    if (queries.length === 0 || !onRefreshBuiltIn) {
+      onAutoRefreshEnd?.('none')
+      onClose()
+      return
+    }
+    void refreshBuiltIn().then((ok) => onAutoRefreshEnd?.(ok ? 'refreshed' : 'failed'))
+    // the refresh reads the latest props through its own closure
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [autoRefresh, queries])
+
   useEffect(() => {
     let alive = true
     load().then(
@@ -90,8 +114,9 @@ export function QueriesDialog({
     else setError(failure)
   }
 
-  const refreshBuiltIn = async (): Promise<void> => {
-    if (!onRefreshBuiltIn || refreshing) return
+  /** the built-in refresh; true once the tables were refreshed */
+  const refreshBuiltIn = async (): Promise<boolean> => {
+    if (!onRefreshBuiltIn || refreshing) return false
     setError(null)
     setDone(null)
     setBuiltIn(true)
@@ -105,11 +130,12 @@ export function QueriesDialog({
     setBuiltIn(false)
     if ('error' in result) {
       setError(result.error)
-      return
+      return false
     }
     setDone(result.done)
     // the workbook was reopened: show its tables' new row counts
     setQueries(await loadRef.current().catch(() => null))
+    return true
   }
 
   const refresh = async (): Promise<void> => {

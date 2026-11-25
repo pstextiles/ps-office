@@ -1193,7 +1193,7 @@ export const ru = {
   appFromTextCsv: 'Из текстового/CSV-файла',
   appRefreshAll: 'Обновить все',
   appWorkbookNoPivot: 'В книге нет сводных таблиц.',
-  appRefreshAllTitle: 'Обновить все сводные таблицы',
+  appRefreshAllTitle: 'Обновить все запросы и сводные таблицы',
   appQueriesConnections: 'Запросы и подключения',
   appQueriesConnectionsTitle: 'Показать запросы и подключения к данным книги',
   appErrorCheckingDetail: 'Найти значения ошибок на листе',

@@ -1180,7 +1180,7 @@ export const tr = {
   appFromTextCsv: "Metin/CSV'den",
   appRefreshAll: 'Tümünü Yenile',
   appWorkbookNoPivot: 'Bu çalışma kitabında pivot tablo yok.',
-  appRefreshAllTitle: 'Tüm pivot tabloları yenile',
+  appRefreshAllTitle: 'Tüm sorguları ve pivot tabloları yenile',
   appQueriesConnections: 'Sorgular ve Bağlantılar',
   appQueriesConnectionsTitle: 'Çalışma kitabının sorgularını ve veri bağlantılarını listele',
   appErrorCheckingDetail: 'Sayfayı hata değerleri için tara',

@@ -1222,7 +1222,7 @@ export const ja = {
   appFromTextCsv: 'テキスト/CSV から',
   appRefreshAll: 'すべて更新',
   appWorkbookNoPivot: 'ブックにピボットテーブルがありません。',
-  appRefreshAllTitle: 'すべてのピボットテーブルを更新',
+  appRefreshAllTitle: 'すべてのクエリとピボットテーブルを更新',
   appQueriesConnections: 'クエリと接続',
   appQueriesConnectionsTitle: 'ブックのクエリとデータ接続を一覧表示',
   appErrorCheckingDetail: 'シート内のエラー値をスキャン',

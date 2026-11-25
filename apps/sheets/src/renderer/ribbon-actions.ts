@@ -797,6 +797,15 @@ export function handleRibbonCommand(ctx: RibbonCommandContext, command: string):
       if (error) ctx.setMessage(error)
       return
     }
+    // PS Office: Refresh All after its query refresh — the pivots, if any;
+    // without pivots the refresh's own result stays on screen
+    case 'refresh-all-pivots-after-queries': {
+      const state = ctx.lazyWorkbookRef.current
+      if (!state?.file.sheets.some((sheet) => sheet.pivotTables.length > 0)) return
+      const error = handleRefreshAllPivots(ctx.pivotContext())
+      if (error) ctx.setMessage(error)
+      return
+    }
     case 'error-checking': {
       const workbook = runtime.univerAPI.getActiveWorkbook()
       if (!workbook || !worksheet) return

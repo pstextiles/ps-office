@@ -1175,7 +1175,7 @@ export const ms = {
   appFromTextCsv: 'Daripada Teks/CSV',
   appRefreshAll: 'Segar Semula Semua',
   appWorkbookNoPivot: 'Tiada Jadual Pangsi dalam buku kerja ini.',
-  appRefreshAllTitle: 'Segar semula semua Jadual Pangsi',
+  appRefreshAllTitle: 'Segar semula semua pertanyaan dan Jadual Pangsi',
   appQueriesConnections: 'Pertanyaan & Sambungan',
   appQueriesConnectionsTitle: 'Senaraikan pertanyaan dan sambungan data buku kerja',
   appErrorCheckingDetail: 'Imbas nilai ralat dalam helaian',

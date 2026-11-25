@@ -1241,7 +1241,7 @@ export const fr = {
   appFromTextCsv: 'À partir de texte/CSV',
   appRefreshAll: 'Actualiser tout',
   appWorkbookNoPivot: 'Aucun tableau croisé dans ce classeur.',
-  appRefreshAllTitle: 'Actualiser tous les tableaux croisés',
+  appRefreshAllTitle: 'Actualiser toutes les requêtes et tous les tableaux croisés',
   appQueriesConnections: 'Requêtes et connexions',
   appQueriesConnectionsTitle: 'Lister les requêtes et connexions de données du classeur',
   appErrorCheckingDetail: 'Rechercher les valeurs d’erreur de la feuille',

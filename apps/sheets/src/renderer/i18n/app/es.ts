@@ -1218,7 +1218,7 @@ export const es = {
   appFromTextCsv: 'Desde texto/CSV',
   appRefreshAll: 'Actualizar todo',
   appWorkbookNoPivot: 'No hay tablas dinámicas en este libro.',
-  appRefreshAllTitle: 'Actualizar todas las tablas dinámicas',
+  appRefreshAllTitle: 'Actualizar todas las consultas y tablas dinámicas',
   appQueriesConnections: 'Consultas y conexiones',
   appQueriesConnectionsTitle: 'Mostrar las consultas y conexiones de datos del libro',
   appErrorCheckingDetail: 'Buscar valores de error en la hoja',

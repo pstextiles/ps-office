@@ -1214,7 +1214,7 @@ export const pt = {
   appFromTextCsv: 'De Texto/CSV',
   appRefreshAll: 'Atualizar Tudo',
   appWorkbookNoPivot: 'Nenhuma tabela dinâmica nesta pasta de trabalho.',
-  appRefreshAllTitle: 'Atualizar todas as tabelas dinâmicas',
+  appRefreshAllTitle: 'Atualizar todas as consultas e tabelas dinâmicas',
   appQueriesConnections: 'Consultas e conexões',
   appQueriesConnectionsTitle: 'Listar as consultas e conexões de dados da pasta de trabalho',
   appErrorCheckingDetail: 'Verificar valores de erro na planilha',

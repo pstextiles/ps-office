@@ -1139,7 +1139,7 @@ export const ar = {
   appFromTextCsv: 'من نص/CSV',
   appRefreshAll: 'تحديث الكل',
   appWorkbookNoPivot: 'لا توجد جداول محورية في هذا المصنف.',
-  appRefreshAllTitle: 'تحديث كل الجداول المحورية',
+  appRefreshAllTitle: 'تحديث كل الاستعلامات والجداول المحورية',
   appQueriesConnections: 'الاستعلامات والاتصالات',
   appQueriesConnectionsTitle: 'عرض استعلامات المصنف واتصالات البيانات',
   appErrorCheckingDetail: 'فحص الورقة بحثًا عن قيم الخطأ',

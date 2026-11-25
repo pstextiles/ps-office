@@ -1190,7 +1190,7 @@ export const ko = {
   appFromTextCsv: '텍스트/CSV에서',
   appRefreshAll: '모두 새로 고침',
   appWorkbookNoPivot: '통합 문서에 피벗 테이블이 없습니다.',
-  appRefreshAllTitle: '모든 피벗 테이블 새로 고침',
+  appRefreshAllTitle: '모든 쿼리와 피벗 테이블 새로 고침',
   appQueriesConnections: '쿼리 및 연결',
   appQueriesConnectionsTitle: '통합 문서의 쿼리와 데이터 연결 목록 보기',
   appErrorCheckingDetail: '시트의 오류 값 검사',

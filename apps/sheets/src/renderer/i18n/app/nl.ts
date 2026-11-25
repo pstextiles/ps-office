@@ -1212,7 +1212,7 @@ export const nl = {
   appFromTextCsv: 'Uit tekst/CSV',
   appRefreshAll: 'Alles vernieuwen',
   appWorkbookNoPivot: 'Geen draaitabellen in deze werkmap.',
-  appRefreshAllTitle: 'Alle draaitabellen vernieuwen',
+  appRefreshAllTitle: "Alle query's en draaitabellen vernieuwen",
   appQueriesConnections: 'Query’s en verbindingen',
   appQueriesConnectionsTitle: 'De query’s en gegevensverbindingen van de werkmap weergeven',
   appErrorCheckingDetail: 'Blad scannen op foutwaarden',

@@ -1176,7 +1176,7 @@ export const id = {
   appFromTextCsv: 'Dari Teks/CSV',
   appRefreshAll: 'Refresh Semua',
   appWorkbookNoPivot: 'Tidak ada PivotTable di buku kerja ini.',
-  appRefreshAllTitle: 'Segarkan semua PivotTable',
+  appRefreshAllTitle: 'Segarkan semua kueri dan PivotTable',
   appQueriesConnections: 'Kueri & Koneksi',
   appQueriesConnectionsTitle: 'Tampilkan kueri dan koneksi data buku kerja',
   appErrorCheckingDetail: 'Pindai nilai kesalahan di lembar',
