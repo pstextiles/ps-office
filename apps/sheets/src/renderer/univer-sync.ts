@@ -6880,8 +6880,18 @@ export function journalRangeSnapshot(
         : typeof cell?.s === 'object' && cell.s !== null
           ? cell.s
           : undefined
+      // An empty cell that moved in with only formatting must still clear
+      // the target's content: without a `v` the journal records a style
+      // change alone, and the save keeps the value or formula the file had
+      // there (Excel's sort leaves such a cell empty).
+      const emptyMovedIn =
+        !(cell && 'v' in cell) &&
+        cell?.p === undefined &&
+        !(typeof cell?.f === 'string' && cell.f.length > 0) &&
+        !(typeof cell?.si === 'string' && cell.si.length > 0) &&
+        movedFormula === undefined
       rowValues[column] = {
-        ...(cell && 'v' in cell ? { v: cell.v } : {}),
+        ...(cell && 'v' in cell ? { v: cell.v } : emptyMovedIn ? { v: null } : {}),
         ...(cell?.t != null ? { t: cell.t } : {}),
         ...(typeof cell?.f === 'string' && cell.f.length > 0 ? { f: cell.f } : {}),
         // value-mode sort (PS Office): the moved formula, or none (a value

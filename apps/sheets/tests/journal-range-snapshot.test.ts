@@ -90,6 +90,14 @@ describe('journalRangeSnapshot', () => {
     expect(entries[0]).toMatchObject({ styleReset: true, style: { fillColor: '#FF0000' } })
   })
 
+  it('clears the target when an empty cell with only formatting moves in', () => {
+    // production plan: a bordered empty note cell sorted onto a row whose note
+    // and formula the file still holds — the save kept both before
+    const entries = snapshot([[{ s: 'red' } as { v: unknown }], [{ v: 'x' }]], { 0: 1, 1: 0 })
+    expect(entries[0]).toMatchObject({ hasValue: true, value: null })
+    expect(entries[0]?.formula).toBeUndefined()
+  })
+
   it('treats every cell of a moved range as replaced when no order is known', () => {
     const entries = snapshot([[{ v: 'a', s: 'red' }], [{ v: 'b' }]])
     expect(entries[0]).toMatchObject({
