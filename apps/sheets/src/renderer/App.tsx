@@ -221,6 +221,7 @@ import { cfRuleUnsaveableReason, iconSetSaveable } from '@genoffice/xlsx-gateway
 import { installLazyFindBridge } from './lazy-find'
 import { startFullLoad } from './full-load'
 import { canMoveFormulas, currentFormulaAt } from './sort-formulas'
+import { applyReorder, sortOrder, type SortRule } from './value-mode-sort'
 import { opensInFormulaMode, workbookCellCounts } from './load-budget'
 import { installReplaceAutoSearch } from './replace-autosearch'
 import { FindReplacePanel } from './FindReplacePanel'
@@ -3635,6 +3636,38 @@ export function App({
               else if (verdict === 'workbookTooLarge') setFullLoadPrompt('tooLarge')
               else if (verdict === 'valueModeFormulas') setMessage(t('appSortValueModeFormulas'))
               else setMessage(t('appSortRangeTooLarge'))
+              return
+            }
+            // value mode (PS Office): sort with Excel's order and the reorder
+            // mutation alone — Univer's command re-derives every conditional-
+            // format formula for the moved rows (minutes on a large plan),
+            // which Excel's sort does not do
+            if (
+              !state.formulaMode &&
+              subUnitId !== undefined &&
+              (event.id === 'sheet.command.sort-range' ||
+                event.id === 'sheet.command.reorder-range')
+            ) {
+              event.cancel = true
+              const params = event.params as {
+                unitId?: string
+                range?: IRange
+                orderRules?: SortRule[]
+                hasTitle?: boolean
+                order?: Record<number, number>
+              }
+              const workbook = runtime.univerAPI.getActiveWorkbook()
+              const worksheet = workbook?.getSheetBySheetId(subUnitId)
+              if (workbook && worksheet && params.range) {
+                const range = params.range
+                const order =
+                  params.order ??
+                  sortOrder(worksheet, range, params.orderRules ?? [], params.hasTitle === true)
+                // after this command's own dispatch has unwound
+                setTimeout(() =>
+                  applyReorder(runtime, params.unitId ?? workbook.getId(), subUnitId, range, order),
+                )
+              }
               return
             }
           }
