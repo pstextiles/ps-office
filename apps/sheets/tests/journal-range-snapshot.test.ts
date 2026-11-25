@@ -93,7 +93,7 @@ describe('journalRangeSnapshot', () => {
   it('clears the target when an empty cell with only formatting moves in', () => {
     // production plan: a bordered empty note cell sorted onto a row whose note
     // and formula the file still holds — the save kept both before
-    const entries = snapshot([[{ s: 'red' } as { v: unknown }], [{ v: 'x' }]], { 0: 1, 1: 0 })
+    const entries = snapshot([[{ s: 'red' } as unknown as { v: unknown }], [{ v: 'x' }]], { 0: 1, 1: 0 })
     expect(entries[0]).toMatchObject({ hasValue: true, value: null })
     expect(entries[0]?.formula).toBeUndefined()
   })

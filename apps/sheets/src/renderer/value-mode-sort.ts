@@ -15,7 +15,13 @@
  * minus a header row, without filtered or hidden rows, and only the first row
  * of each merge inside the range.
  */
-import { CellValueType, IUndoRedoService, type ICellData, type IRange } from '@univerjs/core'
+import {
+  CellValueType,
+  IUndoRedoService,
+  type ICellData,
+  type IRange,
+  type Nullable,
+} from '@univerjs/core'
 
 import { REORDER_RANGE_MUTATION } from './app-constants'
 import type { UniverRuntime, UniverWorksheet } from './univer-state'
@@ -46,7 +52,7 @@ type SortKey =
   | { readonly kind: 4 }
 
 /** a cell's value as Excel sorts it: number < text < logical < error, blank always last */
-export function sortKeyOf(cell: ICellData | null | undefined): SortKey {
+export function sortKeyOf(cell: Nullable<ICellData>): SortKey {
   if (!cell) return { kind: 4 }
   const rich = cell.p?.body?.dataStream
   const raw: unknown =
