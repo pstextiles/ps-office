@@ -26,6 +26,7 @@ import {
   type QueryRefreshAnswer,
   type RefreshedFormulas,
 } from '../src/main/query-refresh-worker'
+import { fullCalcOnLoadOf } from '../src/main/calc-on-load'
 import { queryTableWorkbook } from './power-query-fixtures'
 
 const client = {} as ArchiveClient
@@ -93,6 +94,7 @@ describe('refreshWorkbookBuiltIn', () => {
         { sheet: 'Plan', ranges: [{ startRow: 0, endRow: 0, startColumn: 0, endColumn: 0 }] },
       ],
       formulas: 'recalculated',
+      recalcOnOpen: true,
     })
     expect(d.plan).toHaveBeenCalledWith({ path: input.sourcePath, systemCulture: 'ko-KR' })
     expect(d.save).toHaveBeenCalledTimes(1)
@@ -120,6 +122,7 @@ describe('refreshWorkbookBuiltIn', () => {
       ],
       formulas: 'stale',
       formulasDetail: 'Formula limit: the function OFFSET',
+      recalcOnOpen: true,
     })
     expect(d.save.mock.calls[0]![0]).not.toHaveProperty('formulaValues')
   })
@@ -216,6 +219,31 @@ describe('the save planned in the worker', () => {
     expect(d.save.mock.calls[0]![0]).toMatchObject({ edits: PLAN.edits, formulaValues: VALUES })
   })
 
+  it("keeps the file's recalculate-on-open setting only when the worker's save kept it and was written", async () => {
+    const kept = deps({
+      outcome: PLANNED,
+      formulas: RECALCULATED,
+      save: PLANNED_SAVE,
+      keptCalcOnLoad: true,
+    })
+    const result = await refreshWorkbookBuiltIn({ ...input, trustRecalculatedValues: true }, kept)
+    expect(result).toMatchObject({ ok: true, formulas: 'recalculated', recalcOnOpen: false })
+    expect(kept.plan).toHaveBeenCalledWith({
+      path: input.sourcePath,
+      systemCulture: 'ko-KR',
+      trustRecalculatedValues: true,
+    })
+    // the main-thread fallback saves the ordinary way, which forces it
+    const fallback = deps(
+      { outcome: PLANNED, formulas: RECALCULATED, save: PLANNED_SAVE, keptCalcOnLoad: true },
+      undefined,
+      new PlannedSaveSourceMismatch('changed'),
+    )
+    expect(
+      await refreshWorkbookBuiltIn({ ...input, trustRecalculatedValues: true }, fallback),
+    ).toMatchObject({ ok: true, recalcOnOpen: true })
+  })
+
   it('reports a locked file from the write as locked', async () => {
     const locked = Object.assign(new Error('busy'), { code: 'EBUSY' })
     const d = deps(
@@ -246,6 +274,19 @@ describe('the worker job', () => {
       expect(answer.save?.touchedEntries.some((name) => name.startsWith('xl/worksheets/'))).toBe(
         true,
       )
+      // the ordinary save forces Excel to recalculate on open
+      expect(fullCalcOnLoadOf(answer.save!.replaced.get('xl/workbook.xml')!)).toBe('1')
+      expect(answer.keptCalcOnLoad).toBeUndefined()
+      // the refresh-only run, every formula recalculated: the file's own setting (none here)
+      const trusted = await runQueryRefreshJobAndPlanSave({
+        path,
+        systemCulture: 'ko-KR',
+        today: 46346,
+        trustRecalculatedValues: true,
+      })
+      expect(trusted.formulas?.ok).toBe(true)
+      expect(trusted.keptCalcOnLoad).toBe(true)
+      expect(fullCalcOnLoadOf(trusted.save!.replaced.get('xl/workbook.xml')!)).toBeNull()
     } finally {
       rmSync(dir, { recursive: true, force: true })
     }

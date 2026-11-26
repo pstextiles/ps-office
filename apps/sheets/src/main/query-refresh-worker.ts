@@ -19,6 +19,7 @@ import {
   readArchiveEntries,
   type PlannedArchiveSave,
 } from '@genoffice/xlsx-gateway/gateway/xlsx-package-io'
+import { isWorkbookPart, withSourceFullCalcOnLoad } from './calc-on-load'
 import { dateSerial, recalculateAfterEdits } from './formula-calc/recalc'
 import { nodeQueryHost } from './power-query/node-host'
 import { planWorkbookRefresh, type RefreshOutcome } from './power-query/refresh'
@@ -28,6 +29,13 @@ export interface QueryRefreshJob {
   readonly systemCulture?: string
   /** today as a date serial, for TODAY; default the PC's date */
   readonly today?: number
+  /**
+   * PS Office, refresh-only run: when every formula was recalculated, keep the
+   * workbook's own recalculate-on-open setting instead of forcing it (see
+   * calc-on-load.ts — an older Excel turns new functions into #NAME? on a
+   * forced recalculation).
+   */
+  readonly trustRecalculatedValues?: boolean
 }
 
 /**
@@ -44,6 +52,8 @@ export interface QueryRefreshAnswer {
   readonly formulas: RefreshedFormulas | null
   /** the save, planned from the workbook's bytes; absent when planning failed (the main process plans it then) */
   readonly save?: PlannedArchiveSave
+  /** the planned save keeps the workbook's own recalculate-on-open setting (trustRecalculatedValues) */
+  readonly keptCalcOnLoad?: boolean
 }
 
 export function runQueryRefreshJob(job: QueryRefreshJob): QueryRefreshAnswer {
@@ -58,15 +68,28 @@ export async function runQueryRefreshJobAndPlanSave(
   if (!answer.outcome.ok || !bytes) return answer
   try {
     const buffer = Buffer.from(bytes.buffer, bytes.byteOffset, bytes.byteLength)
-    const plan = await planStreamingSave(await createBufferEntrySource(buffer), {
+    const source = await createBufferEntrySource(buffer)
+    const plan = await planStreamingSave(source, {
       edits: answer.outcome.plan.edits,
       tableEdits: answer.outcome.plan.tableEdits,
       ...(answer.formulas?.ok ? { formulaValues: answer.formulas.values } : {}),
     })
+    let replaced = plan.replaced
+    let keptCalcOnLoad = false
+    if (job.trustRecalculatedValues === true && answer.formulas?.ok) {
+      const next = new Map(replaced)
+      for (const [entry, xml] of replaced) {
+        if (!isWorkbookPart(entry) || !(await source.has(entry))) continue
+        next.set(entry, withSourceFullCalcOnLoad(xml, await source.readText(entry)))
+        keptCalcOnLoad = true
+      }
+      replaced = next
+    }
     return {
       ...answer,
+      ...(keptCalcOnLoad ? { keptCalcOnLoad: true } : {}),
       save: {
-        replaced: plan.replaced,
+        replaced,
         added: plan.added,
         addedBinary: plan.addedBinary,
         removedEntries: plan.removedEntries,

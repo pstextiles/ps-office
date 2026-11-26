@@ -46,6 +46,8 @@ export type BuiltInRefreshResult =
       readonly formulas: 'recalculated' | 'stale'
       /** why the formulas were left as they were */
       readonly formulasDetail?: string
+      /** the saved file asks Excel to recalculate on open (false: trustRecalculatedValues kept the file's own setting) */
+      readonly recalcOnOpen: boolean
     }
   | {
       readonly ok: false
@@ -182,6 +184,8 @@ export async function refreshWorkbookBuiltIn(
     /** the workbook file to write */
     readonly targetPath: string
     readonly systemCulture?: string
+    /** refresh-only run: keep the file's recalculate-on-open setting when every formula was recalculated (calc-on-load.ts) */
+    readonly trustRecalculatedValues?: boolean
   },
   deps: BuiltInRefreshDeps = defaultDeps,
 ): Promise<BuiltInRefreshResult> {
@@ -193,6 +197,7 @@ export async function refreshWorkbookBuiltIn(
       answer = await deps.plan({
         path: input.sourcePath,
         ...(input.systemCulture === undefined ? {} : { systemCulture: input.systemCulture }),
+        ...(input.trustRecalculatedValues === true ? { trustRecalculatedValues: true } : {}),
       })
     } catch (error) {
       if (error instanceof RefreshTimeout) return { ok: false, code: 'timeout' }
@@ -212,13 +217,13 @@ export async function refreshWorkbookBuiltIn(
         detail: short(message),
       }
     }
+    let written = false
     try {
       const target = {
         client: input.client,
         sourcePath: input.sourcePath,
         targetPath: input.targetPath,
       }
-      let written = false
       if (answer.save) {
         try {
           await deps.write(target, answer.save)
@@ -248,14 +253,23 @@ export async function refreshWorkbookBuiltIn(
       ...outcome.plan.edits.map((edit) => ({ sheetName: edit.sheetName, cells: [edit] })),
       ...(formulas?.ok ? formulas.values : []),
     ])
+    // the main-thread fallback plans with the ordinary save, which always forces it
+    const recalcOnOpen = !(written && answer.keptCalcOnLoad === true)
     if (formulas?.ok) {
-      return { ok: true, tables: outcome.plan.tables, regions, formulas: 'recalculated' }
+      return {
+        ok: true,
+        tables: outcome.plan.tables,
+        regions,
+        formulas: 'recalculated',
+        recalcOnOpen,
+      }
     }
     return {
       ok: true,
       tables: outcome.plan.tables,
       regions,
       formulas: 'stale',
+      recalcOnOpen,
       ...(formulas ? { formulasDetail: short(formulas.reason) } : {}),
     }
   } finally {

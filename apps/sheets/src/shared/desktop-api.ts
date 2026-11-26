@@ -2547,6 +2547,8 @@ export const workbookQueriesBuiltInRefreshResultSchema = z.union([
       /** recalculated: the formulas' new results were saved too; stale: they keep their previous results until Excel opens the file */
       formulas: z.enum(['recalculated', 'stale']),
       formulasDetail: z.string().max(400).optional(),
+      /** PS Office: the saved file asks Excel to recalculate on open (always, except the refresh-only run) */
+      recalcOnOpen: z.boolean().optional(),
     })
     .strict(),
   z

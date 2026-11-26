@@ -251,6 +251,36 @@
   !insertmacro MUI_PAGE_FINISH
 !macroend
 
+; PS Office: the refresh-only run (`--refresh-queries`, query-refresh-run.ts)
+; for PCs too slow for the editor or with an Excel too old to refresh Power
+; Query. Files dropped on the shortcut, or sent to it from Explorer's Send to
+; menu, are appended to its arguments. The Send to entry is kept current on
+; every install; the desktop one is made once per user (a registry mark), so
+; a shortcut the user deleted does not come back with each update. An update
+; runs the old uninstaller too, so both are removed only by a real uninstall.
+!define PSOFFICE_REFRESH_LINK "PS Query Refresh.lnk"
+!define PSOFFICE_REFRESH_KEY "Software\PSOffice"
+
+!macro PSOfficeCreateQueryRefreshShortcuts
+  Push $0
+  CreateShortCut "$SENDTO\${PSOFFICE_REFRESH_LINK}" "$appExe" "--refresh-queries" "$appExe" 0
+  ReadRegStr $0 HKCU "${PSOFFICE_REFRESH_KEY}" "QueryRefreshDesktopLink"
+  ${If} $0 != "1"
+    CreateShortCut "$DESKTOP\${PSOFFICE_REFRESH_LINK}" "$appExe" "--refresh-queries" "$appExe" 0
+    WriteRegStr HKCU "${PSOFFICE_REFRESH_KEY}" "QueryRefreshDesktopLink" "1"
+  ${EndIf}
+  Pop $0
+!macroend
+
+!macro PSOfficeRemoveQueryRefreshShortcuts
+  ${ifNot} ${isUpdated}
+    Delete "$SENDTO\${PSOFFICE_REFRESH_LINK}"
+    Delete "$DESKTOP\${PSOFFICE_REFRESH_LINK}"
+    DeleteRegValue HKCU "${PSOFFICE_REFRESH_KEY}" "QueryRefreshDesktopLink"
+    DeleteRegKey /ifempty HKCU "${PSOFFICE_REFRESH_KEY}"
+  ${endIf}
+!macroend
+
 !macro customInstall
   Push "$INSTDIR\resources\cli"
   Call GenOfficeAddToUserPath
@@ -265,6 +295,7 @@
   !insertmacro GenOfficeRegisterOpenWithEpub
   !insertmacro GenOfficeRegisterOpenWithVsdx
   !insertmacro GenOfficeRegisterApplicationCapabilities
+  !insertmacro PSOfficeCreateQueryRefreshShortcuts
   !insertmacro UPDATEFILEASSOC
 !macroend
 
@@ -283,6 +314,7 @@
   !insertmacro GenOfficeUnregisterOpenWithEpub
   !insertmacro GenOfficeUnregisterOpenWithVsdx
   !insertmacro GenOfficeUnregisterApplicationCapabilities
+  !insertmacro PSOfficeRemoveQueryRefreshShortcuts
   Pop $0
   !insertmacro UPDATEFILEASSOC
 !macroend

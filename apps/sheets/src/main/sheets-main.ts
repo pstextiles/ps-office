@@ -12,6 +12,7 @@ import {
 import {
   copyFile,
   mkdir,
+  mkdtemp,
   open,
   readFile,
   realpath,
@@ -22,6 +23,7 @@ import {
 } from 'node:fs/promises'
 import { refreshCsvDigest } from './csv-digest'
 import { createServer } from 'node:http'
+import { tmpdir } from 'node:os'
 import { basename, dirname, isAbsolute, join, resolve as resolvePath, extname } from 'node:path'
 
 import {
@@ -277,7 +279,12 @@ import {
   refreshWorkbookInExcel,
   stopExcelRefreshes,
 } from './excel-refresh'
-import { RecalcSuperseded, recalcInWorker, refreshWorkbookBuiltIn } from './builtin-refresh'
+import {
+  RecalcSuperseded,
+  recalcInWorker,
+  refreshWorkbookBuiltIn,
+  type BuiltInRefreshResult,
+} from './builtin-refresh'
 import { checkboxStyleIndexes, featurePropertyBagPart } from './cell-checkbox'
 import {
   appendSaveFailure,
@@ -3713,6 +3720,40 @@ function failHeadlessExport(wcId: number, message: string): void {
   if (!settle) return
   headlessExportWaiters.delete(wcId)
   settle({ ok: false, error: message })
+}
+
+/**
+ * PS Office, refresh-only run (`--refresh-queries`): the workbook's queries
+ * refreshed and its formulas recalculated by the built-in engine, saved into
+ * the file itself — the Data › Refresh All of the sheets tab without opening
+ * the workbook on screen (a slow PC, or an Excel too old to refresh). The
+ * engine reads a private copy of the file, so the save checks the copy it
+ * planned from; when every formula was recalculated the file keeps its own
+ * recalculate-on-open setting (calc-on-load.ts).
+ */
+export async function refreshQueriesHeadless(
+  path: string,
+): Promise<BuiltInRefreshResult | { readonly ok: false; readonly code: 'not-file' }> {
+  if (!refreshablePath(path) || !existsSync(path) || !statSync(path).isFile()) {
+    return { ok: false, code: 'not-file' }
+  }
+  const client = sidecar ?? new XlsxSidecarClient(resolveSidecarPath())
+  sidecar = client
+  client.start()
+  const dir = await mkdtemp(join(tmpdir(), 'psoffice-refresh-'))
+  try {
+    const snapshot = join(dir, `source${extname(path).toLowerCase()}`)
+    await copyFile(path, snapshot)
+    return await refreshWorkbookBuiltIn({
+      client,
+      sourcePath: snapshot,
+      targetPath: path,
+      systemCulture: app.getSystemLocale(),
+      trustRecalculatedValues: true,
+    })
+  } finally {
+    await rm(dir, { recursive: true, force: true }).catch(() => undefined)
+  }
 }
 
 /**

@@ -238,6 +238,7 @@ import { createFileViaCli } from './mcp/headless-cli'
 import {
   configureSheetsRuntime,
   exportSheetsPdfHeadless,
+  refreshQueriesHeadless,
   hasActiveQueuedWorkbook,
   installSheetsMenu,
   markSheetsShuttingDown,
@@ -559,6 +560,13 @@ import {
 } from './projects/project-ipc'
 import { PROJECT_UNAVAILABLE, ProjectFolderTools, type DownloadAsk } from './projects/project-tools'
 import { runHeadlessExport, type HeadlessExporters } from './headless-export'
+import {
+  parseRefreshQueriesArgv,
+  progressPageHtml,
+  refreshRunLabels,
+  summarizeRefreshRun,
+  type HeadlessRefreshResult,
+} from './query-refresh-run'
 import { TabManager, canonicalPath, type DetachedTab } from './tab-manager'
 import { shellWindowTitle } from './window-title'
 import { tabMenuTemplate, type TabMenuActions, isProgramFile } from './tab-menu'
@@ -735,6 +743,17 @@ if (!app.isPackaged) {
  */
 const headlessArgv = parseHeadlessExportArgv(process.argv)
 if (headlessArgv.kind !== 'none') {
+  setHeadlessMode(true)
+  app.dock?.hide()
+}
+
+/**
+ * PS Office: `--refresh-queries <workbook> …`, the refresh-only run
+ * (query-refresh-run.ts): no editor window, no lock, one small progress
+ * window and one closing message.
+ */
+const refreshQueriesArgv = parseRefreshQueriesArgv(process.argv)
+if (refreshQueriesArgv.kind !== 'none') {
   setHeadlessMode(true)
   app.dock?.hide()
 }
@@ -10382,6 +10401,75 @@ async function runHeadlessExportEntry(
   app.exit(headlessExitCode(outcome))
 }
 
+/**
+ * The whole refresh-only run: each workbook refreshed in turn by the sheets
+ * module's built-in engine, a small window naming the one in progress, then
+ * one message with every file's result. Exits with that message's code.
+ */
+async function runRefreshQueriesEntry(paths: readonly string[]): Promise<void> {
+  const lang = currentLang()
+  const labels = refreshRunLabels(lang)
+  const rtl = lang === 'ar' || lang === 'he'
+  const outcomes: { fileName: string; result: HeadlessRefreshResult }[] = []
+  let win: BrowserWindow | null = null
+  if (paths.length > 0) {
+    win = new BrowserWindow({
+      width: 480,
+      height: 176,
+      useContentSize: true,
+      resizable: false,
+      maximizable: false,
+      fullscreenable: false,
+      // closing it mid-save would leave the user unsure what was written
+      closable: false,
+      title: labels.title,
+      show: false,
+      backgroundColor: nativeTheme.shouldUseDarkColors ? '#202124' : '#ffffff',
+      webPreferences: { sandbox: true, contextIsolation: true, nodeIntegration: false },
+    })
+    win.setMenu(null)
+    win.once('ready-to-show', () => win?.show())
+    win.setProgressBar(2, { mode: 'indeterminate' })
+    for (const [index, path] of paths.entries()) {
+      const fileName = basename(path)
+      const page = progressPageHtml(
+        labels,
+        { index: index + 1, total: paths.length, fileName },
+        rtl,
+      )
+      await win
+        .loadURL(`data:text/html;charset=utf-8,${encodeURIComponent(page)}`)
+        .catch(() => undefined)
+      let result: HeadlessRefreshResult
+      try {
+        result = await refreshQueriesHeadless(resolve(path))
+      } catch (error) {
+        result = {
+          ok: false,
+          code: 'failed',
+          detail: error instanceof Error ? error.message : String(error),
+        }
+      }
+      outcomes.push({ fileName, result })
+    }
+    win.setProgressBar(-1)
+  }
+  stopSheetsSidecar()
+  const summary = summarizeRefreshRun(outcomes, labels)
+  const options = {
+    type: summary.type,
+    title: labels.title,
+    message: summary.title,
+    detail: summary.message,
+    buttons: [labels.button],
+    noLink: true,
+  }
+  if (win && !win.isDestroyed()) await dialog.showMessageBox(win, options)
+  else await dialog.showMessageBox(options)
+  for (const open of BrowserWindow.getAllWindows()) if (!open.isDestroyed()) open.destroy()
+  app.exit(summary.exitCode)
+}
+
 app.whenReady().then(async () => {
   // safeStorage works only once the app is ready: keys read before this read as empty
   const secretCodec = safeStorageCodec(safeStorage, process.platform, () =>
@@ -10411,6 +10499,10 @@ app.whenReady().then(async () => {
   })
   // the open books' pictures, styles and fonts (only entries of a book a tab has open)
   registerEpubAssetProtocol()
+  if (refreshQueriesArgv.kind === 'run') {
+    await runRefreshQueriesEntry(refreshQueriesArgv.paths)
+    return
+  }
   if (headlessArgv.kind !== 'none') {
     await runHeadlessExportEntry(headlessArgv)
     return
@@ -11043,6 +11135,8 @@ app.on('window-all-closed', () => {
   // A headless export destroys its hidden window between documents; only
   // runHeadlessExportEntry decides when that run is over.
   if (headlessArgv.kind !== 'none') return
+  // the refresh-only run ends with its closing message (runRefreshQueriesEntry)
+  if (refreshQueriesArgv.kind !== 'none') return
   if (shouldKeepQuickLookInTray()) return
   if (process.platform !== 'darwin') app.quit()
 })
