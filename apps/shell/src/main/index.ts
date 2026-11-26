@@ -564,6 +564,7 @@ import {
   parseRefreshQueriesArgv,
   progressPageHtml,
   refreshRunLabels,
+  refreshRunReport,
   summarizeRefreshRun,
   type HeadlessRefreshResult,
 } from './query-refresh-run'
@@ -10456,6 +10457,15 @@ async function runRefreshQueriesEntry(paths: readonly string[]): Promise<void> {
   }
   stopSheetsSidecar()
   const summary = summarizeRefreshRun(outcomes, labels)
+  // one JSON line for scripts (a scheduled task, a test), as --headless-export prints
+  const line = `${JSON.stringify(refreshRunReport(outcomes))}\n`
+  await new Promise<void>((done) => {
+    const bail = setTimeout(done, 2000)
+    process.stdout.write(line, () => {
+      clearTimeout(bail)
+      done()
+    })
+  })
   const options = {
     type: summary.type,
     title: labels.title,

@@ -578,6 +578,30 @@ export function summarizeRefreshRun(
   }
 }
 
+/** the run as one JSON line on stdout: each file's result as the engine gave it (no table list) */
+export function refreshRunReport(
+  outcomes: readonly { readonly fileName: string; readonly result: HeadlessRefreshResult }[],
+): {
+  readonly status: 'ok' | 'error'
+  readonly files: readonly Record<string, unknown>[]
+} {
+  return {
+    status: outcomes.length > 0 && outcomes.every((outcome) => outcome.result.ok) ? 'ok' : 'error',
+    files: outcomes.map(({ fileName, result }) =>
+      result.ok
+        ? {
+            file: fileName,
+            ok: true,
+            tables: result.tables.length,
+            formulas: result.formulas,
+            ...(result.formulasDetail ? { formulasDetail: result.formulasDetail } : {}),
+            recalcOnOpen: result.recalcOnOpen,
+          }
+        : { file: fileName, ...result },
+    ),
+  }
+}
+
 /** the progress window's page for one file: which one, a moving bar, in the system's light or dark colors */
 export function progressPageHtml(
   labels: RefreshRunLabels,

@@ -7,6 +7,7 @@ import {
   parseRefreshQueriesArgv,
   progressPageHtml,
   refreshRunLabels,
+  refreshRunReport,
   summarizeRefreshRun,
   type HeadlessRefreshResult,
 } from '../src/main/query-refresh-run'
@@ -121,5 +122,24 @@ describe('labels', () => {
     expect(page).toContain('&lt;b&gt;plan&lt;/b&gt;.xlsx')
     expect(page).toContain('(1/2)')
     expect(page).not.toContain('<script')
+  })
+})
+
+describe('refreshRunReport', () => {
+  it('prints each file once, without the table list, and says whether all were refreshed', () => {
+    expect(
+      refreshRunReport([
+        { fileName: 'plan.xlsx', result: ok('recalculated') },
+        { fileName: 'otro.xlsx', result: { ok: false, code: 'locked' } },
+      ]),
+    ).toEqual({
+      status: 'error',
+      files: [
+        { file: 'plan.xlsx', ok: true, tables: 5, formulas: 'recalculated', recalcOnOpen: false },
+        { file: 'otro.xlsx', ok: false, code: 'locked' },
+      ],
+    })
+    expect(refreshRunReport([{ fileName: 'a.xlsx', result: ok('recalculated') }]).status).toBe('ok')
+    expect(refreshRunReport([]).status).toBe('error')
   })
 })
