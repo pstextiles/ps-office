@@ -127,6 +127,7 @@ function ensureSendToShortcut(): void {
   const script = [
     '$s = (New-Object -ComObject WScript.Shell).CreateShortcut($env:PSQR_LINK)',
     '$s.TargetPath = $env:PSQR_EXE',
+    "$s.Arguments = ''",
     '$s.WorkingDirectory = Split-Path $env:PSQR_EXE',
     '$s.IconLocation = "$($env:PSQR_EXE),0"',
     '$s.Save()',

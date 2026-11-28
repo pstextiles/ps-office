@@ -84,7 +84,7 @@ const KO: RefreshRunLabels = {
   timeout: '{file}: 15분이 넘게 걸려 멈췄습니다. 파일은 그대로입니다.',
   notFile: '{file}: Excel 통합 문서(.xlsx, .xlsm)가 아닙니다.',
   noFiles:
-    '새로 고칠 Excel 파일을 이 아이콘 위에 끌어다 놓거나, 파일을 마우스 오른쪽 단추로 누르고 [보내기] › [PS Query Refresh]를 고르세요.',
+    '사용법: 이 창을 닫은 뒤, 새로 고칠 Excel 파일을 끌어다 바탕 화면의 "PS Query Refresh" 아이콘이나 PSQueryRefresh.exe 파일 위에 놓으세요. 또는 Excel 파일을 마우스 오른쪽 단추로 누르고 [보내기] › [PS Query Refresh]를 고르세요.',
   button: '확인',
   pressEnter: 'Enter 키를 누르면 창이 닫힙니다.',
 }
@@ -106,7 +106,7 @@ const EN: RefreshRunLabels = {
   timeout: '{file}: stopped after 15 minutes. The file was left as it was.',
   notFile: '{file}: not an Excel workbook (.xlsx, .xlsm).',
   noFiles:
-    'Drag the Excel files to refresh onto this icon, or right-click a file and choose Send to › PS Query Refresh.',
+    'How to use: close this window, then drag the Excel file to refresh and drop it on the "PS Query Refresh" icon on the desktop or on the PSQueryRefresh.exe file. Or right-click the Excel file and choose Send to › PS Query Refresh.',
   button: 'OK',
   pressEnter: 'Press Enter to close this window.',
 }
@@ -131,7 +131,7 @@ const LABELS: Record<string, RefreshRunLabels> = {
     timeout: '{file}: se detuvo después de 15 minutos. El archivo quedó como estaba.',
     notFile: '{file}: no es un libro de Excel (.xlsx, .xlsm).',
     noFiles:
-      'Arrastre los archivos de Excel que desea actualizar sobre este icono, o haga clic derecho en un archivo y elija Enviar a › PS Query Refresh.',
+      'Cómo usarlo: cierre esta ventana y arrastre el archivo de Excel que desea actualizar hasta el icono "PS Query Refresh" del escritorio o hasta el archivo PSQueryRefresh.exe, y suéltelo allí. O haga clic derecho en el archivo de Excel y elija Enviar a › PS Query Refresh.',
     button: 'Aceptar',
     pressEnter: 'Presione Enter para cerrar esta ventana.',
   },
@@ -151,7 +151,7 @@ const LABELS: Record<string, RefreshRunLabels> = {
     timeout: '{file}：超过 15 分钟已停止。文件保持原样。',
     notFile: '{file}：不是 Excel 工作簿（.xlsx、.xlsm）。',
     noFiles:
-      '请把要刷新的 Excel 文件拖到此图标上，或右键单击文件并选择“发送到” › PS Query Refresh。',
+      '用法：关闭此窗口，然后把要刷新的 Excel 文件拖到桌面上的“PS Query Refresh”图标或 PSQueryRefresh.exe 文件上松开。也可以右键单击 Excel 文件并选择“发送到” › PS Query Refresh。',
     button: '确定',
     pressEnter: '按 Enter 键关闭此窗口。',
   },
@@ -171,7 +171,7 @@ const LABELS: Record<string, RefreshRunLabels> = {
     timeout: '{file}：超過 15 分鐘已停止。檔案保持原樣。',
     notFile: '{file}：不是 Excel 活頁簿（.xlsx、.xlsm）。',
     noFiles:
-      '請把要重新整理的 Excel 檔案拖曳到此圖示上，或在檔案上按右鍵並選擇「傳送到」 › PS Query Refresh。',
+      '用法：關閉此視窗，然後把要重新整理的 Excel 檔案拖曳到桌面上的「PS Query Refresh」圖示或 PSQueryRefresh.exe 檔案上放開。也可以在 Excel 檔案上按右鍵並選擇「傳送到」 › PS Query Refresh。',
     button: '確定',
     pressEnter: '按 Enter 鍵關閉此視窗。',
   },
@@ -192,7 +192,7 @@ const LABELS: Record<string, RefreshRunLabels> = {
     timeout: '{file}: 15 分を超えたため止めました。ファイルは元のままです。',
     notFile: '{file}: Excel ブック (.xlsx、.xlsm) ではありません。',
     noFiles:
-      '更新する Excel ファイルをこのアイコンにドラッグするか、ファイルを右クリックして [送る] › [PS Query Refresh] を選んでください。',
+      '使い方: このウィンドウを閉じてから、更新する Excel ファイルをデスクトップの「PS Query Refresh」アイコンか PSQueryRefresh.exe ファイルの上にドラッグして離してください。Excel ファイルを右クリックして [送る] › [PS Query Refresh] を選んでもかまいません。',
     button: 'OK',
     pressEnter: 'Enter キーを押すとこのウィンドウが閉じます。',
   },
@@ -213,7 +213,7 @@ const LABELS: Record<string, RefreshRunLabels> = {
     timeout: '{file} : arrêté après 15 minutes. Le fichier n’a pas été modifié.',
     notFile: '{file} : ce n’est pas un classeur Excel (.xlsx, .xlsm).',
     noFiles:
-      'Faites glisser les fichiers Excel à actualiser sur cette icône, ou cliquez avec le bouton droit sur un fichier et choisissez Envoyer vers › PS Query Refresh.',
+      'Utilisation : fermez cette fenêtre, puis faites glisser le fichier Excel à actualiser sur l’icône « PS Query Refresh » du bureau ou sur le fichier PSQueryRefresh.exe. Vous pouvez aussi cliquer avec le bouton droit sur le fichier Excel et choisir Envoyer vers › PS Query Refresh.',
     button: 'OK',
     pressEnter: 'Appuyez sur Entrée pour fermer cette fenêtre.',
   },
@@ -235,7 +235,7 @@ const LABELS: Record<string, RefreshRunLabels> = {
     timeout: '{file}: nach 15 Minuten abgebrochen. Die Datei bleibt unverändert.',
     notFile: '{file}: keine Excel-Arbeitsmappe (.xlsx, .xlsm).',
     noFiles:
-      'Ziehen Sie die zu aktualisierenden Excel-Dateien auf dieses Symbol, oder klicken Sie mit der rechten Maustaste auf eine Datei und wählen Sie Senden an › PS Query Refresh.',
+      'So geht es: Schließen Sie dieses Fenster und ziehen Sie die zu aktualisierende Excel-Datei auf das Symbol „PS Query Refresh“ auf dem Desktop oder auf die Datei PSQueryRefresh.exe. Oder klicken Sie mit der rechten Maustaste auf die Excel-Datei und wählen Sie Senden an › PS Query Refresh.',
     button: 'OK',
     pressEnter: 'Drücken Sie die Eingabetaste, um dieses Fenster zu schließen.',
   },
@@ -256,7 +256,7 @@ const LABELS: Record<string, RefreshRunLabels> = {
     timeout: '{file}: interrompido após 15 minutos. O arquivo ficou como estava.',
     notFile: '{file}: não é uma pasta de trabalho do Excel (.xlsx, .xlsm).',
     noFiles:
-      'Arraste os arquivos do Excel que deseja atualizar para este ícone, ou clique com o botão direito em um arquivo e escolha Enviar para › PS Query Refresh.',
+      'Como usar: feche esta janela e arraste o arquivo do Excel que deseja atualizar até o ícone "PS Query Refresh" na área de trabalho ou até o arquivo PSQueryRefresh.exe. Ou clique com o botão direito no arquivo do Excel e escolha Enviar para › PS Query Refresh.',
     button: 'OK',
     pressEnter: 'Pressione Enter para fechar esta janela.',
   },
@@ -277,7 +277,7 @@ const LABELS: Record<string, RefreshRunLabels> = {
     timeout: '{file}: interrotto dopo 15 minuti. Il file è rimasto com’era.',
     notFile: '{file}: non è una cartella di lavoro di Excel (.xlsx, .xlsm).',
     noFiles:
-      'Trascina su questa icona i file Excel da aggiornare, oppure fai clic con il pulsante destro su un file e scegli Invia a › PS Query Refresh.',
+      'Come si usa: chiudi questa finestra, poi trascina il file Excel da aggiornare sull’icona "PS Query Refresh" del desktop o sul file PSQueryRefresh.exe. Oppure fai clic con il pulsante destro sul file Excel e scegli Invia a › PS Query Refresh.',
     button: 'OK',
     pressEnter: 'Premi Invio per chiudere questa finestra.',
   },
@@ -298,7 +298,7 @@ const LABELS: Record<string, RefreshRunLabels> = {
     timeout: '{file}: остановлено через 15 минут. Файл не изменён.',
     notFile: '{file}: это не книга Excel (.xlsx, .xlsm).',
     noFiles:
-      'Перетащите файлы Excel для обновления на этот значок или щёлкните файл правой кнопкой мыши и выберите «Отправить» › PS Query Refresh.',
+      'Как пользоваться: закройте это окно и перетащите файл Excel, который нужно обновить, на значок «PS Query Refresh» на рабочем столе или на файл PSQueryRefresh.exe. Или щёлкните файл Excel правой кнопкой мыши и выберите «Отправить» › PS Query Refresh.',
     button: 'ОК',
     pressEnter: 'Нажмите Enter, чтобы закрыть это окно.',
   },
@@ -319,7 +319,7 @@ const LABELS: Record<string, RefreshRunLabels> = {
     timeout: '{file}: zatrzymano po 15 minutach. Plik pozostał bez zmian.',
     notFile: '{file}: to nie jest skoroszyt programu Excel (.xlsx, .xlsm).',
     noFiles:
-      'Przeciągnij pliki Excel do odświeżenia na tę ikonę albo kliknij plik prawym przyciskiem myszy i wybierz Wyślij do › PS Query Refresh.',
+      'Jak używać: zamknij to okno, a następnie przeciągnij plik Excel do odświeżenia na ikonę „PS Query Refresh” na pulpicie lub na plik PSQueryRefresh.exe. Możesz też kliknąć plik Excel prawym przyciskiem myszy i wybrać Wyślij do › PS Query Refresh.',
     button: 'OK',
     pressEnter: 'Naciśnij Enter, aby zamknąć to okno.',
   },
@@ -340,7 +340,7 @@ const LABELS: Record<string, RefreshRunLabels> = {
     timeout: '{file}: zastaveno po 15 minutách. Soubor zůstal beze změny.',
     notFile: '{file}: není sešit Excelu (.xlsx, .xlsm).',
     noFiles:
-      'Přetáhněte soubory Excelu, které chcete aktualizovat, na tuto ikonu, nebo na soubor klikněte pravým tlačítkem a zvolte Odeslat › PS Query Refresh.',
+      'Jak na to: zavřete toto okno a přetáhněte soubor Excelu, který chcete aktualizovat, na ikonu „PS Query Refresh“ na ploše nebo na soubor PSQueryRefresh.exe. Nebo na soubor Excelu klikněte pravým tlačítkem a zvolte Odeslat › PS Query Refresh.',
     button: 'OK',
     pressEnter: 'Stisknutím klávesy Enter toto okno zavřete.',
   },
@@ -361,7 +361,7 @@ const LABELS: Record<string, RefreshRunLabels> = {
     timeout: '{file}: gestopt na 15 minuten. Het bestand is ongewijzigd.',
     notFile: '{file}: geen Excel-werkmap (.xlsx, .xlsm).',
     noFiles:
-      'Sleep de Excel-bestanden die u wilt vernieuwen naar dit pictogram, of klik met de rechtermuisknop op een bestand en kies Kopiëren naar › PS Query Refresh.',
+      'Zo werkt het: sluit dit venster en sleep het Excel-bestand dat u wilt vernieuwen naar het pictogram "PS Query Refresh" op het bureaublad of naar het bestand PSQueryRefresh.exe. Of klik met de rechtermuisknop op het Excel-bestand en kies Kopiëren naar › PS Query Refresh.',
     button: 'OK',
     pressEnter: 'Druk op Enter om dit venster te sluiten.',
   },
@@ -382,7 +382,7 @@ const LABELS: Record<string, RefreshRunLabels> = {
     timeout: '{file}: 15 dakikadan sonra durduruldu. Dosya olduğu gibi bırakıldı.',
     notFile: '{file}: bir Excel çalışma kitabı (.xlsx, .xlsm) değil.',
     noFiles:
-      'Yenilenecek Excel dosyalarını bu simgenin üzerine sürükleyin ya da bir dosyaya sağ tıklayıp Gönder › PS Query Refresh’i seçin.',
+      'Kullanım: Bu pencereyi kapatın, sonra yenilenecek Excel dosyasını masaüstündeki "PS Query Refresh" simgesinin ya da PSQueryRefresh.exe dosyasının üzerine sürükleyip bırakın. Ya da Excel dosyasına sağ tıklayıp Gönder › PS Query Refresh’i seçin.',
     button: 'Tamam',
     pressEnter: 'Bu pencereyi kapatmak için Enter tuşuna basın.',
   },
@@ -403,7 +403,7 @@ const LABELS: Record<string, RefreshRunLabels> = {
     timeout: '{file}: หยุดหลังจาก 15 นาที ไฟล์ยังคงเหมือนเดิม',
     notFile: '{file}: ไม่ใช่เวิร์กบุ๊ก Excel (.xlsx, .xlsm)',
     noFiles:
-      'ลากไฟล์ Excel ที่ต้องการรีเฟรชมาวางบนไอคอนนี้ หรือคลิกขวาที่ไฟล์แล้วเลือก ส่งไปยัง › PS Query Refresh',
+      'วิธีใช้: ปิดหน้าต่างนี้ แล้วลากไฟล์ Excel ที่ต้องการรีเฟรชไปวางบนไอคอน "PS Query Refresh" บนเดสก์ท็อป หรือบนไฟล์ PSQueryRefresh.exe หรือคลิกขวาที่ไฟล์ Excel แล้วเลือก ส่งไปยัง › PS Query Refresh',
     button: 'ตกลง',
     pressEnter: 'กด Enter เพื่อปิดหน้าต่างนี้',
   },
@@ -424,7 +424,7 @@ const LABELS: Record<string, RefreshRunLabels> = {
     timeout: '{file}: dihentikan setelah 15 menit. File tetap seperti semula.',
     notFile: '{file}: bukan buku kerja Excel (.xlsx, .xlsm).',
     noFiles:
-      'Seret file Excel yang ingin disegarkan ke ikon ini, atau klik kanan file lalu pilih Kirim ke › PS Query Refresh.',
+      'Cara pakai: tutup jendela ini, lalu seret file Excel yang ingin disegarkan ke ikon "PS Query Refresh" di desktop atau ke file PSQueryRefresh.exe. Atau klik kanan file Excel lalu pilih Kirim ke › PS Query Refresh.',
     button: 'OK',
     pressEnter: 'Tekan Enter untuk menutup jendela ini.',
   },
@@ -446,7 +446,7 @@ const LABELS: Record<string, RefreshRunLabels> = {
     timeout: '{file}: dihentikan selepas 15 minit. Fail kekal seperti asal.',
     notFile: '{file}: bukan buku kerja Excel (.xlsx, .xlsm).',
     noFiles:
-      'Seret fail Excel yang hendak disegar semula ke ikon ini, atau klik kanan fail dan pilih Hantar ke › PS Query Refresh.',
+      'Cara guna: tutup tetingkap ini, kemudian seret fail Excel yang hendak disegar semula ke ikon "PS Query Refresh" di desktop atau ke fail PSQueryRefresh.exe. Atau klik kanan fail Excel dan pilih Hantar ke › PS Query Refresh.',
     button: 'OK',
     pressEnter: 'Tekan Enter untuk menutup tetingkap ini.',
   },
@@ -467,7 +467,7 @@ const LABELS: Record<string, RefreshRunLabels> = {
     timeout: '{file}: đã dừng sau 15 phút. Tệp vẫn giữ nguyên.',
     notFile: '{file}: không phải sổ làm việc Excel (.xlsx, .xlsm).',
     noFiles:
-      'Kéo các tệp Excel cần làm mới thả vào biểu tượng này, hoặc nhấp chuột phải vào tệp và chọn Gửi tới › PS Query Refresh.',
+      'Cách dùng: đóng cửa sổ này, rồi kéo tệp Excel cần làm mới thả vào biểu tượng "PS Query Refresh" trên màn hình nền hoặc vào tệp PSQueryRefresh.exe. Hoặc nhấp chuột phải vào tệp Excel và chọn Gửi tới › PS Query Refresh.',
     button: 'OK',
     pressEnter: 'Nhấn Enter để đóng cửa sổ này.',
   },
@@ -487,7 +487,7 @@ const LABELS: Record<string, RefreshRunLabels> = {
     timeout: '{file}: توقف بعد 15 دقيقة. بقي الملف كما كان.',
     notFile: '{file}: ليس مصنف Excel (.xlsx أو .xlsm).',
     noFiles:
-      'اسحب ملفات Excel المراد تحديثها إلى هذه الأيقونة، أو انقر بزر الماوس الأيمن على ملف واختر إرسال إلى › PS Query Refresh.',
+      'طريقة الاستخدام: أغلق هذه النافذة، ثم اسحب ملف Excel المراد تحديثه وأفلته على أيقونة "PS Query Refresh" على سطح المكتب أو على الملف PSQueryRefresh.exe. أو انقر بزر الماوس الأيمن على ملف Excel واختر إرسال إلى › PS Query Refresh.',
     button: 'موافق',
     pressEnter: 'اضغط Enter لإغلاق هذه النافذة.',
   },
@@ -507,7 +507,7 @@ const LABELS: Record<string, RefreshRunLabels> = {
     timeout: '{file}: נעצר אחרי 15 דקות. הקובץ נשאר כפי שהיה.',
     notFile: '{file}: אינו חוברת עבודה של Excel ‏(‎.xlsx, .xlsm‏).',
     noFiles:
-      'גררו את קובצי ה-Excel לרענון אל הסמל הזה, או לחצו לחיצה ימנית על קובץ ובחרו שלח אל › PS Query Refresh.',
+      'אופן השימוש: סגרו חלון זה, ואז גררו את קובץ ה-Excel לרענון ושחררו אותו על הסמל "PS Query Refresh" בשולחן העבודה או על הקובץ PSQueryRefresh.exe. אפשר גם ללחוץ לחיצה ימנית על קובץ ה-Excel ולבחור שלח אל › PS Query Refresh.',
     button: 'אישור',
     pressEnter: 'הקישו Enter כדי לסגור חלון זה.',
   },
@@ -528,7 +528,7 @@ const LABELS: Record<string, RefreshRunLabels> = {
     timeout: '{file}: 15 मिनट बाद रोक दिया गया। फ़ाइल पहले जैसी ही है।',
     notFile: '{file}: Excel वर्कबुक (.xlsx, .xlsm) नहीं है।',
     noFiles:
-      'रीफ़्रेश करने वाली Excel फ़ाइलों को इस आइकन पर खींचकर छोड़ें, या फ़ाइल पर राइट-क्लिक करके भेजें › PS Query Refresh चुनें।',
+      'उपयोग का तरीका: यह विंडो बंद करें, फिर रीफ़्रेश करने वाली Excel फ़ाइल को डेस्कटॉप पर "PS Query Refresh" आइकन या PSQueryRefresh.exe फ़ाइल पर खींचकर छोड़ें। या Excel फ़ाइल पर राइट-क्लिक करके भेजें › PS Query Refresh चुनें।',
     button: 'ठीक है',
     pressEnter: 'यह विंडो बंद करने के लिए Enter दबाएँ।',
   },
