@@ -1,0 +1,106 @@
+name: PS Query Refresh exe
+
+# Builds PSQueryRefresh.exe (tools/query-refresh/): one Windows executable,
+# no install, that refreshes the Power Query tables of the workbooks dropped
+# on it with PS Office's built-in engine and saves them. For PCs too slow for
+# PS Office or with an Excel too old to refresh the queries. Unsigned, as the
+# installer is. Run from the Actions tab; the exe stays an artifact.
+
+on:
+  workflow_dispatch:
+  pull_request:
+    branches: [main]
+    paths:
+      - .github/workflows/query-refresh-exe.yml
+      - tools/query-refresh/**
+
+concurrency:
+  group: query-refresh-exe-${{ github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    runs-on: windows-2025
+    timeout-minutes: 45
+    defaults:
+      run:
+        shell: bash
+    steps:
+      - name: Checkout
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+
+      - name: Setup Node
+        uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0
+        with:
+          node-version: 22
+          cache: npm
+          cache-dependency-path: package-lock.json
+
+      - name: Setup Rust
+        uses: dtolnay/rust-toolchain@4cda84d5c5c54efe2404f9d843567869ab1699d4 # stable branch, 2026-07
+        with:
+          toolchain: stable
+
+      - name: Cache cargo (xlsx-sidecar)
+        uses: Swatinem/rust-cache@c19371144df3bb44fab255c43d04cbc2ab54d1c4 # v2.9.1
+        with:
+          workspaces: apps/sheets/native/xlsx-engine
+
+      - name: Install dependencies
+        run: npm ci
+        env:
+          # the exe never runs Electron; skip its download
+          ELECTRON_SKIP_BINARY_DOWNLOAD: '1'
+
+      - name: Build the xlsx sidecar
+        run: npm run native:build -w @genoffice/sheets
+
+      - name: Build PSQueryRefresh.exe
+        run: node tools/query-refresh/build.mjs
+
+      # the exe itself on a workbook with one Power Query table: the query is
+      # computed, the table rewritten and the file saved through the sidecar
+      - name: Smoke test the exe
+        run: |
+          set -euo pipefail
+          work="$RUNNER_TEMP/qr"
+          mkdir -p "$work"
+          npx esbuild apps/sheets/tests/power-query-fixtures.ts --bundle --platform=node \
+            --format=cjs --outfile="$work/fixtures.cjs" --log-level=warning
+          node -e "
+            const { queryTableWorkbook } = require(process.argv[1]);
+            require('fs').writeFileSync(process.argv[2], queryTableWorkbook({
+              query: '#table({\"PO\", \"Qty\", \"Fecha\"}, {{\"a\", 21, null}, {\"b\", 2, null}, {\"c\", 3, null}})',
+            }));
+          " "$work/fixtures.cjs" "$work/book.xlsx"
+          before=$(sha256sum "$work/book.xlsx" | cut -d' ' -f1)
+          out=$(tools/query-refresh/dist/PSQueryRefresh.exe "$work/book.xlsx" --json --no-wait)
+          echo "$out"
+          echo "$out" | grep -q '"status":"ok"' || { echo "the refresh did not succeed"; exit 1; }
+          after=$(sha256sum "$work/book.xlsx" | cut -d' ' -f1)
+          [ "$before" != "$after" ] || { echo "the workbook was not saved"; exit 1; }
+          # a missing file is reported, not a crash
+          set +e
+          tools/query-refresh/dist/PSQueryRefresh.exe "$work/missing.xlsx" --json --no-wait
+          code=$?
+          set -e
+          [ "$code" = "3" ] || { echo "expected exit code 3 for a missing file, got $code"; exit 1; }
+
+      - name: Collect the files
+        run: |
+          set -euo pipefail
+          mkdir -p out
+          cp tools/query-refresh/dist/PSQueryRefresh.exe out/
+          cp LICENSE NOTICE out/
+          ls -la out
+
+      - name: Upload PSQueryRefresh.exe
+        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
+        with:
+          name: ps-query-refresh-windows-x64
+          path: out/*
+          if-no-files-found: error
+          retention-days: 30

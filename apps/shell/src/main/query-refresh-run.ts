@@ -63,6 +63,8 @@ export interface RefreshRunLabels {
   readonly notFile: string
   readonly noFiles: string
   readonly button: string
+  /** the standalone program's console: the last line before it closes */
+  readonly pressEnter: string
 }
 
 const KO: RefreshRunLabels = {
@@ -84,6 +86,7 @@ const KO: RefreshRunLabels = {
   noFiles:
     '새로 고칠 Excel 파일을 이 아이콘 위에 끌어다 놓거나, 파일을 마우스 오른쪽 단추로 누르고 [보내기] › [PS Query Refresh]를 고르세요.',
   button: '확인',
+  pressEnter: 'Enter 키를 누르면 창이 닫힙니다.',
 }
 
 const EN: RefreshRunLabels = {
@@ -105,6 +108,7 @@ const EN: RefreshRunLabels = {
   noFiles:
     'Drag the Excel files to refresh onto this icon, or right-click a file and choose Send to › PS Query Refresh.',
   button: 'OK',
+  pressEnter: 'Press Enter to close this window.',
 }
 
 const LABELS: Record<string, RefreshRunLabels> = {
@@ -129,6 +133,7 @@ const LABELS: Record<string, RefreshRunLabels> = {
     noFiles:
       'Arrastre los archivos de Excel que desea actualizar sobre este icono, o haga clic derecho en un archivo y elija Enviar a › PS Query Refresh.',
     button: 'Aceptar',
+    pressEnter: 'Presione Enter para cerrar esta ventana.',
   },
   zh: {
     title: 'PS 查询刷新',
@@ -148,6 +153,7 @@ const LABELS: Record<string, RefreshRunLabels> = {
     noFiles:
       '请把要刷新的 Excel 文件拖到此图标上，或右键单击文件并选择“发送到” › PS Query Refresh。',
     button: '确定',
+    pressEnter: '按 Enter 键关闭此窗口。',
   },
   'zh-TW': {
     title: 'PS 查詢重新整理',
@@ -167,6 +173,7 @@ const LABELS: Record<string, RefreshRunLabels> = {
     noFiles:
       '請把要重新整理的 Excel 檔案拖曳到此圖示上，或在檔案上按右鍵並選擇「傳送到」 › PS Query Refresh。',
     button: '確定',
+    pressEnter: '按 Enter 鍵關閉此視窗。',
   },
   ja: {
     title: 'PS クエリ更新',
@@ -187,6 +194,7 @@ const LABELS: Record<string, RefreshRunLabels> = {
     noFiles:
       '更新する Excel ファイルをこのアイコンにドラッグするか、ファイルを右クリックして [送る] › [PS Query Refresh] を選んでください。',
     button: 'OK',
+    pressEnter: 'Enter キーを押すとこのウィンドウが閉じます。',
   },
   fr: {
     title: 'PS Query Refresh',
@@ -207,6 +215,7 @@ const LABELS: Record<string, RefreshRunLabels> = {
     noFiles:
       'Faites glisser les fichiers Excel à actualiser sur cette icône, ou cliquez avec le bouton droit sur un fichier et choisissez Envoyer vers › PS Query Refresh.',
     button: 'OK',
+    pressEnter: 'Appuyez sur Entrée pour fermer cette fenêtre.',
   },
   de: {
     title: 'PS Query Refresh',
@@ -228,6 +237,7 @@ const LABELS: Record<string, RefreshRunLabels> = {
     noFiles:
       'Ziehen Sie die zu aktualisierenden Excel-Dateien auf dieses Symbol, oder klicken Sie mit der rechten Maustaste auf eine Datei und wählen Sie Senden an › PS Query Refresh.',
     button: 'OK',
+    pressEnter: 'Drücken Sie die Eingabetaste, um dieses Fenster zu schließen.',
   },
   pt: {
     title: 'PS Query Refresh',
@@ -248,6 +258,7 @@ const LABELS: Record<string, RefreshRunLabels> = {
     noFiles:
       'Arraste os arquivos do Excel que deseja atualizar para este ícone, ou clique com o botão direito em um arquivo e escolha Enviar para › PS Query Refresh.',
     button: 'OK',
+    pressEnter: 'Pressione Enter para fechar esta janela.',
   },
   it: {
     title: 'PS Query Refresh',
@@ -268,6 +279,7 @@ const LABELS: Record<string, RefreshRunLabels> = {
     noFiles:
       'Trascina su questa icona i file Excel da aggiornare, oppure fai clic con il pulsante destro su un file e scegli Invia a › PS Query Refresh.',
     button: 'OK',
+    pressEnter: 'Premi Invio per chiudere questa finestra.',
   },
   ru: {
     title: 'PS Query Refresh',
@@ -288,6 +300,7 @@ const LABELS: Record<string, RefreshRunLabels> = {
     noFiles:
       'Перетащите файлы Excel для обновления на этот значок или щёлкните файл правой кнопкой мыши и выберите «Отправить» › PS Query Refresh.',
     button: 'ОК',
+    pressEnter: 'Нажмите Enter, чтобы закрыть это окно.',
   },
   pl: {
     title: 'PS Query Refresh',
@@ -308,6 +321,7 @@ const LABELS: Record<string, RefreshRunLabels> = {
     noFiles:
       'Przeciągnij pliki Excel do odświeżenia na tę ikonę albo kliknij plik prawym przyciskiem myszy i wybierz Wyślij do › PS Query Refresh.',
     button: 'OK',
+    pressEnter: 'Naciśnij Enter, aby zamknąć to okno.',
   },
   cs: {
     title: 'PS Query Refresh',
@@ -328,6 +342,7 @@ const LABELS: Record<string, RefreshRunLabels> = {
     noFiles:
       'Přetáhněte soubory Excelu, které chcete aktualizovat, na tuto ikonu, nebo na soubor klikněte pravým tlačítkem a zvolte Odeslat › PS Query Refresh.',
     button: 'OK',
+    pressEnter: 'Stisknutím klávesy Enter toto okno zavřete.',
   },
   nl: {
     title: 'PS Query Refresh',
@@ -348,6 +363,7 @@ const LABELS: Record<string, RefreshRunLabels> = {
     noFiles:
       'Sleep de Excel-bestanden die u wilt vernieuwen naar dit pictogram, of klik met de rechtermuisknop op een bestand en kies Kopiëren naar › PS Query Refresh.',
     button: 'OK',
+    pressEnter: 'Druk op Enter om dit venster te sluiten.',
   },
   tr: {
     title: 'PS Query Refresh',
@@ -368,6 +384,7 @@ const LABELS: Record<string, RefreshRunLabels> = {
     noFiles:
       'Yenilenecek Excel dosyalarını bu simgenin üzerine sürükleyin ya da bir dosyaya sağ tıklayıp Gönder › PS Query Refresh’i seçin.',
     button: 'Tamam',
+    pressEnter: 'Bu pencereyi kapatmak için Enter tuşuna basın.',
   },
   th: {
     title: 'PS Query Refresh',
@@ -388,6 +405,7 @@ const LABELS: Record<string, RefreshRunLabels> = {
     noFiles:
       'ลากไฟล์ Excel ที่ต้องการรีเฟรชมาวางบนไอคอนนี้ หรือคลิกขวาที่ไฟล์แล้วเลือก ส่งไปยัง › PS Query Refresh',
     button: 'ตกลง',
+    pressEnter: 'กด Enter เพื่อปิดหน้าต่างนี้',
   },
   id: {
     title: 'PS Query Refresh',
@@ -408,6 +426,7 @@ const LABELS: Record<string, RefreshRunLabels> = {
     noFiles:
       'Seret file Excel yang ingin disegarkan ke ikon ini, atau klik kanan file lalu pilih Kirim ke › PS Query Refresh.',
     button: 'OK',
+    pressEnter: 'Tekan Enter untuk menutup jendela ini.',
   },
   ms: {
     title: 'PS Query Refresh',
@@ -429,6 +448,7 @@ const LABELS: Record<string, RefreshRunLabels> = {
     noFiles:
       'Seret fail Excel yang hendak disegar semula ke ikon ini, atau klik kanan fail dan pilih Hantar ke › PS Query Refresh.',
     button: 'OK',
+    pressEnter: 'Tekan Enter untuk menutup tetingkap ini.',
   },
   vi: {
     title: 'PS Query Refresh',
@@ -449,6 +469,7 @@ const LABELS: Record<string, RefreshRunLabels> = {
     noFiles:
       'Kéo các tệp Excel cần làm mới thả vào biểu tượng này, hoặc nhấp chuột phải vào tệp và chọn Gửi tới › PS Query Refresh.',
     button: 'OK',
+    pressEnter: 'Nhấn Enter để đóng cửa sổ này.',
   },
   ar: {
     title: 'PS Query Refresh',
@@ -468,6 +489,7 @@ const LABELS: Record<string, RefreshRunLabels> = {
     noFiles:
       'اسحب ملفات Excel المراد تحديثها إلى هذه الأيقونة، أو انقر بزر الماوس الأيمن على ملف واختر إرسال إلى › PS Query Refresh.',
     button: 'موافق',
+    pressEnter: 'اضغط Enter لإغلاق هذه النافذة.',
   },
   he: {
     title: 'PS Query Refresh',
@@ -487,6 +509,7 @@ const LABELS: Record<string, RefreshRunLabels> = {
     noFiles:
       'גררו את קובצי ה-Excel לרענון אל הסמל הזה, או לחצו לחיצה ימנית על קובץ ובחרו שלח אל › PS Query Refresh.',
     button: 'אישור',
+    pressEnter: 'הקישו Enter כדי לסגור חלון זה.',
   },
   hi: {
     title: 'PS Query Refresh',
@@ -507,6 +530,7 @@ const LABELS: Record<string, RefreshRunLabels> = {
     noFiles:
       'रीफ़्रेश करने वाली Excel फ़ाइलों को इस आइकन पर खींचकर छोड़ें, या फ़ाइल पर राइट-क्लिक करके भेजें › PS Query Refresh चुनें।',
     button: 'ठीक है',
+    pressEnter: 'यह विंडो बंद करने के लिए Enter दबाएँ।',
   },
 }
 

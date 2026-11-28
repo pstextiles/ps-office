@@ -12,7 +12,6 @@ import {
 import {
   copyFile,
   mkdir,
-  mkdtemp,
   open,
   readFile,
   realpath,
@@ -23,7 +22,6 @@ import {
 } from 'node:fs/promises'
 import { refreshCsvDigest } from './csv-digest'
 import { createServer } from 'node:http'
-import { tmpdir } from 'node:os'
 import { basename, dirname, isAbsolute, join, resolve as resolvePath, extname } from 'node:path'
 
 import {
@@ -279,12 +277,8 @@ import {
   refreshWorkbookInExcel,
   stopExcelRefreshes,
 } from './excel-refresh'
-import {
-  RecalcSuperseded,
-  recalcInWorker,
-  refreshWorkbookBuiltIn,
-  type BuiltInRefreshResult,
-} from './builtin-refresh'
+import { RecalcSuperseded, recalcInWorker, refreshWorkbookBuiltIn } from './builtin-refresh'
+import { refreshFileInPlace, type FileRefreshResult } from './refresh-file'
 import { checkboxStyleIndexes, featurePropertyBagPart } from './cell-checkbox'
 import {
   appendSaveFailure,
@@ -3731,29 +3725,11 @@ function failHeadlessExport(wcId: number, message: string): void {
  * planned from; when every formula was recalculated the file keeps its own
  * recalculate-on-open setting (calc-on-load.ts).
  */
-export async function refreshQueriesHeadless(
-  path: string,
-): Promise<BuiltInRefreshResult | { readonly ok: false; readonly code: 'not-file' }> {
-  if (!refreshablePath(path) || !existsSync(path) || !statSync(path).isFile()) {
-    return { ok: false, code: 'not-file' }
-  }
+export async function refreshQueriesHeadless(path: string): Promise<FileRefreshResult> {
   const client = sidecar ?? new XlsxSidecarClient(resolveSidecarPath())
   sidecar = client
   client.start()
-  const dir = await mkdtemp(join(tmpdir(), 'psoffice-refresh-'))
-  try {
-    const snapshot = join(dir, `source${extname(path).toLowerCase()}`)
-    await copyFile(path, snapshot)
-    return await refreshWorkbookBuiltIn({
-      client,
-      sourcePath: snapshot,
-      targetPath: path,
-      systemCulture: app.getSystemLocale(),
-      trustRecalculatedValues: true,
-    })
-  } finally {
-    await rm(dir, { recursive: true, force: true }).catch(() => undefined)
-  }
+  return refreshFileInPlace(path, { client, systemCulture: app.getSystemLocale() })
 }
 
 /**
